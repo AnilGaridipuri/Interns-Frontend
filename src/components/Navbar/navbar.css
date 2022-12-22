@@ -1,0 +1,161 @@
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+    background-color: #fff !important;
+    padding: 10px 10px;
+}
+
+
+.css-19r6kue-MuiContainer-root {
+    padding: 0 !important;
+}
+
+.css-r6ewbb-MuiToolbar-root {
+    display: grid !important;
+    grid-template-columns: 30% 52% auto !important;
+    column-gap: 20px;
+}
+
+.navBarLogoDiv {
+    display: flex !important;
+    align-items: center;
+}
+
+.menuItemsList {
+    align-items: right !important;
+    display: flex;
+    column-gap: 30px;
+    justify-content: flex-end;
+}
+
+.navlogoText {
+    font-size: 160%;
+    font-weight: 600;
+    color: green;
+}
+
+.NavProfileDiv {
+    display: flex !important;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.divider {
+    border-left: 2px solid rgb(144, 140, 140);
+    height: 20px;
+}
+
+.userNameText {
+    color: black !important;
+    text-align: center;
+}
+
+
+.menuIconDiv{
+    display: none;
+}
+
+.mitsLogo{
+    width: 60px;
+}
+
+@media screen and (max-width: 700px) and (min-width: 550px){
+    .navBarLogoDiv {
+        left: 37% !important;
+    }
+    .menuItemsList {
+        left: 40% !important;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .navBarBody {
+        height: 100px !important;
+    }
+    .navBarBody.active {
+        height: 250px !important;
+    }
+    .navBarLogoDiv {
+        display: grid !important;
+        justify-items: center;
+        align-items: center;
+        place-items: center;
+        position: absolute;
+        left: 30%;
+        top: 0%;
+    }
+
+    .NavProfileDiv{
+        position: absolute;
+        right: 0%;
+        top: 28%;
+        column-gap: 10px;
+    }
+
+    .divider{
+        display: none;
+    }
+
+    .menuItemsList.active{
+        display: grid;
+        text-align: center !important;
+        position: absolute;
+        left: 34%;
+        top: 85px;
+    }
+    .menuItemsList {
+        display: none;
+    }
+    .menuIconDiv {
+        display: block;
+    }
+    .css-r6ewbb-MuiToolbar-root {
+        display: flex !important;
+    }
+    .menuIcon {
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        left: 0%;
+        top: 40%;
+        color: #000;
+    }
+    .navlogoText {
+        font-size: 120%;
+    }
+
+    .userNameText{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1145px) and (min-width: 800px) {
+    .css-r6ewbb-MuiToolbar-root {
+        grid-template-columns: 29% 50% auto !important;
+        column-gap: 10px;
+    }
+
+    .NavProfileDiv {
+        column-gap: 10px;
+    }
+    .navlogoText {
+        font-size: 160%;
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 700px) {
+    .css-r6ewbb-MuiToolbar-root {
+        grid-template-columns: 32% 44% auto !important;
+        column-gap: 10px;
+    }
+
+    .NavProfileDiv {
+        column-gap: 10px;
+    }
+
+    .menuItemsList {
+        column-gap: 20px;
+    }
+    .navlogoText {
+        font-size: 150%;
+    }
+}
