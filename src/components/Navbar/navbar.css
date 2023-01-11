@@ -22,7 +22,7 @@
 .menuItemsList {
     align-items: right !important;
     display: flex;
-    column-gap: 30px;
+    column-gap: 10px;
     justify-content: flex-end;
 }
 
@@ -49,7 +49,6 @@
     text-align: center;
 }
 
-
 .menuIconDiv{
     display: none;
 }
@@ -60,10 +59,10 @@
 
 @media screen and (max-width: 700px) and (min-width: 550px){
     .navBarLogoDiv {
-        left: 37% !important;
+        left: 40% !important;
     }
     .menuItemsList {
-        left: 40% !important;
+        left: 40.5% !important;
     }
 }
 
@@ -98,10 +97,13 @@
     .menuItemsList.active{
         display: grid;
         text-align: center !important;
+        justify-content: center;
+        align-items: center;
         position: absolute;
-        left: 34%;
+        left: 33%;
         top: 85px;
     }
+
     .menuItemsList {
         display: none;
     }
@@ -128,6 +130,29 @@
     }
 }
 
+.navItems{
+    font-size: 16px;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.navItems.active,.navItems:hover{
+    color: green;
+    font-size: 16.5px;
+    border-bottom:2px solid green;
+}
+.navItems.inactive{
+    color: black;
+    border: none;
+    font-size: 16px;
+}
+.navItems::after{
+    border: 1px solid #000;
+}
+
+
 @media screen and (max-width: 1145px) and (min-width: 800px) {
     .css-r6ewbb-MuiToolbar-root {
         grid-template-columns: 29% 50% auto !important;
@@ -144,18 +169,29 @@
 
 @media screen and (max-width: 800px) and (min-width: 700px) {
     .css-r6ewbb-MuiToolbar-root {
-        grid-template-columns: 32% 44% auto !important;
-        column-gap: 10px;
+        grid-template-columns: 27.7% 48% auto !important;
+        column-gap: 5px;
     }
 
     .NavProfileDiv {
-        column-gap: 10px;
+        column-gap: 7px;
     }
 
+    .mitsLogo{
+        width: 55px;
+    }
     .menuItemsList {
-        column-gap: 20px;
+        column-gap: 5px;
     }
     .navlogoText {
-        font-size: 150%;
+        font-size: 135%;
+    }
+
+    .navItems{
+        width: 100px;
+    }
+
+    .css-r6ewbb-MuiToolbar-root{
+        column-gap: 5px;
     }
 }

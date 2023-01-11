@@ -10,6 +10,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
@@ -27,7 +28,7 @@ const menuList = [
   },
   {
     name: "My Account",
-    path: "/my-account",
+    path: `${ApplicationConstant.MYACCOUNT_URL}`,
     className: "navItems",
   },
   {
@@ -55,18 +56,25 @@ const NavBar = () => {
     setAnchorElNav(null);
   };
 
+  const hadleNavItem =(props)=>{
+     var sideMenu = document.querySelectorAll(".navItems");
+     sideMenu.forEach((item,index) => {
+        if (props == index){
+          item.classList.toggle("active");
+        }
+     });
+  }
+
   
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
 
-  
-  function hanbleMenuItems (){
+  function handleMenuItems (){
     document.getElementById("menuItemsList")?.classList.toggle("active");
     document.getElementById("navBarBody")?.classList.toggle("active");
     setMenuItemsListOpen(!menuItemsListOpen);
-    console.log("hello")
   }
 
   return (
@@ -77,7 +85,7 @@ const NavBar = () => {
             <img src={logo} className="mitsLogo"></img>
             <p className="navlogoText">MITS Interns</p>
           </div>
-          <Typography onClick={hanbleMenuItems} className="menuIconDiv">
+          <Typography onClick={handleMenuItems} className="menuIconDiv">
             {menuItemsListOpen == false ? (
               <MenuIcon className="menuIcon" />
             ) : (
@@ -95,12 +103,15 @@ const NavBar = () => {
                 to={item.path}
                 className=""
                 key={index}
-                onClick={hanbleMenuItems}
+                className={item.className}
+                onClick={() => hadleNavItem(index)}
               >
                 {item.name}
               </Link>
             ))}
           </Typography>
+          
+
           <Box sx={{ flexGrow: 0 }}>
             <div className="NavProfileDiv">
               <div className="divider"></div>
