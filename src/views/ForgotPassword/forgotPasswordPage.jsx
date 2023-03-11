@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import backgroungImg from "../../assets/forgot.jpg";
 import backgroungImg1 from "../../assets/forget1.jpg";
 import ForgotPasswordInputs from "./forgotPasswordInputs"
 import logo from "../../assets/mitsLogo.jpeg";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VerifyOtp from './verifyOtp'
 import PasswordInputs from './passwordInputs'
 import SuccessUpdatePassword from "./successUpdatePassword";
+import { api } from "../../axios/api.config";
 
 
 const ForgotPasswordPage = () => {
 
   const [step, setStep] = useState(0)
 
-  const [forgotPasswordParams,setForgotPasswordParams]=useState({
-    email:"",
-    otp:NaN,
-    resetPassword:"",
-    confirmResetPassword:""
+  const [forgotPasswordParams, setForgotPasswordParams] = useState({
+    mailId: "",
+    resetPassword: "",
+    confirmResetPassword: "",
+  });
+
+  const [otpDetails, setotpDetails] = useState({
+    otp:"",
+    mailId:""
   })
   const [emailerror, setEmailerror] = useState(false);
+  const [otpVerifyed, setOtpVerifyed] = useState(false);
   const [emailValidate_status, setEmailValidate_status] = useState(false);
   const [otpValidate_status, setOtpValidate_status] = useState(false);
   const [resetPasswordValidate_status, setResetPasswordValidate_status] = useState(false);
@@ -52,18 +56,29 @@ const ForgotPasswordPage = () => {
     message.textContent = errormessage;
     setForgotPasswordParams((pre)=>({
       ...pre,
-      email:email
+      mailId:email
     }))
+    setotpDetails((pre) => ({
+      ...pre,
+      mailId: email,
+    }));
     setSendOtpBtn(false);
   }
 
-  function getOtp(params) {
+  async function getOtp(params) {
     if (!emailValidate_status) {
       toast.error("Email is required");
     } else {
-      toast.success("ok");
-      setSendOtpBtn(true);
-      setStep(step + 1);
+      try {
+        const response =  await api.post('/send-otp',{mailId:otpDetails.mailId});
+        toast.success(`OTP is send to ${response.data.data.email}`);
+        setSendOtpBtn(true);
+        setStep(step + 1);
+        console.log(response)
+      } catch (error) {
+        console.log(error.response.data);
+        toast.error(error.response.data);
+      }
     }
   }
 
@@ -73,10 +88,10 @@ const ForgotPasswordPage = () => {
       setOtpValidate_status(false)
     }else{
       setOtpValidate_status(true)
-      setForgotPasswordParams((pre)=>({
+      setotpDetails((pre) => ({
         ...pre,
-        otp:otp
-      }))
+        otp: otp,
+      }));
     }
   }
 
@@ -85,12 +100,18 @@ const ForgotPasswordPage = () => {
     setSendOtpBtn(false);
   }
 
-  function verifyOtp() {
+  async function verifyOtp() {
     if(!otpValidate_status){
       toast.error("Otp is required");
     }else{
-      toast.success("ok")
-      setStep(step + 1);
+      try {
+        const response =  await api.post('/verify-otp',otpDetails);
+        toast.success("Otp is verifyed Successfully")
+        setStep(step + 1);
+        setOtpVerifyed(response.data.otpVerifyed);
+      } catch (error) {
+        toast.error(error.response.data);
+      }
     }
   }
 
@@ -120,8 +141,11 @@ const ForgotPasswordPage = () => {
      }
    }
 
-   function handleUpdatePassword() {
-    if (!resetPasswordValidate_status || !confirmResetPasswordValidate_status) {
+   async function handleUpdatePassword() {
+    if(!otpVerifyed){
+      toast.error("Please verify Otp");
+    }
+    else if (!resetPasswordValidate_status || !confirmResetPasswordValidate_status) {
       toast.error("password and confirm Password are required");
     } else if (
       forgotPasswordParams.resetPassword.length < 5 &&
@@ -134,8 +158,16 @@ const ForgotPasswordPage = () => {
     ) {
       toast.error("password and confirm Password must be same");
     } else {
-      toast.success("Your Password Update Successfully");
-      setStep(step + 1);
+        try {
+          const response = await api.post(
+            "/update-password",
+            forgotPasswordParams
+          );
+          toast.success("Your Password Update Successfully");
+          setStep(step + 1);
+        } catch (error) {
+          toast.error(error.response.data);
+        }
     }
    }
 

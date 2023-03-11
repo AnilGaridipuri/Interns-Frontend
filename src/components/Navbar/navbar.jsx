@@ -1,4 +1,4 @@
-import * as React from "react";
+import React ,{useEffect,useState} from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,16 +9,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../../assets/mitsLogo.jpeg";
 import profile from "../../assets/profile.JPG";
 import './navbar.css'
 import { ApplicationConstant } from "../../constant/applicationConstant";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setAuthentication } from "../../store/slices/auth";
 
 const menuList = [
   {
@@ -27,33 +27,23 @@ const menuList = [
     className: "navItems",
   },
   {
-    name: "My Account",
-    path: `${ApplicationConstant.MYACCOUNT_URL}`,
-    className: "navItems",
-  },
-  {
-    name: "Project",
-    path: "/Results",
-    className: "navItems",
-  },
-  {
-    name: "Reslut",
-    path: "/Projects",
+    name: "InternShips",
+    path: '#',
     className: "navItems",
   },
 ];
 
 const NavBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+  const dispatch = useDispatch();
+  const pathname = useLocation();
+  const authState = useSelector((state) => state.authReducer);
+  console.log(authState)
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [menuItemsListOpen, setMenuItemsListOpen] = React.useState(false)
+  const [menuItemsListOpen, setMenuItemsListOpen] = React.useState(false);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const hadleNavItem =(props)=>{
@@ -61,8 +51,22 @@ const NavBar = () => {
      sideMenu.forEach((item,index) => {
         if (props == index){
           item.classList.toggle("active");
+        }else{
+          item.classList.remove('active')
         }
      });
+  }
+
+  const logOut = () =>{
+    localStorage.removeItem("MITSinternsid");
+    dispatch(
+      setAuthentication({
+        isAuthenticated: false,
+        username: "",
+        _id: "",
+        mailId: ""
+      })
+    );
   }
 
   
@@ -85,6 +89,8 @@ const NavBar = () => {
             <img src={logo} className="mitsLogo"></img>
             <p className="navlogoText">MITS Interns</p>
           </div>
+
+          {/* only display in modile screen  */}
           <Typography onClick={handleMenuItems} className="menuIconDiv">
             {menuItemsListOpen == false ? (
               <MenuIcon className="menuIcon" />
@@ -92,63 +98,96 @@ const NavBar = () => {
               <CancelIcon className="menuIcon" />
             )}
           </Typography>
-
           <Typography
             className="menuItemsList"
             textAlign="Right"
             id="menuItemsList"
           >
-            {menuList.map((item, index) => (
-              <Link
-                to={item.path}
-                className=""
-                key={index}
-                className={item.className}
-                onClick={() => hadleNavItem(index)}
-              >
-                {item.name}
-              </Link>
-            ))}
+            <Link
+              to={ApplicationConstant.HOME_PAGE_PATH}
+              className={
+                pathname.pathname === ApplicationConstant.HOME_PAGE_PATH
+                  ? "navItems_active"
+                  : "navItems"
+              }
+            >
+              Home
+            </Link>
+            <Link
+              to={ApplicationConstant.ALL_INTERNS}
+              className={
+                pathname.pathname === ApplicationConstant.ALL_INTERNS
+                  ? "navItems_active"
+                  : "navItems"
+              }
+            >
+              All Interns
+            </Link>
           </Typography>
-          
-
-          <Box sx={{ flexGrow: 0 }}>
-            <div className="NavProfileDiv">
-              <div className="divider"></div>
-              <Typography className="userNameText">Anil Kumar</Typography>
-              <div>
-                <Tooltip title="Open settings">
-                  <IconButton
-                    onClick={handleOpenUserMenu}
-                    sx={{ p: 0 }}
-                    className="navProfile"
-                  >
-                    <Avatar alt="Remy Sharp" src={profile} />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
+          <div>
+            {!authState.isAuthenticated ? (
+              <div className="navLoginBtnDiv NavProfileDiv">
+                <Link
+                  className="navLoginBtn"
+                  to={ApplicationConstant.LOGIN_URL_PATH}
                 >
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">LogOut</Typography>
-                  </MenuItem>
-                </Menu>
+                  Login
+                </Link>
               </div>
-            </div>
-          </Box>
+            ) : (
+              <Box sx={{ flexGrow: 0 }}>
+                <div className="NavProfileDiv">
+                  <div className="divider"></div>
+                  <Typography className="userNameText">Anil Kumar</Typography>
+                  <div>
+                    <Tooltip title="Open settings">
+                      <IconButton
+                        onClick={handleOpenUserMenu}
+                        sx={{ p: 0 }}
+                        className="navProfile"
+                      >
+                        <Avatar alt="Remy Sharp" src={profile} />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      sx={{ mt: "45px" }}
+                      id="menu-appbar"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorElUser)}
+                      onClose={handleCloseUserMenu}
+                    >
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Link
+                          textAlign="center"
+                          to={ApplicationConstant.MYACCOUNT_URL}
+                        >
+                          My Account
+                        </Link>
+                      </MenuItem>
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Link
+                          textAlign="center"
+                          onClick={logOut}
+                          to={ApplicationConstant.LOGIN_URL_PATH}
+                        >
+                          LogOut
+                        </Link>
+                      </MenuItem>
+                    </Menu>
+                  </div>
+                </div>
+              </Box>
+            )}
+          </div>
         </Toolbar>
       </Container>
     </AppBar>

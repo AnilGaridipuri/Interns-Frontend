@@ -4,18 +4,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { ApplicationConstant } from "../../constant/applicationConstant";
 import { Link } from "react-router-dom";
 import {
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  FormLabel,
-  TextField,
   IconButton,
-  Input,
-  FilledInput,
   OutlinedInput,
   InputLabel,
   InputAdornment,
-  FormHelperText,
   Button,
   FormControl,
 } from "@mui/material";
@@ -31,7 +23,7 @@ const PasswordInputs = (props) => {
     setShowConfirmPassword((show) => !show);
 
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event
   ) => {
     event.preventDefault();
   };
