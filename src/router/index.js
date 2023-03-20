@@ -11,6 +11,7 @@ import MyInterships from "../views/myAccount/myInterships";
 import AddNewInternship from "../views/myAccount/addNewInternship";
 import EditProfile from "../views/myAccount/EditProfile";
 import AllInternShips from "../views/AllInternShips/AllInternShips";
+import AddNewCertification from "../views/myAccount/addNewCertification";
 
 export default function App() {
 
@@ -50,6 +51,10 @@ export default function App() {
         {
           path: ApplicationConstant.MYACCOUNT_ADD_NEW_INTERNSHIP_DYNAMIC_URL,
           element: <AddNewInternship />,
+        },
+        {
+          path: ApplicationConstant.MYACCOUNT_ADD_NEW_CERTIFICATIONS_DYNAMIC_URL,
+          element: <AddNewCertification />,
         },
         {
           path: ApplicationConstant.MYACCOUNT_EDIT_DYNAMIC_URL,

@@ -34,7 +34,7 @@
     transition: all 1s;
     box-shadow: 7px 2px 20px 0px #c6c6c6 !important;
     border-radius: 80px 0px 80px 0px !important;
-    background-color: #e7f7fc !important;
+    background-color: #d5fcdd !important;
 }
 
 .bgColor1{
@@ -223,6 +223,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 5px;
 }
 
 .Completed{
@@ -312,8 +313,9 @@
 
 .accountHeader p{
     border-bottom: 3px solid #009005;
-    width: 200px;
+    width: 270px;
     text-align: center;
     font-size: 25px;
     font-weight: 600;
+    margin-top: 10px;
 }

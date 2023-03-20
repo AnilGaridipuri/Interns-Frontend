@@ -11,6 +11,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import logo from "../../assets/mitsLogo.jpeg";
 import "./sidebar.css";
 import { useSelector } from "react-redux";
+import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 
 const Sidebar = (props) => {
   const pathname = useLocation();
@@ -65,6 +66,7 @@ const Sidebar = (props) => {
       </div>
       <div className="sidebarLinksDiv">
         <NavLink
+          onClick={handleMenuIcon}
           to={`${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${props.id}`}
         >
           <div
@@ -81,6 +83,7 @@ const Sidebar = (props) => {
           </div>
         </NavLink>
         <NavLink
+          onClick={handleMenuIcon}
           to={`${ApplicationConstant.MYACCOUNT_MYINTERSHIPS_URL}/${props.id}`}
         >
           <div
@@ -101,6 +104,7 @@ const Sidebar = (props) => {
           </div>
         </NavLink>
         <NavLink
+          onClick={handleMenuIcon}
           to={`${ApplicationConstant.MYACCOUNT_MYCERTIFICATES_URL}/${props.id}`}
         >
           <div
@@ -123,6 +127,7 @@ const Sidebar = (props) => {
         {authState._id == props.id ? (
           <div>
             <NavLink
+              onClick={handleMenuIcon}
               to={`${ApplicationConstant.MYACCOUNT_ADD_NEW_INTERNSHIP_URL}/${props.id}`}
             >
               <div
@@ -133,12 +138,30 @@ const Sidebar = (props) => {
                     : "sidebarItems"
                 }
               >
-                <NoteAddIcon fontSize="large" />
+                <WorkHistoryIcon fontSize="large" />
                 <p className="linkName">Add New Internship</p>
                 <span className="tooltip_sidemenu">Add New Internship</span>
               </div>
             </NavLink>
             <NavLink
+              onClick={handleMenuIcon}
+              to={`${ApplicationConstant.MYACCOUNT_ADD_NEW_CERTIFICATIONS_URL}/${props.id}`}
+            >
+              <div
+                className={
+                  pathname.pathname ===
+                  `${ApplicationConstant.MYACCOUNT_ADD_NEW_CERTIFICATIONS_URL}/${props.id}`
+                    ? "sidebarItems_active"
+                    : "sidebarItems"
+                }
+              >
+                <NoteAddIcon fontSize="large" />
+                <p className="linkName">Add New Certifications</p>
+                <span className="tooltip_sidemenu">Add New Certifications</span>
+              </div>
+            </NavLink>
+            <NavLink
+              onClick={handleMenuIcon}
               to={`${ApplicationConstant.MYACCOUNT_EDIT_URL}/${props.id}`}
             >
               <div

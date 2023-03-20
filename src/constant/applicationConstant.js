@@ -13,6 +13,8 @@ export const ApplicationConstant = {
   MYACCOUNT_MYCERTIFICATES_DYNAMIC_URL: "/account/certificates/:id",
   MYACCOUNT_ADD_NEW_INTERNSHIP_URL: "/account/add-new-internship",
   MYACCOUNT_ADD_NEW_INTERNSHIP_DYNAMIC_URL: "/account/add-new-internship/:id",
+  MYACCOUNT_ADD_NEW_CERTIFICATIONS_URL: "/account/add-new-certifications",
+  MYACCOUNT_ADD_NEW_CERTIFICATIONS_DYNAMIC_URL: "/account/add-new-certifications/:id",
   MYACCOUNT_EDIT_URL: "/account/edit-profile",
   MYACCOUNT_EDIT_DYNAMIC_URL: "/account/edit-profile/:id",
 };

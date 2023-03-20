@@ -14,40 +14,18 @@ import "./allinternship.css";
 import { Avatar, Button, TablePagination } from "@mui/material";
 import LoadingCircle from "../../components/loading";
 import ViewWorkDetails from "../../components/viewWorkDeatil";
-import { async } from "q";
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#000",
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 16,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: "#d3feed",
-  },
-  "&:nth-of-type(even)": {
-    backgroundColor: "#ecfff7",
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+import { StyledTableCell, StyledTableRow } from "../../components/tablestyles";
+import AllCertifications from "./AllCertifications";
 
 const AllInternShips = () => {
   const [worklistparameters, setWorklistparameters] = useState({
     page: 1,
     size: 5,
   });
-  const [getworkDetails, setGetworkDetails] = useState(false);
   const [count, setCount] = useState(1);
   const [loading, setloading] = useState(true);
   const [workDetails, setWorkDeatils] = useState([]);
+  const [label, setLabel] = useState("Internship");
   useEffect(() => {
     getworkDeatils();
   }, [worklistparameters]);
@@ -88,7 +66,6 @@ const AllInternShips = () => {
   };
 
   const [open, setOpen] = useState(false);
-  const [orderId, setOrderId] = useState("");
   const [singleWorkDetails, setSingleWorkDetails] = useState({
     addWorkAt: "",
     companyName: "",
@@ -120,7 +97,7 @@ const AllInternShips = () => {
 
   const handleClickOpen = async (id) => {
     setOpen(true);
-    setOrderId(id)
+    setLabel("Internship");
     try {
       console.log(id,"id wfewef")
       const responce = await api.get(
@@ -137,8 +114,6 @@ const AllInternShips = () => {
     }
   };
 
-  // console.log(workDetails.studentDetails.profile,"profile");
-
   return (
     <div className="allWorksList">
       <TableContainer component={Paper} sx={{ maxHeight: 620 }}>
@@ -153,7 +128,7 @@ const AllInternShips = () => {
             </TableRow>
           </TableHead>
           {loading == true ? (
-            <div style={{position:'absolute', left:"50%"}}>
+            <div style={{ position: "absolute", left: "50%" }}>
               <LoadingCircle />
             </div>
           ) : (
@@ -235,9 +210,11 @@ const AllInternShips = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </div>
+      <AllCertifications studentDetails={studentDetails}/>
       <ViewWorkDetails
         open={open}
         setOpen={setOpen}
+        label={label}
         singleWorkDetails={singleWorkDetails}
         studentDetails={studentDetails}
       />

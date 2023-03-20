@@ -46,3 +46,10 @@ li {
 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
   text-transform: none !important;
 }
+
+
+@media screen and (max-width:600px) {
+  .css-1fu2e3p-MuiPaper-root-MuiDialog-paper{
+    margin: 32px 10px !important;
+  }
+}

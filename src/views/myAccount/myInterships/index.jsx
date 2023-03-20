@@ -12,22 +12,36 @@ import LoadingCircle from "../../../components/loading";
 import Box from "@mui/material/Box";
 import EditInternship from "../../../components/editInterShip";
 import ViewWorkDetails from "../../../components/viewWorkDeatil";
+import EditCertification from "../../../components/editCertification";
 
 const MyInterships = () => {
   const {_id} = useSelector((state) => state.authReducer);
   const [getworkDetails, setGetworkDetails] = useState(false);
   const [workDetails, setWorkDeatils] = useState([]);
-  const [userDetails, setUserDeatils] = useState({});
-  const [isUser, setIsUser] = useState(_id === userDetails._id);
+  const [certificationsDetails, setCertificationsDeatils] = useState([]);
+  // const [userDetails, setUserDeatils] = useState({});
+  const [isUser, setIsUser] = useState(false);
   const params = useParams();
   const [loading, setLoading] = useState(true)
-
+  const [label, setLabel] = useState("")
+  
+  const [userDetails, setUserDetails] = useState({
+    branch: "",
+    mailId: "",
+    phoneNumber: "",
+    rollno: "",
+    studentName: "",
+    year: "",
+    _id: "",
+    profile: "",
+  });
   console.log(isUser,'is user')
   
   useEffect(() => {
     if (!getworkDetails) {
       getworkDeatils();
       getUserDeatils();
+      getcertificationDeatils();
     }
     setIsUser(_id === userDetails._id);
   }, [workDetails, userDetails]);
@@ -54,7 +68,7 @@ const MyInterships = () => {
           id: params.id,
         });
         setIsUser(_id==responce.data._id)
-        setUserDeatils(responce.data);
+        setUserDetails(responce.data);
       } catch (error) {
         ToastErrorMessage(error.message);
       }
@@ -81,29 +95,67 @@ const MyInterships = () => {
       updatedWorkAt: "",
       _id: "",
     });
-    const [studentDetails, setStudentDetails] = useState({
-      branch: "",
-      mailId: "",
-      phoneNumber: "",
-      rollno: "",
-      studentName: "",
-      year: "",
+
+
+    const [singlecertificationsDetails, setSinglecertificationsDeatils] = useState({
+      addWorkAt: "",
+      organizationName: "",
+      completionCertificatepath: "",
+      domain: "",
+      end_date: "",
+      start_date: "",
+      status: "",
+      studentDetails: {},
+      studentId: "",
+      updatedWorkAt: "",
       _id: "",
-      profile: "",
     });
 
-    const handleClickOpen = async (id) => {
+    const getcertificationDeatils = async () => {
+      if (params.id) {
+        setGetworkDetails(true);
+        try {
+          const responce = await api.post(
+            `getCertificationDeatils/student-certifications`,
+            {
+              id: params.id,
+            }
+          );
+          setCertificationsDeatils(responce.data);
+          setLoading(false);
+        } catch (error) {
+          ToastErrorMessage(error.message);
+        }
+      }
+    };
+
+    const handleClickOpenIntershipDetails = async (id) => {
       setOpen(true);
       setOrderId(id);
+      setLabel("Internship");
       try {
         console.log(id, "id wfewef");
         const responce = await api.get(`getWorkDeatils/single-work/${id}`, {
           id: id,
         });
-        console.log(responce.data, "wfwfwfwfwfwf");
         setSingleWorkDetails(responce.data);
-        setStudentDetails(responce.data.studentDetails);
-        console.log(responce.data.studentDetails);
+      } catch (error) {
+        console.log(id, "id wfewef");
+        ToastErrorMessage(error.message);
+      }
+    };
+    const handleClickOpenCertificationDetails = async (id) => {
+      setOpen(true);
+      setLabel("Certification");
+      try {
+        console.log(id, "id wfewef");
+        const responce = await api.get(
+          `getCertificationDeatils/single-certification/${id}`,
+          {
+            id: id,
+          }
+        );
+        setSinglecertificationsDeatils(responce.data);
       } catch (error) {
         console.log(id, "id wfewef");
         ToastErrorMessage(error.message);
@@ -117,6 +169,7 @@ const MyInterships = () => {
       ) : (
         <div className="intershipsbody">
           <AccountHeader label={isUser ? "My Interships" : "Interships"} />
+
           {workDetails.length != 0 ? (
             <div>
               <div className="intershipsDiv">
@@ -165,7 +218,6 @@ const MyInterships = () => {
                             borderRadius: "30px",
                             color: "#fff",
                           }}
-
                         >
                           {work.status}
                         </Button>
@@ -219,7 +271,9 @@ const MyInterships = () => {
                       style={{ display: "flex", justifyContent: "center" }}
                     >
                       <Button
-                       onClick={() => handleClickOpen(work._id)}
+                        onClick={() =>
+                          handleClickOpenIntershipDetails(work._id)
+                        }
                         style={{
                           textDecoration: "none",
                           width: "10rem",
@@ -238,7 +292,134 @@ const MyInterships = () => {
               </div>
             </div>
           ) : (
-            <p style={{ color: "red", marginBottom: "10px" }}>
+            <p
+              style={{
+                color: "red",
+                textAlign: "center",
+                padding: "30px 0px",
+              }}
+            >
+              No InternShips Add
+            </p>
+          )}
+          <AccountHeader
+            label={isUser ? "My Certifications" : "Certifications"}
+          />
+          {certificationsDetails.length != 0 ? (
+            <div>
+              <div className="intershipsDiv">
+                {certificationsDetails?.map((certification, index) => (
+                  <Card className="intershipCard" key={index}>
+                    <CardContent>
+                      <div className="intershipTitleHeader">
+                        <p className="intershipTitle">Student Details</p>
+                        {isUser ? (
+                          <EditCertification
+                            certificationsDetails={certification}
+                            setCertificationsDeatils={setCertificationsDeatils}
+                          />
+                        ) : null}
+                      </div>
+                      <div className="studentDetailsDiv">
+                        <Avatar
+                          alt={capitalizeFirstLetter(
+                            userDetails.studentName?.charAt(0) || ""
+                          )}
+                          src={userDetails.profile}
+                          sx={{
+                            width: "80px",
+                            height: "80px",
+                            marginRight: 2,
+                            fontSize: "60px",
+                          }}
+                        />
+                        <div>
+                          <p>{userDetails.studentName}</p>
+                          <p>{userDetails.rollno}</p>
+                          <p>
+                            {userDetails.branch} {" , "}
+                            {userDetails.year}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="intershipTitleHeader">
+                        <p className="intershipTitle">Intrnship Details</p>
+                        <Button
+                          className={certification.status}
+                          style={{
+                            textDecoration: "none",
+                            width: "10rem",
+                            height: "30px",
+                            borderRadius: "30px",
+                            color: "#fff",
+                          }}
+                        >
+                          {certification.status}
+                        </Button>
+                      </div>
+                      <div style={{ display: "grid", gap: "8px" }}>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                          <label style={{ fontWeight: "bold", width: "150px" }}>
+                            Organization Name
+                          </label>
+                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
+                          <p>{certification.organizationName}</p>
+                        </div>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                          <label style={{ fontWeight: "bold", width: "150px" }}>
+                            Domain
+                          </label>
+                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
+                          <p>{certification.domain}</p>
+                        </div>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                          <label style={{ fontWeight: "bold", width: "150px" }}>
+                            Start Date
+                          </label>
+                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
+                          <p>{certification.start_date}</p>
+                        </div>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                          <label style={{ fontWeight: "bold", width: "150px" }}>
+                            End Date
+                          </label>
+                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
+                          <p>{certification.end_date}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                    <CardActions
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <Button
+                        onClick={() =>
+                          handleClickOpenCertificationDetails(certification._id)
+                        }
+                        style={{
+                          textDecoration: "none",
+                          width: "10rem",
+                          height: "30px",
+                          borderRadius: "30px",
+                          color: "#fff",
+                        }}
+                        className="internshipViewBtn"
+                        endIcon={<EastIcon />}
+                      >
+                        View
+                      </Button>
+                    </CardActions>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p
+              style={{
+                color: "red",
+                textAlign: "center",
+                padding: "30px 0px",
+              }}
+            >
               No InternShips Add
             </p>
           )}
@@ -248,7 +429,9 @@ const MyInterships = () => {
         open={open}
         setOpen={setOpen}
         singleWorkDetails={singleWorkDetails}
-        studentDetails={studentDetails}
+        singlecertificationsDetails={singlecertificationsDetails}
+        studentDetails={userDetails}
+        label={label}
       />
     </div>
   );

@@ -17,15 +17,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="left" ref={ref} {...props} />;
 });
 
-const selectStatus = [
-  { displayName: "Ongoing", value: "Ongoing" },
-  { displayName: "Completed", value: "Completed" },
-  { displayName: "Not Started", value: "Not Started" },
-];
-
 export default function ViewWorkDetails(props) {
-  console.log(props.singleWorkDetails, "popopwef");
-  console.log(props.studentDetails, "popopwef");
+  console.log(props.label);
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -37,6 +30,7 @@ export default function ViewWorkDetails(props) {
        `${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${props.studentDetails._id}`
      );
   }
+
 
   return (
     <div>
@@ -130,173 +124,271 @@ export default function ViewWorkDetails(props) {
                 </div>
               </div>
             </div>
-            <p
-              className="intershipTitle"
-              style={{ textAlign: "center", margin: "30px 0px" }}
-            >
-              Intrnship Details
-            </p>
-            <div className="addInternInputsDiv">
-              <div className="addInternInputs">
-                <label>Company Name :</label>
-                <TextField
-                  placeholder="Company Name"
-                  id="outlined-size-small"
-                  size="small"
-                  value={props.singleWorkDetails.companyName}
-                  name="companyName"
-                  disabled={true}
-                />
-              </div>
-              <div className="addInternInputs">
-                <FormControl className="radioBtnDiv">
-                  <label className="radioLabel">Type :</label>
-                  <RadioGroup
-                    row
-                    aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="type"
-                    disabled={true}
-                  >
-                    <FormControlLabel
-                      value="Internship"
-                      control={<Radio />}
-                      label="Internship"
-                      checked={props.singleWorkDetails.type == "Internship"}
-                    />
-                    <FormControlLabel
-                      value="Job"
-                      control={<Radio />}
-                      label="Job"
-                      checked={props.singleWorkDetails.type == "Job"}
-                    />
-                    <FormControlLabel
-                      value="Certification"
-                      control={<Radio />}
-                      label="Certification"
-                      checked={props.singleWorkDetails.type == "Certification"}
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </div>
-              <div className="addInternInputs">
-                <label>Domain :</label>
-                <TextField
-                  placeholder="Web/ML/AI/"
-                  id="outlined-size-small"
-                  size="small"
-                  value={props.singleWorkDetails.domain}
-                  name="domain"
-                  disabled={true}
-                />
-              </div>
-              <div className="addInternInputs">
-                <label>Role :</label>
-                <TextField
-                  placeholder="Role"
-                  id="outlined-size-small"
-                  size="small"
-                  value={props.singleWorkDetails.role}
-                  name="role"
-                  disabled={true}
-                />
-              </div>
-              <div className="addInternInputs">
-                <label>Stipend :</label>
-                <TextField
-                  placeholder="No or Yes"
-                  id="outlined-size-small"
-                  size="small"
-                  value={props.singleWorkDetails.stipend}
-                  name="stipend"
-                  disabled={true}
-                />
-              </div>
-              <div className="addInternInputs">
-                <label>Status :</label>
-                <TextField
-                  id="outlined-size-small"
-                  size="small"
-                  value={props.singleWorkDetails.status}
-                  name="stipend"
-                  disabled={true}
-                />
-              </div>
+            {props.label == "Internship" ? (
               <div>
-                <div className="addInternInputs">
-                  <label>Start Date :</label>
-                  <TextField
-                    value={props.singleWorkDetails.start_date || ""}
-                    name="start_date"
-                    type="date"
-                    required
-                    size="small"
-                    id="outlined-basic"
-                    variant="outlined"
-                    disabled={true}
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="addInternInputs">
-                  <label>End Date :</label>
-                  <TextField
-                    value={props.singleWorkDetails.end_date || ""}
-                    name="end_date"
-                    type="date"
-                    required
-                    size="small"
-                    id="outlined-basic"
-                    variant="outlined"
-                    disabled={true}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="addInternInputsDiv">
-              <div className="previewImage">
-                <div>
-                  {props.singleWorkDetails.completionCertificatepath != "" ? (
-                    <div>
-                      <p>Offer Letter</p>
-                      <img
-                        src={props.singleWorkDetails.offerLetterpath}
-                        style={{
-                          width: "300px",
-                          height: "300px",
-                          objectfit: "fill",
-                        }}
-                        alt="preview image"
+                <p
+                  className="intershipTitle"
+                  style={{ textAlign: "center", margin: "30px 0px" }}
+                >
+                  Intrnship Details
+                </p>
+                <div className="addInternInputsDiv">
+                  <div className="addInternInputs">
+                    <label>Company Name :</label>
+                    <TextField
+                      placeholder="Company Name"
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singleWorkDetails.companyName}
+                      name="companyName"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs">
+                    <FormControl className="radioBtnDiv">
+                      <label className="radioLabel">Type :</label>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="type"
+                        disabled={true}
+                      >
+                        <FormControlLabel
+                          value="Internship"
+                          control={<Radio />}
+                          label="Internship"
+                          checked={props.singleWorkDetails.type == "Internship"}
+                        />
+                        <FormControlLabel
+                          value="Job"
+                          control={<Radio />}
+                          label="Job"
+                          checked={props.singleWorkDetails.type == "Job"}
+                        />
+                        <FormControlLabel
+                          value="Certification"
+                          control={<Radio />}
+                          label="Certification"
+                          checked={
+                            props.singleWorkDetails.type == "Certification"
+                          }
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                  <div className="addInternInputs">
+                    <label>Domain :</label>
+                    <TextField
+                      placeholder="Web/ML/AI/"
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singleWorkDetails.domain}
+                      name="domain"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs">
+                    <label>Role :</label>
+                    <TextField
+                      placeholder="Role"
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singleWorkDetails.role}
+                      name="role"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs">
+                    <label>Stipend :</label>
+                    <TextField
+                      placeholder="No or Yes"
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singleWorkDetails.stipend}
+                      name="stipend"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs">
+                    <label>Status :</label>
+                    <TextField
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singleWorkDetails.status}
+                      name="stipend"
+                      disabled={true}
+                    />
+                  </div>
+                  <div>
+                    <div className="addInternInputs">
+                      <label>Start Date :</label>
+                      <TextField
+                        value={props.singleWorkDetails.start_date || ""}
+                        name="start_date"
+                        type="date"
+                        required
+                        size="small"
+                        id="outlined-basic"
+                        variant="outlined"
+                        disabled={true}
                       />
                     </div>
-                  ) : (
-                    <p style={{ color: "red",width:'300px' }}>Offer Letter Not Upload</p>
-                  )}
-                </div>
-              </div>
-              <div className="previewImage">
-                <div>
-                  {props.singleWorkDetails.completionCertificatepath != "" ? (
-                    <div>
-                      <p>Completion Certificate</p>
-                      <img
-                        src={props.singleWorkDetails.completionCertificatepath}
-                        style={{
-                          width: "300px",
-                          height: "300px",
-                          objectfit: "fill",
-                          marginleft: "30px",
-                        }}
-                        alt="preview image"
+                  </div>
+                  <div>
+                    <div className="addInternInputs">
+                      <label>End Date :</label>
+                      <TextField
+                        value={props.singleWorkDetails.end_date || ""}
+                        name="end_date"
+                        type="date"
+                        required
+                        size="small"
+                        id="outlined-basic"
+                        variant="outlined"
+                        disabled={true}
                       />
                     </div>
-                  ) : (
-                    <p style={{ color: "red" , width:'300px'}}>
-                      Completion Certificate Not Upload
-                    </p>
-                  )}
+                  </div>
+                </div>
+                <div className="addInternInputsDiv">
+                  <div className="previewImage">
+                    <div>
+                      {props.singleWorkDetails.offerLetterpath == "" ? (
+                        <p style={{ color: "red", width: "300px" }}>
+                          Offer Letter Not Upload
+                        </p>
+                      ) : (
+                        <div>
+                          <p>Offer Letter</p>
+                          <img
+                            src={props.singleWorkDetails.offerLetterpath}
+                            style={{
+                              width: "300px",
+                              height: "300px",
+                              objectfit: "fill",
+                            }}
+                            alt="preview image"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="previewImage">
+                    <div>
+                      {props.singleWorkDetails.completionCertificatepath !=
+                      "" ? (
+                        <div>
+                          <p>Completion Certificate</p>
+                          <img
+                            src={
+                              props.singleWorkDetails.completionCertificatepath
+                            }
+                            style={{
+                              width: "300px",
+                              height: "300px",
+                              objectfit: "fill",
+                              marginleft: "30px",
+                            }}
+                            alt="preview image"
+                          />
+                        </div>
+                      ) : (
+                        <p style={{ color: "red", width: "300px" }}>
+                          Completion Certificate Not Upload
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div>
+                <div className="addInternInputsDiv">
+                  <div className="addInternInputs">
+                    <label>Organization Name :</label>
+                    <TextField
+                      placeholder="Organization Name"
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singlecertificationsDetails.organizationName}
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs">
+                    <label>Domain :</label>
+                    <TextField
+                      placeholder="Web/ML/AI/"
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singlecertificationsDetails.domain}
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs">
+                    <label>Status :</label>
+                    <TextField
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singlecertificationsDetails.status}
+                      name="stipend"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs">
+                    <label>Start Date :</label>
+                    <TextField
+                      value={
+                        props.singlecertificationsDetails.start_date || ""
+                      }
+                      type="date"
+                      required
+                      size="small"
+                      id="outlined-basic"
+                      variant="outlined"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs">
+                    <label>End Date :</label>
+                    <TextField
+                      value={props.singlecertificationsDetails.end_date || ""}
+                      type="date"
+                      required
+                      size="small"
+                      id="outlined-basic"
+                      variant="outlined"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="previewImage">
+                    <div>
+                      {props.singlecertificationsDetails.completionCertificatepath !=
+                      "" ? (
+                        <div>
+                          <p>Completion Certificate</p>
+                          <img
+                            src={
+                              props.singlecertificationsDetails.completionCertificatepath
+                            }
+                            style={{
+                              width: "300px",
+                              height: "300px",
+                              objectfit: "fill",
+                              marginleft: "30px",
+                            }}
+                            alt="preview image"
+                          />
+                        </div>
+                      ) : (
+                        <p style={{ color: "red", width: "330px" ,marginTop:'20px'}}>
+                          Completion Certificate Not Upload
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </DialogContentText>
         </DialogContent>
       </Dialog>

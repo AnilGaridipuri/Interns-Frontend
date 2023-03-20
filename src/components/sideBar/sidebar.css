@@ -6,6 +6,7 @@
     color: #fff;
     font-size: 15px;
     padding: 10px 0px 10px 10px;
+    transition: all .5s;
 }
 
 .sidebarItems_active{
@@ -43,24 +44,8 @@
 
 
 @media only screen and (max-width: 700px) {
-    .sideBarBody{
-        display: none;
-    }
 
-    .sidebarBody.open {
-        display: block;
-        position: absolute;
-        top: 100px;
-        left: 0px;
-        transition: all 0.5s;
-    }
 
-    .sideMenuIconDiv{
-        display: block;
-        position:absolute;
-        right: 20px;
-        margin-top: 5px;
-    }
 }
 
 
@@ -207,8 +192,16 @@
         z-index: 2;
     }
 
+    .sideMenuIconDiv {
+        display: block;
+        position: absolute;
+        right: 20px;
+        margin-top: 10px;
+    }
+
     .sidebarBody.open {
-        display: inline;
+        display: block;
+        position: absolute;
         top: 100px;
         left: 0px;
         transition: all 0.5s;
