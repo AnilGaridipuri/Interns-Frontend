@@ -1,4 +1,4 @@
-import React ,{useEffect,useState} from "react";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,76 +13,55 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/mitsLogo.jpeg";
 import profile from "../../assets/profile.JPG";
-import './navbar.css'
+import "./navbar.css";
 import { ApplicationConstant } from "../../constant/applicationConstant";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAuthentication } from "../../store/slices/auth";
-
-const menuList = [
-  {
-    name: "Home",
-    path: `${ApplicationConstant.HOME_PAGE_PATH}`,
-    className: "navItems",
-  },
-  {
-    name: "InternShips",
-    path: '#',
-    className: "navItems",
-  },
-];
+import { capitalizeFirstLetter } from "../../uitils/jsFunctions";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const NavBar = () => {
-
   const dispatch = useDispatch();
   const pathname = useLocation();
   const authState = useSelector((state) => state.authReducer);
-  console.log(authState)
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [menuItemsListOpen, setMenuItemsListOpen] = React.useState(false);
+  const id = authState._id;
+  const MITSinternsid = localStorage.getItem("MITSinternsid");
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const hadleNavItem =(props)=>{
-     var sideMenu = document.querySelectorAll(".navItems");
-     sideMenu.forEach((item,index) => {
-        if (props == index){
-          item.classList.toggle("active");
-        }else{
-          item.classList.remove('active')
-        }
-     });
-  }
-
-  const logOut = () =>{
+  const logOut = () => {
     localStorage.removeItem("MITSinternsid");
     dispatch(
       setAuthentication({
         isAuthenticated: false,
-        username: "",
+        rollno: "",
         _id: "",
-        mailId: ""
+        mailId: "",
       })
     );
-  }
+  };
 
-  
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-
-  function handleMenuItems (){
+  function handleMenuItems() {
     document.getElementById("menuItemsList")?.classList.toggle("active");
     document.getElementById("navBarBody")?.classList.toggle("active");
     setMenuItemsListOpen(!menuItemsListOpen);
   }
 
   return (
-    <AppBar position="static" className="navBarBody" id="navBarBody">
+    <div position="static" className="navBarBody" id="navBarBody">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <div className="navBarLogoDiv">
@@ -98,12 +77,8 @@ const NavBar = () => {
               <CancelIcon className="menuIcon" />
             )}
           </Typography>
-          <Typography
-            className="menuItemsList"
-            textAlign="Right"
-            id="menuItemsList"
-          >
-            <Link
+          <Typography className="menuItemsList" id="menuItemsList">
+            <NavLink
               to={ApplicationConstant.HOME_PAGE_PATH}
               className={
                 pathname.pathname === ApplicationConstant.HOME_PAGE_PATH
@@ -112,33 +87,37 @@ const NavBar = () => {
               }
             >
               Home
-            </Link>
-            <Link
-              to={ApplicationConstant.ALL_INTERNS}
+            </NavLink>
+            <NavLink
+              to={ApplicationConstant.ALLINTERNSHIP_PAGE_PATH}
               className={
-                pathname.pathname === ApplicationConstant.ALL_INTERNS
+                pathname.pathname ===
+                ApplicationConstant.ALLINTERNSHIP_PAGE_PATH
                   ? "navItems_active"
                   : "navItems"
               }
             >
               All Interns
-            </Link>
+            </NavLink>
           </Typography>
           <div>
-            {!authState.isAuthenticated ? (
+            {!MITSinternsid ? (
               <div className="navLoginBtnDiv NavProfileDiv">
-                <Link
+                <div className="divider"></div>
+                <NavLink
                   className="navLoginBtn"
                   to={ApplicationConstant.LOGIN_URL_PATH}
                 >
                   Login
-                </Link>
+                </NavLink>
               </div>
             ) : (
               <Box sx={{ flexGrow: 0 }}>
                 <div className="NavProfileDiv">
                   <div className="divider"></div>
-                  <Typography className="userNameText">Anil Kumar</Typography>
+                  <Typography className="rollnoText">
+                    {authState.mailId.slice(0, 10)}
+                  </Typography>
                   <div>
                     <Tooltip title="Open settings">
                       <IconButton
@@ -146,7 +125,17 @@ const NavBar = () => {
                         sx={{ p: 0 }}
                         className="navProfile"
                       >
-                        <Avatar alt="Remy Sharp" src={profile} />
+                        <Avatar
+                          // alt={capitalizeFirstLetter(
+                          //   authState?.studentName.charAt(0) || "A"
+                          // )}
+                          srcSet={authState.profile}
+                          sx={{
+                            width: "60px",
+                            height: "60px",
+                            fontSize: "40px",
+                          }}
+                        />
                       </IconButton>
                     </Tooltip>
                     <Menu
@@ -166,21 +155,33 @@ const NavBar = () => {
                       onClose={handleCloseUserMenu}
                     >
                       <MenuItem onClick={handleCloseUserMenu}>
-                        <Link
-                          textAlign="center"
-                          to={ApplicationConstant.MYACCOUNT_URL}
+                        <NavLink
+                          to={`${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${id}`}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            fontSize: "19px",
+                            gap: 5,
+                          }}
                         >
+                          <AccountCircleIcon fontSize="large" />
                           My Account
-                        </Link>
+                        </NavLink>
                       </MenuItem>
                       <MenuItem onClick={handleCloseUserMenu}>
-                        <Link
-                          textAlign="center"
+                        <NavLink
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            fontSize: "19px",
+                            gap: 5,
+                          }}
                           onClick={logOut}
                           to={ApplicationConstant.LOGIN_URL_PATH}
                         >
-                          LogOut
-                        </Link>
+                          <ExitToAppIcon fontSize="large" />
+                          Logout
+                        </NavLink>
                       </MenuItem>
                     </Menu>
                   </div>
@@ -190,7 +191,7 @@ const NavBar = () => {
           </div>
         </Toolbar>
       </Container>
-    </AppBar>
+    </div>
   );
 };
 export default NavBar;

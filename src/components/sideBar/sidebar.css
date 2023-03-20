@@ -1,58 +1,23 @@
-.sideBarBody{
-    padding: 10px;
-    width: 195px;
-    min-height: 87.5vh;
-    overflow: hidden !important;
-    background-color: rgb(39, 39, 39);
-    color: #fff !important;
-    animation-duration: 10s;
-    transition:0.5s
-}
-
-.sideBarBody.close{
-    padding: 5px;
-    width: 40px;
-}
-
-.sideBarHeaderDiv{
-    padding: 10px 0px;
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-}
-
-.sideBarHeaderDiv.close .sideBarImg{
-    display: none;
-}
-
-.sideBarHeaderDiv.close p{
-    display: none;
-}
-
-.sideBarHeaderDiv .sideBarOCIcon{
-    position: relative;
-    left:8%;
-    cursor: pointer;
-}
-
-.sideBarHeaderDiv.close .sideBarOCIcon{
-    left:5%;
-}
-
-.sidebarItemsDiv{
-    display: grid;
-    row-gap: 7px;
-    align-items: center;
-    margin-top: 30px;
-}
 
 .sidebarItems{
     display: flex ;
     column-gap: 10px;
     align-items: center;
     color: #fff;
-    font-size: 13px;
+    font-size: 15px;
+    padding: 10px 0px 10px 10px;
 }
+
+.sidebarItems_active{
+    display: flex ;
+    column-gap: 10px;
+    align-items: center;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 0px 10px 10px;
+    background-color: #7a7a7a;
+}
+
 
 .linkName.close{
     display: none;
@@ -63,8 +28,17 @@
 }
 
 .sideBarImg{
-    width: 35px !important;
+    width: 40px !important;
     border-radius: 100%;
+}
+
+.sidebarBody.open {
+    display: block;
+    transition: all 0.5s;
+}
+
+.sideMenuIconDiv{
+    display: none;
 }
 
 
@@ -72,7 +46,199 @@
     .sideBarBody{
         display: none;
     }
-    .sideBarBody.close{
-        display: inline-block;
+
+    .sidebarBody.open {
+        display: block;
+        position: absolute;
+        top: 100px;
+        left: 0px;
+        transition: all 0.5s;
     }
+
+    .sideMenuIconDiv{
+        display: block;
+        position:absolute;
+        right: 20px;
+        margin-top: 5px;
+    }
+}
+
+
+.sidebarBody {
+    width: 220px;
+    min-height: 87.5vh;
+    max-height: auto;
+    overflow: hidden !important;
+    background-color: rgb(39, 39, 39);
+    color: #fff !important;
+    animation-duration: 10s;
+    transition: 0.5s
+}
+
+.sidebarBody.active {
+    width: 55px;
+}
+
+.siderbarHeader{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: 7px;
+}
+
+.sidebarBody.active .siderbarHeader p{
+    display: none;
+}
+
+.collapes_button {
+    padding: 10px 0 5px 90%;
+    color: #DDE2FF;
+    cursor: pointer;
+}
+
+.collapes_button.active {
+    padding: 0px 0 5px 60%;
+    color: #DDE2FF;
+}
+
+
+.sidebarBody.active .sidebar_dashboard-active {
+    padding-left: 10px;
+}
+
+.sidebarBody.active .sidebar_dashboard {
+    padding-left: 10px;
+}
+
+.dashboardImg {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.sidebarLinksDiv {
+    display: grid;
+    padding-top: 30px;
+}
+
+.sidebarLink {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    color: #b7b7b7;
+    padding: 12px 0px 12px 40px;
+}
+
+.sidebarBody.active .sidebarLink-active {
+    padding-left: 10px;
+    width: 50px;
+}
+
+.sidebarLink:hover {
+    color: #DDE2FF;
+}
+
+.tooltip_sidemenu {
+    position: absolute;
+    left: 56px;
+    border-radius: 6px;
+    height: 40px;
+    background-color: #363740;
+    width: 140px;
+    line-height: 40px;
+    text-align: center;
+    box-shadow: 0 0 2px 0 #5b5b5d;
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    color: #A4A6B3;
+    z-index: 10;
+}
+
+.sidebarBody.active .sidebarItems:hover .tooltip_sidemenu {
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 4;
+}
+
+
+.sidebarBody.active .sidebarItems_active:hover .tooltip_sidemenu {
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.sidebarsubLinksDiv {
+    display: grid;
+    padding-left: 30px;
+    background-color: #252733;
+}
+
+
+.sidebarBody.open {
+    display: block;
+    transition: all 0.5s;
+}
+
+
+.sidebarLink-active {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 0px 10px 10px;
+    background-color: #7a7a7a;
+}
+
+.sidebarSettings {
+    padding: 20px 0px;
+    border-top: 1px solid #A4A6B3;
+    border-bottom: 1px solid #A4A6B3;
+    margin: 130px 0px 40px;
+    display: grid;
+    gap: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .sidebarBody {
+        display: none;
+        transition: all 0.5s;
+        z-index: 2;
+    }
+
+    .sidebarBody.open {
+        display: inline;
+        top: 100px;
+        left: 0px;
+        transition: all 0.5s;
+    }
+}
+
+
+.container {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 28px;
+    height: 4px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    transform: translate(0, 8px) rotate(-45deg);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    transform: translate(0, -8px) rotate(45deg);
 }

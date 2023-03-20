@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { ApplicationConstant } from "../../constant/applicationConstant";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import './login.css'
+import "./login.css";
 import { api } from "../../axios/api.config";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -95,14 +95,19 @@ const LoginInputs = (props) => {
         localStorage.setItem("MITSinternsid", responce.data._id);
         console.log(responce.data);
         setLoginBtn(true);
-         dispatch(
-           setAuthentication({
-             isAuthenticated: true,
-             username: responce.data.username,
-             _id: responce.data._id,
-             mailId: responce.data.mailId
-           })
-         );
+        dispatch(
+          setAuthentication({
+            isAuthenticated: true,
+            rollno: responce.data.rollno || "",
+            _id: responce.data._id,
+            mailId: responce.data.mailId,
+            studentName: responce.data.studentName || "",
+            year: responce.data.year || "",
+            branch: responce.data.branch || "",
+            phoneNumber: responce.data.phoneNumber || "",
+            profile: responce.data.profile || "",
+          })
+        );
         navigate(ApplicationConstant.HOME_PAGE_PATH);
       } catch (error) {
         toast.error(error.response.data);

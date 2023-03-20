@@ -1,0 +1,10 @@
+.allWorksList{
+    margin: 30px;
+}
+
+@media screen and (max-width:600px) {
+    .allWorksList {
+        margin: 30px 10px;
+        color: #f1950a;
+    }
+}

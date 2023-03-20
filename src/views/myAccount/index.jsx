@@ -1,27 +1,36 @@
 import { useRoutes, useNavigate } from "react-router-dom";
 import SideBar from "../../components/sideBar/sidebar";
+import Sidebar1 from "../../components/sideBar/sidebar";
 import { ApplicationConstant } from "../../constant/applicationConstant";
-// import Profile from "./profile";
-// import { Navigate, useParams } from "react-router-dom";
-// import MyInterships from "./myInterships";
 import "./myAccount.css";
-// import MyRoutes from "../../router";
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const MyAccount = () => {
-  var navigate = useNavigate();
-
-  useEffect(() => {
-    navigate(`${ApplicationConstant.MYACCOUNT_PROFILE_URL}`);
-  }, []);
-
+  const params = useParams();
+  console.log(params,"params")
+  const userDetails = useSelector((state) => state.authReducer);
+    const handleMenuIcon = () => {
+      var sidebar = document.querySelector(".sidebarBody");
+      sidebar?.classList.toggle("open");
+      var sidebar = document.querySelector(".container");
+      sidebar?.classList.toggle("change");
+    };
   return (
     <div className="myAccountDiv">
       <div>
-        <SideBar />
+        {/* <SideBar id={params.id} /> */}
+        <Sidebar1 id={params.id} />
       </div>
-      <div>
+      <div className="myAccountBody">
+        <div className="sideMenuIconDiv" onClick={handleMenuIcon}>
+          <div className="container" id="container">
+            <div className="bar1"></div>
+            <div className="bar2"></div>
+            <div className="bar3"></div>
+          </div>
+        </div>
         <Outlet />
       </div>
     </div>

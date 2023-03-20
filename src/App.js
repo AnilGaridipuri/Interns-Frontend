@@ -1,30 +1,27 @@
-import './App.css';
-import MyRoutes from './router'
-import NavBar from "../src/components/Navbar/navbar"
-import Footer from "../src/components/Footer/footer"
+import "./App.css";
+import MyRoutes from "./router";
+import NavBar from "../src/components/Navbar/navbar";
+import Footer from "../src/components/Footer/footer";
 import { Navigate } from "react-router-dom";
-import {useState,useEffect} from 'react';
+import { useState, useEffect } from "react";
 import { ApplicationConstant } from "../src/constant/applicationConstant";
 import { api } from "./axios/api.config";
 import { ToastErrorMessage, ToastSuccessMessage } from "./uitils/toastMessage";
 import { useDispatch } from "react-redux";
-import { setAuthentication } from './store/slices/auth';
+import { setAuthentication } from "./store/slices/auth";
 
 function App() {
-
   const dispatch = useDispatch();
   const [getuserDetails, setGetuserDetails] = useState(false);
 
-   const [userDetails, setUserDeatils] = useState({
-     name: "",
-     profile: "",
-     _id: "",
-   });
+  const [userDetails, setUserDeatils] = useState({
+  });
 
   const id = localStorage.getItem("MITSinternsid");
-  console.log(id)
+  console.log(id);
 
   useEffect(() => {
+    console.log("main useEffdsf")
     if (!getuserDetails) {
       getUserDeatils();
     }
@@ -35,22 +32,26 @@ function App() {
       setGetuserDetails(true);
       try {
         const responce = await api.post(`auth/user`, {
-          id:id,
+          id: id,
         });
         dispatch(
-           setAuthentication({
-             isAuthenticated: true,
-             username: responce.data.username,
-             _id: responce.data._id,
-             mailId: responce.data.mailId
-           })
-         );
+          setAuthentication({
+            isAuthenticated: true,
+            rollno: responce.data.rollno || "",
+            _id: responce.data._id,
+            mailId: responce.data.mailId,
+            studentName: responce.data.studentName || "",
+            year: responce.data.year || "",
+            branch: responce.data.branch || "",
+            phoneNumber: responce.data.phoneNumber || "",
+            profile: responce.data.profile || "",
+          })
+        );
       } catch (error) {
         ToastErrorMessage(error.message);
       }
     }
   };
-
 
   return (
     <div>
