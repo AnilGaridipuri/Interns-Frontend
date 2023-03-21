@@ -95,6 +95,9 @@ const AllInternShips = () => {
     }
   );
 
+  console.log("jwhfbw");
+  console.log("jwhfbw");
+
   const handleClickOpen = async (id) => {
     setOpen(true);
     setLabel("Internship");
