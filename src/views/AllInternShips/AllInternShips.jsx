@@ -98,6 +98,8 @@ const AllInternShips = () => {
   console.log("jwhfbw");
   console.log("jwhfbw");
 
+  console.log("Anil.kdmc")
+
   const handleClickOpen = async (id) => {
     setOpen(true);
     setLabel("Internship");
