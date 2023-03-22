@@ -1,4 +1,0 @@
-{
-  "javascript.suggest.enabled": true,
-  "typescript.tsdk": "node_modules\\typescript\\lib"
-}
