@@ -1,5 +1,5 @@
 export const ApplicationConstant = {
-  HOME_PAGE_PATH: "/home",
+  HOME_PAGE_PATH: "/",
   ALLINTERNSHIP_PAGE_PATH: "/all-internship-list",
   LOGIN_URL_PATH: "/login",
   ALL_INTERNS: "/all-interns",

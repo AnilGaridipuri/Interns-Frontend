@@ -14,7 +14,11 @@ import "./allinternship.css";
 import { Avatar, Button, TablePagination } from "@mui/material";
 import LoadingCircle from "../../components/loading";
 import ViewWorkDetails from "../../components/viewWorkDeatil";
-import { StyledTableCell, StyledTableRow } from "../../components/tablestyles";
+import {
+  StyledTableCell,
+  StyledTableRow,
+  StyledTableHeader,
+} from "../../components/tablestyles";
 import AllCertifications from "./AllCertifications";
 
 const AllInternShips = () => {
@@ -81,38 +85,38 @@ const AllInternShips = () => {
     studentId: "",
     type: "",
     updatedWorkAt: "",
-    _id: ""});
-  const [studentDetails, setStudentDetails] = useState(
-    {
-      branch: "",
-      mailId: "",
-      phoneNumber: "",
-      rollno: "",
-      studentName: "",
-      year: "",
-      _id: "",
-      profile:""
-    }
-  );
+    _id: "",
+  });
+  const [studentDetails, setStudentDetails] = useState({
+    branch: "",
+    mailId: "",
+    phoneNumber: "",
+    rollno: "",
+    studentName: "",
+    year: "",
+    _id: "",
+    profile: "",
+  });
 
   console.log("jwhfbw");
   console.log("jwhfbw");
+
+  console.log("Anil.kdmc");
 
   const handleClickOpen = async (id) => {
     setOpen(true);
     setLabel("Internship");
     try {
-      console.log(id,"id wfewef")
-      const responce = await api.get(
-        `getWorkDeatils/single-work/${id}`,
-        { id: id }
-      );
-        console.log(responce.data,"wfwfwfwfwfwf")
-        setSingleWorkDetails(responce.data);
-        setStudentDetails(responce.data.studentDetails);
-        console.log(responce.data.studentDetails);
-      } catch (error) {
-      console.log(id,"id wfewef")
+      console.log(id, "id wfewef");
+      const responce = await api.get(`getWorkDeatils/single-work/${id}`, {
+        id: id,
+      });
+      console.log(responce.data, "wfwfwfwfwfwf");
+      setSingleWorkDetails(responce.data);
+      setStudentDetails(responce.data.studentDetails);
+      console.log(responce.data.studentDetails);
+    } catch (error) {
+      console.log(id, "id wfewef");
       ToastErrorMessage(error.message);
     }
   };
@@ -121,14 +125,15 @@ const AllInternShips = () => {
     <div className="allWorksList">
       <TableContainer component={Paper} sx={{ maxHeight: 620 }}>
         <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 700 }}>
-          <TableHead>
-            <TableRow>
+          <TableHead
+          >
+            <StyledTableHeader className="tableHeaderRow">
               <StyledTableCell>Student Deatils</StyledTableCell>
               <StyledTableCell>Internship Details</StyledTableCell>
               <StyledTableCell align="center">Type / Stipend</StyledTableCell>
               <StyledTableCell align="center">Start/End Date</StyledTableCell>
               <StyledTableCell align="center">Status</StyledTableCell>
-            </TableRow>
+            </StyledTableHeader>
           </TableHead>
           {loading == true ? (
             <div style={{ position: "absolute", left: "50%" }}>
@@ -213,7 +218,7 @@ const AllInternShips = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </div>
-      <AllCertifications studentDetails={studentDetails}/>
+      <AllCertifications studentDetails={studentDetails} />
       <ViewWorkDetails
         open={open}
         setOpen={setOpen}

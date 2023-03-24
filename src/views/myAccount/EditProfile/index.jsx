@@ -159,8 +159,8 @@ const EditProfile = () => {
 
   return (
     <div className="profileBody">
-      <AccountHeader label="Edit Profile"/>
-      <Card className="profileCard bgColor1">
+      <AccountHeader label="Edit Profile" />
+      <Card className="profileCard header-blog bg-animation container">
         <CardContent className="profileCardContent">
           <div className="userImgDiv">
             <div>
@@ -187,10 +187,10 @@ const EditProfile = () => {
                 <AddAPhotoIcon fontSize="large" />
               </label>
             </div>
-            <p className="Editrollno">{studentDeatils.studentName}</p>
+            <p className="Editrollno white">{studentDeatils.studentName}</p>
           </div>
           <div className="userDeatilsDiv">
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Name</label>
               <span className="inputdout">:</span>
               <TextField
@@ -200,9 +200,10 @@ const EditProfile = () => {
                 value={studentDeatils.studentName}
                 name="studentName"
                 onChange={onChnageInputs}
+                // autoComplete={false}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Roll No</label>
               <span className="inputdout">:</span>
               <TextField
@@ -215,7 +216,7 @@ const EditProfile = () => {
               />
             </div>
             <div>
-              <div className="profileInputs">
+              <div className="profileInputs white">
                 <label>Email</label>
                 <span className="inputdout">:</span>
                 <TextField
@@ -229,7 +230,7 @@ const EditProfile = () => {
               </div>
               <p className="hitMessage">can not change your email</p>
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Year</label>
               <span className="inputdout">:</span>
               <FormControl size="small">
@@ -254,7 +255,7 @@ const EditProfile = () => {
                 </Select>
               </FormControl>
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Branch</label>
               <span className="inputdout">:</span>
               <FormControl size="small">
@@ -282,7 +283,7 @@ const EditProfile = () => {
                 </Select>
               </FormControl>
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Phone No</label>
               <span className="inputdout">:</span>
               <TextField

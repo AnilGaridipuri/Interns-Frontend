@@ -1,12 +1,11 @@
 .navBarBody {
     background-color: #fff !important;
     padding: 10px 10px;
-    box-shadow: 1px 2px 30px 1px #b4b4b4;
+    box-shadow: 1px 1px 6px 0px #b4b4b4;
     position: sticky;
     top: 0px;
     z-index : 4;
 }
-
 
 .css-19r6kue-MuiContainer-root {
     padding: 0 !important;
@@ -33,7 +32,10 @@
 .navlogoText {
     font-size: 160%;
     font-weight: 600;
-    color: green;
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);;
+    background-clip: text;
+    color: transparent;
+    /* color:  */
 }
 
 .NavProfileDiv{
@@ -79,7 +81,7 @@
 .navItems_active,
 .navItems:hover {
     color: #fff;
-    background-color: rgb(0, 107, 0);
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
     height: 32px;
     display: flex;
     align-items: center;
@@ -216,7 +218,22 @@
 
 
 .navLoginBtn{
-    background: green !important;
+    /* background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9); */
+    border-radius: 30px !important;
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89);
+    background-clip: text;
+    color: transparent;
+    width: 120px;
+    height: 30px;
+    margin-top: 30px !important;
+    text-align: center !important;
+    padding-top: 5px;
+    margin-top: 7px !important;
+    font-weight: bold;
+    border:2px solid #6c38b9;
+}
+.navLoginBtn_active{
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
     border-radius: 30px !important;
     color: #fff !important;
     width: 120px;

@@ -116,10 +116,13 @@ const AddNewInternship = () => {
   return (
     <div>
       <AccountHeader label="Add Internship" />
-      <Card sx={{ minWidth: 275 }} className="internshipCard">
+      <Card
+        sx={{ minWidth: 275 }}
+        className="internshipCard1 header-blog bg-animation container"
+      >
         <CardContent>
           <div className="addInternInputsDiv">
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <label>Company Name :</label>
               <TextField
                 placeholder="Company Name"
@@ -130,7 +133,7 @@ const AddNewInternship = () => {
                 onChange={onChnageInputs}
               />
             </div>
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <FormControl className="radioBtnDiv">
                 <label className="radioLabel">Type :</label>
                 <RadioGroup
@@ -151,16 +154,10 @@ const AddNewInternship = () => {
                     label="Job"
                     checked={addNewIntern.type == "Job"}
                   />
-                  <FormControlLabel
-                    value="Certification"
-                    control={<Radio />}
-                    label="Certification"
-                    checked={addNewIntern.type == "Certification"}
-                  />
                 </RadioGroup>
               </FormControl>
             </div>
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <label>Domain :</label>
               <TextField
                 placeholder="Web/ML/AI/"
@@ -171,7 +168,7 @@ const AddNewInternship = () => {
                 onChange={onChnageInputs}
               />
             </div>
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <label>Role :</label>
               <TextField
                 placeholder="Role"
@@ -182,7 +179,7 @@ const AddNewInternship = () => {
                 onChange={onChnageInputs}
               />
             </div>
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <label>Stipend :</label>
               <TextField
                 placeholder="No or Yes"
@@ -193,7 +190,7 @@ const AddNewInternship = () => {
                 onChange={onChnageInputs}
               />
             </div>
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <label>Status :</label>
               <FormControl size="small">
                 <Select
@@ -221,7 +218,7 @@ const AddNewInternship = () => {
               </FormControl>
             </div>
             <div>
-              <div className="addInternInputs">
+              <div className="addInternInputs white">
                 <label>Start Date :</label>
                 <TextField
                   value={addNewIntern.start_date || ""}
@@ -236,7 +233,7 @@ const AddNewInternship = () => {
               </div>
             </div>
             <div>
-              <div className="addInternInputs">
+              <div className="addInternInputs white">
                 <label>End Date :</label>
                 <TextField
                   value={addNewIntern.end_date || ""}
@@ -251,7 +248,7 @@ const AddNewInternship = () => {
               </div>
             </div>
             <div>
-              <div className="addInternInputs">
+              <div className="addInternInputs white">
                 <label>Offer Letter :</label>
                 <TextField
                   onChange={handleOnImageChange}
@@ -277,37 +274,37 @@ const AddNewInternship = () => {
                 </div>
               </div>
             </div>
-              {addNewIntern.status == "Completed" ?
-            <div>
-                  <div className="addInternInputs">
-                    <label>Completion Certificate :</label>
-                    <TextField
-                      onChange={handleOnImageChange}
-                      name="completionCertificatepath"
-                      type="file"
-                      multiple
-                      size="small"
-                      id="outlined-basic"
-                    />
+            {addNewIntern.status == "Completed" ? (
+              <div>
+                <div className="addInternInputs white">
+                  <label>Completion Certificate :</label>
+                  <TextField
+                    onChange={handleOnImageChange}
+                    name="completionCertificatepath"
+                    type="file"
+                    multiple
+                    size="small"
+                    id="outlined-basic"
+                  />
+                </div>
+                <div className="previewImage">
+                  <div>
+                    {addNewIntern.completionCertificatepath && (
+                      <img
+                        src={addNewIntern.completionCertificatepath}
+                        style={{
+                          width: "200px",
+                          height: "170px",
+                          objectfit: "fill",
+                          marginleft: "30px",
+                        }}
+                        alt="preview image"
+                      />
+                    )}
                   </div>
-                  <div className="previewImage">
-                    <div>
-                      {addNewIntern.completionCertificatepath && (
-                        <img
-                          src={addNewIntern.completionCertificatepath}
-                          style={{
-                            width: "200px",
-                            height: "170px",
-                            objectfit: "fill",
-                            marginleft: "30px",
-                          }}
-                          alt="preview image"
-                        />
-                      )}
-                    </div>
-                  </div>
-              </div> : null
-            }
+                </div>
+              </div>
+            ) : null}
           </div>
         </CardContent>
         <div className="editUserDetailsBtn">

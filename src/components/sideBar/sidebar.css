@@ -3,7 +3,7 @@
     display: flex ;
     column-gap: 10px;
     align-items: center;
-    color: #fff;
+    color: #e6e6e6;
     font-size: 15px;
     padding: 10px 0px 10px 10px;
     transition: all .5s;
@@ -16,7 +16,7 @@
     color: #fff;
     font-size: 15px;
     padding: 10px 0px 10px 10px;
-    background-color: #7a7a7a;
+    background-image: linear-gradient(to bottom right, #9b54ba, #8056be, #5252d2 ,#151589);
 }
 
 
@@ -42,19 +42,13 @@
     display: none;
 }
 
-
-@media only screen and (max-width: 700px) {
-
-
-}
-
-
 .sidebarBody {
     width: 220px;
     min-height: 87.5vh;
     max-height: auto;
+    min-height: 100vh;
     overflow: hidden !important;
-    background-color: rgb(39, 39, 39);
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
     color: #fff !important;
     animation-duration: 10s;
     transition: 0.5s
@@ -153,11 +147,6 @@
     transition: all 0.5s ease;
 }
 
-.sidebarsubLinksDiv {
-    display: grid;
-    padding-left: 30px;
-    background-color: #252733;
-}
 
 
 .sidebarBody.open {
