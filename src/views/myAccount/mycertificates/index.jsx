@@ -63,7 +63,6 @@ const MyCertificates = () => {
           }
         );
         setCertificationsDeatils(responce.data);
-        setLoading(false);
       } catch (error) {
         ToastErrorMessage(error.message);
       }
@@ -144,7 +143,7 @@ const MyCertificates = () => {
       {loading == true ? (
         <LoadingCircle />
       ) : (
-        <div className="intershipsbody">
+        <div className="intershipsbody intershipCertificationBackGround">
           <AccountHeader label="Internship Certificates" />
           {workDetails.length != 0 ? (
             <div>
@@ -468,8 +467,8 @@ const MyCertificates = () => {
                           </div>
                         ) : (
                           <p style={{ color: "red" }}>
-                            This Certification Not Completed Yet If Complete Please
-                            Update
+                            This Certification Not Completed Yet If Complete
+                            Please Update
                           </p>
                         )}
                       </div>

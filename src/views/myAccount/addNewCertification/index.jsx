@@ -114,10 +114,13 @@ const AddNewCertification = () => {
   return (
     <div>
       <AccountHeader label="Add Certification" />
-      <Card sx={{ minWidth: 275 }} className="internshipCard">
+      <Card
+        sx={{ minWidth: 275 }}
+        className="internshipCard1 header-blog bg-animation container"
+      >
         <CardContent>
           <div className="addInternInputsDiv">
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <label>Organization Name :</label>
               <TextField
                 placeholder="Organization Name"
@@ -128,37 +131,7 @@ const AddNewCertification = () => {
                 onChange={onChnageInputs}
               />
             </div>
-            {/* <div className="addInternInputs">
-              <FormControl className="radioBtnDiv">
-                <label className="radioLabel">Type :</label>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-row-radio-buttons-group-label"
-                  name="type"
-                  onClick={onChnageInputs}
-                >
-                  <FormControlLabel
-                    value="Internship"
-                    control={<Radio />}
-                    label="Internship"
-                    checked={addNewCertification.type == "Internship"}
-                  />
-                  <FormControlLabel
-                    value="Job"
-                    control={<Radio />}
-                    label="Job"
-                    checked={addNewCertification.type == "Job"}
-                  />
-                  <FormControlLabel
-                    value="Certification"
-                    control={<Radio />}
-                    label="Certification"
-                    checked={addNewCertification.type == "Certification"}
-                  />
-                </RadioGroup>
-              </FormControl>
-            </div> */}
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <label>Domain :</label>
               <TextField
                 placeholder="Web/ML/AI/"
@@ -169,31 +142,8 @@ const AddNewCertification = () => {
                 onChange={onChnageInputs}
               />
             </div>
-            {/* <div className="addInternInputs">
-              <label>Role :</label>
-              <TextField
-                placeholder="Role"
-                id="outlined-size-small"
-                size="small"
-                value={addNewCertification.role}
-                name="role"
-                onChange={onChnageInputs}
-              />
-            </div> */}
-            {/* <div className="addInternInputs">
-              <label>Stipend :</label>
-              <TextField
-                placeholder="No or Yes"
-                id="outlined-size-small"
-                size="small"
-                value={addNewCertification.stipend}
-                name="stipend"
-                onChange={onChnageInputs}
-              />
-            </div> */}
-
             <div>
-              <div className="addInternInputs">
+              <div className="addInternInputs white">
                 <label>Start Date :</label>
                 <TextField
                   value={addNewCertification.start_date || ""}
@@ -208,7 +158,7 @@ const AddNewCertification = () => {
               </div>
             </div>
             <div>
-              <div className="addInternInputs">
+              <div className="addInternInputs white">
                 <label>End Date :</label>
                 <TextField
                   value={addNewCertification.end_date || ""}
@@ -222,7 +172,7 @@ const AddNewCertification = () => {
                 />
               </div>
             </div>
-            <div className="addInternInputs">
+            <div className="addInternInputs white">
               <label>Status :</label>
               <FormControl size="small">
                 <Select
@@ -249,36 +199,9 @@ const AddNewCertification = () => {
                 </Select>
               </FormControl>
             </div>
-            {/* <div>
-              <div className="addInternInputs">
-                <label>Offer Letter :</label>
-                <TextField
-                  onChange={handleOnImageChange}
-                  name="offerLetterpath"
-                  type="file"
-                  size="small"
-                  id="outlined-basic"
-                />
-              </div>
-              <div className="previewImage">
-                <div>
-                  {addNewCertification.offerLetterpath && (
-                    <img
-                      src={addNewCertification.offerLetterpath}
-                      style={{
-                        width: "200px",
-                        height: "170px",
-                        objectfit: "fill",
-                      }}
-                      alt="preview image"
-                    />
-                  )}
-                </div>
-              </div>
-            </div> */}
             {addNewCertification.status == "Completed" ? (
               <div>
-                <div className="addInternInputs">
+                <div className="addInternInputs white">
                   <label>Completion Certificate :</label>
                   <TextField
                     onChange={handleOnImageChange}

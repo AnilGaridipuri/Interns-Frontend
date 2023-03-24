@@ -122,7 +122,6 @@ const MyInterships = () => {
             }
           );
           setCertificationsDeatils(responce.data);
-          setLoading(false);
         } catch (error) {
           ToastErrorMessage(error.message);
         }
@@ -167,7 +166,7 @@ const MyInterships = () => {
       {loading == true ? (
         <LoadingCircle />
       ) : (
-        <div className="intershipsbody">
+        <div className="intershipsbody intershipCertificationBackGround">
           <AccountHeader label={isUser ? "My Interships" : "Interships"} />
 
           {workDetails.length != 0 ? (

@@ -8,12 +8,9 @@
 
 .myAccountBody{
     margin: 10px;
-    border: 2px solid green;
-    border-radius: 10px;
-    padding: 10px;
+    border: 4px solid #f99900;
+    border-radius: 12px;
 }
-
-
 
 .profileCard {
     z-index: 0;
@@ -24,24 +21,44 @@
     transition: all 1s;
     box-shadow: 4px 4px 14px 0px rgba(116, 116, 116, 0.25),
         inset 6px 5px 100px 0px rgba(116, 116, 116, 0.25) !important;
-    background-color: rgb(209, 255, 240) !important;
 }
+
 .internshipCard {
     display: grid;
     padding: 0px 20px;
     margin: 10px;
     border-radius: 5px !important;
     transition: all 1s;
-    box-shadow: 7px 2px 20px 0px #c6c6c6 !important;
+    box-shadow: 7px 2px 20px 0px #7c7c7c !important;
     border-radius: 80px 0px 80px 0px !important;
     background-color: #d5fcdd !important;
+}
+.internshipCard1 {
+    display: grid;
+    padding: 0px 20px;
+    margin: 10px;
+    border-radius: 5px !important;
+    transition: all 1s;
+    box-shadow: 7px 2px 20px 0px #7c7c7c !important;
+    border-radius: 80px 0px 80px 0px !important;
+    background-color: #d5fcdd !important;
+}
+
+.internshipCard1 input{
+    -webkit-text-fill-color: white !important
+}
+.internshipCard1 .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    -webkit-text-fill-color: white !important
+}
+.internshipCard1 .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon{
+    color: white !important
 }
 
 .bgColor1{
     background-color: rgb(219, 255, 216) !important;
 }
 
-.profileCardContent {
+.profileCardContent{
     display: grid;
     row-gap: 10px;
 }
@@ -54,7 +71,7 @@
     margin: 10px 0px 50px 0px;
 }
 
-.userImgDiv >div {
+.userImgDiv > div {
     margin-left: 15px;
 }
 
@@ -65,6 +82,7 @@
     justify-content: space-evenly;
     margin-bottom: 50px;
 }
+
 .addInternInputsDiv{
     display: flex;
     flex-wrap: wrap;
@@ -79,6 +97,10 @@
     align-items: center;
     flex-wrap: wrap;
 }
+.profileInputs .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    border-color: white !important;
+}
+
 
 .profileInputs label {
     width: 80px;
@@ -101,6 +123,8 @@
 
 .profileInputs input {
     text-align: center;
+    color: '#fff' !important;
+    -webkit-text-fill-color:white !important
 }
 
 .addInternInputs{
@@ -110,6 +134,7 @@
 
 .profileInputs .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
     text-align: center;
+    color: white;
 }
 
 .profileInputs .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
@@ -124,6 +149,10 @@
     border-radius: 20px !important;
     width: 350px !important;
 }
+.internshipCard1 .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    border-radius: 20px !important;
+    border-color: white !important;
+}
 .addInternInputs .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
     border-radius: 20px !important;
     width: 350px;
@@ -133,9 +162,8 @@
     -webkit-text-fill-color: rgb(0, 0, 0);  
 }
 
-
 .hitMessage{
-    color: red;
+    color: rgb(255, 169, 21);
     text-align: center;
 }
 
@@ -170,13 +198,15 @@
 }
 
 .btnCancle{
-    background-color: #e60000 !important;
+    background-image: linear-gradient(to bottom right,#ff0000,#ff5a5a, #ce0303) !important;
 }
 .btnUpdate{
     background-color: #008d26 !important;
+    background-image: linear-gradient(to bottom right, #007c21, #00c133, #008323) !important;
 }
 .btnChange{
     background-color: #0336c3 !important;
+    background-image: linear-gradient(to bottom right, #023bd6, #2962ff, #0434ba) !important;
 }
 
 .previewImage{
@@ -187,13 +217,10 @@
 
 .intershipCard{
     min-width: 390px !important;
-    box-shadow: 7px 2px 20px 0px #c6c6c6  !important;
+    box-shadow: 7px 2px 20px 0px #424242  !important;
     cursor: pointer;
     transform: .5s;
     border-radius: 60px 0px 60px 0px !important;
-}
-.intershipCard:hover{
-    box-shadow: 9px 13px 20px 8px #a3a3a3 !important;
 }
 
 .intershipsDiv{
@@ -234,15 +261,14 @@
 }
 
 .intershipsbody{
-    background-color: #ddfbff;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .internshipViewBtn:hover{
-    background-color: #0d65f2 !important;
+    background-image: #0d65f2 !important;
 }
 .internshipViewBtn{
-    background-color: #001941 !important;
+        background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
 }
 
 .certificatesDiv{
@@ -256,13 +282,17 @@
 
 .certificatesCard {
     min-width: 610px !important;
-    box-shadow: 7px 2px 20px 0px #c6c6c6 !important;
     cursor: pointer;
 }
 
-.certificatesCard:hover {
-    box-shadow: 9px 13px 20px 8px #a3a3a3 !important;
+.radioBtnDiv{
+    width: 350px;
 }
+
+.internshipCard1 .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
+    color: white !important;
+}
+
 
 @media screen and (max-width:600px) {
     .editprofileCard{
@@ -295,6 +325,7 @@
 
     .radioBtnDiv {
         margin-left: -12px !important;
+        width: 250px;
     }
 
     .intershipCard {
@@ -312,10 +343,98 @@
 }
 
 .accountHeader p{
-    border-bottom: 3px solid #009005;
+    border-bottom: 3px solid #f99900;
     width: 270px;
     text-align: center;
     font-size: 25px;
     font-weight: 600;
     margin-top: 10px;
+    color: #f99900;
+}
+
+
+/* Front color */
+
+.white{
+    color: #e8e8e8;
+}
+
+
+
+.header-blog .container {
+    position: relative;
+    height: 100%;
+}
+
+.header-blog,
+.stats,
+footer,
+.video,
+.call-to-action {
+    background-image: url("https://3.bp.blogspot.com/-04vqcpHNiuo/W0x2THLFZXI/AAAAAAAAOl8/DUvOAykZU9Q0rVaRw4nFTWQM-d8__k-agCLcBGAs/s1600/dresscounter.jpg");
+}
+
+.header-blog {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.bg-animation {
+    -webkit-animation: bg-animation 15s ease-in-out infinite;
+    animation: bg-animation 15s ease-in-out infinite;
+}
+
+
+header {
+    display: block;
+}
+
+.header-blog .container {
+    position: relative;
+    height: 100%;
+}
+
+
+
+@-webkit-keyframes bg-animation {
+    0% {
+        background-position: top;
+    }
+
+    50% {
+        background-position: bottom;
+    }
+
+    100% {
+        background-position: top;
+    }
+}
+
+@keyframes bg-animation {
+    0% {
+        background-position: top;
+    }
+
+    50% {
+        background-position: bottom;
+    }
+
+    100% {
+        background-position: top;
+    }
+}
+
+.intershipCertificationBackGround{
+    background-image: linear-gradient(to bottom right, #242467, #8624b1, #2f2f89, #8645e7);
+}
+
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: rgb(0, 0, 0) !important;
+}
+
+.myAccountBody{
+    overflow-y: scroll;
+    max-height: 95vh;
 }

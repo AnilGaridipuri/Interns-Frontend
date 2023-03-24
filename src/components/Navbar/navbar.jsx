@@ -105,7 +105,11 @@ const NavBar = () => {
               <div className="navLoginBtnDiv NavProfileDiv">
                 <div className="divider"></div>
                 <NavLink
-                  className="navLoginBtn"
+                  className={
+                    pathname.pathname === ApplicationConstant.LOGIN_URL_PATH
+                      ? "navLoginBtn_active"
+                      : "navLoginBtn"
+                  }
                   to={ApplicationConstant.LOGIN_URL_PATH}
                 >
                   Login

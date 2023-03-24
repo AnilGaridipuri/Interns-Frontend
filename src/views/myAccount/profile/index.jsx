@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
@@ -11,7 +11,6 @@ import { ToastErrorMessage } from "../../../uitils/toastMessage";
 import AccountHeader from "../../../components/accountHeader";
 
 const Profile = () => {
-
   const [getuserDetails, setGetuserDetails] = useState(false);
   const [userDetails, setUserDeatils] = useState({});
   const params = useParams();
@@ -34,11 +33,11 @@ const Profile = () => {
         ToastErrorMessage(error.message);
       }
     }
-  }
+  };
   return (
     <div className="profileBody">
-      <AccountHeader label="Profile"/>
-      <Card className="profileCard">
+      <AccountHeader label="Profile" />
+      <Card className="profileCard  header-blog bg-animation container">
         <CardContent className="profileCardContent">
           <div className="userImgDiv">
             <div>
@@ -55,12 +54,12 @@ const Profile = () => {
                 }}
               />
             </div>
-            <p className="rollno">{userDetails.studentName}</p>
+            <p className="rollno white">{userDetails.studentName}</p>
           </div>
           <div className="userDeatilsDiv">
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Name</label>
-              <span className="inputdout">:</span>
+              <span className="inputdout white">:</span>
               <TextField
                 id="outlined-size-small"
                 defaultValue="Small"
@@ -69,9 +68,9 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Roll No</label>
-              <span className="inputdout">:</span>
+              <span className="inputdout white">:</span>
               <TextField
                 id="outlined-size-small"
                 defaultValue="Small"
@@ -80,7 +79,7 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Email</label>
               <span className="inputdout">:</span>
               <TextField
@@ -91,7 +90,7 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Year</label>
               <span className="inputdout">:</span>
               <TextField
@@ -102,7 +101,7 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Branch</label>
               <span className="inputdout">:</span>
               <TextField
@@ -113,7 +112,7 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Phone No</label>
               <span className="inputdout">:</span>
               <TextField
