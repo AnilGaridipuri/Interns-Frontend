@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
 import LoadingCircle from "../../../components/loading";
 import { textAlign } from "@mui/system";
+import EditCertification from "../../../components/editCertification";
 
 const MyCertificates = () => {
   const { _id } = useSelector((state) => state.authReducer);
@@ -25,44 +26,36 @@ const MyCertificates = () => {
   const [loading, setLoading] = useState(true);
 
   const [completionCertificatepath, setCompletionCertificatepath] = useState("")
+  // const [open, setOpen] = React.useState(false);
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
   console.log(isUser, "is user");
 
   useEffect(() => {
     if (!getworkDetails) {
-      getworkDeatils();
       getUserDeatils();
       getcertificationDeatils();
     }
     setIsUser(_id === userDetails._id);
-  }, [workDetails, userDetails]);
-
-  const getworkDeatils = async () => {
-    if (params.id) {
-      setGetworkDetails(true);
-      try {
-        const responce = await api.post(`getWorkDeatils/student-works`, {
-          id: params.id,
-        });
-        setWorkDeatils(responce.data);
-        setLoading(false);
-      } catch (error) {
-        ToastErrorMessage(error.message);
-      }
-    }
-  };
+  }, [ userDetails]);
 
   const getcertificationDeatils = async () => {
     if (params.id) {
       setGetworkDetails(true);
       try {
-        const responce = await api.post(
+        const {data} = await api.post(
           `getCertificationDeatils/student-certifications`,
           {
             id: params.id,
           }
         );
-        setCertificationsDeatils(responce.data);
+        const ongoing = data.filter( (certification) => certification.status==='Ongoing')
+        const completed = data.filter( (certification) => certification.status==='Completed')
+        setLoading(false);
+        setCertificationsDeatils(completed.concat(ongoing));
       } catch (error) {
         ToastErrorMessage(error.message);
       }
@@ -100,22 +93,22 @@ const MyCertificates = () => {
     }
   };
 
-  const updateCertificationDeatils = async (id) => {
-    if (isUser) {
-      try {
-        const responce = await api.put(`/update-work-certificate`, {
-          workId:id,
-          studentId:params.id,
-          completionCertificatepath: completionCertificatepath,
-        });
-        setWorkDeatils(responce.data);
-        setCompletionCertificatepath("");
-        ToastSuccessMessage("Successfully Uploaded !!");
-      } catch (error) {
-        ToastErrorMessage(error.response.data || error.message);
-      }
-    }
-  };
+  // const updateCertificationDeatils = async (id) => {
+  //   if (isUser) {
+  //     try {
+  //       const responce = await api.put(`/update-work-certificate`, {
+  //         workId:id,
+  //         studentId:params.id,
+  //         completionCertificatepath: completionCertificatepath,
+  //       });
+  //       setWorkDeatils(responce.data);
+  //       setCompletionCertificatepath("");
+  //       ToastSuccessMessage("Successfully Uploaded !!");
+  //     } catch (error) {
+  //       ToastErrorMessage(error.response.data || error.message);
+  //     }
+  //   }
+  // };
 
    const handleOnImageChange = async (e) => {
     const filelist = e.target.files[0];
@@ -140,183 +133,13 @@ const MyCertificates = () => {
 
   return (
     <div>
-      {loading == true ? (
+      {loading === true ? (
         <LoadingCircle />
       ) : (
         <div className="intershipsbody intershipCertificationBackGround">
-          <AccountHeader label="Internship Certificates" />
-          {workDetails.length != 0 ? (
-            <div>
-              <div className="certificatesDiv">
-                {workDetails?.map((work, index) => (
-                  <Card key={index} className="certificatesCard">
-                    <CardContent>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          alignItems: "center",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        <p className="intershipTitle">Intrnship Details</p>
-
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: "10px",
-                            alignItems: "center",
-                          }}
-                        >
-                          <label style={{ fontWeight: "bold", width: "40px" }}>
-                            Status
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <Button
-                            className={work.status}
-                            style={{
-                              textDecoration: "none",
-                              width: "10rem",
-                              height: "30px",
-                              borderRadius: "30px",
-                              color: "#fff",
-                            }}
-                          >
-                            {work.status}
-                          </Button>
-                        </div>
-                      </div>
-                      <div
-                        style={{
-                          display: "grid",
-                          gap: "8px",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
-                            Company Name
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <p>{work.companyName}</p>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
-                            Type
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <p>{work.type}</p>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
-                            Domain
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <p>{work.domain}</p>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
-                            Role
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <p>{work.role}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                    {work.completionCertificatepath ? (
-                      <div style={{ height: 700 }}>
-                        <CardMedia
-                          component="img"
-                          alt="green iguana"
-                          height="700px"
-                          width="610px"
-                          image={work.completionCertificatepath}
-                          style={{ objectFit: "fill" }}
-                        />
-                      </div>
-                    ) : (
-                      <div
-                        style={{
-                          height: "700px",
-                          display: "grid",
-                          placeContent: "center",
-                        }}
-                      >
-                        {work.status == "Completed" ? (
-                          <div>
-                            <div className="addInternInputs">
-                              <p style={{ color: "red" }}>
-                                Completion Certificate Not Upload
-                              </p>
-                              {isUser == true ? (
-                                <div>
-                                  <label>Completion Certificate :</label>
-                                  <TextField
-                                    onChange={handleOnImageChange}
-                                    name="completionCertificatepath"
-                                    type="file"
-                                    multiple
-                                    size="small"
-                                    id="outlined-basic"
-                                  />
-                                </div>
-                              ) : null}
-                            </div>
-                            {completionCertificatepath ? (
-                              <img
-                                src={completionCertificatepath}
-                                style={{
-                                  width: "300px",
-                                  height: "270px",
-                                  objectfit: "fill",
-                                  marginleft: "30px",
-                                }}
-                                alt="preview image"
-                              />
-                            ) : null}
-                            {isUser == true ? (
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  margin: "10px  0px",
-                                }}
-                              >
-                                <Button
-                                  className="editUserBtn btnUpdate"
-                                  onClick={() => updateWorkDeatils(work._id)}
-                                >
-                                  Update
-                                </Button>
-                              </div>
-                            ) : null}
-                          </div>
-                        ) : (
-                          <p style={{ color: "red" }}>
-                            This Internship Not Completed Yet If Complete Please
-                            Update
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </Card>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div
-              style={{
-                color: "red",
-                textAlign: "center",
-                padding: "30px 0px",
-              }}
-            >
-              <p>No Certifications</p>
-            </div>
-          )}
-          <AccountHeader label="Certificatoins" />
+         
+          <AccountHeader label="Certifications" />
           {certificationsDetails.length != 0 ? (
-            <div>
               <div className="certificatesDiv">
                 {certificationsDetails?.map((certification, index) => (
                   <Card key={index} className="certificatesCard">
@@ -338,10 +161,10 @@ const MyCertificates = () => {
                             alignItems: "center",
                           }}
                         >
-                          <label style={{ fontWeight: "bold", width: "40px" }}>
+                          {/* <label style={{ fontWeight: "bold", width: "40px" }}>
                             Status
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
+                          </label> 
+                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p> */}
                           <Button
                             className={certification.status}
                             style={{
@@ -393,21 +216,26 @@ const MyCertificates = () => {
                         </div>
                       </div>
                     </CardContent>
+
                     {certification.completionCertificatepath ? (
-                      <div style={{ height: 700 }}>
                         <CardMedia
                           component="img"
                           alt="green iguana"
-                          height="700px"
-                          width="610px"
                           image={certification.completionCertificatepath}
-                          style={{ objectFit: "fill" }}
+                          style={{ 
+                            minHeight:"400px",
+                            maxHeight: "400px",
+                            maxWidth: "97%",
+                            objectFit: "contain",
+                            boxShadow:"0 0px 3px 1px grey",
+                            margin:"auto 10px",
+                            padding :"5px"
+                          }}
                         />
-                      </div>
                     ) : (
                       <div
                         style={{
-                          height: "700px",
+                          height: "400px",
                           display: "grid",
                           placeContent: "center",
                         }}
@@ -416,21 +244,9 @@ const MyCertificates = () => {
                           <div>
                             <div className="addInternInputs">
                               <p style={{ color: "red" }}>
-                                Completion Certificate Not Upload
+                                { isUser ? "Please upload " : null} 
+                                Completion Certificate.
                               </p>
-                              {isUser == true ? (
-                                <div>
-                                  <label>Completion Certificate :</label>
-                                  <TextField
-                                    onChange={handleOnImageChange}
-                                    name="completionCertificatepath"
-                                    type="file"
-                                    multiple
-                                    size="small"
-                                    id="outlined-basic"
-                                  />
-                                </div>
-                              ) : null}
                             </div>
                             {completionCertificatepath ? (
                               <img
@@ -444,39 +260,38 @@ const MyCertificates = () => {
                                 alt="preview image"
                               />
                             ) : null}
-                            {isUser == true ? (
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  margin: "10px  0px",
-                                }}
-                              >
-                                <Button
-                                  className="editUserBtn btnUpdate"
-                                  onClick={() =>
-                                    updateCertificationDeatils(
-                                      certification._id
-                                    )
-                                  }
-                                >
-                                  Update
-                                </Button>
-                              </div>
-                            ) : null}
+                            
                           </div>
                         ) : (
                           <p style={{ color: "red" }}>
-                            This Certification Not Completed Yet If Complete
-                            Please Update
+                            This Certification is Not Completed Yet.
+                            { isUser ? "If Completed, Please Update " : null} 
                           </p>
                         )}
                       </div>
                     )}
+                    {isUser ? (
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "10px  0px",
+                          }}
+                        >
+                          
+                          <EditCertification 
+                                certificationDetails={certification}
+                                setCertificationsDeatils={setCertificationsDeatils}
+                                // onClick={handleClickOpen}
+                                // open={open}
+                                // setOpen={setOpen}
+                              />
+                        </div>
+                      ) : null
+                    }
                   </Card>
                 ))}
               </div>
-            </div>
           ) : (
             <div
               style={{

@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ApplicationConstant } from "../../constant/applicationConstant";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
@@ -12,14 +12,20 @@ import logo from "../../assets/mitsLogo.jpeg";
 import "./sidebar.css";
 import { useSelector } from "react-redux";
 import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
+import { Avatar } from "@mui/material";
+import { api } from "../../axios/api.config";
+
 
 const Sidebar = (props) => {
   const pathname = useLocation();
-  const authState = useSelector((state) => state.authReducer);
 
   var [sidebarOpen, setSidebarOpen] = useState(false);
   
     var [classSubmenu, setClassSubmenu] = useState("SubMenu_group");
+
+  const [ userAccount, setUserAccount] = useState({})
+
+    const authState = useSelector((state) => state.authReducer);
 
     function className() {
         setClassSubmenu("SubMenu_group");
@@ -46,6 +52,27 @@ const Sidebar = (props) => {
      sidebar?.classList.toggle("open");
    };
 
+   const getProfilePic = async () => {
+    if (authState._id === props.id){
+      const res =  await api.post(`auth/user`, {
+        id: authState._id
+      });
+      console.log('-----------------',res.data)
+      setUserAccount(res.data);
+    }else{
+      const res = await api.post('auth/user', {
+        id: props.id
+      })
+      
+      setUserAccount(res.data);
+    }
+   }
+
+  useEffect(() => {
+    getProfilePic()
+    console.log('+++++++++++++++=',userAccount)
+  }, [props.id])
+
 
   return (
     <div className="sidebarBody" id="sidebarBody">
@@ -61,8 +88,15 @@ const Sidebar = (props) => {
         </div>
       </div>
       <div className="siderbarHeader">
-        <img alt="Remy Sharp" src={logo} className="sideBarImg" />
-        <p>MITS Interns</p>
+          <Avatar
+            className="sideBarAvatar"
+            srcSet={userAccount.profile}
+            sx={{
+              width: "40px",
+              height: "40px",
+            }}
+          />
+        {authState._id === props.id ? <h3>My Account</h3> : <h3>{userAccount.studentName}</h3>}
       </div>
       <div className="sidebarLinksDiv">
         <NavLink
@@ -96,10 +130,10 @@ const Sidebar = (props) => {
           >
             <DescriptionIcon fontSize="large" />
             <p className="linkName">
-              {authState._id == props.id ? "My Internships" : "Internships"}
+              {authState._id === props.id ? "My Internships" : "Internships"}
             </p>
             <span className="tooltip_sidemenu">
-              {authState._id == props.id ? "My Internships" : "Internships"}
+              {authState._id === props.id ? "My Internships" : "Internships"}
             </span>
           </div>
         </NavLink>
@@ -117,14 +151,14 @@ const Sidebar = (props) => {
           >
             <ReceiptLongIcon fontSize="large" />
             <p className="linkName">
-              {authState._id == props.id ? "My certificates" : "Certificates"}
+              {authState._id === props.id ? "My Certifications" : "Certifications"}
             </p>
             <span className="tooltip_sidemenu">
-              {authState._id == props.id ? "My certificates" : "Certificates"}
+              {authState._id === props.id ? "My Certifications" : "Certifications"}
             </span>
           </div>
         </NavLink>
-        {authState._id == props.id ? (
+        {authState._id === props.id ? (
           <div>
             <NavLink
               onClick={handleMenuIcon}
@@ -173,8 +207,8 @@ const Sidebar = (props) => {
                 }
               >
                 <SettingsIcon fontSize="large" />
-                <p className="linkName">Edit</p>
-                <span className="tooltip_sidemenu">Edit</span>
+                <p className="linkName">Edit Profile</p>
+                <span className="tooltip_sidemenu">Edit Profile</span>
               </div>
             </NavLink>
           </div>

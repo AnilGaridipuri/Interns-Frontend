@@ -115,7 +115,7 @@ export default function EditInternship(props) {
       try {
         const responce = await api.put(`/update-workDetails`, addNewIntern);
         props.setWorkDeatils(responce.data);
-        ToastSuccessMessage("Successfully Uploaded !!");
+        ToastSuccessMessage("Successfully Updated !!");
       } catch (error) {
         ToastErrorMessage(error.response.data || error.message);
       }
@@ -191,12 +191,12 @@ export default function EditInternship(props) {
                       label="Job"
                       checked={addNewIntern.type == "Job"}
                     />
-                    <FormControlLabel
+                    {/* <FormControlLabel
                       value="Certification"
                       control={<Radio />}
                       label="Certification"
                       checked={addNewIntern.type == "Certification"}
-                    />
+                    /> */}
                   </RadioGroup>
                 </FormControl>
               </div>

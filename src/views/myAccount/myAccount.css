@@ -37,6 +37,7 @@
     display: grid;
     padding: 0px 20px;
     margin: 10px;
+    min-height : 500px;
     border-radius: 5px !important;
     transition: all 1s;
     box-shadow: 7px 2px 20px 0px #7c7c7c !important;
@@ -92,6 +93,14 @@
     margin: 35px 0px 20px;
 }
 
+.workValue .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled, .workValue{
+    -webkit-text-fill-color: rgb(0, 0, 0) !important;
+}
+
+.css-j204z7-MuiFormControlLabel-root:hover, .css-vqmohf-MuiButtonBase-root-MuiRadio-root:hover{
+    cursor: context-menu;
+}
+
 .profileInputs {
     display: flex;
     align-items: center;
@@ -114,7 +123,7 @@
 .radioLabel{
     width: auto;
     font-weight: 600;
-    margin-left: 15px !important;
+    /* margin-left: 15px !important; */
 }
 
 .profileInputs .inputdout {
@@ -190,21 +199,25 @@
     justify-content: space-evenly;
     margin-bottom: 30px;
     row-gap: 10px;
+    height : 30px;
 }
 
-.editUserBtn{
-    width: 200px;
-    color: #fff !important;
-}
 
 .btnCancle{
+    display : inline !important;
+    width: 200px !important;
+    color: #fff !important;
     background-image: linear-gradient(to bottom right,#ff0000,#ff5a5a, #ce0303) !important;
 }
 .btnUpdate{
-    background-color: #008d26 !important;
-    background-image: linear-gradient(to bottom right, #007c21, #00c133, #008323) !important;
+    display : inline !important;
+    width: 200px;
+    color: #fff !important;
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
 }
 .btnChange{
+    width: 200px;
+    color: #fff !important;
     background-color: #0336c3 !important;
     background-image: linear-gradient(to bottom right, #023bd6, #2962ff, #0434ba) !important;
 }
@@ -216,7 +229,7 @@
 }
 
 .intershipCard{
-    min-width: 390px !important;
+    min-width: 380px !important;
     box-shadow: 7px 2px 20px 0px #424242  !important;
     cursor: pointer;
     transform: .5s;
@@ -253,10 +266,17 @@
     gap: 5px;
 }
 
+.internshipContent{
+    line-height: 28px;
+    margin-left: 20px;
+}
+
 .Completed{
+    width : 120px !important;
     background-color: #016b1e !important;
 }
 .Ongoing{
+    width : 120px !important;
     background-color: #df7f02 !important;
 }
 
@@ -264,9 +284,7 @@
     border-radius: 8px;
 }
 
-.internshipViewBtn:hover{
-    background-image: #0d65f2 !important;
-}
+
 .internshipViewBtn{
         background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
 }
@@ -281,7 +299,8 @@
 }
 
 .certificatesCard {
-    min-width: 610px !important;
+    width: 610px !important;
+    
     cursor: pointer;
 }
 

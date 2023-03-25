@@ -135,9 +135,9 @@ const NavBar = () => {
                           // )}
                           srcSet={authState.profile}
                           sx={{
-                            width: "60px",
-                            height: "60px",
-                            fontSize: "40px",
+                            width: "40px",
+                            height: "40px",
+                            // fontSize: "40px",
                           }}
                         />
                       </IconButton>

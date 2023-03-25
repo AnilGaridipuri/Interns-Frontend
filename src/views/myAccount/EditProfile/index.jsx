@@ -19,10 +19,10 @@ import {
 } from "../../../uitils/toastMessage";
 
 const selectYear = [
-  { displayName: "1st Year", value: "1st Year" },
-  { displayName: "2nd Year", value: "2nd Year" },
-  { displayName: "3rd Year", value: "3rd Year" },
-  { displayName: "4th Year", value: "4th Year" },
+  { displayName: "I", value: "I" },
+  { displayName: "II", value: "II" },
+  { displayName: "III", value: "III" },
+  { displayName: "IV", value: "IV" },
 ];
 const selectBranch = [
   { displayName: "CAI", value: "CAI" },
@@ -180,7 +180,6 @@ const EditProfile = () => {
                 sx={{
                   width: "130px",
                   height: "130px",
-                  fontSize: "80px",
                 }}
               />
               <label htmlFor="file-input" className="uploadImg">

@@ -1,6 +1,5 @@
 import { useRoutes, useNavigate } from "react-router-dom";
 import SideBar from "../../components/sideBar/sidebar";
-import Sidebar1 from "../../components/sideBar/sidebar";
 import { ApplicationConstant } from "../../constant/applicationConstant";
 import "./myAccount.css";
 import { Outlet, useParams } from "react-router-dom";
@@ -20,8 +19,7 @@ const MyAccount = () => {
   return (
     <div className="myAccountDiv">
       <div>
-        {/* <SideBar id={params.id} /> */}
-        <Sidebar1 id={params.id} />
+        <SideBar id={params.id} />
       </div>
       <div className="myAccountBody">
         <div className="sideMenuIconDiv" onClick={handleMenuIcon}>

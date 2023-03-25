@@ -43,24 +43,23 @@ export default function ViewWorkDetails(props) {
         aria-describedby="alert-dialog-slide-description"
       >
         <div
-          onClick={handleClose}
+          
           style={{
-            cursor: "pointer",
             display: "flex",
             justifyContent: "flex-end",
             margin: "20px 20px 0px 0px",
           }}
         >
-          <CloseIcon />
+          <CloseIcon onClick={handleClose} style={{ cursor: "pointer" }} />
         </div>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            <p
+            {/* <p
               className="intershipTitle"
               style={{ textAlign: "center", margin: "0px 0px 30px 0px" }}
             >
               Student Details
-            </p>
+            </p> */}
             <div
               style={{
                 display: "grid",
@@ -70,24 +69,26 @@ export default function ViewWorkDetails(props) {
                 justifyItems: "center",
               }}
             >
-              <div style={{ cursor: "pointer" }} onClick={viewProfile}>
+              <div >
                 <Avatar
                   src={props.studentDetails.profile}
+                  style={{ cursor: "pointer" }} 
+                  onClick={viewProfile}
                   sx={{
-                    width: "120px",
-                    height: "120px",
-                    marginRight: 2,
-                    fontSize: "60px",
+                    margin: "0 auto",
+                    width: "100px",
+                    height: "100px",
                   }}
                 />
                 <p
+                  onClick={viewProfile}
                   style={{
-                    textAlign: "cneter",
-                    marginLeft: "25px",
+                    cursor: "pointer",
+                    textAlign: "center",
                     color: "#f1950a",
                   }}
                 >
-                  View Profile
+                  View  Profile
                 </p>
               </div>
               <div style={{ display: "grid", gap: "8px" }}>
@@ -98,44 +99,44 @@ export default function ViewWorkDetails(props) {
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.studentName}</p>
                 </div>
-                <div style={{ display: "flex", gap: "10px" }}>
+                {/* <div style={{ display: "flex", gap: "10px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Mail Id
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.mailId}</p>
-                </div>
-                <div style={{ display: "flex", gap: "10px" }}>
+                </div> */}
+                {/* <div style={{ display: "flex", gap: "10px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Roll No
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.rollno}</p>
-                </div>
+                </div> */}
                 <div style={{ display: "flex", gap: "10px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
-                    Branch/Year
+                  Year / Branch
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>
-                    {props.studentDetails.branch}
-                    {props.studentDetails.year}
+                    {props.studentDetails.year} / {props.studentDetails.branch}
                   </p>
                 </div>
               </div>
             </div>
-            {props.label == "Internship" ? (
+            {props.label === "Internship" ? (
               <div>
                 <p
                   className="intershipTitle"
                   style={{ textAlign: "center", margin: "30px 0px" }}
                 >
-                  Intrnship Details
+                  Internship Details
                 </p>
                 <div className="addInternInputsDiv">
                   <div className="addInternInputs">
                     <label>Company Name :</label>
                     <TextField
+                      className="workValue"
                       placeholder="Company Name"
                       id="outlined-size-small"
                       size="small"
@@ -147,19 +148,20 @@ export default function ViewWorkDetails(props) {
                   <div className="addInternInputs">
                     <FormControl className="radioBtnDiv">
                       <label className="radioLabel">Type :</label>
-                      <RadioGroup
+                      {/* <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="type"
                         disabled={true}
-                      >
+                      > */}
                         <FormControlLabel
-                          value="Internship"
+                          className="workValue"
+                          value="props.singleWorkDetails.type"
                           control={<Radio />}
                           label="Internship"
-                          checked={props.singleWorkDetails.type == "Internship"}
+                          checked='true'
                         />
-                        <FormControlLabel
+                        {/* <FormControlLabel
                           value="Job"
                           control={<Radio />}
                           label="Job"
@@ -172,13 +174,14 @@ export default function ViewWorkDetails(props) {
                           checked={
                             props.singleWorkDetails.type == "Certification"
                           }
-                        />
-                      </RadioGroup>
+                        /> */}
+                      {/* </RadioGroup> */}
                     </FormControl>
                   </div>
                   <div className="addInternInputs">
                     <label>Domain :</label>
                     <TextField
+                      className="workValue"
                       placeholder="Web/ML/AI/"
                       id="outlined-size-small"
                       size="small"
@@ -190,6 +193,7 @@ export default function ViewWorkDetails(props) {
                   <div className="addInternInputs">
                     <label>Role :</label>
                     <TextField
+                      className="workValue"
                       placeholder="Role"
                       id="outlined-size-small"
                       size="small"
@@ -201,6 +205,7 @@ export default function ViewWorkDetails(props) {
                   <div className="addInternInputs">
                     <label>Stipend :</label>
                     <TextField
+                      className="workValue"
                       placeholder="No or Yes"
                       id="outlined-size-small"
                       size="small"
@@ -212,6 +217,7 @@ export default function ViewWorkDetails(props) {
                   <div className="addInternInputs">
                     <label>Status :</label>
                     <TextField
+                      className="workValue"
                       id="outlined-size-small"
                       size="small"
                       value={props.singleWorkDetails.status}
@@ -223,6 +229,7 @@ export default function ViewWorkDetails(props) {
                     <div className="addInternInputs">
                       <label>Start Date :</label>
                       <TextField
+                        className="workValue"
                         value={props.singleWorkDetails.start_date || ""}
                         name="start_date"
                         type="date"
@@ -238,6 +245,7 @@ export default function ViewWorkDetails(props) {
                     <div className="addInternInputs">
                       <label>End Date :</label>
                       <TextField
+                        className="workValue"
                         value={props.singleWorkDetails.end_date || ""}
                         name="end_date"
                         type="date"

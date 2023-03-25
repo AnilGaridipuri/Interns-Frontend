@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import { ApplicationConstant } from "../../../constant/applicationConstant";
 import { ToastErrorMessage, ToastSuccessMessage } from "../../../uitils/toastMessage";
 import { api } from "../../../axios/api.config";
+import { margin } from "@mui/system";
 
 const selectStatus = [
   { displayName: "Ongoing", value: "Ongoing" },
@@ -29,8 +30,12 @@ const selectStatus = [
 const AddNewInternship = () => {
   
   const authState = useSelector((state) => state.authReducer);
+  
   const navigate = useNavigate()
   const params = useParams();
+
+  const [isProfileUpdated, setisProfileUpdated] = useState(!(authState.studentName===""))
+
   useEffect(() => {
     if(authState._id != params.id){
       navigate(`${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${params.id}`);
@@ -112,15 +117,42 @@ const AddNewInternship = () => {
       }
     }
   }
+  
+
+
+  useEffect(() => {
+    if(authState.studentName !== ""
+        && authState.rollno !== '' 
+        && authState.year !== '' 
+        && authState.branch !== ''){
+      setisProfileUpdated(true)
+    } 
+  }, [authState])
+  
 
   return (
+    
     <div>
       <AccountHeader label="Add Internship" />
       <Card
         sx={{ minWidth: 275 }}
         className="internshipCard1 header-blog bg-animation container"
       >
-        <CardContent>
+        
+        { !isProfileUpdated ? (
+          <h3 style={{
+            color : "white",
+            textAlign : "center",
+            margin : "auto 0",
+            fontWeight: "100",
+            fontSize: "25px"
+          }}>
+            Sorry, You need to Update your profile to add your Work.<br/><br/>
+            Click on 'Edit profile' to update.
+          </h3>
+        ) : ( 
+          <>
+          <CardContent>
           <div className="addInternInputsDiv">
             <div className="addInternInputs white">
               <label>Company Name :</label>
@@ -315,6 +347,9 @@ const AddNewInternship = () => {
             Upload
           </Button>
         </div>
+        </>
+        )}
+
       </Card>
     </div>
   );

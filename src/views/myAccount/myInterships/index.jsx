@@ -133,16 +133,16 @@ const MyInterships = () => {
       setOrderId(id);
       setLabel("Internship");
       try {
-        console.log(id, "id wfewef");
         const responce = await api.get(`getWorkDeatils/single-work/${id}`, {
           id: id,
         });
         setSingleWorkDetails(responce.data);
       } catch (error) {
-        console.log(id, "id wfewef");
         ToastErrorMessage(error.message);
       }
     };
+
+
     const handleClickOpenCertificationDetails = async (id) => {
       setOpen(true);
       setLabel("Certification");
@@ -175,7 +175,7 @@ const MyInterships = () => {
                 {workDetails?.map((work, index) => (
                   <Card className="intershipCard" key={index}>
                     <CardContent>
-                      <div className="intershipTitleHeader">
+                      { /* <div className="intershipTitleHeader">
                         <p className="intershipTitle">Student Details</p>
                         {isUser ? (
                           <EditInternship
@@ -205,9 +205,9 @@ const MyInterships = () => {
                             {userDetails.year}
                           </p>
                         </div>
-                      </div>
+                      </div> */}
                       <div className="intershipTitleHeader">
-                        <p className="intershipTitle">Intrnship Details</p>
+                        <p className="intershipTitle">{work.role}</p>
                         <Button
                           className={work.status}
                           style={{
@@ -220,8 +220,14 @@ const MyInterships = () => {
                         >
                           {work.status}
                         </Button>
+                        {isUser ? (
+                          <EditInternship
+                            workDetails={work}
+                            setWorkDeatils={setWorkDeatils}
+                          />
+                        ) : null}
                       </div>
-                      <div style={{ display: "grid", gap: "8px" }}>
+                      <div className="internshipContent" >
                         <div style={{ display: "flex", gap: "10px" }}>
                           <label style={{ fontWeight: "bold", width: "130px" }}>
                             Company Name
@@ -283,7 +289,7 @@ const MyInterships = () => {
                         className="internshipViewBtn"
                         endIcon={<EastIcon />}
                       >
-                        View
+                        View Certificates
                       </Button>
                     </CardActions>
                   </Card>
@@ -301,10 +307,10 @@ const MyInterships = () => {
               No InternShips Add
             </p>
           )}
-          <AccountHeader
+          {/* <AccountHeader
             label={isUser ? "My Certifications" : "Certifications"}
-          />
-          {certificationsDetails.length != 0 ? (
+          /> */}
+          {/* {certificationsDetails.length != 0 ? (
             <div>
               <div className="intershipsDiv">
                 {certificationsDetails?.map((certification, index) => (
@@ -421,7 +427,7 @@ const MyInterships = () => {
             >
               No InternShips Add
             </p>
-          )}
+          )} */}
         </div>
       )}
       <ViewWorkDetails

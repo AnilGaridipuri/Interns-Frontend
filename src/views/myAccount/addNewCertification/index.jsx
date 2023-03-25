@@ -33,6 +33,9 @@ const AddNewCertification = () => {
   const authState = useSelector((state) => state.authReducer);
   const navigate = useNavigate();
   const params = useParams();
+
+  const [isProfileUpdated, setisProfileUpdated] = useState(!(authState.studentName===""))
+
   useEffect(() => {
     if (authState._id != params.id) {
       navigate(`${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${params.id}`);
@@ -111,6 +114,16 @@ const AddNewCertification = () => {
     }
   };
 
+  useEffect(() => {
+    if(authState.studentName !== ""
+        && authState.rollno !== '' 
+        && authState.year !== '' 
+        && authState.branch !== ''){
+      setisProfileUpdated(true)
+    } 
+  }, [authState])
+  
+
   return (
     <div>
       <AccountHeader label="Add Certification" />
@@ -118,6 +131,19 @@ const AddNewCertification = () => {
         sx={{ minWidth: 275 }}
         className="internshipCard1 header-blog bg-animation container"
       >
+      { !isProfileUpdated ? (
+          <h3 style={{
+            color : "white",
+            textAlign : "center",
+            margin : "auto 0",
+            fontWeight: "100",
+            fontSize: "25px"
+          }}>
+            Sorry, You need to Update your profile to add your Certifications.<br/><br/>
+            Click on 'Edit profile' to update.
+          </h3>
+        ) : ( 
+          <>
         <CardContent>
           <div className="addInternInputsDiv">
             <div className="addInternInputs white">
@@ -233,13 +259,15 @@ const AddNewCertification = () => {
           </div>
         </CardContent>
         <div className="editUserDetailsBtn">
-          <Button className="editUserBtn btnCancle" onClick={cancleDeatils}>
+          <Button className=" btnCancle" onClick={cancleDeatils}>
             Cancle
           </Button>
-          <Button className="editUserBtn btnUpdate" onClick={uploadDeatils}>
+          <Button className=" btnUpdate" onClick={uploadDeatils}>
             Upload
           </Button>
         </div>
+        </>
+        )}
       </Card>
     </div>
   );

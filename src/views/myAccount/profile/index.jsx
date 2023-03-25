@@ -11,19 +11,15 @@ import { ToastErrorMessage } from "../../../uitils/toastMessage";
 import AccountHeader from "../../../components/accountHeader";
 
 const Profile = () => {
-  const [getuserDetails, setGetuserDetails] = useState(false);
   const [userDetails, setUserDeatils] = useState({});
   const params = useParams();
 
   useEffect(() => {
-    if (!getuserDetails) {
       getUserDeatils();
-    }
-  }, [userDetails]);
+  }, [params.id]);
 
   const getUserDeatils = async () => {
     if (params.id) {
-      setGetuserDetails(true);
       try {
         const responce = await api.post(`auth/user`, {
           id: params.id,
@@ -40,21 +36,17 @@ const Profile = () => {
       <Card className="profileCard  header-blog bg-animation container">
         <CardContent className="profileCardContent">
           <div className="userImgDiv">
-            <div>
               <Avatar
                 alt={capitalizeFirstLetter(
                   userDetails.studentName?.charAt(0) || ""
                 )}
                 srcSet={userDetails.profile}
                 sx={{
-                  width: "100px",
-                  height: "100px",
-                  marginRight: 2,
-                  fontSize: "60px",
+                  width: "130px",
+                  height: "130px",
                 }}
               />
-            </div>
-            <p className="rollno white">{userDetails.studentName}</p>
+            <p className="rollno white" style={{margin:"15px 0 0"}}>{userDetails.studentName}</p>
           </div>
           <div className="userDeatilsDiv">
             <div className="profileInputs white">

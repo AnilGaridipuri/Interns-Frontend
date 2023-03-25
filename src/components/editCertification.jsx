@@ -6,7 +6,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
 import CreateIcon from "@mui/icons-material/Create";
 import {
-DialogTitle,
+  DialogTitle,
   FormControl,
   FormControlLabel,
   MenuItem,
@@ -35,7 +35,7 @@ const selectStatus = [
 export default function EditCertification(props) {
   const authState = useSelector((state) => state.authReducer);
   const params = useParams();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(props.open);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,29 +45,29 @@ export default function EditCertification(props) {
     setOpen(false);
   };
 
-  console.log(props.certificationsDetails, "propsd");
- 
-    const [addNewCertification, setAddNewCertification] = useState({
-      studentId: authState._id,
-      organizationName: props.certificationsDetails.organizationName,
-      domain: props.certificationsDetails.domain,
-      status: props.certificationsDetails.status,
-      start_date: props.certificationsDetails.start_date,
-      end_date: props.certificationsDetails.end_date,
-      completionCertificatepath:
-        props.certificationsDetails.completionCertificatepath,
-      certificationId: props.certificationsDetails._id
-    });
+  console.log(props.certificationDetails, "propsd");
 
-   const onChnageInputs = (e) => {
-     var name = e.target.name;
-     var value = e.target.value;
-     console.log(e);
-     setAddNewCertification((pre) => ({
-       ...pre,
-       [name]: value,
-     }));
-   };
+  const [addNewCertification, setAddNewCertification] = useState({
+    studentId: authState._id,
+    organizationName: props.certificationDetails.organizationName,
+    domain: props.certificationDetails.domain,
+    status: props.certificationDetails.status,
+    start_date: props.certificationDetails.start_date,
+    end_date: props.certificationDetails.end_date,
+    completionCertificatepath:
+      props.certificationDetails.completionCertificatepath,
+    certificationId: props.certificationDetails._id,
+  });
+
+  const onChnageInputs = (e) => {
+    var name = e.target.name;
+    var value = e.target.value;
+    console.log(e);
+    setAddNewCertification((pre) => ({
+      ...pre,
+      [name]: value,
+    }));
+  };
 
   const handleOnImageChange = async (e) => {
     const { name } = e.currentTarget;
@@ -107,12 +107,16 @@ export default function EditCertification(props) {
   const uploadDeatils = async () => {
     if (authState._id == params.id) {
       try {
-         const responce = await api.put(
-           `update-CertificationDetails`,
-           addNewCertification
-         );
-        props.setCertificationsDeatils(responce.data);
-        ToastSuccessMessage("Successfully Uploaded !!");
+        const responce = await api.put(
+          `update-CertificationDetails`,
+          addNewCertification
+        );
+        // props.setCertificationsDeatils(responce.data);
+        const ongoing = responce.data.filter( (certification) => certification.status==='Ongoing')
+        const completed = responce.data.filter( (certification) => certification.status==='Completed')
+
+        props.setCertificationsDeatils(completed.concat(ongoing));
+        ToastSuccessMessage("Successfully Updated !!");
       } catch (error) {
         ToastErrorMessage(error.response.data || error.message);
       }
@@ -122,7 +126,7 @@ export default function EditCertification(props) {
   return (
     <div>
       <div onClick={handleClickOpen}>
-        <CreateIcon />
+        <Button className="btnUpdate">Update</Button>
       </div>
       <Dialog
         open={open}
@@ -137,7 +141,7 @@ export default function EditCertification(props) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap:'20px'
+            gap: "20px",
           }}
         >
           <AccountHeader label="Edit Internship" />
@@ -246,7 +250,6 @@ export default function EditCertification(props) {
                       onChange={handleOnImageChange}
                       name="completionCertificatepath"
                       type="file"
-                      multiple
                       size="small"
                       id="outlined-basic"
                     />
