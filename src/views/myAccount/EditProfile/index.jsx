@@ -142,7 +142,10 @@ const EditProfile = () => {
   };
 
   const changePassword = () => {
-    navigate(`${ApplicationConstant.FORGOTPASSWORD_URL_PATH}`);
+    const passwordfunction = "changepassword";
+    navigate(
+      `${ApplicationConstant.FORGOTPASSWORD_URL_PATH}/${passwordfunction}`
+    );
   };
 
   const cancleUserDeatils = () => {

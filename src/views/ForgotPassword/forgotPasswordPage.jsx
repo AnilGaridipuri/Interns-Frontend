@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import backgroungImg1 from "../../assets/forget1.jpg";
@@ -10,11 +10,29 @@ import VerifyOtp from './verifyOtp'
 import PasswordInputs from './passwordInputs'
 import SuccessUpdatePassword from "./successUpdatePassword";
 import { api } from "../../axios/api.config";
+import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthentication } from "../../store/slices/auth";
 
 
 const ForgotPasswordPage = () => {
 
+  const params = useParams();
+  const authState = useSelector((state) => state.authReducer);
+
+  useEffect(() => {
+    if(params.passwordfunction == "changepassword"){
+      setStep(2)
+      setOtpVerifyed(true)
+      setForgotPasswordParams((prve) => ({
+        ...prve,
+        mailId:authState.mailId
+    }))
+    }
+  }, [params]);
+
   const [step, setStep] = useState(0)
+  const dispatch = useDispatch();
 
   const [forgotPasswordParams, setForgotPasswordParams] = useState({
     mailId: "",
@@ -165,6 +183,20 @@ const ForgotPasswordPage = () => {
           );
           toast.success("Your Password Update Successfully");
           setStep(step + 1);
+          localStorage.removeItem("MITSinternsid");
+           dispatch(
+             setAuthentication({
+               isAuthenticated: true,
+               rollno: "",
+               _id: "",
+               mailId: "",
+               studentName:  "",
+               year: "",
+               branch:"",
+               phoneNumber:  "",
+               profile: "",
+             })
+           );
         } catch (error) {
           toast.error(error.response.data);
         }

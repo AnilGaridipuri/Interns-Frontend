@@ -116,7 +116,8 @@ const AllCertifications = (props) => {
       <TableContainer component={Paper} sx={{ maxHeight: 620 }}>
         <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 700 }}>
           <TableHead>
-            <TableRow>
+            <TableRow
+            >
               <StyledTableCell>Student Deatils</StyledTableCell>
               <StyledTableCell>Organization Name</StyledTableCell>
               <StyledTableCell align="center">Domain</StyledTableCell>

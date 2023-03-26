@@ -34,7 +34,7 @@ export default function App() {
       element: <LoginPage />,
     },
     {
-      path: ApplicationConstant.FORGOTPASSWORD_URL_PATH,
+      path: ApplicationConstant.FORGOTPASSWORD_DYNAMIC_URL_PATH,
       element: <ForgotPasswordPage />,
     },
     {

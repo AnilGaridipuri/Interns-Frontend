@@ -30,13 +30,18 @@
 @media screen and (max-width:600px) {
 
     .bgvideo{
-        height: 40vh;
+        height: 30vh;
     }
     .quotes{
         width: 320px !important;
     }
 
     .quotes{
-        top: -250px;
+        top: -180px;
+        height: 150px;
+    }
+
+    .homeContent{
+        margin-top: -150px;
     }
 }

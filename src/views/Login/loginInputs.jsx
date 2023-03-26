@@ -35,6 +35,7 @@ const LoginInputs = (props) => {
   const [email, setEmail] = useState(false);
   const [passwordValidate_status, setPasswordValidate_status] = useState(false);
   const [loginBtn, setLoginBtn] = useState(false);
+  const passwordfunction = "forgotpassword";
   var errormessage;
 
   function handleEmail(e) {
@@ -165,7 +166,7 @@ const LoginInputs = (props) => {
             />
             <div>
               <Link
-                to={ApplicationConstant.FORGOTPASSWORD_URL_PATH}
+                to={`${ApplicationConstant.FORGOTPASSWORD_URL_PATH}/${passwordfunction}`}
                 className="forgitPaswText"
               >
                 Forgot Password?
