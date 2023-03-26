@@ -1,14 +1,11 @@
-.homeBody{
-    /* display: flex; */
-}
-
-
 .bgvideo{
-    width : 100%;
-    
-    /* height : 600px; */
-    /* position: fixed; */
-    /* z-index: -1; */
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .quotes{
@@ -16,23 +13,35 @@
     height : 200px;
     background-color: rgba(245, 242, 245, 0.2);
     position: relative;
-    top : -750px;
+    top : -300px;
     margin : 0 auto;
 }
 
 .quote{
-    width : 650px;
+    width : 100%;
     height : 200px;
     object-fit: contain;
-    /* border : 2px solid black */
 }
 
-
-
 .homeContent{
-    width:100%;
-    height : 1000px;
-background-color: white;
-    position: relative;
-    top : -600px;
+    margin-top: -200px;
+}
+
+@media screen and (max-width:600px) {
+
+    .bgvideo{
+        height: 30vh;
+    }
+    .quotes{
+        width: 320px !important;
+    }
+
+    .quotes{
+        top: -180px;
+        height: 150px;
+    }
+
+    .homeContent{
+        margin-top: -150px;
+    }
 }

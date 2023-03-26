@@ -1,5 +1,5 @@
 .footerBody {
-    background-color: rgb(91, 91, 91);
+    background-image: linear-gradient(to bottom right, rgb(60, 43, 81), #502760);
     color: rgb(255, 255, 255);
     padding: 10px;
 }
@@ -53,8 +53,8 @@
 }
 
 .footerLink span:hover{
-    border-bottom: 2px solid rgb(27, 170, 1);
-    color: rgb(27, 170, 1);
+    border-bottom: 2px solid rgb(211, 80, 255);
+    color: rgb(211, 80, 255);
     font-size: 14.5px;
     transition: all 20ms;
 }
@@ -65,8 +65,8 @@
     column-gap: 5px;
 }
 .footerLink1 i:hover{
-    border-bottom: 2px solid rgb(27, 170, 1);
-    color: rgb(27, 170, 1);
+    border-bottom: 2px solid rgb(211, 80, 255);
+    color: rgb(211, 80, 255);
     transition: all 20ms;
 }
 
@@ -77,12 +77,12 @@
     margin-left: -10px;
 }
 .footerLink1:hover{
-    color: rgb(27, 170, 1) !important;
+    color: rgb(211, 80, 255) !important;
 }
 
 
 .footerLink:hover{
-    color: rgb(27, 170, 1) !important;
+    color: rgb(211, 80, 255) !important;
 }
 
 .foortItem a{

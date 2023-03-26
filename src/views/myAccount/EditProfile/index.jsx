@@ -142,7 +142,10 @@ const EditProfile = () => {
   };
 
   const changePassword = () => {
-    navigate(`${ApplicationConstant.FORGOTPASSWORD_URL_PATH}`);
+    const passwordfunction = "changepassword";
+    navigate(
+      `${ApplicationConstant.FORGOTPASSWORD_URL_PATH}/${passwordfunction}`
+    );
   };
 
   const cancleUserDeatils = () => {
@@ -159,9 +162,9 @@ const EditProfile = () => {
 
   return (
     <div className="profileBody">
-      <AccountHeader label="Edit Profile" />
       <Card className="profileCard header-blog bg-animation container">
-        <CardContent className="profileCardContent">
+        <AccountHeader label="Edit Profile" />
+        <CardContent className="profileCardContent" style={{ paddingTop: 15 }}>
           <div className="userImgDiv">
             <div>
               <input
@@ -183,10 +186,12 @@ const EditProfile = () => {
                 }}
               />
               <label htmlFor="file-input" className="uploadImg">
-                <AddAPhotoIcon fontSize="large" />
+                <AddAPhotoIcon fontSize="large" style={{ color: "#df7f02" }} />
               </label>
             </div>
-            <p className="Editrollno white">{studentDeatils.studentName}</p>
+            <p className="Editrollno white">
+              {studentDeatils.studentName}
+            </p>
           </div>
           <div className="userDeatilsDiv">
             <div className="profileInputs white">
@@ -227,7 +232,7 @@ const EditProfile = () => {
                   disabled={true}
                 />
               </div>
-              <p className="hitMessage">can not change your email</p>
+              <p className="hitMessage">Can not change your email</p>
             </div>
             <div className="profileInputs white">
               <label>Year</label>

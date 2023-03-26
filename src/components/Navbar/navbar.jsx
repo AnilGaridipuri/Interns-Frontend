@@ -1,5 +1,4 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -12,17 +11,13 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/mitsLogo.jpeg";
-import profile from "../../assets/profile.JPG";
 import "./navbar.css";
 import { ApplicationConstant } from "../../constant/applicationConstant";
 import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAuthentication } from "../../store/slices/auth";
-import { capitalizeFirstLetter } from "../../uitils/jsFunctions";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LogoutIcon from "@mui/icons-material/Logout";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const NavBar = () => {
@@ -99,6 +94,16 @@ const NavBar = () => {
             >
               All Interns
             </NavLink>
+            <NavLink
+              to={ApplicationConstant.ALL_CERTIFICATIONS}
+              className={
+                pathname.pathname === ApplicationConstant.ALL_CERTIFICATIONS
+                  ? "navItems_active"
+                  : "navItems"
+              }
+            >
+              Certifications
+            </NavLink>
           </Typography>
           <div>
             {!MITSinternsid ? (
@@ -130,14 +135,10 @@ const NavBar = () => {
                         className="navProfile"
                       >
                         <Avatar
-                          // alt={capitalizeFirstLetter(
-                          //   authState?.studentName.charAt(0) || "A"
-                          // )}
                           srcSet={authState.profile}
                           sx={{
-                            width: "40px",
-                            height: "40px",
-                            // fontSize: "40px",
+                            width: "60px",
+                            height: "60px",
                           }}
                         />
                       </IconButton>

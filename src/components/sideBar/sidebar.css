@@ -43,12 +43,12 @@
 }
 
 .sidebarBody {
-    width: 220px;
+    width: 230px;
     min-height: 87.5vh;
     max-height: auto;
     min-height: 100vh;
     overflow: hidden !important;
-    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
+    background-image: linear-gradient(to bottom right, #1a1a44, #2d2075, #5a3691, #8b05c5);
     color: #fff !important;
     animation-duration: 10s;
     transition: 0.5s
@@ -67,11 +67,6 @@
 .siderbarHeader h2{
     font-weight: 200;
 }
-
-/* .sideBarAvatar{
-    width : 45px !important;
-    height: 45px !important;
-} */
 
 .sidebarBody.active .siderbarHeader p{
     display: none;
@@ -131,7 +126,7 @@
     left: 56px;
     border-radius: 6px;
     height: 40px;
-    background-color: #363740;
+    background-image: linear-gradient(to bottom right, rgb(52, 27, 85), #4d1c60);
     width: 140px;
     line-height: 40px;
     text-align: center;
@@ -216,7 +211,7 @@
 .bar3 {
     width: 28px;
     height: 4px;
-    background-color: #333;
+    background-color: #df7f02;
     margin: 4px 0;
     transition: 0.4s;
 }

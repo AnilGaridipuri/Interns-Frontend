@@ -12,6 +12,7 @@ import AddNewInternship from "../views/myAccount/addNewInternship";
 import EditProfile from "../views/myAccount/EditProfile";
 import AllInternShips from "../views/AllInternShips/AllInternShips";
 import AddNewCertification from "../views/myAccount/addNewCertification";
+import AllCertifications from "../views/AllInternShips/AllCertifications"
 
 export default function App() {
 
@@ -25,11 +26,15 @@ export default function App() {
       element: <AllInternShips />,
     },
     {
+      path: ApplicationConstant.ALL_CERTIFICATIONS,
+      element: <AllCertifications />,
+    },
+    {
       path: ApplicationConstant.LOGIN_URL_PATH,
       element: <LoginPage />,
     },
     {
-      path: ApplicationConstant.FORGOTPASSWORD_URL_PATH,
+      path: ApplicationConstant.FORGOTPASSWORD_DYNAMIC_URL_PATH,
       element: <ForgotPasswordPage />,
     },
     {

@@ -32,21 +32,23 @@ const Profile = () => {
   };
   return (
     <div className="profileBody">
-      <AccountHeader label="Profile" />
       <Card className="profileCard  header-blog bg-animation container">
-        <CardContent className="profileCardContent">
+        <AccountHeader label="Profile" />
+        <CardContent className="profileCardContent" style={{ paddingTop: 15 }}>
           <div className="userImgDiv">
-              <Avatar
-                alt={capitalizeFirstLetter(
-                  userDetails.studentName?.charAt(0) || ""
-                )}
-                srcSet={userDetails.profile}
-                sx={{
-                  width: "130px",
-                  height: "130px",
-                }}
-              />
-            <p className="rollno white" style={{margin:"15px 0 0"}}>{userDetails.studentName}</p>
+            <Avatar
+              alt={capitalizeFirstLetter(
+                userDetails.studentName?.charAt(0) || ""
+              )}
+              srcSet={userDetails.profile}
+              sx={{
+                width: "130px",
+                height: "130px",
+              }}
+            />
+            <p className="white" style={{ margin: "0px 0 0 15px" }}>
+              {userDetails.studentName}
+            </p>
           </div>
           <div className="userDeatilsDiv">
             <div className="profileInputs white">

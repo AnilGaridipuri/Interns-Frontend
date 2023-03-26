@@ -112,11 +112,12 @@ const AllCertifications = (props) => {
     };
 
   return (
-    <div>
+    <div className="allWorksList">
       <TableContainer component={Paper} sx={{ maxHeight: 620 }}>
         <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 700 }}>
           <TableHead>
-            <TableRow>
+            <TableRow
+            >
               <StyledTableCell>Student Deatils</StyledTableCell>
               <StyledTableCell>Organization Name</StyledTableCell>
               <StyledTableCell align="center">Domain</StyledTableCell>
@@ -143,7 +144,7 @@ const AllCertifications = (props) => {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "30px",
+                        gap: "20px",
                       }}
                     >
                       <Avatar
@@ -194,18 +195,18 @@ const AllCertifications = (props) => {
             </TableBody>
           )}
         </Table>
+        <div>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 50, 100]}
+            component="div"
+            count={count}
+            rowsPerPage={certificationlistparameters.size}
+            page={certificationlistparameters.page - 1}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </div>
       </TableContainer>
-      <div>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 50, 100]}
-          component="div"
-          count={count}
-          rowsPerPage={certificationlistparameters.size}
-          page={certificationlistparameters.page - 1}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </div>
       <ViewWorkDetails
         open={open}
         setOpen={setOpen}

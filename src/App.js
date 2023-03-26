@@ -21,11 +21,10 @@ function App() {
   console.log(id);
 
   useEffect(() => {
-    console.log("main useEffdsf")
     if (!getuserDetails) {
       getUserDeatils();
     }
-  }, [userDetails]);
+  }, [userDetails, id]);
 
   const getUserDeatils = async () => {
     if (id) {

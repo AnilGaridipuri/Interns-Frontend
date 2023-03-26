@@ -23,7 +23,6 @@ const MyInterships = () => {
   const [isUser, setIsUser] = useState(false);
   const params = useParams();
   const [loading, setLoading] = useState(true)
-  const [label, setLabel] = useState("")
   
   const [userDetails, setUserDetails] = useState({
     branch: "",
@@ -41,7 +40,6 @@ const MyInterships = () => {
     if (!getworkDetails) {
       getworkDeatils();
       getUserDeatils();
-      getcertificationDeatils();
     }
     setIsUser(_id === userDetails._id);
   }, [workDetails, userDetails]);
@@ -77,7 +75,6 @@ const MyInterships = () => {
 
  
     const [open, setOpen] = useState(false);
-    const [orderId, setOrderId] = useState("");
     const [singleWorkDetails, setSingleWorkDetails] = useState({
       addWorkAt: "",
       companyName: "",
@@ -96,42 +93,8 @@ const MyInterships = () => {
       _id: "",
     });
 
-
-    const [singlecertificationsDetails, setSinglecertificationsDeatils] = useState({
-      addWorkAt: "",
-      organizationName: "",
-      completionCertificatepath: "",
-      domain: "",
-      end_date: "",
-      start_date: "",
-      status: "",
-      studentDetails: {},
-      studentId: "",
-      updatedWorkAt: "",
-      _id: "",
-    });
-
-    const getcertificationDeatils = async () => {
-      if (params.id) {
-        setGetworkDetails(true);
-        try {
-          const responce = await api.post(
-            `getCertificationDeatils/student-certifications`,
-            {
-              id: params.id,
-            }
-          );
-          setCertificationsDeatils(responce.data);
-        } catch (error) {
-          ToastErrorMessage(error.message);
-        }
-      }
-    };
-
     const handleClickOpenIntershipDetails = async (id) => {
       setOpen(true);
-      setOrderId(id);
-      setLabel("Internship");
       try {
         const responce = await api.get(`getWorkDeatils/single-work/${id}`, {
           id: id,
@@ -142,24 +105,6 @@ const MyInterships = () => {
       }
     };
 
-
-    const handleClickOpenCertificationDetails = async (id) => {
-      setOpen(true);
-      setLabel("Certification");
-      try {
-        console.log(id, "id wfewef");
-        const responce = await api.get(
-          `getCertificationDeatils/single-certification/${id}`,
-          {
-            id: id,
-          }
-        );
-        setSinglecertificationsDeatils(responce.data);
-      } catch (error) {
-        console.log(id, "id wfewef");
-        ToastErrorMessage(error.message);
-      }
-    };
 
   return (
     <div>
@@ -175,37 +120,6 @@ const MyInterships = () => {
                 {workDetails?.map((work, index) => (
                   <Card className="intershipCard" key={index}>
                     <CardContent>
-                      { /* <div className="intershipTitleHeader">
-                        <p className="intershipTitle">Student Details</p>
-                        {isUser ? (
-                          <EditInternship
-                            workDetails={work}
-                            setWorkDeatils={setWorkDeatils}
-                          />
-                        ) : null}
-                      </div>
-                      <div className="studentDetailsDiv">
-                        <Avatar
-                          alt={capitalizeFirstLetter(
-                            userDetails.studentName?.charAt(0) || ""
-                          )}
-                          src={userDetails.profile}
-                          sx={{
-                            width: "80px",
-                            height: "80px",
-                            marginRight: 2,
-                            fontSize: "60px",
-                          }}
-                        />
-                        <div>
-                          <p>{userDetails.studentName}</p>
-                          <p>{userDetails.rollno}</p>
-                          <p>
-                            {userDetails.branch} {" , "}
-                            {userDetails.year}
-                          </p>
-                        </div>
-                      </div> */}
                       <div className="intershipTitleHeader">
                         <p className="intershipTitle">{work.role}</p>
                         <Button
@@ -299,144 +213,23 @@ const MyInterships = () => {
           ) : (
             <p
               style={{
-                color: "red",
+                color: "white",
                 textAlign: "center",
                 padding: "30px 0px",
+                fontSize:'20px'
               }}
             >
-              No InternShips Add
+              No InternShips Added
             </p>
           )}
-          {/* <AccountHeader
-            label={isUser ? "My Certifications" : "Certifications"}
-          /> */}
-          {/* {certificationsDetails.length != 0 ? (
-            <div>
-              <div className="intershipsDiv">
-                {certificationsDetails?.map((certification, index) => (
-                  <Card className="intershipCard" key={index}>
-                    <CardContent>
-                      <div className="intershipTitleHeader">
-                        <p className="intershipTitle">Student Details</p>
-                        {isUser ? (
-                          <EditCertification
-                            certificationsDetails={certification}
-                            setCertificationsDeatils={setCertificationsDeatils}
-                          />
-                        ) : null}
-                      </div>
-                      <div className="studentDetailsDiv">
-                        <Avatar
-                          alt={capitalizeFirstLetter(
-                            userDetails.studentName?.charAt(0) || ""
-                          )}
-                          src={userDetails.profile}
-                          sx={{
-                            width: "80px",
-                            height: "80px",
-                            marginRight: 2,
-                            fontSize: "60px",
-                          }}
-                        />
-                        <div>
-                          <p>{userDetails.studentName}</p>
-                          <p>{userDetails.rollno}</p>
-                          <p>
-                            {userDetails.branch} {" , "}
-                            {userDetails.year}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="intershipTitleHeader">
-                        <p className="intershipTitle">Intrnship Details</p>
-                        <Button
-                          className={certification.status}
-                          style={{
-                            textDecoration: "none",
-                            width: "10rem",
-                            height: "30px",
-                            borderRadius: "30px",
-                            color: "#fff",
-                          }}
-                        >
-                          {certification.status}
-                        </Button>
-                      </div>
-                      <div style={{ display: "grid", gap: "8px" }}>
-                        <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "150px" }}>
-                            Organization Name
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <p>{certification.organizationName}</p>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "150px" }}>
-                            Domain
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <p>{certification.domain}</p>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "150px" }}>
-                            Start Date
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <p>{certification.start_date}</p>
-                        </div>
-                        <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "150px" }}>
-                            End Date
-                          </label>
-                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                          <p>{certification.end_date}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardActions
-                      style={{ display: "flex", justifyContent: "center" }}
-                    >
-                      <Button
-                        onClick={() =>
-                          handleClickOpenCertificationDetails(certification._id)
-                        }
-                        style={{
-                          textDecoration: "none",
-                          width: "10rem",
-                          height: "30px",
-                          borderRadius: "30px",
-                          color: "#fff",
-                        }}
-                        className="internshipViewBtn"
-                        endIcon={<EastIcon />}
-                      >
-                        View
-                      </Button>
-                    </CardActions>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <p
-              style={{
-                color: "red",
-                textAlign: "center",
-                padding: "30px 0px",
-              }}
-            >
-              No InternShips Add
-            </p>
-          )} */}
         </div>
       )}
       <ViewWorkDetails
         open={open}
         setOpen={setOpen}
         singleWorkDetails={singleWorkDetails}
-        singlecertificationsDetails={singlecertificationsDetails}
         studentDetails={userDetails}
-        label={label}
+        label="Internship"
       />
     </div>
   );

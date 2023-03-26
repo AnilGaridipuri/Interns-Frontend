@@ -37,7 +37,7 @@
     display: grid;
     padding: 0px 20px;
     margin: 10px;
-    min-height : 500px;
+    min-height : 550px;
     border-radius: 5px !important;
     transition: all 1s;
     box-shadow: 7px 2px 20px 0px #7c7c7c !important;
@@ -91,6 +91,7 @@
     row-gap: 30px;
     justify-content: space-evenly;
     margin: 35px 0px 20px;
+    align-items: flex-start;
 }
 
 .workValue .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled, .workValue{
@@ -120,6 +121,14 @@
     font-weight: 600;
     margin-left: 5px;
 }
+
+/* .addInternInputs .inp{
+
+}
+TextField(cursorColor: Color(0xffF02E65),
+),
+TextField(cursorColor: Color.fromARGB(255, 66, 125, 145),
+), */
 .radioLabel{
     width: auto;
     font-weight: 600;
@@ -139,6 +148,10 @@
 .addInternInputs{
     display: grid;
     row-gap: 3px;
+}
+
+.addInternInputs input{
+    cursor:inherit
 }
 
 .profileInputs .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
@@ -171,6 +184,14 @@
     -webkit-text-fill-color: rgb(0, 0, 0);  
 }
 
+.profileInputs svg{
+    color: white !important;
+}
+
+.addInternInputs1 svg {
+    color: white !important;
+}
+
 .hitMessage{
     color: rgb(255, 169, 21);
     text-align: center;
@@ -189,8 +210,12 @@
 }
 
 .Editrollno{
-    margin-top: -25px;
+    margin-top: -45px !important;
     text-align: center;
+}
+
+.studentName{
+    margin-top: -10px;
 }
 
 .editUserDetailsBtn{
@@ -199,7 +224,6 @@
     justify-content: space-evenly;
     margin-bottom: 30px;
     row-gap: 10px;
-    height : 30px;
 }
 
 
@@ -213,8 +237,15 @@
     display : inline !important;
     width: 200px;
     color: #fff !important;
+    background-image: linear-gradient(to bottom right, #256900, #00b123, #00790a);
+}
+.btnUpdate1{
+    display : inline !important;
+    width: 200px;
+    color: #fff !important;
     background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
 }
+
 .btnChange{
     width: 200px;
     color: #fff !important;
@@ -239,7 +270,7 @@
 .intershipsDiv{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
     gap: 30px;
     padding: 30px 5px;
@@ -286,7 +317,7 @@
 
 
 .internshipViewBtn{
-        background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
+     background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
 }
 
 .certificatesDiv{
@@ -300,7 +331,7 @@
 
 .certificatesCard {
     width: 610px !important;
-    
+    padding-bottom: 20px !important;
     cursor: pointer;
 }
 
@@ -308,12 +339,20 @@
     width: 350px;
 }
 
-.internshipCard1 .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
+.addInternInputs1 .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
     color: white !important;
+}
+
+.studentDetailsView{
+    margin: 0px 50px;
 }
 
 
 @media screen and (max-width:600px) {
+
+    .studentDetailsView{
+        margin: 0px !important;
+    }
     .editprofileCard{
         margin: 0px;
     }
@@ -352,7 +391,15 @@
     }
 
     .certificatesCard{
-        min-width: 330px !important;
+        min-width: 320px !important;
+        padding-bottom: 20px !important;
+    }
+    .intershipCertificationBackGround{
+        margin: 0px !important;
+    }
+
+    .certificatesCard{
+        margin: 10px !important;
     }
 }
 
@@ -445,9 +492,10 @@ header {
 }
 
 .intershipCertificationBackGround{
-    background-image: linear-gradient(to bottom right, #242467, #8624b1, #2f2f89, #8645e7);
+    background-image: linear-gradient(to bottom right, #27277f, #561e72, #2f2f89, #8645e7);
+    min-height: 90vh;
+    margin: 10px;
 }
-
 
 input:-webkit-autofill {
     -webkit-text-fill-color: rgb(0, 0, 0) !important;
