@@ -7,14 +7,10 @@ import TableRow from "@mui/material/TableRow";
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#000",
     color: theme.palette.common.white,
-  //     background: linear-gradient(
-  //   20deg,
-  //   hsl(${props => props.hue}, 60%, 65%),
-  //   hsl(${props => props.hue - 305}, 64%, 60%)
-  // );
-    // backgroundImage: "linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9)",
+    backgroundImage:
+      "linear-gradient(to bottom right, rgb(60, 43, 81), #502760)",
+    fontSize: 17,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 16,

@@ -2,7 +2,7 @@ export const ApplicationConstant = {
   HOME_PAGE_PATH: "/",
   ALLINTERNSHIP_PAGE_PATH: "/all-internship-list",
   LOGIN_URL_PATH: "/login",
-  ALL_INTERNS: "/all-interns",
+  ALL_CERTIFICATIONS: "/all-certifications-list",
   FORGOTPASSWORD_URL_PATH: "/forgotpassword",
   MYACCOUNT_URL: "/account",
   MYACCOUNT_PROFILE_URL: "/account/profile",

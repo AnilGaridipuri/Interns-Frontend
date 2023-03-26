@@ -4,14 +4,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
-import CreateIcon from "@mui/icons-material/Create";
 import {
   DialogTitle,
   FormControl,
-  FormControlLabel,
   MenuItem,
-  Radio,
-  RadioGroup,
   Select,
   TextField,
 } from "@mui/material";
@@ -59,6 +55,8 @@ export default function EditCertification(props) {
     certificationId: props.certificationDetails._id,
   });
 
+  console.log(addNewCertification,"editCerifvd");
+
   const onChnageInputs = (e) => {
     var name = e.target.name;
     var value = e.target.value;
@@ -73,7 +71,7 @@ export default function EditCertification(props) {
     const { name } = e.currentTarget;
     const filelist = e.target.files[0];
     const base64 = await convertBase64(filelist);
-    addNewCertification((prevState) => ({
+    setAddNewCertification((prevState) => ({
       ...prevState,
       [name]: base64,
     }));
@@ -111,10 +109,8 @@ export default function EditCertification(props) {
           `update-CertificationDetails`,
           addNewCertification
         );
-        // props.setCertificationsDeatils(responce.data);
         const ongoing = responce.data.filter( (certification) => certification.status==='Ongoing')
         const completed = responce.data.filter( (certification) => certification.status==='Completed')
-
         props.setCertificationsDeatils(completed.concat(ongoing));
         ToastSuccessMessage("Successfully Updated !!");
       } catch (error) {
@@ -126,7 +122,7 @@ export default function EditCertification(props) {
   return (
     <div>
       <div onClick={handleClickOpen}>
-        <Button className="btnUpdate">Update</Button>
+        <Button className="btnUpdate1">Update</Button>
       </div>
       <Dialog
         open={open}
@@ -198,18 +194,20 @@ export default function EditCertification(props) {
                 </div>
               </div>
               <div>
-                <div className="addInternInputs">
-                  <label>End Date :</label>
-                  <TextField
-                    value={addNewCertification.end_date || ""}
-                    onChange={onChnageInputs}
-                    name="end_date"
-                    type="date"
-                    required
-                    size="small"
-                    id="outlined-basic"
-                    variant="outlined"
-                  />
+                <div>
+                  <div className="addInternInputs">
+                    <label>End Date :</label>
+                    <TextField
+                      value={addNewCertification.end_date || ""}
+                      onChange={onChnageInputs}
+                      name="end_date"
+                      type="date"
+                      required
+                      size="small"
+                      id="outlined-basic"
+                      variant="outlined"
+                    />
+                  </div>
                 </div>
               </div>
               <div>

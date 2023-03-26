@@ -15,24 +15,14 @@ import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 import { Avatar } from "@mui/material";
 import { api } from "../../axios/api.config";
 
-
 const Sidebar = (props) => {
   const pathname = useLocation();
 
   var [sidebarOpen, setSidebarOpen] = useState(false);
-  
-    var [classSubmenu, setClassSubmenu] = useState("SubMenu_group");
 
-  const [ userAccount, setUserAccount] = useState({})
+  const [userAccount, setUserAccount] = useState({});
 
-    const authState = useSelector((state) => state.authReducer);
-
-    function className() {
-        setClassSubmenu("SubMenu_group");
-    }
-    function className_active() {
-        setClassSubmenu("tooltip_submenu");
-    }
+  const authState = useSelector((state) => state.authReducer);
 
   function collapse() {
     var collapseBtn = document.querySelector(".collapes_button");
@@ -45,34 +35,23 @@ const Sidebar = (props) => {
     sidebarLinksDiv?.classList.toggle("active");
   }
 
-   const handleMenuIcon = () => {
-     var sidebar = document.querySelector(".sidebarBody");
-     sidebar?.classList.toggle("open");
-     var sidebar = document.querySelector(".sideMenuIconDiv");
-     sidebar?.classList.toggle("open");
-   };
+  const handleMenuIcon = () => {
+    var sidebar = document.querySelector(".sidebarBody");
+    sidebar?.classList.toggle("open");
+    var sidebar = document.querySelector(".container");
+    sidebar?.classList.toggle("change");
+  };
 
-   const getProfilePic = async () => {
-    if (authState._id === props.id){
-      const res =  await api.post(`auth/user`, {
-        id: authState._id
+  const getProfilePic = async () => {
+      const res = await api.post("auth/user", {
+        id: props.id,
       });
-      console.log('-----------------',res.data)
       setUserAccount(res.data);
-    }else{
-      const res = await api.post('auth/user', {
-        id: props.id
-      })
-      
-      setUserAccount(res.data);
-    }
-   }
+  };
 
   useEffect(() => {
-    getProfilePic()
-    console.log('+++++++++++++++=',userAccount)
-  }, [props.id])
-
+    getProfilePic();
+  }, [props.id,authState]);
 
   return (
     <div className="sidebarBody" id="sidebarBody">
@@ -80,23 +59,27 @@ const Sidebar = (props) => {
         <div>
           <i className="icon" onClick={collapse}>
             {sidebarOpen === false ? (
-              <KeyboardDoubleArrowLeftIcon onClick={className_active} />
+              <KeyboardDoubleArrowLeftIcon />
             ) : (
-              <KeyboardDoubleArrowRightIcon onClick={className} />
+              <KeyboardDoubleArrowRightIcon />
             )}
           </i>
         </div>
       </div>
       <div className="siderbarHeader">
-          <Avatar
-            className="sideBarAvatar"
-            srcSet={userAccount.profile}
-            sx={{
-              width: "40px",
-              height: "40px",
-            }}
-          />
-        {authState._id === props.id ? <h3>My Account</h3> : <h3>{userAccount.studentName}</h3>}
+        <Avatar
+          className="sideBarAvatar"
+          srcSet={userAccount.profile}
+          sx={{
+            width: "40px",
+            height: "40px",
+          }}
+        />
+        {authState._id === props.id ? (
+          <h3>My Account</h3>
+        ) : (
+          <h3>{userAccount.studentName}</h3>
+        )}
       </div>
       <div className="sidebarLinksDiv">
         <NavLink
@@ -151,10 +134,14 @@ const Sidebar = (props) => {
           >
             <ReceiptLongIcon fontSize="large" />
             <p className="linkName">
-              {authState._id === props.id ? "My Certifications" : "Certifications"}
+              {authState._id === props.id
+                ? "My Certifications"
+                : "Certifications"}
             </p>
             <span className="tooltip_sidemenu">
-              {authState._id === props.id ? "My Certifications" : "Certifications"}
+              {authState._id === props.id
+                ? "My Certifications"
+                : "Certifications"}
             </span>
           </div>
         </NavLink>

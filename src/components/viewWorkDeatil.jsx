@@ -43,7 +43,6 @@ export default function ViewWorkDetails(props) {
         aria-describedby="alert-dialog-slide-description"
       >
         <div
-          
           style={{
             display: "flex",
             justifyContent: "flex-end",
@@ -54,12 +53,12 @@ export default function ViewWorkDetails(props) {
         </div>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            {/* <p
+            <p
               className="intershipTitle"
               style={{ textAlign: "center", margin: "0px 0px 30px 0px" }}
             >
               Student Details
-            </p> */}
+            </p>
             <div
               style={{
                 display: "grid",
@@ -69,10 +68,10 @@ export default function ViewWorkDetails(props) {
                 justifyItems: "center",
               }}
             >
-              <div >
+              <div>
                 <Avatar
                   src={props.studentDetails.profile}
-                  style={{ cursor: "pointer" }} 
+                  style={{ cursor: "pointer" }}
                   onClick={viewProfile}
                   sx={{
                     margin: "0 auto",
@@ -88,34 +87,34 @@ export default function ViewWorkDetails(props) {
                     color: "#f1950a",
                   }}
                 >
-                  View  Profile
+                  View Profile
                 </p>
               </div>
-              <div style={{ display: "grid", gap: "8px" }}>
-                <div style={{ display: "flex", gap: "10px" }}>
+              <div className="addInternInputsDiv studentDetailsView">
+                <div style={{ display: "flex", gap: "10px", width: "300px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Student Name
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.studentName}</p>
                 </div>
-                {/* <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", width: "300px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Mail Id
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.mailId}</p>
-                </div> */}
-                {/* <div style={{ display: "flex", gap: "10px" }}>
+                </div>
+                <div style={{ display: "flex", gap: "10px", width: "300px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Roll No
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.rollno}</p>
-                </div> */}
-                <div style={{ display: "flex", gap: "10px" }}>
+                </div>
+                <div style={{ display: "flex", gap: "10px", width: "300px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
-                  Year / Branch
+                    Year / Branch
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>
@@ -154,28 +153,13 @@ export default function ViewWorkDetails(props) {
                         name="type"
                         disabled={true}
                       > */}
-                        <FormControlLabel
-                          className="workValue"
-                          value="props.singleWorkDetails.type"
-                          control={<Radio />}
-                          label="Internship"
-                          checked='true'
-                        />
-                        {/* <FormControlLabel
-                          value="Job"
-                          control={<Radio />}
-                          label="Job"
-                          checked={props.singleWorkDetails.type == "Job"}
-                        />
-                        <FormControlLabel
-                          value="Certification"
-                          control={<Radio />}
-                          label="Certification"
-                          checked={
-                            props.singleWorkDetails.type == "Certification"
-                          }
-                        /> */}
-                      {/* </RadioGroup> */}
+                      <FormControlLabel
+                        className="workValue"
+                        value="props.singleWorkDetails.type"
+                        control={<Radio />}
+                        label="Internship"
+                        checked="true"
+                      />
                     </FormControl>
                   </div>
                   <div className="addInternInputs">
@@ -345,9 +329,7 @@ export default function ViewWorkDetails(props) {
                   <div className="addInternInputs">
                     <label>Start Date :</label>
                     <TextField
-                      value={
-                        props.singlecertificationsDetails.start_date || ""
-                      }
+                      value={props.singlecertificationsDetails.start_date || ""}
                       type="date"
                       required
                       size="small"
@@ -370,13 +352,14 @@ export default function ViewWorkDetails(props) {
                   </div>
                   <div className="previewImage">
                     <div>
-                      {props.singlecertificationsDetails.completionCertificatepath !=
-                      "" ? (
+                      {props.singlecertificationsDetails
+                        .completionCertificatepath != "" ? (
                         <div>
                           <p>Completion Certificate</p>
                           <img
                             src={
-                              props.singlecertificationsDetails.completionCertificatepath
+                              props.singlecertificationsDetails
+                                .completionCertificatepath
                             }
                             style={{
                               width: "300px",
@@ -388,7 +371,13 @@ export default function ViewWorkDetails(props) {
                           />
                         </div>
                       ) : (
-                        <p style={{ color: "red", width: "330px" ,marginTop:'20px'}}>
+                        <p
+                          style={{
+                            color: "red",
+                            width: "330px",
+                            marginTop: "20px",
+                          }}
+                        >
                           Completion Certificate Not Upload
                         </p>
                       )}

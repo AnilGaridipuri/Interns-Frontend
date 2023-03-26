@@ -152,7 +152,7 @@ const AllInternShips = () => {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "30px",
+                        gap: "20px",
                       }}
                     >
                       <Avatar
@@ -206,19 +206,18 @@ const AllInternShips = () => {
             </TableBody>
           )}
         </Table>
+        <div>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 50, 100]}
+            component="div"
+            count={count}
+            rowsPerPage={worklistparameters.size}
+            page={worklistparameters.page - 1}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </div>
       </TableContainer>
-      <div>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 50, 100]}
-          component="div"
-          count={count}
-          rowsPerPage={worklistparameters.size}
-          page={worklistparameters.page - 1}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </div>
-      <AllCertifications studentDetails={studentDetails} />
       <ViewWorkDetails
         open={open}
         setOpen={setOpen}
