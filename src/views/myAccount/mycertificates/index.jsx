@@ -135,10 +135,10 @@ const MyCertificates = () => {
                       </div>
                       <div style={{ display: "flex", gap: "10px" }}>
                         <label style={{ fontWeight: "bold", width: "150px" }}>
-                          Domain
+                          Certification Name
                         </label>
                         <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
-                        <p>{certification.domain}</p>
+                        <p>{certification.certificationName}</p>
                       </div>
                       <div style={{ display: "flex", gap: "10px" }}>
                         <label style={{ fontWeight: "bold", width: "150px" }}>

@@ -44,6 +44,8 @@ function App() {
             branch: responce.data.branch || "",
             phoneNumber: responce.data.phoneNumber || "",
             profile: responce.data.profile || "",
+            section: responce.data.section || "",
+            altmail: responce.data.altmail || "",
           })
         );
       } catch (error) {

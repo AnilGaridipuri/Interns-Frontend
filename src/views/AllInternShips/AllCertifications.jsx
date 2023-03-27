@@ -116,11 +116,10 @@ const AllCertifications = (props) => {
       <TableContainer component={Paper} sx={{ maxHeight: 620 }}>
         <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 700 }}>
           <TableHead>
-            <TableRow
-            >
+            <TableRow>
               <StyledTableCell>Student Deatils</StyledTableCell>
               <StyledTableCell>Organization Name</StyledTableCell>
-              <StyledTableCell align="center">Domain</StyledTableCell>
+              <StyledTableCell align="center">Certification Name</StyledTableCell>
               <StyledTableCell align="center">Start/End Date</StyledTableCell>
               <StyledTableCell align="center">Status</StyledTableCell>
             </TableRow>
@@ -170,7 +169,7 @@ const AllCertifications = (props) => {
                     <p>{certification.organizationName}</p>
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    <p>{certification.domain}</p>
+                    <p>{certification.certificationName}</p>
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <p>{certification.start_date}</p>

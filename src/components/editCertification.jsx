@@ -46,7 +46,7 @@ export default function EditCertification(props) {
   const [addNewCertification, setAddNewCertification] = useState({
     studentId: authState._id,
     organizationName: props.certificationDetails.organizationName,
-    domain: props.certificationDetails.domain,
+    certificationName: props.certificationDetails.certificationName,
     status: props.certificationDetails.status,
     start_date: props.certificationDetails.start_date,
     end_date: props.certificationDetails.end_date,
@@ -94,7 +94,7 @@ export default function EditCertification(props) {
   const cancleDeatils = () => {
     setAddNewCertification({
       organizationName: props.certificationDetails.organizationName,
-      domain: props.certificationDetails.domain,
+      certificationName: props.certificationDetails.certificationName,
       status: props.certificationDetails.status,
       start_date: props.certificationDetails.start_date,
       end_date: props.certificationDetails.end_date,
@@ -168,13 +168,13 @@ export default function EditCertification(props) {
                 />
               </div>
               <div className="addInternInputs">
-                <label>Domain :</label>
+                <label>Certification Name :</label>
                 <TextField
                   placeholder="Web/ML/AI/"
                   id="outlined-size-small"
                   size="small"
-                  value={addNewCertification.domain}
-                  name="domain"
+                  value={addNewCertification.certificationName}
+                  name="certificationName"
                   onChange={onChnageInputs}
                 />
               </div>

@@ -26,7 +26,7 @@ const AllInternShips = () => {
     page: 1,
     size: 5,
   });
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [loading, setloading] = useState(true);
   const [workDetails, setWorkDeatils] = useState([]);
   const [label, setLabel] = useState("Internship");
@@ -125,11 +125,11 @@ const AllInternShips = () => {
     <div className="allWorksList">
       <TableContainer component={Paper} sx={{ maxHeight: 620 }}>
         <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 700 }}>
-          <TableHead
-          >
+          <TableHead>
             <StyledTableHeader className="tableHeaderRow">
               <StyledTableCell>Student Deatils</StyledTableCell>
               <StyledTableCell>Internship Details</StyledTableCell>
+              <StyledTableCell align="center">Project Name</StyledTableCell>
               <StyledTableCell align="center">Type / Stipend</StyledTableCell>
               <StyledTableCell align="center">Start/End Date</StyledTableCell>
               <StyledTableCell align="center">Status</StyledTableCell>
@@ -178,6 +178,9 @@ const AllInternShips = () => {
                     <p>{work.companyName}</p>
                     <p>{work.domain}</p>
                     <p>{work.role}</p>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <p>{work.projectName}</p>
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <p>{work.type}</p>
