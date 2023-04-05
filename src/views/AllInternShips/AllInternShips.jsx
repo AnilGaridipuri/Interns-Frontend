@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -11,7 +10,7 @@ import { api } from "../../axios/api.config";
 import { ToastErrorMessage } from "../../uitils/toastMessage";
 import { capitalizeFirstLetter } from "../../uitils/jsFunctions";
 import "./allinternship.css";
-import { Avatar, Button, TablePagination } from "@mui/material";
+import { Avatar, Button, FormControl, InputLabel, OutlinedInput, TablePagination, TextField } from "@mui/material";
 import LoadingCircle from "../../components/loading";
 import ViewWorkDetails from "../../components/viewWorkDeatil";
 import {
@@ -19,7 +18,16 @@ import {
   StyledTableRow,
   StyledTableHeader,
 } from "../../components/tablestyles";
-import AllCertifications from "./AllCertifications";
+import SearchIcon from "@mui/icons-material/Search";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+
+const selectBranch = [
+  { displayName: "All", value: "All" },
+  { displayName: "CAI", value: "CAI" },
+  { displayName: "CSE", value: "CSE" },
+  { displayName: "ECE", value: "ECE" },
+  { displayName: "EEE", value: "EEE" },
+];
 
 const AllInternShips = () => {
   const [worklistparameters, setWorklistparameters] = useState({
@@ -98,11 +106,6 @@ const AllInternShips = () => {
     profile: "",
   });
 
-  console.log("jwhfbw");
-  console.log("jwhfbw");
-
-  console.log("Anil.kdmc");
-
   const handleClickOpen = async (id) => {
     setOpen(true);
     setLabel("Internship");
@@ -121,8 +124,118 @@ const AllInternShips = () => {
     }
   };
 
+  const [searchIntership, setSearchIntership] = useState({
+    department: "All",
+    companyName: "",
+    domain: "",
+    studentName: "",
+    rollno:""
+  });
+
+  console.log(searchIntership, "searchIntership");
+
+   const onChnageInputs = (e) => {
+     var name = e.target.name;
+     var value = e.target.value;
+     console.log(e);
+     setSearchIntership((pre) => ({
+       ...pre,
+       [name]: value,
+     }));
+   };
+
+  const handleChangeDepartment = (name) =>{
+    setSearchIntership((pre) => ({
+      department:name
+    }));
+  }
+
+  const handleOpenFilter = () =>{
+    document.querySelector(".filterInputsDiv")?.classList.toggle("open");
+  }
+
   return (
     <div className="allWorksList">
+      <div className="filterDiv">
+        <div className="branchList">
+          {selectBranch.map((branch, index) => (
+            <div onClick={() => handleChangeDepartment(branch.value)}>
+              <Button
+                className={
+                  searchIntership.department == branch.value
+                    ? "branchBtn_active"
+                    : "branchBtn"
+                }
+              >
+                {branch.displayName}
+              </Button>
+            </div>
+          ))}
+        </div>
+        <div className="filterIcon">
+          <FilterAltIcon
+            sx={{ color: "#4a159a", fontSize: 35 }}
+            onClick={handleOpenFilter}
+          />
+        </div>
+        <div className="filterInputsDiv" id="filterInputsDiv">
+          <FormControl variant="outlined" size="small">
+            <InputLabel>Company Name</InputLabel>
+            <OutlinedInput
+              value={searchIntership.companyName}
+              className="loginInputs"
+              id="outlined-adornment-Email"
+              type="email"
+              onChange={onChnageInputs}
+              label="Company Name"
+              name="companyName"
+            />
+          </FormControl>
+          <FormControl variant="outlined" size="small">
+            <InputLabel>Domain</InputLabel>
+            <OutlinedInput
+              value={searchIntership.domain}
+              className="loginInputs"
+              id="outlined-adornment-Email"
+              type="text"
+              onChange={onChnageInputs}
+              label="Domain"
+              name="domain"
+            />
+          </FormControl>
+          <FormControl variant="outlined" size="small">
+            <InputLabel>Roll No</InputLabel>
+            <OutlinedInput
+              value={searchIntership.rollno}
+              className="loginInputs"
+              id="outlined-adornment-Email"
+              type="email"
+              onChange={onChnageInputs}
+              label="Roll No"
+              name="rollno"
+            />
+          </FormControl>
+          <FormControl variant="outlined" size="small">
+            <InputLabel>Student Name</InputLabel>
+            <OutlinedInput
+              value={searchIntership.studentName}
+              className="loginInputs"
+              id="outlined-adornment-Email"
+              type="email"
+              onChange={onChnageInputs}
+              label="Student Name"
+              name="studentName"
+            />
+          </FormControl>
+          <Button
+            onClick={handleOpenFilter}
+            className="searchBtn"
+            endIcon={<SearchIcon sx={{ fontSize: 40 }} />}
+          >
+            Search
+          </Button>
+        </div>
+      </div>
       <TableContainer component={Paper} sx={{ maxHeight: 620 }}>
         <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 700 }}>
           <TableHead>

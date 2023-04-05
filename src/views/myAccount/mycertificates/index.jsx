@@ -35,7 +35,7 @@ const MyCertificates = () => {
       getcertificationDeatils();
     }
     setIsUser(_id === userDetails._id);
-  }, [ userDetails]);
+  }, [userDetails, certificationsDetails]);
 
   const getcertificationDeatils = async () => {
     if (params.id) {
@@ -47,10 +47,8 @@ const MyCertificates = () => {
             id: params.id,
           }
         );
-        const ongoing = data.filter( (certification) => certification.status==='Ongoing')
-        const completed = data.filter( (certification) => certification.status==='Completed')
         setLoading(false);
-        setCertificationsDeatils(completed.concat(ongoing));
+        setCertificationsDeatils(data);
       } catch (error) {
         ToastErrorMessage(error.message);
       }

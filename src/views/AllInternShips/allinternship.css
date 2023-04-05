@@ -1,5 +1,89 @@
 .allWorksList{
     margin: 30px;
+    border: 3px solid #4a159a;
+    border-radius: 7px;
+}
+
+.branchList{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 10px 0px;
+    max-width: 100%;
+    overflow-y: scroll;
+}
+
+.branchBtn_active{
+    color: #fff !important;
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 16px;
+    width: 130px;
+    border-radius: 20px !important;
+    font-weight: 600 !important;
+    border: 2px solid #4a159a !important;
+    transition: all 1s;
+}
+
+.searchBtn{
+    color: #fff !important;
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px !important;
+    width: 310px;
+    border-radius: 20px !important;
+    font-weight: 500 !important;
+    border: 2px solid #4a159a !important;
+}
+.branchBtn{
+    color:#4a159a !important;
+    background-color: #d5b9ff !important;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 16px;
+    width: 130px;
+    border-radius: 20px !important;
+    font-weight: 600 !important;
+    border: 2px solid #4a159a !important;
+    transition: all 1s;
+}
+
+.filterInputsDiv{
+    margin: 20px 0px;
+    display: flex;
+    column-gap: 150px;
+    row-gap: 15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.filterInputsDiv .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border: 2px solid #4a159a !important;
+}
+.filterInputsDiv input{
+    -webkit-text-fill-color:#4a159a !important;
+}
+
+.filterDiv{
+    /* border: 2px solid #4a159a; */
+    padding: 10px;
+    /* border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-radius: 5px; */
+}
+
+.filterIcon{
+    display: none;
 }
 
 @media screen and (max-width:600px) {
@@ -7,6 +91,34 @@
         margin: 30px 10px;
         color: #f1950a;
     }
+
+    .filterInputsDiv{
+        display: none;
+    }
+
+    .filterInputsDiv.open{
+        display: flex;
+        justify-content: center !important;
+        transition: all .7s;
+    }
+
+    .branchList{
+        gap: 10px;
+    }
+
+    .filterIcon{
+        display: inline;
+        float: right;
+    }
+
+}
+
+@media screen and (max-width:860px) {
+
+    .filterInputsDiv{
+        justify-content: center;
+    }
+    
 }
 
 .tableHeaderRow{

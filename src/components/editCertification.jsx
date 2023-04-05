@@ -93,6 +93,7 @@ export default function EditCertification(props) {
 
   const cancleDeatils = () => {
     setAddNewCertification({
+      studentId: authState._id,
       organizationName: props.certificationDetails.organizationName,
       certificationName: props.certificationDetails.certificationName,
       status: props.certificationDetails.status,
@@ -100,6 +101,7 @@ export default function EditCertification(props) {
       end_date: props.certificationDetails.end_date,
       completionCertificatepath:
         props.certificationDetails.completionCertificatepath,
+      certificationId: props.certificationDetails._id,
     });
   };
   const uploadDeatils = async () => {
@@ -111,7 +113,7 @@ export default function EditCertification(props) {
         );
         const ongoing = responce.data.filter( (certification) => certification.status==='Ongoing')
         const completed = responce.data.filter( (certification) => certification.status==='Completed')
-        props.setCertificationsDeatils(completed.concat(ongoing));
+        props.setCertificationsDeatils(responce.data);
         ToastSuccessMessage("Successfully Updated !!");
       } catch (error) {
         ToastErrorMessage(error.response.data || error.message);
