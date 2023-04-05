@@ -40,7 +40,14 @@ const NavBar = () => {
         isAuthenticated: false,
         rollno: "",
         _id: "",
+        studentName: "",
+        year: "",
+        branch: "",
+        phoneNumber: "",
         mailId: "",
+        profile: "",
+        section: "",
+        altmail: "",
       })
     );
   };

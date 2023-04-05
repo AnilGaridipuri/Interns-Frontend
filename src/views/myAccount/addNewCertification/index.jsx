@@ -22,6 +22,7 @@ import {
   ToastSuccessMessage,
 } from "../../../uitils/toastMessage";
 import { api } from "../../../axios/api.config";
+import LoadingCircle from "../../../components/loading";
 
 const selectStatus = [
   { displayName: "Ongoing", value: "Ongoing" },
@@ -34,7 +35,11 @@ const AddNewCertification = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const [isProfileUpdated, setisProfileUpdated] = useState(!(authState.studentName===""))
+  const [isProfileUpdated, setisProfileUpdated] = useState(
+    false
+  );
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     if (authState._id != params.id) {
@@ -44,16 +49,19 @@ const AddNewCertification = () => {
       authState.studentName !== "" &&
       authState.rollno !== "" &&
       authState.year !== "" &&
-      authState.branch !== ""
+      authState.branch !== "" &&
+      authState.section != ""
     ) {
       setisProfileUpdated(true);
+      setLoading(false)
     }
+    setLoading(false)
   }, [params, authState]);
 
   const [addNewCertification, setAddNewCertification] = useState({
     studentId: authState._id,
     organizationName: "",
-    domain: "",
+    certificationName: "",
     status: "",
     start_date: "",
     end_date: "",
@@ -106,7 +114,7 @@ const AddNewCertification = () => {
       completionCertificatepath: "",
     });
   };
-  
+
   const uploadDeatils = async () => {
     if (authState._id == params.id) {
       try {
@@ -122,162 +130,165 @@ const AddNewCertification = () => {
     }
   };
 
-  
-
   return (
     <div>
-      <Card
-        sx={{ minWidth: 275 }}
-        className="internshipCard1 header-blog bg-animation container"
-      >
-        <AccountHeader label="Add Certification" />
-        {!isProfileUpdated ? (
-          <h3
-            style={{
-              color: "white",
-              textAlign: "center",
-              margin: "30px 0",
-              fontWeight: "100",
-              fontSize: "25px",
-
-            }}
+      {loading == true ?
+      <LoadingCircle/>
+       :
+        <div>
+          <Card
+            sx={{ minWidth: 275 }}
+            className="internshipCard1 header-blog bg-animation container"
           >
-            Sorry, You need to Update your profile to add your Certifications.
-            <br />
-            <br />
-            Click on 'Edit profile' to update.
-          </h3>
-        ) : (
-          <>
-            <CardContent style={{ paddingTop: 15 }}>
-              <div className="addInternInputsDiv">
-                <div className="addInternInputs white">
-                  <label>Organization Name :</label>
-                  <TextField
-                    placeholder="Organization Name"
-                    id="outlined-size-small"
-                    size="small"
-                    value={addNewCertification.organizationName}
-                    name="organizationName"
-                    onChange={onChnageInputs}
-                  />
-                </div>
-                <div className="addInternInputs white">
-                  <label>Domain :</label>
-                  <TextField
-                    placeholder="Web/ML/AI/"
-                    id="outlined-size-small"
-                    size="small"
-                    value={addNewCertification.domain}
-                    name="domain"
-                    onChange={onChnageInputs}
-                  />
-                </div>
-                <div>
-                  <div className="addInternInputs white">
-                    <label>Start Date :</label>
-                    <TextField
-                      value={addNewCertification.start_date || ""}
-                      onChange={onChnageInputs}
-                      name="start_date"
-                      type="date"
-                      required
-                      size="small"
-                      id="outlined-basic"
-                      variant="outlined"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="addInternInputs white">
-                    <label>End Date :</label>
-                    <TextField
-                      value={addNewCertification.end_date || ""}
-                      onChange={onChnageInputs}
-                      name="end_date"
-                      type="date"
-                      required
-                      size="small"
-                      id="outlined-basic"
-                      variant="outlined"
-                    />
-                  </div>
-                </div>
-                <div className="addInternInputs white">
-                  <label>Status :</label>
-                  <FormControl size="small">
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      defaultValue={addNewCertification.status}
-                      value={addNewCertification.status}
-                      name="graduationPosition"
-                      onChange={(e) => {
-                        setAddNewCertification((prevState) => ({
-                          ...prevState,
-                          status: e.target.value,
-                        }));
-                      }}
-                    >
-                      {selectStatus.map((option, index) => (
-                        <MenuItem
-                          key={`selectStatus=${index}`}
-                          value={option.value}
-                        >
-                          {option.displayName}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </div>
-                {addNewCertification.status == "Completed" ? (
-                  <div>
+            <AccountHeader label="Add Certification" />
+            {!isProfileUpdated ? (
+              <h3
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  margin: "30px 0",
+                  fontWeight: "100",
+                  fontSize: "25px",
+                }}
+              >
+                Sorry, You need to Update your profile to add your Certifications.
+                <br />
+                <br />
+                Click on 'Edit profile' to update.
+              </h3>
+            ) : (
+              <>
+                <CardContent style={{ paddingTop: 15 }}>
+                  <div className="addInternInputsDiv">
                     <div className="addInternInputs white">
-                      <label>Completion Certificate :</label>
+                      <label>Organization Name :</label>
                       <TextField
-                        onChange={handleOnImageChange}
-                        name="completionCertificatepath"
-                        type="file"
-                        multiple
+                        placeholder="Organization Name"
+                        id="outlined-size-small"
                         size="small"
-                        id="outlined-basic"
+                        value={addNewCertification.organizationName}
+                        name="organizationName"
+                        onChange={onChnageInputs}
                       />
                     </div>
-                    <div className="previewImage">
-                      <div>
-                        {addNewCertification.completionCertificatepath && (
-                          <img
-                            src={addNewCertification.completionCertificatepath}
-                            style={{
-                              width: "200px",
-                              height: "170px",
-                              objectfit: "fill",
-                              marginleft: "30px",
-                            }}
-                            alt="preview image"
-                          />
-                        )}
+                    <div className="addInternInputs white">
+                      <label>Certification Name :</label>
+                      <TextField
+                        placeholder="Web/ML/AI/"
+                        id="outlined-size-small"
+                        size="small"
+                        value={addNewCertification.certificationName}
+                        name="certificationName"
+                        onChange={onChnageInputs}
+                      />
+                    </div>
+                    <div>
+                      <div className="addInternInputs white">
+                        <label>Start Date :</label>
+                        <TextField
+                          value={addNewCertification.start_date || ""}
+                          onChange={onChnageInputs}
+                          name="start_date"
+                          type="date"
+                          required
+                          size="small"
+                          id="outlined-basic"
+                          variant="outlined"
+                        />
                       </div>
                     </div>
+                    <div>
+                      <div className="addInternInputs white">
+                        <label>End Date :</label>
+                        <TextField
+                          value={addNewCertification.end_date || ""}
+                          onChange={onChnageInputs}
+                          name="end_date"
+                          type="date"
+                          required
+                          size="small"
+                          id="outlined-basic"
+                          variant="outlined"
+                        />
+                      </div>
+                    </div>
+                    <div className="addInternInputs white">
+                      <label>Status :</label>
+                      <FormControl size="small">
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          defaultValue={addNewCertification.status}
+                          value={addNewCertification.status}
+                          name="graduationPosition"
+                          onChange={(e) => {
+                            setAddNewCertification((prevState) => ({
+                              ...prevState,
+                              status: e.target.value,
+                            }));
+                          }}
+                        >
+                          {selectStatus.map((option, index) => (
+                            <MenuItem
+                              key={`selectStatus=${index}`}
+                              value={option.value}
+                            >
+                              {option.displayName}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </div>
+                    {addNewCertification.status == "Completed" ? (
+                      <div>
+                        <div className="addInternInputs white">
+                          <label>Completion Certificate :</label>
+                          <TextField
+                            onChange={handleOnImageChange}
+                            name="completionCertificatepath"
+                            type="file"
+                            multiple
+                            size="small"
+                            id="outlined-basic"
+                          />
+                        </div>
+                        <div className="previewImage">
+                          <div>
+                            {addNewCertification.completionCertificatepath && (
+                              <img
+                                src={addNewCertification.completionCertificatepath}
+                                style={{
+                                  width: "200px",
+                                  height: "170px",
+                                  objectfit: "fill",
+                                  marginleft: "30px",
+                                }}
+                                alt="preview image"
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
-                ) : null}
+                </CardContent>
+              </>
+            )}
+            {isProfileUpdated ? (
+              <div>
+                <div className="editUserDetailsBtn">
+                  <Button className=" btnCancle" onClick={cancleDeatils}>
+                    Cancle
+                  </Button>
+                  <Button className=" btnUpdate" onClick={uploadDeatils}>
+                    Upload
+                  </Button>
+                </div>
               </div>
-            </CardContent>
-          </>
-        )}
-        {isProfileUpdated ? 
-          <div>
-            <div className="editUserDetailsBtn">
-              <Button className=" btnCancle" onClick={cancleDeatils}>
-                Cancle
-              </Button>
-              <Button className=" btnUpdate" onClick={uploadDeatils}>
-                Upload
-              </Button>
-            </div>
-          </div> : null
-        }
-      </Card>
+            ) : null}
+          </Card>
+        </div>
+      }
     </div>
   );
 };

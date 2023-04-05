@@ -107,6 +107,19 @@ const Profile = () => {
               />
             </div>
             <div className="profileInputs white">
+              <label>Section</label>
+              <span className="inputdout">:</span>
+              <TextField
+                placeholder="Section CSE-A/CAI-A"
+                id="outlined-size-small"
+                defaultValue="Small"
+                size="small"
+                value={userDetails.section || "Not Avaliable"}
+                name="section"
+                disabled={true}
+              />
+            </div>
+            <div className="profileInputs white">
               <label>Phone No</label>
               <span className="inputdout">:</span>
               <TextField
@@ -114,6 +127,19 @@ const Profile = () => {
                 defaultValue="Small"
                 size="small"
                 value={userDetails.phoneNumber || "Not Avaliable"}
+                disabled={true}
+              />
+            </div>
+            <div className="profileInputs white">
+              <label>Alt Email</label>
+              <span className="inputdout">:</span>
+              <TextField
+                placeholder="Alternative email "
+                id="outlined-size-small"
+                defaultValue="Small"
+                size="small"
+                value={userDetails.altmail || "Not Avaliable"}
+                name="altmail"
                 disabled={true}
               />
             </div>

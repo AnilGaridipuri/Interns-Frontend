@@ -107,6 +107,8 @@ const LoginInputs = (props) => {
             branch: responce.data.branch || "",
             phoneNumber: responce.data.phoneNumber || "",
             profile: responce.data.profile || "",
+            section: responce.data.section || "",
+            altmail: responce.data.altmail || "",
           })
         );
         navigate(ApplicationConstant.HOME_PAGE_PATH);
