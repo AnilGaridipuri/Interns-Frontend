@@ -23,10 +23,11 @@
 }
 
 .menuItemsList {
-    align-items: right !important;
     display: flex;
+    align-items: right !important;
     column-gap: 10px;
     justify-content: flex-end;
+    margin-right: -80px !important;
 }
 
 .navlogoText {
@@ -37,12 +38,17 @@
     color: transparent;
     /* color:  */
 }
+/* 
+.css-2uchni{
+    width: 200px;
+} */
 
 .NavProfileDiv{
     display: flex !important;
     justify-content: flex-end;
     align-items: center;
     column-gap: 20px;
+    /* width: 200px; */
 }
 .navLoginBtnDiv{
     display: flex !important;
@@ -71,7 +77,7 @@
 
 .navItems {
     font-size: 16px;
-    width: 110px;
+    width: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +94,7 @@
     justify-content: center;
     text-align: center;
     font-size: 16px;
-    width: 110px;
+    width: 160px;
     border-radius: 20px;
 }
 
@@ -123,6 +129,7 @@
         right: 0%;
         top: 15%;
         column-gap: 10px;
+       
     }
     
     .navLoginBtnDiv{

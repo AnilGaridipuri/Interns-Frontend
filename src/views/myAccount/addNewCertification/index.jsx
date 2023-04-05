@@ -171,7 +171,7 @@ const AddNewCertification = () => {
                     value={addNewCertification.domain}
                     name="domain"
                     onChange={onChnageInputs}
-                  />
+                  />  
                 </div>
                 <div>
                   <div className="addInternInputs white">

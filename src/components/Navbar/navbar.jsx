@@ -82,7 +82,7 @@ const NavBar = () => {
               }
             >
               Home
-            </NavLink>
+            </NavLink>  
             <NavLink
               to={ApplicationConstant.ALLINTERNSHIP_PAGE_PATH}
               className={
@@ -92,7 +92,7 @@ const NavBar = () => {
                   : "navItems"
               }
             >
-              All Interns
+              All Internships
             </NavLink>
             <NavLink
               to={ApplicationConstant.ALL_CERTIFICATIONS}
@@ -102,7 +102,7 @@ const NavBar = () => {
                   : "navItems"
               }
             >
-              Certifications
+             All Certifications
             </NavLink>
           </Typography>
           <div>

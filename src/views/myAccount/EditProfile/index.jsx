@@ -25,10 +25,16 @@ const selectYear = [
   { displayName: "IV", value: "IV" },
 ];
 const selectBranch = [
-  { displayName: "CAI", value: "CAI" },
+  { displayName: "AI", value: "AI" },
+  { displayName: "CS", value: "CS" },
+  { displayName: "DS", value: "DS" },
+  { displayName: "IoT", value: "IoT" },
   { displayName: "CSE", value: "CSE" },
+  { displayName: "CST", value: "CST" },
   { displayName: "ECE", value: "ECE" },
   { displayName: "EEE", value: "EEE" },
+  { displayName: "CIVIL", value: "CIVIL" },
+  { displayName: "MECH", value: "MECH" },
 ];
 
 const EditProfile = () => {

@@ -279,7 +279,7 @@ const AddNewInternship = () => {
                   </div>
                 </div>
                 <div>
-                  <div className="addInternInputs white">
+                  <div className="addInternInputs white fileInput">
                     <label>Offer Letter :</label>
                     <TextField
                       onChange={handleOnImageChange}
@@ -307,7 +307,7 @@ const AddNewInternship = () => {
                 </div>
                 {addNewIntern.status == "Completed" ? (
                   <div>
-                    <div className="addInternInputs white">
+                    <div className="addInternInputs white fileInput">
                       <label>Completion Certificate :</label>
                       <TextField
                         onChange={handleOnImageChange}

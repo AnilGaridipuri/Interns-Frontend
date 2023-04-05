@@ -33,7 +33,9 @@
     border-radius: 80px 0px 80px 0px !important;
     background-color: #d5fcdd !important;
 }
+
 .internshipCard1 {
+    cursor : context-menu;
     display: grid;
     padding: 0px 20px;
     margin: 10px;
@@ -43,6 +45,10 @@
     box-shadow: 7px 2px 20px 0px #7c7c7c !important;
     border-radius: 80px 0px 80px 0px !important;
     background-color: #d5fcdd !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root:hover{
+    cursor: pointer;
 }
 
 .internshipCard1 input{
@@ -92,6 +98,23 @@
     justify-content: space-evenly;
     margin: 35px 0px 20px;
     align-items: flex-start;
+    caret-color: white;
+}
+
+input::-webkit-calendar-picker-indicator{
+    filter: invert(1) !important;
+    cursor : pointer;
+    size: 40px;
+}
+
+.fileInput input[type="file"]::file-selector-button{
+    background-image: linear-gradient(to bottom right, rgb(60, 43, 81), #502760);
+    border: none;
+}
+
+.css-1m9pwf3:hover,
+.css-ahj2mt-MuiTypography-root:hover{
+    cursor: pointer;
 }
 
 .workValue .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled, .workValue{
@@ -106,6 +129,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    caret-color: white;
 }
 .profileInputs .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
     border-color: white !important;
@@ -150,9 +174,9 @@ TextField(cursorColor: Color.fromARGB(255, 66, 125, 145),
     row-gap: 3px;
 }
 
-.addInternInputs input{
+/* .addInternInputs input{
     cursor:inherit
-}
+} */
 
 .profileInputs .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
     text-align: center;
@@ -262,7 +286,7 @@ TextField(cursorColor: Color.fromARGB(255, 66, 125, 145),
 .intershipCard{
     min-width: 380px !important;
     box-shadow: 7px 2px 20px 0px #424242  !important;
-    cursor: pointer;
+    /* cursor: pointer; */
     transform: .5s;
     border-radius: 60px 0px 60px 0px !important;
 }
@@ -311,6 +335,10 @@ TextField(cursorColor: Color.fromARGB(255, 66, 125, 145),
     background-color: #df7f02 !important;
 }
 
+/* .NotStarted{
+    background-color: #df7f02 !important;
+} */
+
 .intershipsbody{
     border-radius: 8px;
 }
@@ -332,7 +360,7 @@ TextField(cursorColor: Color.fromARGB(255, 66, 125, 145),
 .certificatesCard {
     width: 610px !important;
     padding-bottom: 20px !important;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .radioBtnDiv{

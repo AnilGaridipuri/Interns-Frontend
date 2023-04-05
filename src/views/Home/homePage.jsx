@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./home.css";
 import bgvideo1 from '../../assets/v1.mp4'
 import QuoteCarousel from "./quoteCarousel";
-import { AudioCard, VideoCard } from "material-ui-player";
+// import { AudioCard, VideoCard } from "material-ui-player";
 
 const HomePage = () => {
   const id = localStorage.getItem("id");
