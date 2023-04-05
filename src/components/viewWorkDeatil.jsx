@@ -90,29 +90,29 @@ export default function ViewWorkDetails(props) {
                   View Profile
                 </p>
               </div>
-              <div className="addInternInputsDiv studentDetailsView">
-                <div style={{ display: "flex", gap: "10px", width: "300px" }}>
+              <div className="studentDetailsView">
+                <div style={{ display: "flex", gap: "10px", width: "320px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Student Name
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.studentName}</p>
                 </div>
-                <div style={{ display: "flex", gap: "10px", width: "300px" }}>
+                <div style={{ display: "flex", gap: "10px", width: "320px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Mail Id
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.mailId}</p>
                 </div>
-                <div style={{ display: "flex", gap: "10px", width: "300px" }}>
+                <div style={{ display: "flex", gap: "10px", width: "320px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Roll No
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.rollno}</p>
                 </div>
-                <div style={{ display: "flex", gap: "10px", width: "300px" }}>
+                <div style={{ display: "flex", gap: "10px", width: "320px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Year / Branch
                   </label>
@@ -147,12 +147,6 @@ export default function ViewWorkDetails(props) {
                   <div className="addInternInputs">
                     <FormControl className="radioBtnDiv">
                       <label className="radioLabel">Type :</label>
-                      {/* <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="type"
-                        disabled={true}
-                      > */}
                       <FormControlLabel
                         className="workValue"
                         value="props.singleWorkDetails.type"
@@ -161,6 +155,18 @@ export default function ViewWorkDetails(props) {
                         checked="true"
                       />
                     </FormControl>
+                  </div>
+                  <div className="addInternInputs">
+                    <label>Project Name :</label>
+                    <TextField
+                      className="workValue"
+                      placeholder="Project Name"
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singleWorkDetails.projectName}
+                      name="Project Name"
+                      disabled={true}
+                    />
                   </div>
                   <div className="addInternInputs">
                     <label>Domain :</label>
@@ -312,7 +318,9 @@ export default function ViewWorkDetails(props) {
                       placeholder="Web/ML/AI/"
                       id="outlined-size-small"
                       size="small"
-                      value={props.singlecertificationsDetails.domain}
+                      value={
+                        props.singlecertificationsDetails.certificationName
+                      }
                       disabled={true}
                     />
                   </div>

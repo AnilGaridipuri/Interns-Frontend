@@ -8,7 +8,7 @@
 
 .myAccountBody{
     margin: 10px;
-    border: 4px solid #f99900;
+    border: 4px solid #502760;
     border-radius: 12px;
 }
 
@@ -146,13 +146,6 @@ input::-webkit-calendar-picker-indicator{
     margin-left: 5px;
 }
 
-/* .addInternInputs .inp{
-
-}
-TextField(cursorColor: Color(0xffF02E65),
-),
-TextField(cursorColor: Color.fromARGB(255, 66, 125, 145),
-), */
 .radioLabel{
     width: auto;
     font-weight: 600;
@@ -280,7 +273,7 @@ TextField(cursorColor: Color.fromARGB(255, 66, 125, 145),
 .previewImage{
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin: 15px;
 }
 
 .intershipCard{
@@ -372,7 +365,14 @@ TextField(cursorColor: Color.fromARGB(255, 66, 125, 145),
 }
 
 .studentDetailsView{
-    margin: 0px 50px;
+    margin: 0px 70px !important;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    row-gap: 10px;
+    justify-content: space-evenly;
+    margin: 35px 0px 20px;
+    align-items: flex-start;
 }
 
 

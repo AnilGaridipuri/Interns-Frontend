@@ -58,6 +58,7 @@ export default function EditInternship(props) {
     offerLetterpath: props.workDetails.offerLetterpath,
     completionCertificatepath: props.workDetails.completionCertificatepath,
     stipend: props.workDetails.stipend,
+    projectName: props.workDetails.projectName,
   });
   console.log(addNewIntern, "updated list");
 
@@ -108,6 +109,7 @@ export default function EditInternship(props) {
       offerLetterpath: props.workDetails.offerLetterpath,
       completionCertificatepath: props.workDetails.completionCertificatepath,
       stipend: props.workDetails.stipend,
+      projectName: props.workDetails.projectName,
     });
   };
   const uploadDeatils = async () => {
@@ -140,7 +142,7 @@ export default function EditInternship(props) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap:'20px'
+            gap: "20px",
           }}
         >
           <AccountHeader label="Edit Internship" />
@@ -199,6 +201,17 @@ export default function EditInternship(props) {
                     /> */}
                   </RadioGroup>
                 </FormControl>
+              </div>
+              <div className="addInternInputs">
+                <label>Project Name :</label>
+                <TextField
+                  placeholder="Project Name"
+                  id="outlined-size-small"
+                  size="small"
+                  value={addNewIntern.projectName}
+                  name="projectName"
+                  onChange={onChnageInputs}
+                />
               </div>
               <div className="addInternInputs">
                 <label>Domain :</label>

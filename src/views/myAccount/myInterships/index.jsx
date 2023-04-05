@@ -141,7 +141,7 @@ const MyInterships = () => {
                           />
                         ) : null}
                       </div>
-                      <div className="internshipContent" >
+                      <div className="internshipContent">
                         <div style={{ display: "flex", gap: "10px" }}>
                           <label style={{ fontWeight: "bold", width: "130px" }}>
                             Company Name
@@ -155,6 +155,13 @@ const MyInterships = () => {
                           </label>
                           <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                           <p>{work.type}</p>
+                        </div>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                          <label style={{ fontWeight: "bold", width: "130px" }}>
+                            Project Name
+                          </label>
+                          <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
+                          <p>{work.projectName}</p>
                         </div>
                         <div style={{ display: "flex", gap: "10px" }}>
                           <label style={{ fontWeight: "bold", width: "130px" }}>
@@ -216,7 +223,7 @@ const MyInterships = () => {
                 color: "white",
                 textAlign: "center",
                 padding: "30px 0px",
-                fontSize:'20px'
+                fontSize: "20px",
               }}
             >
               No InternShips Added

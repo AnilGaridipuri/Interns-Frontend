@@ -58,6 +58,8 @@ const EditProfile = () => {
     rollno: "",
     year:"",
     profile: "",
+    section:"",
+    altmail:""
   });
   const [userDetails, setUserDeatils] = useState({});
 
@@ -84,6 +86,8 @@ const EditProfile = () => {
           rollno: responce.data.rollno,
           year: responce.data.year,
           profile: responce.data.profile,
+          section: responce.data.section,
+          altmail: responce.data.altmail,
         });
       } catch (error) {
         ToastErrorMessage(error.message);
@@ -139,6 +143,8 @@ const EditProfile = () => {
           branch: responce.data.branch,
           phoneNumber: responce.data.phoneNumber,
           profile: responce.data.profile,
+          section: responce.data.section,
+          altmail: responce.data.altmail,
         })
       );
       ToastSuccessMessage("Successfull Updated");
@@ -195,9 +201,7 @@ const EditProfile = () => {
                 <AddAPhotoIcon fontSize="large" style={{ color: "#df7f02" }} />
               </label>
             </div>
-            <p className="Editrollno white">
-              {studentDeatils.studentName}
-            </p>
+            <p className="Editrollno white">{studentDeatils.studentName}</p>
           </div>
           <div className="userDeatilsDiv">
             <div className="profileInputs white">
@@ -294,6 +298,19 @@ const EditProfile = () => {
               </FormControl>
             </div>
             <div className="profileInputs white">
+              <label>Section</label>
+              <span className="inputdout">:</span>
+              <TextField
+                placeholder="Section CSE-A/CAI-A"
+                id="outlined-size-small"
+                defaultValue="Small"
+                size="small"
+                value={studentDeatils.section}
+                name="section"
+                onChange={onChnageInputs}
+              />
+            </div>
+            <div className="profileInputs white">
               <label>Phone No</label>
               <span className="inputdout">:</span>
               <TextField
@@ -303,6 +320,19 @@ const EditProfile = () => {
                 size="small"
                 value={studentDeatils.phoneNumber}
                 name="phoneNumber"
+                onChange={onChnageInputs}
+              />
+            </div>
+            <div className="profileInputs white">
+              <label>Alt Email</label>
+              <span className="inputdout">:</span>
+              <TextField
+                placeholder="Alternative email "
+                id="outlined-size-small"
+                defaultValue="Small"
+                size="small"
+                value={studentDeatils.altmail}
+                name="altmail"
                 onChange={onChnageInputs}
               />
             </div>
