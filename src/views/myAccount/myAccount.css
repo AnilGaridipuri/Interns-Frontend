@@ -303,6 +303,10 @@
     width : 120px !important;
     background-color: #df7f02 !important;
 }
+.NotStarted{
+    width : 120px !important;
+    background-color: #01bbff !important;
+}
 
 .intershipsbody{
     border-radius: 8px;

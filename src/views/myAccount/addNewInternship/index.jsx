@@ -120,6 +120,7 @@ const AddNewInternship = () => {
       offerLetterpath: "",
       completionCertificatepath: "",
       stipend: "",
+      projectName:""
     });
   }
   const uploadDeatils = async () =>{

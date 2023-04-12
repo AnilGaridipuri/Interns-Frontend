@@ -20,10 +20,10 @@ export const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 export const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
-    backgroundColor: "#f4eafd",
+    backgroundColor: "#fff",
   },
   "&:nth-of-type(even)": {
-    backgroundColor: "#fff",
+    backgroundColor: "#f4eafd",
   },
   // hide last border
   "&:last-child td, &:last-child th": {

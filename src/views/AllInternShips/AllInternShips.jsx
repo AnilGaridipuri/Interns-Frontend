@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { api } from "../../axios/api.config";
 import { ToastErrorMessage } from "../../uitils/toastMessage";
-import { capitalizeFirstLetter } from "../../uitils/jsFunctions";
+import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import "./allinternship.css";
-import { Avatar, Button, FormControl, InputLabel, OutlinedInput, TablePagination, TextField } from "@mui/material";
+import { Avatar, Button, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TablePagination } from "@mui/material";
 import LoadingCircle from "../../components/loading";
 import ViewWorkDetails from "../../components/viewWorkDeatil";
 import {
@@ -29,17 +27,51 @@ const selectBranch = [
   { displayName: "EEE", value: "EEE" },
 ];
 
+const selectYear = [
+  { displayName: "All", value: "All" },
+  { displayName: "I", value: "I" },
+  { displayName: "II", value: "II" },
+  { displayName: "III", value: "III" },
+  { displayName: "IV", value: "IV" },
+];
+const selectSection = [
+  { displayName: "All", value: "All" },
+  { displayName: "A", value: "A" },
+  { displayName: "B", value: "B" },
+  { displayName: "C", value: "C" },
+  { displayName: "D", value: "D" },
+];
+
+const selectStatus = [
+  { displayName: "All", value: "All" },
+  { displayName: "Ongoing", value: "Ongoing" },
+  { displayName: "Completed", value: "Completed" },
+  { displayName: "Not Started", value: "Not Started" },
+];
+
 const AllInternShips = () => {
   const [worklistparameters, setWorklistparameters] = useState({
     page: 1,
     size: 5,
+    branch: "All",
+    status:"All",
+    year:"All",
+    section:"All",
+    rollno:'',
+    studentName:'',
+    companyName:'',
+    domain:''
   });
   const [count, setCount] = useState(0);
   const [loading, setloading] = useState(true);
   const [workDetails, setWorkDeatils] = useState([]);
   const [label, setLabel] = useState("Internship");
+  
+  const [isgetWorkDetails, setisgetWorkDetails] = useState(false)
   useEffect(() => {
-    getworkDeatils();
+    if (!isgetWorkDetails) {
+      getworkDeatils();
+    }
   }, [worklistparameters]);
 
   const getworkDeatils = async () => {
@@ -51,30 +83,57 @@ const AllInternShips = () => {
       setCount(responce.data.count);
       setWorkDeatils(responce.data.workDetails);
       setloading(false);
-      console.log(responce.data.workDetails);
+      setisgetWorkDetails(true)
     } catch (error) {
       ToastErrorMessage(error.message);
     }
   };
 
+  const resetWorkDetails = async () => {
+    setWorklistparameters({
+      page: 1,
+      size: 5,
+      branch: "All",
+      status: "All",
+      year: "All",
+      section: "All",
+      rollno: "",
+      studentName: "",
+      companyName: "",
+      domain: "",
+    });
+
+     try {
+       const responce = await api.post(`getWorkDeatils/all-works`, {
+         page: 1,
+         size: 5,
+       });
+       setCount(responce.data.count);
+       setWorkDeatils(responce.data.workDetails);
+       setloading(false);
+       setisgetWorkDetails(true);
+     } catch (error) {
+       ToastErrorMessage(error.message);
+     }
+  }
+
   const handleChangePage = (e, newPage) => {
-    console.log(newPage, "pageNo");
     setWorklistparameters((prevState) => ({
       ...prevState,
       page: newPage + 1,
     }));
-    setCount(true);
+    setisgetWorkDetails(false);
   };
 
   const handleChangeRowsPerPage = (event) => {
     let row = event.target.value;
-    console.log(row, "row");
     setWorklistparameters((prevState) => ({
       ...prevState,
       size: row,
       page: 1,
     }));
-    setCount(true);
+    setisgetWorkDetails(false);
+
   };
 
   const [open, setOpen] = useState(false);
@@ -108,61 +167,78 @@ const AllInternShips = () => {
 
   const handleClickOpen = async (id) => {
     setOpen(true);
-    setLabel("Internship");
     try {
-      console.log(id, "id wfewef");
       const responce = await api.get(`getWorkDeatils/single-work/${id}`, {
         id: id,
       });
-      console.log(responce.data, "wfwfwfwfwfwf");
       setSingleWorkDetails(responce.data);
       setStudentDetails(responce.data.studentDetails);
-      console.log(responce.data.studentDetails);
     } catch (error) {
-      console.log(id, "id wfewef");
       ToastErrorMessage(error.message);
     }
   };
 
-  const [searchIntership, setSearchIntership] = useState({
-    department: "All",
-    companyName: "",
-    domain: "",
-    studentName: "",
-    rollno:""
-  });
-
-  console.log(searchIntership, "searchIntership");
-
-   const onChnageInputs = (e) => {
-     var name = e.target.name;
-     var value = e.target.value;
-     console.log(e);
-     setSearchIntership((pre) => ({
-       ...pre,
-       [name]: value,
-     }));
-   };
-
-  const handleChangeDepartment = (name) =>{
-    setSearchIntership((pre) => ({
-      department:name
+  const onChnageInputs = (e) => {
+    var name = e.target.name;
+    var value = e.target.value;
+    setWorklistparameters((pre) => ({
+      ...pre,
+      [name]: value,
     }));
-  }
+  };
 
-  const handleOpenFilter = () =>{
+  const handleChangeDepartment = async (name) => {
+    setloading(true)
+    setWorklistparameters((pre) => ({
+      ...pre,
+      branch: name,
+    }));
+   try {
+      const responce = await api.post(
+        `getWorkDeatils/all-works`,
+        worklistparameters
+      );
+      setCount(responce.data.count);
+      setWorkDeatils(responce.data.workDetails);
+      setloading(false);
+    } catch (error) {
+      ToastErrorMessage(error.message);
+    }
+    console.log(worklistparameters);
+  };
+
+  const handleOpenFilter = () => {
     document.querySelector(".filterInputsDiv")?.classList.toggle("open");
-  }
+  };
+
+
+  const searchWorkDetails = async () => {
+    setloading(true)
+    try {
+      const responce = await api.post(
+        `getWorkDeatils/all-works`,
+        worklistparameters
+      );
+      setCount(responce.data.count);
+      setWorkDeatils(responce.data.workDetails);
+      setloading(false);
+    } catch (error) {
+      ToastErrorMessage(error.message);
+    }
+  };
 
   return (
     <div className="allWorksList">
+      <div onClick={resetWorkDetails} className="allWorksResetBtn">
+        <RotateLeftIcon fontSize="large" />
+      </div>
       <div className="filterDiv">
         <div className="branchList">
           {selectBranch.map((branch, index) => (
             <div onClick={() => handleChangeDepartment(branch.value)}>
               <Button
                 className={
-                  searchIntership.department == branch.value
+                  worklistparameters.branch == branch.value
                     ? "branchBtn_active"
                     : "branchBtn"
                 }
@@ -180,34 +256,10 @@ const AllInternShips = () => {
         </div>
         <div className="filterInputsDiv" id="filterInputsDiv">
           <FormControl variant="outlined" size="small">
-            <InputLabel>Company Name</InputLabel>
-            <OutlinedInput
-              value={searchIntership.companyName}
-              className="loginInputs"
-              id="outlined-adornment-Email"
-              type="email"
-              onChange={onChnageInputs}
-              label="Company Name"
-              name="companyName"
-            />
-          </FormControl>
-          <FormControl variant="outlined" size="small">
-            <InputLabel>Domain</InputLabel>
-            <OutlinedInput
-              value={searchIntership.domain}
-              className="loginInputs"
-              id="outlined-adornment-Email"
-              type="text"
-              onChange={onChnageInputs}
-              label="Domain"
-              name="domain"
-            />
-          </FormControl>
-          <FormControl variant="outlined" size="small">
             <InputLabel>Roll No</InputLabel>
             <OutlinedInput
-              value={searchIntership.rollno}
-              className="loginInputs"
+              value={worklistparameters.rollno}
+              className="filterInputs"
               id="outlined-adornment-Email"
               type="email"
               onChange={onChnageInputs}
@@ -218,8 +270,8 @@ const AllInternShips = () => {
           <FormControl variant="outlined" size="small">
             <InputLabel>Student Name</InputLabel>
             <OutlinedInput
-              value={searchIntership.studentName}
-              className="loginInputs"
+              value={worklistparameters.studentName}
+              className="filterInputs"
               id="outlined-adornment-Email"
               type="email"
               onChange={onChnageInputs}
@@ -227,8 +279,95 @@ const AllInternShips = () => {
               name="studentName"
             />
           </FormControl>
+          <FormControl variant="outlined" size="small">
+            <InputLabel>Company Name</InputLabel>
+            <OutlinedInput
+              value={worklistparameters.companyName}
+              className="filterInputs"
+              id="outlined-adornment-Email"
+              type="email"
+              onChange={onChnageInputs}
+              label="Company Name"
+              name="companyName"
+            />
+          </FormControl>
+          <FormControl variant="outlined" size="small">
+            <InputLabel>Domain</InputLabel>
+            <OutlinedInput
+              value={worklistparameters.domain}
+              className="filterInputs"
+              id="outlined-adornment-Email"
+              type="text"
+              onChange={onChnageInputs}
+              label="Domain"
+              name="domain"
+            />
+          </FormControl>
+          <FormControl size="small">
+            <InputLabel>Status</InputLabel>
+            <Select
+              defaultValue={worklistparameters.status}
+              id="demo-simple-select"
+              label="Status"
+              className="filterInputs"
+              onChange={(e) => {
+                setWorklistparameters((prevState) => ({
+                  ...prevState,
+                  status: e.target.value,
+                }));
+              }}
+            >
+              {selectStatus.map((option, index) => (
+                <MenuItem key={`selectStatus=${index}`} value={option.value}>
+                  {option.displayName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl size="small">
+            <InputLabel>Year</InputLabel>
+            <Select
+              defaultValue={worklistparameters.year}
+              id="demo-simple-select"
+              label="Year"
+              className="filterInputs"
+              onChange={(e) => {
+                setWorklistparameters((prevState) => ({
+                  ...prevState,
+                  year: e.target.value,
+                }));
+              }}
+            >
+              {selectYear.map((option, index) => (
+                <MenuItem key={`selectStatus=${index}`} value={option.value}>
+                  {option.displayName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl size="small">
+            <InputLabel>Section</InputLabel>
+            <Select
+              defaultValue={worklistparameters.section}
+              id="demo-simple-select"
+              label="Section"
+              className="filterInputs"
+              onChange={(e) => {
+                setWorklistparameters((prevState) => ({
+                  ...prevState,
+                  section: e.target.value,
+                }));
+              }}
+            >
+              {selectSection.map((option, index) => (
+                <MenuItem key={`selectStatus=${index}`} value={option.value}>
+                  {option.displayName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <Button
-            onClick={handleOpenFilter}
+            onClick={searchWorkDetails}
             className="searchBtn"
             endIcon={<SearchIcon sx={{ fontSize: 40 }} />}
           >
@@ -248,6 +387,11 @@ const AllInternShips = () => {
               <StyledTableCell align="center">Status</StyledTableCell>
             </StyledTableHeader>
           </TableHead>
+          {workDetails.length == 0 && !loading && (
+            <p style={{ position: "absolute", color: "red", left: "45%" }}>
+              No Data Found
+            </p>
+          )}
           {loading == true ? (
             <div style={{ position: "absolute", left: "50%" }}>
               <LoadingCircle />
@@ -305,7 +449,11 @@ const AllInternShips = () => {
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <Button
-                      className={work.status}
+                      className={
+                        work.status == "Not Started"
+                          ? "NotStarted"
+                          : work.status
+                      }
                       style={{
                         textDecoration: "none",
                         width: "10rem",

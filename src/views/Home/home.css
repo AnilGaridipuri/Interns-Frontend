@@ -1,47 +1,325 @@
-.bgvideo{
-    width: 100vw;
-    height: 50vh;
-    object-fit: cover;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+.bgvideo {
+  width: 100vw;
+  height: 50vh;
+  object-fit: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
-.quotes{
-    width : 650px;
-    height : 200px;
-    background-color: rgba(245, 242, 245, 0.2);
+.quotes {
+  width: 650px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: relative;
+  top: -300px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.quote {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.homeContent {
+  margin-top: -200px;
+}
+
+.impInternCard {
+  max-width: 90%;
+  margin: 20px auto;
+  /* box-shadow: 1px 2px 6px 1px #9f9f9f; */
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #fcf5ff;
+}
+
+.impInternCardTitle {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 550;
+  color: #462255;
+}
+
+.impInternCardText {
+  width: 80%;
+  margin: 0 auto;
+  text-justify: distribute-all-lines;
+  padding: 10px 0px;
+  color: #3b0e4e;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.impInternCardImgDiv {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 50px;
+  justify-content: space-evenly;
+}
+
+.impInternCardImgDiv p {
+  margin: 10px 0px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #3b0e4e;
+}
+
+.impInternCardImg {
+  width: 40%;
+  height: 35vh;
+  border: 3px solid #ac0af1;
+  border-radius: 50% 10% / 10% 50%;
+  object-fit: fill;
+  transform: rotate(-4deg);
+  margin: 15px 5px;
+}
+.impInternCardImg1 {
+  width: 40%;
+  height: 35vh;
+  border: 3px solid #ac0af1;
+  border-radius: 50% 10% / 10% 50%;
+  object-fit: fill;
+  transform: rotate(-4deg);
+  margin: 5px;
+}
+
+.StdAlterBox {
+  background-image: linear-gradient(to right, #ffc073, #fea15a, #fcce70);
+  min-height: 220px;
+  padding: 10px 10px 20px;
+  /* overflow: hidden; */
+}
+
+.StdAlterBoxTitle {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 550;
+  color: #2c1235;
+  margin-bottom: 20px;
+  font-style: oblique;
+}
+
+.StdAlterBoxCardDiv {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 40px;
+  justify-content: space-around;
+}
+
+.StdAlterBoxCardTextDiv {
+  display: flex;
+  width: 110%;
+  gap: 10px;
+  margin: 5px 0px;
+}
+
+.StdAlterBoxCard {
+  color: #4d2061;
+  border-radius: 20px;
+}
+
+.StdAlterBoxCardTitle {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 550;
+  text-decoration: underline;
+  color: #6d2d89;
+  margin-bottom: 10px;
+}
+
+.internshipTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px 0px 5px 0px;
+  text-align: center;
+  color: #42005f;
+}
+.internshipTitle1 {
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
+
+.majorDomainsCard {
+  width: 100%;
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 1px 2px 6px 1px #9f9f9f;
+  background-image: linear-gradient(to right, #ffc073, #fea15a, #fcce70);
+}
+
+.majorDomainsListDiv {
+    background-image: linear-gradient(to bottom right, rgb(60, 43, 81), #502760);
+    width: 85%;
+    /* clip-path: polygon(85% 0, 100% 50%, 85% 100%, 0% 100%, 0 50%, 0% 0%); */
+    clip-path: polygon(0% 0%, 85% 0%, 100% 100%, 0% 100%);
+    color: #ffffff;
+    padding: 10px 13% 10px 10px;
+}
+
+.majorDomainsCardImageDiv {
+    width: 15%;
+}
+
+.majorDomainsCardImageDiv img {
+    width: 180%;
+    height: 420px;
     position: relative;
-    top : -300px;
-    margin : 0 auto;
+    left: -180px;
+    top: 10px;
+}
+.majorDomainsCardTitle {
+    font-family: "Comic Sans MS";
+    font-size: 220%;
+    text-align: center;
+    text-shadow: #fcce70;
 }
 
-.quote{
-    width : 100%;
-    height : 200px;
-    object-fit: contain;
+.majorDomainsList{
+    padding: 10px;
+    display: grid;
+    justify-content: space-around;
+    font-size: 20px;
 }
 
-.homeContent{
-    margin-top: -200px;
+.majorDomainsListItem{
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    row-gap: 5px;
+    flex-wrap: wrap;
+    margin: 10px 0px;
 }
 
-@media screen and (max-width:600px) {
+.majorDomainsListItem button{
+    background-color: #fff !important;
+    color: #3b0e4e ;
+    font-weight: bold;
+    border-radius: 20px;
+    height: 27px;
+}
+.majorDomainsListItemLink{
+    background-image: linear-gradient(to right, #fea15a, #fcce70);
+    color: #3b0e4e ;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    padding:3px;
+    border-radius: 20px;
+    height: 27px;
+    width: 120px;
+    transition: all 1s;
+}
 
-    .bgvideo{
-        height: 30vh;
-    }
-    .quotes{
-        width: 320px !important;
-    }
+.LanguageDiv{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
 
-    .quotes{
-        top: -180px;
-        height: 150px;
-    }
+.majorDomainsListItemLink:hover{
+    background-image: linear-gradient(to right, #ffffff, #fff) !important;
+}
 
-    .homeContent{
-        margin-top: -150px;
+.homeBody {
+  width: 100%;
+  overflow: hidden;
+}
+
+@media screen and (max-width:1000px) and (min-width:730px) {
+    .majorDomainsCardImageDiv img {
+    width: 220%;
+    height: 420px;
+    position: relative;
+    left: -160px;
+    top: 50px;
+}
+}
+@media screen and (max-width:730px) and (min-width:600px) {
+    .majorDomainsCardImageDiv img {
+    width: 260%;
+    height: 420px;
+    position: relative;
+    left: -180px;
+    top: 80px;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .majorDomainsCardImageDiv img {
+    width: 185%;
+    height: 75%;
+    position: relative;
+  }
+
+  .majorDomainsCardTitle{
+    font-size: 180%;
+  }
+
+  .majorDomainsCardImageDiv{
+    display: grid;
+    place-items: center;
+    width: 80%;
+  }
+  .homeBody {
+    width: 100%;
+    overflow: hidden;
+  }
+  .bgvideo {
+    height: 30vh;
+  }
+  .quotes {
+    width: 320px !important;
+  }
+
+  .quotes {
+    top: -180px;
+    height: 150px;
+  }
+
+  .homeContent {
+    margin-top: -150px;
+  }
+
+  .impInternCard {
+    max-width: 95%;
+  }
+
+  .impInternCardImg {
+    width: 70%;
+    height: 22vh;
+  }
+  .impInternCardImg1 {
+    width: 70%;
+    height: 22vh;
+    margin-left: 100px;
+  }
+
+  .impInternCardImgDiv {
+    justify-content: start;
+  }
+
+  .impInternCardText {
+    width: 97%;
+  }
+
+  .majorDomainsCardImageDiv img {
+    position: relative;
+    width: 320px;
+    height: 250px;
+    left: 20px;
+    top: 5px;
+}
+    .majorDomainsListDiv{
+        width: 100%;
+       clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
     }
 }
