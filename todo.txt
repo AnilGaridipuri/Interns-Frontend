@@ -1,16 +1,7 @@
 
 2. add rollno, email, passowrd to db
 
-
 4. direct entering changepassword in url is working which hsould not
-
-5. file upload to db 
-
-
-7. when cliked on update dialog box shoul d go dropdown /update Certification
-
-8 .when updated profile. student details shoul dbe updated at all works, certificates
 
 9. divide controolers
 
-10. add Certification name to certificates

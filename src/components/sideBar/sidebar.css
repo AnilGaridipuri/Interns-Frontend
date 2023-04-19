@@ -16,7 +16,7 @@
     color: #fff;
     font-size: 15px;
     padding: 10px 0px 10px 10px;
-    background-image: linear-gradient(to bottom right, #9b54ba, #8056be, #5252d2 ,#151589);
+    background-image: linear-gradient(to bottom right, #8a45a8, #754195, #41419f ,#2f0b85);
 }
 
 
@@ -48,7 +48,7 @@
     max-height: auto;
     min-height: 100vh;
     overflow: hidden !important;
-    background-image: linear-gradient(to bottom right, #1a1a44, #2d2075, #5a3691, #8b05c5);
+    background-image: linear-gradient(to bottom right, #25114d, #331665, #543286, #660f95);
     color: #fff !important;
     animation-duration: 10s;
     transition: 0.5s

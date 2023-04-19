@@ -327,10 +327,10 @@ input::-webkit-calendar-picker-indicator{
     width : 120px !important;
     background-color: #df7f02 !important;
 }
-
-/* .NotStarted{
-    background-color: #df7f02 !important;
-} */
+.NotStarted{
+    width : 120px !important;
+    background-color: #38c6f9 !important;
+}
 
 .intershipsbody{
     border-radius: 8px;
@@ -344,7 +344,7 @@ input::-webkit-calendar-picker-indicator{
 .certificatesDiv{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     padding: 30px 0px;

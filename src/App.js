@@ -18,7 +18,7 @@ function App() {
   });
 
   const id = localStorage.getItem("MITSinternsid");
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     if (!getuserDetails) {

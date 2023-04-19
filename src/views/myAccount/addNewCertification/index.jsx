@@ -27,7 +27,6 @@ import LoadingCircle from "../../../components/loading";
 const selectStatus = [
   { displayName: "Ongoing", value: "Ongoing" },
   { displayName: "Completed", value: "Completed" },
-  { displayName: "Not Started", value: "Not Started" },
 ];
 
 const AddNewCertification = () => {
@@ -81,13 +80,56 @@ const AddNewCertification = () => {
   };
 
   const handleOnImageChange = async (e) => {
-    const { name } = e.currentTarget;
     const filelist = e.target.files[0];
-    const base64 = await convertBase64(filelist);
-    setAddNewCertification((prevState) => ({
-      ...prevState,
-      [name]: base64,
-    }));
+      const filename = e.target.name;
+      // console.log("size====", e.target.name)
+      if(filelist.size>153600){
+        ToastErrorMessage("Profile Picture size must be less than 150KB.")
+        document.getElementById(filename).value='';
+        return
+      }
+      if(!filelist.type.includes('image/')){
+        ToastErrorMessage("File type must be a jpeg/png/jpg.")
+        document.getElementById(filename).value='';
+        return
+      }
+      // console.log(filelist)
+      const base64 = await convertBase64(filelist);
+      
+      
+      let formData = new FormData();
+      formData.append('certificationPic',filelist)
+      // formData.append('studentId', authState._id)
+
+      // const data = new URLSearchParams(formData).toString();
+      // console.log("data===============",data)
+      // console.log("profileFile _-------------------------- ", formData.entries())
+      // for (var key of formData.entries()) {
+      //   profilelink = key[1]
+      // } 
+      // console.log(profilelink)
+      // var location;
+
+
+      try {
+        const response = await api.post(
+          '/certificationToS3', 
+          formData, 
+          // {
+          //   headers :{
+          //     'Content-Type': 'application/x-www-form-urlencoded'
+          //   }
+          // }
+        );
+        // console.log(response.data)
+        setAddNewCertification((pre) => ({
+          ...pre,
+          [filename] : response.data,
+        }));
+        // setProfilePicEdited(true);
+      } catch (error) {
+        ToastErrorMessage(error.response.data);
+      }
   };
 
   const convertBase64 = (file) => {
@@ -249,7 +291,7 @@ const AddNewCertification = () => {
                             type="file"
                             multiple
                             size="small"
-                            id="outlined-basic"
+                            id="completionCertificatepath"
                           />
                         </div>
                         <div className="previewImage">

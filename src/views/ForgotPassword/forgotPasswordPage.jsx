@@ -13,23 +13,14 @@ import { api } from "../../axios/api.config";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthentication } from "../../store/slices/auth";
-
+import { ApplicationConstant } from "../../constant/applicationConstant";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPasswordPage = () => {
 
+  const navigate = useNavigate();
   const params = useParams();
   const authState = useSelector((state) => state.authReducer);
-
-  useEffect(() => {
-    if(params.passwordfunction == "changepassword"){
-      setStep(2)
-      setOtpVerifyed(true)
-      setForgotPasswordParams((prve) => ({
-        ...prve,
-        mailId:authState.mailId
-    }))
-    }
-  }, [params]);
 
   const [step, setStep] = useState(0)
   const dispatch = useDispatch();
@@ -52,11 +43,29 @@ const ForgotPasswordPage = () => {
   const [confirmResetPasswordValidate_status, setConfirmResetPasswordValidate_status] = useState(false);
   const [sendOtpBtn, setSendOtpBtn] = useState(false);
   var errormessage;
+  console.log(params)
+
+  useEffect(() => {
+    if(params.passwordfunction === "changepassword"){
+      if(localStorage.getItem("MITSinternsid")){
+        setStep(2)
+        setOtpVerifyed(true)
+        setForgotPasswordParams((prev) => ({
+          ...prev,
+          mailId:authState.mailId
+        }))
+      }else{
+        toast.error("You must Login to change your password or click on 'forgot password' to reset your password. ")
+        navigate(ApplicationConstant.LOGIN_URL_PATH);
+      }
+    }
+  }, [params]);
+ 
 
   function handleEmail(e) {
     let email = e.target.value;
     var validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var message = document.getElementById("EmaliError");
+    var message = document.getElementById("EmailError");
 
     if (!email) {
       errormessage = "";
@@ -92,9 +101,9 @@ const ForgotPasswordPage = () => {
         toast.success(`OTP is send to ${response.data.data.email}`);
         setSendOtpBtn(true);
         setStep(step + 1);
-        console.log(response)
+        // console.log(response)
       } catch (error) {
-        console.log(error.response.data);
+        // console.log(error.response.data);
         toast.error(error.response.data);
       }
     }
@@ -203,7 +212,7 @@ const ForgotPasswordPage = () => {
     }
    }
 
-   console.log(forgotPasswordParams);
+  //  console.log(forgotPasswordParams);
 
 
   return (
@@ -221,7 +230,7 @@ const ForgotPasswordPage = () => {
                 <p>Forgot Password</p>
               </div>
               {(() => {
-                if (step == 0) {
+                if (step === 0) {
                   return (
                     <div>
                       <ForgotPasswordInputs
@@ -234,7 +243,7 @@ const ForgotPasswordPage = () => {
                       />
                     </div>
                   );
-                } else if (step == 1) {
+                } else if (step === 1) {
                   return (
                     <div>
                       <VerifyOtp
@@ -244,7 +253,7 @@ const ForgotPasswordPage = () => {
                       />
                     </div>
                   );
-                } else if (step == 2) {
+                } else if (step === 2) {
                   return (
                     <div>
                       <PasswordInputs
@@ -254,7 +263,7 @@ const ForgotPasswordPage = () => {
                       />
                     </div>
                   );
-                } else if (step == 3) {
+                } else if (step === 3) {
                   return (
                     <div>
                       <SuccessUpdatePassword/>

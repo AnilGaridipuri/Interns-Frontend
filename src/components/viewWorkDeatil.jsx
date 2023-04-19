@@ -18,7 +18,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function ViewWorkDetails(props) {
-  console.log(props.label);
+  // console.log(props.label);
   const navigate = useNavigate();
 
   const handleClose = () => {

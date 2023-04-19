@@ -17,6 +17,7 @@ import {
   ToastErrorMessage,
   ToastSuccessMessage,
 } from "../../../uitils/toastMessage";
+import FormData from 'form-data'
 
 const selectYear = [
   { displayName: "I", value: "I" },
@@ -37,6 +38,17 @@ const selectBranch = [
   { displayName: "MECH", value: "MECH" },
 ];
 
+const selectSection = [
+  { displayName: "Single Section", value: " " },
+  { displayName: "A", value: "A" },
+  { displayName: "B", value: "B" },
+  { displayName: "C", value: "C" },
+  { displayName: "D", value: "D" },
+  { displayName: "E", value: "E" },
+  { displayName: "F", value: "F" },
+];
+
+
 const EditProfile = () => {
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.authReducer);
@@ -50,7 +62,7 @@ const EditProfile = () => {
 
   const [getuserDetails, setGetuserDetails] = useState(false);
 
-  const [studentDeatils, setstudentDeatils] = useState({
+  const [studentDetails, setstudentDeatils] = useState({
     branch: "",
     mailId: "",
     phoneNumber: "",
@@ -61,6 +73,8 @@ const EditProfile = () => {
     section:"",
     altmail:""
   });
+  const [isProfilePicEdited, setIsProfilePicEdited] = useState(false)
+  const [editedProfilePic, setEditedProfilePic] = useState(null)
   const [userDetails, setUserDeatils] = useState({});
 
 
@@ -74,20 +88,20 @@ const EditProfile = () => {
     if (params.id) {
       setGetuserDetails(true);
       try {
-        const responce = await api.post(`auth/user`, {
+        const response = await api.post(`auth/user`, {
           id: params.id,
         });
-        setUserDeatils(responce.data)
+        setUserDeatils(response.data)
         setstudentDeatils({
-          branch: responce.data.branch,
-          mailId: responce.data.mailId,
-          phoneNumber: responce.data.phoneNumber,
-          studentName: responce.data.studentName,
-          rollno: responce.data.rollno,
-          year: responce.data.year,
-          profile: responce.data.profile,
-          section: responce.data.section,
-          altmail: responce.data.altmail,
+          branch: response.data.branch,
+          mailId: response.data.mailId,
+          phoneNumber: response.data.phoneNumber,
+          studentName: response.data.studentName,
+          rollno: response.data.rollno,
+          year: response.data.year,
+          profile: response.data.profile,
+          section: response.data.section,
+          altmail: response.data.altmail,
         });
       } catch (error) {
         ToastErrorMessage(error.message);
@@ -95,24 +109,66 @@ const EditProfile = () => {
     }
   };
 
-  const onChnageInputs = (e) => {
-    var name = e.target.name;
+  const onChangeInputs = (e) => {
+    // console.log(e.target.files[0])
+    const name = e.target.name;
     var value = e.target.value;
-    console.log(e);
+
     setstudentDeatils((pre) => ({
       ...pre,
       [name]: value,
     }));
+    
+
   };
 
     const handleImageUpload = async (e) => {
       const filelist = e.target.files[0];
+      // console.log("size====", filelist.size)
+      if(filelist.size>204800){
+        ToastErrorMessage("Profile Picture size must be less than 200KB.")
+        document.getElementById('file-input').value='';
+        return
+      }
+      // console.log(filelist)
       const base64 = await convertBase64(filelist);
-      setstudentDeatils((prevState) => ({
-        ...prevState,
-        profile: base64,
-      }));
+      setEditedProfilePic(base64);
+      let formData = new FormData();
+      formData.append('profilePic',filelist)
+      // formData.append('studentId', authState._id)
+
+      // const data = new URLSearchParams(formData).toString();
+      // console.log("data===============",data)
+      // console.log("profileFile _-------------------------- ", formData.entries())
+      // for (var key of formData.entries()) {
+      //   profilelink = key[1]
+      // } 
+      // console.log(profilelink)
+      // var location;
+
+
+      try {
+        const response = await api.post(
+          `/profilePicToS3`, 
+          formData, 
+          // {
+          //   headers :{
+          //     'Content-Type': 'application/x-www-form-urlencoded'
+          //   }
+          // }
+        );
+        // console.log(response.data)
+        setstudentDeatils((pre) => ({
+          ...pre,
+          profile : response.data,
+        }));
+        setIsProfilePicEdited(true);
+      } catch (error) {
+        ToastErrorMessage(error.response.data);
+      }
     };
+    // console.log("profileFile _+++++++++++++++++++++++++++++++= ",profileFile)
+
 
     const convertBase64 = (file) => {
       return new Promise((resolve, reject) => {
@@ -130,23 +186,28 @@ const EditProfile = () => {
 
   const updateUserDeatils = async () => {
     try {
-      const responce = await api.put(`/update-user`, studentDeatils);
-      setUserDeatils(responce.data);
+
+      const response = await api.put(
+        `/update-user`, 
+        studentDetails
+      );
+      setUserDeatils(response.data);
       dispatch(
         setAuthentication({
           isAuthenticated: true,
-          rollno: responce.data.rollno,
-          _id: responce.data._id,
-          mailId: responce.data.mailId,
-          studentName: responce.data.studentName,
-          year: responce.data.year,
-          branch: responce.data.branch,
-          phoneNumber: responce.data.phoneNumber,
-          profile: responce.data.profile,
-          section: responce.data.section,
-          altmail: responce.data.altmail,
+          rollno: response.data.rollno,
+          _id: response.data._id,
+          mailId: response.data.mailId,
+          studentName: response.data.studentName,
+          year: response.data.year,
+          branch: response.data.branch,
+          phoneNumber: response.data.phoneNumber,
+          profile: response.data.profile,
+          section: response.data.section,
+          altmail: response.data.altmail,
         })
       );
+      setIsProfilePicEdited(false)
       ToastSuccessMessage("Successfull Updated");
     } catch (error) {
       ToastErrorMessage(error.response.data);
@@ -161,6 +222,7 @@ const EditProfile = () => {
   };
 
   const cancleUserDeatils = () => {
+    setIsProfilePicEdited(false);
     setstudentDeatils({
       branch: userDetails.branch || "",
       mailId: userDetails.mailId ,
@@ -180,18 +242,21 @@ const EditProfile = () => {
           <div className="userImgDiv">
             <div>
               <input
-                onChange={handleImageUpload}
+                onChange={(e)=>{
+                  // setprofileFile(e.target.files[0])
+                  handleImageUpload(e);
+                }}
                 className="image_input"
                 id="file-input"
                 type="file"
-                name="profilePic"
+                name="profile"
                 accept="image/*"
               />
               <Avatar
                 alt={capitalizeFirstLetter(
-                  studentDeatils.studentName?.charAt(0) || ""
+                  studentDetails.studentName?.charAt(0) || ""
                 )}
-                srcSet={studentDeatils.profile}
+                srcSet={ !isProfilePicEdited ? userDetails.profile : editedProfilePic  }
                 sx={{
                   width: "130px",
                   height: "130px",
@@ -201,7 +266,7 @@ const EditProfile = () => {
                 <AddAPhotoIcon fontSize="large" style={{ color: "#df7f02" }} />
               </label>
             </div>
-            <p className="Editrollno white">{studentDeatils.studentName}</p>
+            <p className="Editrollno white">{studentDetails.studentName}</p>
           </div>
           <div className="userDeatilsDiv">
             <div className="profileInputs white">
@@ -211,9 +276,9 @@ const EditProfile = () => {
                 placeholder="Name"
                 id="outlined-size-small"
                 size="small"
-                value={studentDeatils.studentName}
+                value={studentDetails.studentName}
                 name="studentName"
-                onChange={onChnageInputs}
+                onChange={onChangeInputs}
                 // autoComplete={false}
               />
             </div>
@@ -224,9 +289,9 @@ const EditProfile = () => {
                 placeholder="Roll No"
                 id="outlined-size-small"
                 size="small"
-                value={studentDeatils.rollno}
+                value={studentDetails.rollno}
                 name="rollno"
-                onChange={onChnageInputs}
+                onChange={onChangeInputs}
               />
             </div>
             <div>
@@ -238,7 +303,7 @@ const EditProfile = () => {
                   className="disableInput"
                   id="outlined-size-small"
                   size="small"
-                  value={studentDeatils.mailId}
+                  value={studentDetails.mailId}
                   disabled={true}
                 />
               </div>
@@ -251,8 +316,8 @@ const EditProfile = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  defaultValue={studentDeatils.year}
-                  value={studentDeatils.year}
+                  defaultValue={studentDetails.year}
+                  value={studentDetails.year}
                   name="graduationPosition"
                   onChange={(e) => {
                     setstudentDeatils((prevState) => ({
@@ -276,8 +341,8 @@ const EditProfile = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={studentDeatils.branch}
-                  defaultValue={studentDeatils.branch}
+                  value={studentDetails.branch}
+                  defaultValue={studentDetails.branch}
                   name="graduationPosition"
                   onChange={(e) => {
                     setstudentDeatils((prevState) => ({
@@ -300,15 +365,27 @@ const EditProfile = () => {
             <div className="profileInputs white">
               <label>Section</label>
               <span className="inputdout">:</span>
-              <TextField
-                placeholder="Section CSE-A/CAI-A"
-                id="outlined-size-small"
-                defaultValue="Small"
-                size="small"
-                value={studentDeatils.section}
-                name="section"
-                onChange={onChnageInputs}
-              />
+              <FormControl size="small">
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  defaultValue={studentDetails.section}
+                  value={studentDetails.section}
+                  name="graduationPosition"
+                  onChange={(e) => {
+                    setstudentDeatils((prevState) => ({
+                      ...prevState,
+                      section: e.target.value,
+                    }));
+                  }}
+                >
+                  {selectSection.map((option, index) => (
+                    <MenuItem key={`selectStatus=${index}`} value={option.value}>
+                      {option.displayName}
+                    </MenuItem>
+                  ))}
+                </Select>
+          </FormControl>
             </div>
             <div className="profileInputs white">
               <label>Phone No</label>
@@ -318,9 +395,9 @@ const EditProfile = () => {
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
-                value={studentDeatils.phoneNumber}
+                value={studentDetails.phoneNumber}
                 name="phoneNumber"
-                onChange={onChnageInputs}
+                onChange={onChangeInputs}
               />
             </div>
             <div className="profileInputs white">
@@ -331,9 +408,9 @@ const EditProfile = () => {
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
-                value={studentDeatils.altmail}
+                value={studentDetails.altmail}
                 name="altmail"
-                onChange={onChnageInputs}
+                onChange={onChangeInputs}
               />
             </div>
           </div>

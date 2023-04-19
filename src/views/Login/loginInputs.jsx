@@ -41,7 +41,7 @@ const LoginInputs = (props) => {
   function handleEmail(e) {
     let email = e.target.value;
     var validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var message = document.getElementById("EmaliError");
+    var message = document.getElementById("EmailError");
 
     if (!email) {
       errormessage = "";
@@ -125,7 +125,7 @@ const LoginInputs = (props) => {
         <div className="loginInputsDiv">
           <ToastContainer />
           <FormControl variant="outlined" size="small">
-            <InputLabel htmlFor="outlined-adornment-emali">Emali</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
             <OutlinedInput
               className="loginInputs"
               error={email}
@@ -139,7 +139,7 @@ const LoginInputs = (props) => {
               }
               label="Email"
             />
-            <p id="EmaliError" className="errorMessage">
+            <p id="EmailError" className="errorMessage">
               {errormessage}
             </p>
           </FormControl>
