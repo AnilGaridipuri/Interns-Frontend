@@ -9,7 +9,7 @@ import {
   FormControl,
   MenuItem,
   Select,
-  TextField,
+  OutlinedInput,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { api } from "../axios/api.config";
@@ -111,12 +111,15 @@ export default function EditCertification(props) {
           `update-CertificationDetails`,
           addNewCertification
         );
+        console.log(responce,"Certification")
         const ongoing = responce.data.filter( (certification) => certification.status==='Ongoing')
         const completed = responce.data.filter( (certification) => certification.status==='Completed')
         props.setCertificationsDeatils(responce.data);
         ToastSuccessMessage("Successfully Updated !!");
       } catch (error) {
-        ToastErrorMessage(error.response.data || error.message);
+        ToastErrorMessage(
+          error.response.data || error.message || "Something Went Wrong !!"
+        );
       }
     }
   };
@@ -131,7 +134,8 @@ export default function EditCertification(props) {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        maxWidth="lg"
+        // maxWidth="lg"
+        className="dialogBox"
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle
@@ -142,7 +146,7 @@ export default function EditCertification(props) {
             gap: "20px",
           }}
         >
-          <AccountHeader label="Edit Internship" />
+          <AccountHeader label="Edit Certification" />
           <div
             onClick={handleClose}
             style={{
@@ -160,7 +164,8 @@ export default function EditCertification(props) {
             <div className="addInternInputsDiv">
               <div className="addInternInputs">
                 <label>Organization Name :</label>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="Organization Name"
                   id="outlined-size-small"
                   size="small"
@@ -171,7 +176,8 @@ export default function EditCertification(props) {
               </div>
               <div className="addInternInputs">
                 <label>Certification Name :</label>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="Web/ML/AI/"
                   id="outlined-size-small"
                   size="small"
@@ -183,7 +189,8 @@ export default function EditCertification(props) {
               <div>
                 <div className="addInternInputs">
                   <label>Start Date :</label>
-                  <TextField
+                  <OutlinedInput
+                    className="myAccountInputs"
                     value={addNewCertification.start_date || ""}
                     onChange={onChnageInputs}
                     name="start_date"
@@ -199,7 +206,8 @@ export default function EditCertification(props) {
                 <div>
                   <div className="addInternInputs">
                     <label>End Date :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       value={addNewCertification.end_date || ""}
                       onChange={onChnageInputs}
                       name="end_date"
@@ -217,6 +225,7 @@ export default function EditCertification(props) {
                   <label>Status :</label>
                   <FormControl size="small">
                     <Select
+                      className="myAccountInputs selectColor"
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       defaultValue={addNewCertification.status}
@@ -246,7 +255,8 @@ export default function EditCertification(props) {
                 <div>
                   <div className="addInternInputs">
                     <label>Completion Certificate :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       onChange={handleOnImageChange}
                       name="completionCertificatepath"
                       type="file"

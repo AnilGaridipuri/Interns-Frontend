@@ -12,7 +12,7 @@ import {
   Radio,
   RadioGroup,
   Select,
-  TextField,
+  OutlinedInput,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -149,7 +149,7 @@ const AddNewCertification = () => {
   const cancleDeatils = () => {
     setAddNewCertification({
       organizationName: "",
-      domain: "",
+      certificationName: "",
       status: "",
       start_date: "",
       end_date: "",
@@ -174,9 +174,9 @@ const AddNewCertification = () => {
 
   return (
     <div>
-      {loading == true ?
-      <LoadingCircle/>
-       :
+      {loading == true ? (
+        <LoadingCircle />
+      ) : (
         <div>
           <Card
             sx={{ minWidth: 275 }}
@@ -193,18 +193,23 @@ const AddNewCertification = () => {
                   fontSize: "25px",
                 }}
               >
-                Sorry, You need to Update your profile to add your Certifications.
+                Sorry, You need to Update your profile to add your
+                Certifications.
                 <br />
                 <br />
                 Click on 'Edit profile' to update.
               </h3>
             ) : (
               <>
-                <CardContent style={{ paddingTop: 15 }}>
-                  <div className="addInternInputsDiv">
+                <CardContent
+                  className="profileCardContent"
+                  style={{ paddingTop: 15 }}
+                >
+                  <div className="addInternInputsDiv my_AccountBody">
                     <div className="addInternInputs white">
                       <label>Organization Name :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         placeholder="Organization Name"
                         id="outlined-size-small"
                         size="small"
@@ -215,7 +220,8 @@ const AddNewCertification = () => {
                     </div>
                     <div className="addInternInputs white">
                       <label>Certification Name :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         placeholder="Web/ML/AI/"
                         id="outlined-size-small"
                         size="small"
@@ -227,7 +233,8 @@ const AddNewCertification = () => {
                     <div>
                       <div className="addInternInputs white">
                         <label>Start Date :</label>
-                        <TextField
+                        <OutlinedInput
+                          className="myAccountInputs"
                           value={addNewCertification.start_date || ""}
                           onChange={onChnageInputs}
                           name="start_date"
@@ -242,7 +249,8 @@ const AddNewCertification = () => {
                     <div>
                       <div className="addInternInputs white">
                         <label>End Date :</label>
-                        <TextField
+                        <OutlinedInput
+                          className="myAccountInputs"
                           value={addNewCertification.end_date || ""}
                           onChange={onChnageInputs}
                           name="end_date"
@@ -258,6 +266,7 @@ const AddNewCertification = () => {
                       <label>Status :</label>
                       <FormControl size="small">
                         <Select
+                          className="myAccountInputs"
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
                           defaultValue={addNewCertification.status}
@@ -285,7 +294,8 @@ const AddNewCertification = () => {
                       <div>
                         <div className="addInternInputs white">
                           <label>Completion Certificate :</label>
-                          <TextField
+                          <OutlinedInput
+                            className="myAccountInputs"
                             onChange={handleOnImageChange}
                             name="completionCertificatepath"
                             type="file"
@@ -298,7 +308,9 @@ const AddNewCertification = () => {
                           <div>
                             {addNewCertification.completionCertificatepath && (
                               <img
-                                src={addNewCertification.completionCertificatepath}
+                                src={
+                                  addNewCertification.completionCertificatepath
+                                }
                                 style={{
                                   width: "200px",
                                   height: "170px",
@@ -330,7 +342,7 @@ const AddNewCertification = () => {
             ) : null}
           </Card>
         </div>
-      }
+      )}
     </div>
   );
 };

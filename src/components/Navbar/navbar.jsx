@@ -64,22 +64,22 @@ const NavBar = () => {
 
   return (
     <div position="static" className="navBarBody" id="navBarBody">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+      <div className="navBarDiv">
+        <Typography onClick={handleMenuItems} className="menuIconDiv">
+          {menuItemsListOpen == false ? (
+            <MenuIcon className="menuIcon" />
+          ) : (
+            <CancelIcon className="menuIcon" />
+          )}
+        </Typography>
+        <div>
           <div className="navBarLogoDiv">
             <img src={logo} className="mitsLogo"></img>
             <p className="navlogoText">MITS Interns</p>
           </div>
-
-          {/* only display in modile screen  */}
-          <Typography onClick={handleMenuItems} className="menuIconDiv">
-            {menuItemsListOpen == false ? (
-              <MenuIcon className="menuIcon" />
-            ) : (
-              <CancelIcon className="menuIcon" />
-            )}
-          </Typography>
-          <Typography className="menuItemsList" id="menuItemsList">
+        </div>
+        <div className="navBarLinkDiv">
+          <div className="menuItemsList" id="menuItemsList">
             <NavLink
               to={ApplicationConstant.HOME_PAGE_PATH}
               className={
@@ -89,7 +89,7 @@ const NavBar = () => {
               }
             >
               Home
-            </NavLink>  
+            </NavLink>
             <NavLink
               to={ApplicationConstant.ALLINTERNSHIP_PAGE_PATH}
               className={
@@ -109,9 +109,9 @@ const NavBar = () => {
                   : "navItems"
               }
             >
-             All Certifications
+              All Certifications
             </NavLink>
-          </Typography>
+          </div>
           <div>
             {!MITSinternsid ? (
               <div className="navLoginBtnDiv NavProfileDiv">
@@ -201,8 +201,8 @@ const NavBar = () => {
               </Box>
             )}
           </div>
-        </Toolbar>
-      </Container>
+        </div>
+      </div>
     </div>
   );
 };

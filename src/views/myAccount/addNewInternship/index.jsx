@@ -12,7 +12,7 @@ Button,
   Radio,
   RadioGroup,
   Select,
-  TextField,
+  OutlinedInput,
 } from "@mui/material";
 import {useNavigate, useParams} from 'react-router-dom'
 import { useSelector } from "react-redux";
@@ -161,8 +161,8 @@ const AddNewInternship = () => {
   };
 
   const cancelDeatils = () =>{
-    
     setAddNewIntern({
+      studentId: authState._id,
       companyName: "",
       domain: "",
       role: "",
@@ -173,7 +173,7 @@ const AddNewInternship = () => {
       offerLetterpath: "",
       completionCertificatepath: "",
       stipend: "",
-      projectName:""
+      projectName: "",
     });
     document.getElementById('offerLetterpath').value='';
     document.getElementById('completionCertificatepath').value='';
@@ -201,7 +201,7 @@ const AddNewInternship = () => {
             sx={{ minWidth: 275 }}
             className="internshipCard1 header-blog bg-animation container"
           >
-            <AccountHeader label="Add Internship" />
+            <AccountHeader label="Add Internship " />
             {!isProfileUpdated ? (
               <h3
                 style={{
@@ -219,11 +219,15 @@ const AddNewInternship = () => {
               </h3>
             ) : (
               <>
-                <CardContent style={{ paddingTop: 15 }}>
-                  <div className="addInternInputsDiv">
+                <CardContent
+                  className="profileCardContent"
+                  style={{ paddingTop: 15 }}
+                >
+                  <div className="addInternInputsDiv my_AccountBody">
                     <div className="addInternInputs white">
                       <label>Company Name :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         placeholder="Company Name"
                         id="outlined-size-small"
                         size="small"
@@ -232,8 +236,8 @@ const AddNewInternship = () => {
                         onChange={onChnageInputs}
                       />
                     </div>
-                    <div className="addInternInputs1 white">
-                      <FormControl className="radioBtnDiv">
+                    <div className="addInternInputs white">
+                      <FormControl className="radioDiv">
                         <label className="radioLabel">Type :</label>
                         <RadioGroup
                           row
@@ -258,7 +262,8 @@ const AddNewInternship = () => {
                     </div>
                     <div className="addInternInputs white">
                       <label>Project Name :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         placeholder="Project Name"
                         id="outlined-size-small"
                         size="small"
@@ -269,7 +274,8 @@ const AddNewInternship = () => {
                     </div>
                     <div className="addInternInputs white">
                       <label>Domain :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         placeholder="Web/ML/AI/"
                         id="outlined-size-small"
                         size="small"
@@ -280,7 +286,8 @@ const AddNewInternship = () => {
                     </div>
                     <div className="addInternInputs white">
                       <label>Role :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         placeholder="Role"
                         id="outlined-size-small"
                         size="small"
@@ -291,7 +298,8 @@ const AddNewInternship = () => {
                     </div>
                     <div className="addInternInputs white">
                       <label>Stipend :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         placeholder="No or Yes"
                         id="outlined-size-small"
                         size="small"
@@ -304,6 +312,7 @@ const AddNewInternship = () => {
                       <label>Status :</label>
                       <FormControl size="small">
                         <Select
+                          className="myAccountInputs"
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
                           defaultValue={addNewIntern.status}
@@ -330,7 +339,8 @@ const AddNewInternship = () => {
                     <div>
                       <div className="addInternInputs white">
                         <label>Start Date :</label>
-                        <TextField
+                        <OutlinedInput
+                          className="myAccountInputs"
                           value={addNewIntern.start_date || ""}
                           onChange={onChnageInputs}
                           name="start_date"
@@ -345,7 +355,8 @@ const AddNewInternship = () => {
                     <div>
                       <div className="addInternInputs white">
                         <label>End Date :</label>
-                        <TextField
+                        <OutlinedInput
+                          className="myAccountInputs"
                           value={addNewIntern.end_date || ""}
                           onChange={onChnageInputs}
                           name="end_date"
@@ -360,7 +371,8 @@ const AddNewInternship = () => {
                     <div>
                       <div className="addInternInputs white">
                         <label>Offer Letter :</label>
-                        <TextField
+                        <OutlinedInput
+                          className="myAccountInputs"
                           onChange={handleImageUpload}
                           name="offerLetterpath"
                           type="file"
@@ -389,7 +401,8 @@ const AddNewInternship = () => {
                       <div>
                         <div className="addInternInputs white">
                           <label>Completion Certificate :</label>
-                          <TextField
+                          <OutlinedInput
+                            className="myAccountInputs"
                             onChange={handleImageUpload}
                             name="completionCertificatepath"
                             type="file"

@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import AccountHeader from "../../../components/accountHeader";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
-import TextField from "@mui/material/TextField";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import { Button, FormControl, MenuItem, Select } from "@mui/material";
 import "../myAccount.css";
 import {  useDispatch, useSelector } from "react-redux";
@@ -235,14 +235,14 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="profileBody">
+    <div className="profileBody my_AccountBody">
       <Card className="profileCard header-blog bg-animation container">
         <AccountHeader label="Edit Profile" />
         <CardContent className="profileCardContent" style={{ paddingTop: 15 }}>
           <div className="userImgDiv">
             <div>
               <input
-                onChange={(e)=>{
+                onChange={(e) => {
                   // setprofileFile(e.target.files[0])
                   handleImageUpload(e);
                 }}
@@ -256,7 +256,9 @@ const EditProfile = () => {
                 alt={capitalizeFirstLetter(
                   studentDetails.studentName?.charAt(0) || ""
                 )}
-                srcSet={ !isProfilePicEdited ? userDetails.profile : editedProfilePic  }
+                srcSet={
+                  !isProfilePicEdited ? userDetails.profile : editedProfilePic
+                }
                 sx={{
                   width: "130px",
                   height: "130px",
@@ -272,7 +274,8 @@ const EditProfile = () => {
             <div className="profileInputs white">
               <label>Name</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Name"
                 id="outlined-size-small"
                 size="small"
@@ -285,7 +288,8 @@ const EditProfile = () => {
             <div className="profileInputs white">
               <label>Roll No</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Roll No"
                 id="outlined-size-small"
                 size="small"
@@ -298,9 +302,9 @@ const EditProfile = () => {
               <div className="profileInputs white">
                 <label>Email</label>
                 <span className="inputdout">:</span>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs disableInput"
                   placeholder="Email"
-                  className="disableInput"
                   id="outlined-size-small"
                   size="small"
                   value={studentDetails.mailId}
@@ -314,6 +318,7 @@ const EditProfile = () => {
               <span className="inputdout">:</span>
               <FormControl size="small">
                 <Select
+                  className="myAccountInputs"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   defaultValue={studentDetails.year}
@@ -339,6 +344,7 @@ const EditProfile = () => {
               <span className="inputdout">:</span>
               <FormControl size="small">
                 <Select
+                  className="myAccountInputs"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={studentDetails.branch}
@@ -367,6 +373,7 @@ const EditProfile = () => {
               <span className="inputdout">:</span>
               <FormControl size="small">
                 <Select
+                  className="myAccountInputs"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   defaultValue={studentDetails.section}
@@ -380,17 +387,21 @@ const EditProfile = () => {
                   }}
                 >
                   {selectSection.map((option, index) => (
-                    <MenuItem key={`selectStatus=${index}`} value={option.value}>
+                    <MenuItem
+                      key={`selectStatus=${index}`}
+                      value={option.value}
+                    >
                       {option.displayName}
                     </MenuItem>
                   ))}
                 </Select>
-          </FormControl>
+              </FormControl>
             </div>
             <div className="profileInputs white">
               <label>Phone No</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Phone No"
                 id="outlined-size-small"
                 defaultValue="Small"
@@ -403,7 +414,8 @@ const EditProfile = () => {
             <div className="profileInputs white">
               <label>Alt Email</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Alternative email "
                 id="outlined-size-small"
                 defaultValue="Small"

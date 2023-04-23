@@ -47,9 +47,8 @@ li {
   text-transform: none !important;
 }
 
-
 @media screen and (max-width:600px) {
-  .css-1fu2e3p-MuiPaper-root-MuiDialog-paper{
+  .css-1fu2e3p-MuiPaper-root-MuiDialog-paper , .css-18i3v7t{
     margin: 32px 10px !important;
   }
 }

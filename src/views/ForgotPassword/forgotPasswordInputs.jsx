@@ -11,6 +11,8 @@ import { ApplicationConstant } from "../../constant/applicationConstant";
 
 const ForgotPasswordInputs = (props) => {
 
+  console.log(props.mailId,"Mail Id")
+
   return (
     <div>
         <div className="loginInputsDiv">
@@ -29,6 +31,7 @@ const ForgotPasswordInputs = (props) => {
               }
               label="Email"
               value={props.mailId}
+              name="mailId"
             />
             <p id="EmaliError" className="errorMessage">
               {props.errormessage}

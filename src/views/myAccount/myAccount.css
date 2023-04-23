@@ -1,463 +1,467 @@
-.myAccountDiv{
-    display: flex;
+.myAccountDiv {
+  display: flex;
 }
 
-.myAccountDiv > :nth-child(2){
-    flex: 1 1 auto;
+.myAccountDiv > :nth-child(2) {
+  flex: 1 1 auto;
 }
 
-.myAccountBody{
-    margin: 10px;
-    border: 4px solid #502760;
-    border-radius: 12px;
+.myAccountBody {
+  margin: 10px;
+  border: 4px solid #502760;
+  border-radius: 12px;
 }
 
 .profileCard {
-    z-index: 0;
-    display: grid;
-    padding: 0px 20px;
-    margin: 10px;
-    border-radius: 5px !important;
-    transition: all 1s;
-    box-shadow: 4px 4px 14px 0px rgba(116, 116, 116, 0.25),
-        inset 6px 5px 100px 0px rgba(116, 116, 116, 0.25) !important;
+  z-index: 0;
+  display: grid;
+  padding: 0px 20px;
+  margin: 10px;
+  border-radius: 5px !important;
+  transition: all 1s;
+  box-shadow: 4px 4px 14px 0px rgba(116, 116, 116, 0.25),
+    inset 6px 5px 100px 0px rgba(116, 116, 116, 0.25) !important;
+  background-color: #331665 !important;
+}
+
+.myAccountInputs div {
+  -webkit-text-fill-color: white !important;
+  text-align: center;
+}
+.selectColor div {
+  -webkit-text-fill-color: rgb(0, 0, 0) !important;
 }
 
 .internshipCard {
-    display: grid;
-    padding: 0px 20px;
-    margin: 10px;
-    border-radius: 5px !important;
-    transition: all 1s;
-    box-shadow: 7px 2px 20px 0px #7c7c7c !important;
-    border-radius: 80px 0px 80px 0px !important;
-    background-color: #d5fcdd !important;
+  display: grid;
+  padding: 0px 20px;
+  margin: 10px;
+  border-radius: 5px !important;
+  transition: all 1s;
+  box-shadow: 7px 2px 20px 0px #7c7c7c !important;
+  border-radius: 80px 0px 80px 0px !important;
+  background-color: #d5fcdd !important;
 }
 
 .internshipCard1 {
-    cursor : context-menu;
-    display: grid;
-    padding: 0px 20px;
-    margin: 10px;
-    min-height : 550px;
-    border-radius: 5px !important;
-    transition: all 1s;
-    box-shadow: 7px 2px 20px 0px #7c7c7c !important;
-    border-radius: 80px 0px 80px 0px !important;
-    background-color: #d5fcdd !important;
+  cursor: context-menu;
+  display: grid;
+  padding: 0px 20px;
+  margin: 10px;
+  min-height: 550px;
+  border-radius: 5px !important;
+  transition: all 1s;
+  box-shadow: 7px 2px 20px 0px #7c7c7c !important;
+  border-radius: 80px 0px 80px 0px !important;
+  background-color: #d5fcdd !important;
 }
 
-.css-i4bv87-MuiSvgIcon-root:hover{
-    cursor: pointer;
+.css-i4bv87-MuiSvgIcon-root:hover {
+  cursor: pointer;
 }
 
-.internshipCard1 input{
-    -webkit-text-fill-color: white !important
-}
-.internshipCard1 .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-    -webkit-text-fill-color: white !important
-}
-.internshipCard1 .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon{
-    color: white !important
+.internshipCard1 input {
+  -webkit-text-fill-color: white !important;
 }
 
-.bgColor1{
-    background-color: rgb(219, 255, 216) !important;
+.internshipCard1 svg {
+  color: white !important;
 }
 
-.profileCardContent{
-    display: grid;
-    row-gap: 10px;
+.bgColor1 {
+  background-color: rgb(219, 255, 216) !important;
 }
 
-.userImgDiv{
-    display: grid;
-    place-content: center;
-    place-items: center;
-    row-gap: 5px;
-    margin: 10px 0px 50px 0px;
+.profileCardContent {
+  display: grid;
+  row-gap: 10px;
+  padding: 0px !important;
+}
+
+.userImgDiv {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  row-gap: 5px;
+  margin: 10px 0px 50px 0px;
 }
 
 .userImgDiv > div {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
-.userDeatilsDiv{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: space-evenly;
-    margin-bottom: 50px;
+.userDeatilsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
 }
 
-.addInternInputsDiv{
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 80px;
-    row-gap: 30px;
-    justify-content: space-evenly;
-    margin: 35px 0px 20px;
-    align-items: flex-start;
-    caret-color: white;
+.addInternInputsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 120px;
+  row-gap: 30px;
+  justify-content: space-evenly;
+  margin: 35px 0px 20px;
+  align-items: flex-start;
+  caret-color: white;
 }
 
-input::-webkit-calendar-picker-indicator{
-    filter: invert(1) !important;
-    cursor : pointer;
-    size: 40px;
+.black input {
+  -webkit-text-fill-color: #000000 !important;
 }
 
-.fileInput input[type="file"]::file-selector-button{
-    background-image: linear-gradient(to bottom right, rgb(60, 43, 81), #502760);
-    border: none;
+input::-webkit-calendar-picker-indicator {
+  filter: invert(1) !important;
+  cursor: pointer;
+  size: 40px;
+}
+
+.fileInput input[type="file"]::file-selector-button {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(60, 43, 81),
+    #502760
+  ) !important;
+  border: none;
 }
 
 .css-1m9pwf3:hover,
-.css-ahj2mt-MuiTypography-root:hover{
-    cursor: pointer;
+.css-ahj2mt-MuiTypography-root:hover {
+  cursor: pointer;
 }
 
-.workValue .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled, .workValue{
-    -webkit-text-fill-color: rgb(0, 0, 0) !important;
+.workValue .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled,
+.workValue {
+  -webkit-text-fill-color: rgb(0, 0, 0) !important;
 }
 
-.css-j204z7-MuiFormControlLabel-root:hover, .css-vqmohf-MuiButtonBase-root-MuiRadio-root:hover{
-    cursor: context-menu;
+.css-j204z7-MuiFormControlLabel-root:hover,
+.css-vqmohf-MuiButtonBase-root-MuiRadio-root:hover {
+  cursor: context-menu;
 }
 
 .profileInputs {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    caret-color: white;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  caret-color: white;
 }
-.profileInputs .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+/* .profileInputs .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
     border-color: white !important;
-}
-
+} */
 
 .profileInputs label {
-    width: 80px;
-    font-weight: 600;
+  width: 80px;
+  font-weight: 600;
 }
 .addInternInputs label {
-    width: auto;
-    font-weight: 600;
-    margin-left: 5px;
+  width: auto;
+  font-weight: 600;
+  margin-left: 5px;
 }
 
-.radioLabel{
-    width: auto;
-    font-weight: 600;
-    /* margin-left: 15px !important; */
+.radioLabel {
+  width: auto;
+  font-weight: 600;
+  /* margin-left: 15px !important; */
 }
 
 .profileInputs .inputdout {
-    width: 15px;
+  width: 15px;
 }
 
 .profileInputs input {
-    text-align: center;
-    color: '#fff' !important;
-    -webkit-text-fill-color:white !important
+  text-align: center;
+  color: "#fff" !important;
+  -webkit-text-fill-color: white !important;
+}
+.profileInputs select {
+  text-align: center;
+  color: "#fff" !important;
+  -webkit-text-fill-color: white !important;
 }
 
-.addInternInputs{
-    display: grid;
-    row-gap: 3px;
+.addInternInputs {
+  display: grid;
+  row-gap: 3px;
 }
 
-/* .addInternInputs input{
-    cursor:inherit
-} */
-
-.profileInputs .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
-    text-align: center;
-    color: white;
+.myAccountInputs {
+  min-width: 38ch;
+  border-radius: 20px !important;
 }
 
-.profileInputs .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
-    border-radius: 20px !important;
-    width: 300px !important;
-}
-.profileInputs .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
-    border-radius: 20px !important;
-    width: 300px;
-}
-.addInternInputs .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
-    border-radius: 20px !important;
-    width: 350px !important;
-}
-.internshipCard1 .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
-    border-radius: 20px !important;
-    border-color: white !important;
-}
-.addInternInputs .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
-    border-radius: 20px !important;
-    width: 350px;
-}
-.profileInputs .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled{
-    opacity: 1;
-    -webkit-text-fill-color: rgb(0, 0, 0);  
+.profileInputs
+  .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: rgb(0, 0, 0);
 }
 
-.profileInputs svg{
-    color: white !important;
+.profileInputs svg {
+  color: white !important;
 }
 
 .addInternInputs1 svg {
-    color: white !important;
+  color: white !important;
 }
 
-.hitMessage{
-    color: rgb(255, 169, 21);
-    text-align: center;
+.hitMessage {
+  color: rgb(255, 169, 21);
+  text-align: center;
 }
 
 .userImgDiv input {
-    display: none;
+  display: none;
 }
 
 .userImgDiv label {
-    position: relative;
-    left: 80px;
-    top: -25px;
-    z-index: 1;
-    cursor: pointer;
+  position: relative;
+  left: 80px;
+  top: -25px;
+  z-index: 1;
+  cursor: pointer;
 }
 
-.Editrollno{
-    margin-top: -45px !important;
-    text-align: center;
+.Editrollno {
+  margin-top: -45px !important;
+  text-align: center;
 }
 
-.studentName{
-    margin-top: -10px;
+.studentName {
+  margin-top: -10px;
 }
 
-.editUserDetailsBtn{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-bottom: 30px;
-    row-gap: 10px;
+.editUserDetailsBtn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+  row-gap: 10px;
 }
 
-
-.btnCancle{
-    display : inline !important;
-    width: 200px !important;
-    color: #fff !important;
-    background-image: linear-gradient(to bottom right,#ff0000,#ff5a5a, #ce0303) !important;
+.btnCancle {
+  display: inline !important;
+  width: 200px !important;
+  color: #fff !important;
+  background-image: linear-gradient(
+    to bottom right,
+    #ff0000,
+    #ff5a5a,
+    #ce0303
+  ) !important;
 }
-.btnUpdate{
-    display : inline !important;
-    width: 200px;
-    color: #fff !important;
-    background-image: linear-gradient(to bottom right, #256900, #00b123, #00790a);
+.btnUpdate {
+  display: inline !important;
+  width: 200px;
+  color: #fff !important;
+  background-image: linear-gradient(to bottom right, #256900, #00b123, #00790a);
 }
-.btnUpdate1{
-    display : inline !important;
-    width: 200px;
-    color: #fff !important;
-    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
-}
-
-.btnChange{
-    width: 200px;
-    color: #fff !important;
-    background-color: #0336c3 !important;
-    background-image: linear-gradient(to bottom right, #023bd6, #2962ff, #0434ba) !important;
-}
-
-.previewImage{
-    display: flex;
-    justify-content: center;
-    margin: 15px;
+.btnUpdate1 {
+  display: inline !important;
+  width: 200px;
+  color: #fff !important;
+  background-image: linear-gradient(
+    to bottom right,
+    #15154a,
+    #2f2f89,
+    #6c38b9,
+    #9724c9
+  );
 }
 
-.intershipCard{
-    min-width: 380px !important;
-    box-shadow: 7px 2px 20px 0px #424242  !important;
-    /* cursor: pointer; */
-    transform: .5s;
-    border-radius: 60px 0px 60px 0px !important;
+.btnChange {
+  width: 200px;
+  color: #fff !important;
+  background-color: #0336c3 !important;
+  background-image: linear-gradient(
+    to bottom right,
+    #023bd6,
+    #2962ff,
+    #0434ba
+  ) !important;
 }
 
-.intershipsDiv{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-around;
-    gap: 30px;
-    padding: 30px 5px;
+.previewImage {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
 }
 
-.intershipsDiv .studentDetailsDiv{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.intershipCard {
+  min-width: 380px !important;
+  box-shadow: 7px 2px 20px 0px #424242 !important;
+  transform: 0.5s;
+  border-radius: 60px 0px 60px 0px !important;
 }
 
-.intershipTitle{
-    font-weight: bold;
-    text-decoration: underline;
-    margin: 20px 0px;
-    font-size: 20px;
-    color: #016be4;
+.intershipsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  gap: 30px;
+  padding: 30px 5px;
 }
 
-.intershipTitleHeader{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
+.intershipTitle {
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 20px 0px;
+  font-size: 20px;
+  color: #016be4;
 }
 
-.internshipContent{
-    line-height: 28px;
-    margin-left: 20px;
+.intershipTitleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
 }
 
-.Completed{
-    width : 120px !important;
-    background-color: #016b1e !important;
-}
-.Ongoing{
-    width : 120px !important;
-    background-color: #df7f02 !important;
-}
-.NotStarted{
-    width : 120px !important;
-    background-color: #38c6f9 !important;
+.internshipContent {
+  line-height: 28px;
+  margin-left: 20px;
 }
 
-.intershipsbody{
-    border-radius: 8px;
+.Completed {
+  width: 120px !important;
+  background-color: #016b1e !important;
+}
+.Ongoing {
+  width: 120px !important;
+  background-color: #df7f02 !important;
+}
+.NotStarted {
+  width: 120px !important;
+  background-color: #38c6f9 !important;
 }
 
-
-.internshipViewBtn{
-     background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
+.intershipsbody {
+  border-radius: 8px;
 }
 
-.certificatesDiv{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 30px 0px;
+.internshipViewBtn {
+  background-image: linear-gradient(
+    to bottom right,
+    #15154a,
+    #2f2f89,
+    #6c38b9,
+    #9724c9
+  );
+}
+
+.certificatesDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px 0px;
 }
 
 .certificatesCard {
-    width: 610px !important;
-    padding-bottom: 20px !important;
-    /* cursor: pointer; */
+  width: 610px !important;
+  padding-bottom: 20px !important;
 }
 
-.radioBtnDiv{
-    width: 350px;
+.radioDiv {
+  min-width: 40ch !important;
 }
 
-.addInternInputs1 .css-vqmohf-MuiButtonBase-root-MuiRadio-root{
-    color: white !important;
+.studentDetailsView {
+  margin: 0px 70px !important;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  row-gap: 10px;
+  justify-content: space-evenly;
+  margin: 35px 0px 20px;
+  align-items: flex-start;
 }
 
-.studentDetailsView{
-    margin: 0px 70px !important;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 30px;
-    row-gap: 10px;
-    justify-content: space-evenly;
-    margin: 35px 0px 20px;
-    align-items: flex-start;
-}
+@media screen and (max-width: 600px) {
+  .myAccountInputs {
+    min-width: 32ch !important;
+    border-radius: 20px !important;
+  }
 
+  .radioDiv{
+    min-width: 32ch !important;
+  }
 
-@media screen and (max-width:600px) {
+  .profileCardContent {
+    padding: 0px !important;
+  }
+  .studentDetailsView {
+    margin: 0px !important;
+  }
+  .editprofileCard {
+    margin: 0px;
+  }
 
-    .studentDetailsView{
-        margin: 0px !important;
-    }
-    .editprofileCard{
-        margin: 0px;
-    }
-
-    .profileInputs .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
-        width: 250px !important;
-    }
-    .profileInputs .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-        border-radius: 20px !important;
-        width: 250px !important;
-    }
-    .addInternInputs .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
-        width: 250px !important;
-    }
-    .addInternInputs .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-        border-radius: 20px !important;
-        width: 250px !important;
-    }
-
-    .myAccountBody{
-        padding: 0;
-    }
-
-    .editUserDetailsBtn{
-        display: grid;
-        justify-content: center;
-    }
-
-    .radioBtnDiv {
-        margin-left: -12px !important;
-        width: 250px;
-    }
-
-    .intershipCard {
-        min-width: 330px !important;
-    }
-
-    .certificatesCard{
-        min-width: 320px !important;
-        padding-bottom: 20px !important;
-    }
-    .intershipCertificationBackGround{
-        margin: 0px !important;
-    }
-
-    .certificatesCard{
-        margin: 10px !important;
-    }
-}
-
-.accountHeader{
-    display: flex;
-    justify-content: center;
-}
-
-.accountHeader p{
-    border-bottom: 3px solid #f99900;
-    width: 270px;
+  .certificationTitle {
+    font-size: 18px;
     text-align: center;
-    font-size: 25px;
-    font-weight: 600;
-    margin-top: 10px;
-    color: #f99900;
+    margin-left: -20px;
+  }
+
+  .myAccountBody {
+    padding: 0;
+  }
+
+  .editUserDetailsBtn {
+    display: grid;
+    justify-content: center;
+  }
+
+  .radioBtnDiv {
+    margin-left: -12px !important;
+    width: 250px;
+  }
+
+  .intershipCard {
+    min-width: 330px !important;
+  }
+
+  .certificatesCard {
+    min-width: 320px !important;
+    padding-bottom: 20px !important;
+  }
+  .intershipCertificationBackGround {
+    margin: 0px !important;
+  }
+
+  .certificatesCard {
+    margin: 10px !important;
+  }
+}
+
+.accountHeader {
+  display: flex;
+  justify-content: center;
+}
+
+.accountHeader p {
+  border-bottom: 3px solid #f99900;
+  width: 270px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #f99900;
 }
 
 
-/* Front color */
-
-.white{
-    color: #e8e8e8;
+.white {
+  color: #e8e8e8;
 }
-
-
 
 .header-blog .container {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 100%;
 }
 
 .header-blog,
@@ -465,71 +469,83 @@ input::-webkit-calendar-picker-indicator{
 footer,
 .video,
 .call-to-action {
-    background-image: url("https://3.bp.blogspot.com/-04vqcpHNiuo/W0x2THLFZXI/AAAAAAAAOl8/DUvOAykZU9Q0rVaRw4nFTWQM-d8__k-agCLcBGAs/s1600/dresscounter.jpg");
+  background-image: url("https://3.bp.blogspot.com/-04vqcpHNiuo/W0x2THLFZXI/AAAAAAAAOl8/DUvOAykZU9Q0rVaRw4nFTWQM-d8__k-agCLcBGAs/s1600/dresscounter.jpg");
 }
 
 .header-blog {
-    background-size: cover;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
 
 .bg-animation {
-    -webkit-animation: bg-animation 15s ease-in-out infinite;
-    animation: bg-animation 15s ease-in-out infinite;
+  -webkit-animation: bg-animation 15s ease-in-out infinite;
+  animation: bg-animation 15s ease-in-out infinite;
 }
 
-
 header {
-    display: block;
+  display: block;
 }
 
 .header-blog .container {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 100%;
 }
 
-
-
 @-webkit-keyframes bg-animation {
-    0% {
-        background-position: top;
-    }
+  0% {
+    background-position: top;
+  }
 
-    50% {
-        background-position: bottom;
-    }
+  50% {
+    background-position: bottom;
+  }
 
-    100% {
-        background-position: top;
-    }
+  100% {
+    background-position: top;
+  }
 }
 
 @keyframes bg-animation {
-    0% {
-        background-position: top;
-    }
+  0% {
+    background-position: top;
+  }
 
-    50% {
-        background-position: bottom;
-    }
+  50% {
+    background-position: bottom;
+  }
 
-    100% {
-        background-position: top;
-    }
+  100% {
+    background-position: top;
+  }
 }
 
-.intershipCertificationBackGround{
-    background-image: linear-gradient(to bottom right, #27277f, #561e72, #2f2f89, #8645e7);
-    min-height: 90vh;
-    margin: 10px;
+.intershipCertificationBackGround {
+  background-image: linear-gradient(
+    to bottom right,
+    #27277f,
+    #561e72,
+    #2f2f89,
+    #8645e7
+  );
+  min-height: 90vh;
+  margin: 10px;
 }
 
 input:-webkit-autofill {
-    -webkit-text-fill-color: rgb(0, 0, 0) !important;
+  -webkit-text-fill-color: rgb(0, 0, 0) !important;
 }
 
-.myAccountBody{
-    overflow-y: scroll;
-    max-height: 95vh;
+.myAccountBody {
+  overflow-y: scroll;
+  max-height: 95vh;
 }
+
+.my_AccountBody fieldset {
+  border-color: #fff !important;
+}
+
+.fileInputs {
+  margin-left: 30px;
+}
+
+

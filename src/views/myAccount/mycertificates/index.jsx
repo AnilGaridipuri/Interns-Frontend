@@ -90,7 +90,7 @@ const MyCertificates = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      <p className="intershipTitle">Certification Details</p>
+                      <p className="intershipTitle certificationTitle">Certification Details</p>
 
                       <div
                         style={{

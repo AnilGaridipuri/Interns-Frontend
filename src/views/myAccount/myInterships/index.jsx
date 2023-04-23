@@ -202,10 +202,11 @@ const MyInterships = () => {
                         }
                         style={{
                           textDecoration: "none",
-                          width: "10rem",
+                          width: "12rem",
                           height: "30px",
                           borderRadius: "30px",
                           color: "#fff",
+                          textDecoration:'none'
                         }}
                         className="internshipViewBtn"
                         endIcon={<EastIcon />}

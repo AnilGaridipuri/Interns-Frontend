@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
 
 export const api = axios.create({
-  baseURL: `http://127.0.0.1:8000/api`,
+  baseURL: `https://zany-pear-lion-toga.cyclic.app/api`,
 });

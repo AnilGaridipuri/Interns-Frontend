@@ -13,7 +13,7 @@ DialogTitle,
   Radio,
   RadioGroup,
   Select,
-  TextField,
+  OutlinedInput,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { api } from "../axios/api.config";
@@ -163,7 +163,8 @@ export default function EditInternship(props) {
             <div className="addInternInputsDiv">
               <div className="addInternInputs">
                 <label>Company Name :</label>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="Company Name"
                   id="outlined-size-small"
                   size="small"
@@ -173,7 +174,7 @@ export default function EditInternship(props) {
                 />
               </div>
               <div className="addInternInputs">
-                <FormControl className="radioBtnDiv">
+                <FormControl className="myAccountInputs selectColor">
                   <label className="radioLabel">Type :</label>
                   <RadioGroup
                     row
@@ -193,18 +194,13 @@ export default function EditInternship(props) {
                       label="Job"
                       checked={addNewIntern.type == "Job"}
                     />
-                    {/* <FormControlLabel
-                      value="Certification"
-                      control={<Radio />}
-                      label="Certification"
-                      checked={addNewIntern.type == "Certification"}
-                    /> */}
                   </RadioGroup>
                 </FormControl>
               </div>
               <div className="addInternInputs">
                 <label>Project Name :</label>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="Project Name"
                   id="outlined-size-small"
                   size="small"
@@ -215,7 +211,8 @@ export default function EditInternship(props) {
               </div>
               <div className="addInternInputs">
                 <label>Domain :</label>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="Web/ML/AI/"
                   id="outlined-size-small"
                   size="small"
@@ -226,7 +223,8 @@ export default function EditInternship(props) {
               </div>
               <div className="addInternInputs">
                 <label>Role :</label>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="Role"
                   id="outlined-size-small"
                   size="small"
@@ -237,7 +235,8 @@ export default function EditInternship(props) {
               </div>
               <div className="addInternInputs">
                 <label>Stipend :</label>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="No or Yes"
                   id="outlined-size-small"
                   size="small"
@@ -250,6 +249,7 @@ export default function EditInternship(props) {
                 <label>Status :</label>
                 <FormControl size="small">
                   <Select
+                    className="myAccountInputs selectColor"
                     id="demo-simple-select"
                     defaultValue={addNewIntern.status}
                     name="graduationPosition"
@@ -274,7 +274,8 @@ export default function EditInternship(props) {
               <div>
                 <div className="addInternInputs">
                   <label>Start Date :</label>
-                  <TextField
+                  <OutlinedInput
+                    className="myAccountInputs"
                     value={addNewIntern.start_date || ""}
                     onChange={onChnageInputs}
                     name="start_date"
@@ -289,7 +290,8 @@ export default function EditInternship(props) {
               <div>
                 <div className="addInternInputs">
                   <label>End Date :</label>
-                  <TextField
+                  <OutlinedInput
+                    className="myAccountInputs"
                     value={addNewIntern.end_date || ""}
                     onChange={onChnageInputs}
                     name="end_date"
@@ -301,10 +303,13 @@ export default function EditInternship(props) {
                   />
                 </div>
               </div>
+            </div>
+            <div className="addInternInputsDiv">
               <div>
-                <div className="addInternInputs">
+                <div className="addInternInputs fileInputs">
                   <label>Offer Letter :</label>
-                  <TextField
+                  <OutlinedInput
+                    className="myAccountInputs "
                     onChange={handleOnImageChange}
                     name="offerLetterpath"
                     type="file"
@@ -314,27 +319,30 @@ export default function EditInternship(props) {
                 </div>
                 <div className="previewImage">
                   <div>
-                    {addNewIntern.offerLetterpath ? (
-                      <img
-                        src={addNewIntern.offerLetterpath}
-                        style={{
-                          width: "300px",
-                          height: "270px",
-                          objectfit: "fill",
-                        }}
-                        alt="preview image"
-                      />
-                    ) : (
-                      <p style={{ color: "red" }}>Offer Letter Not Upload</p>
-                    )}
+                    <div>
+                      {addNewIntern.offerLetterpath ? (
+                        <img
+                          src={addNewIntern.offerLetterpath}
+                          style={{
+                            width: "300px",
+                            height: "270px",
+                            objectfit: "fill",
+                          }}
+                          alt="preview image"
+                        />
+                      ) : (
+                        <p style={{ color: "red" }}>Offer Letter Not Upload</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
               {addNewIntern.status == "Completed" ? (
                 <div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs fileInputs">
                     <label>Completion Certificate :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       onChange={handleOnImageChange}
                       name="completionCertificatepath"
                       type="file"

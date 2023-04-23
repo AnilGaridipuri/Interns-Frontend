@@ -1,259 +1,208 @@
 .navBarBody {
-    background-color: #fff !important;
-    padding: 10px 10px;
-    box-shadow: 1px 1px 6px 0px #b4b4b4;
-    position: sticky;
-    top: 0px;
-    z-index : 4;
+  background-color: #fff !important;
+  padding: 10px 10px;
+  box-shadow: 1px 1px 6px 0px #b4b4b4;
+  position: sticky;
+  top: 0px;
+  z-index: 4;
+  position: relative;
 }
 
 .css-19r6kue-MuiContainer-root {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
-.css-r6ewbb-MuiToolbar-root {
-    display: grid !important;
-    grid-template-columns: 26% 54% auto !important;
-    column-gap: 20px;
+.navBarDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navBarLinkDiv {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: 30px;
+}
+.menuItemsList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: 10px;
 }
 
 .navBarLogoDiv {
-    display: flex !important;
-    align-items: center;
-}
-
-.menuItemsList {
-    display: flex;
-    align-items: right !important;
-    column-gap: 10px;
-    justify-content: flex-end;
-    margin-right: -80px !important;
+  display: flex !important;
+  align-items: center;
 }
 
 .navlogoText {
-    font-size: 160%;
-    font-weight: 600;
-    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);;
-    background-clip: text;
-    color: transparent;
-    /* color:  */
+  font-size: 160%;
+  font-weight: 600;
+  background-image: linear-gradient(
+    to bottom right,
+    #15154a,
+    #2f2f89,
+    #6c38b9,
+    #9724c9
+  );
+  background-clip: text;
+  color: transparent;
 }
-/* 
-.css-2uchni{
-    width: 200px;
-} */
 
-.NavProfileDiv{
-    display: flex !important;
-    justify-content: flex-end;
-    align-items: center;
-    column-gap: 20px;
-    /* width: 200px; */
+.NavProfileDiv {
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 20px;
 }
-.navLoginBtnDiv{
-    display: flex !important;
-    justify-content: flex-end;
-    align-items: center;
-    column-gap: 20px;
+
+.navLoginBtnDiv {
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 20px;
 }
 
 .divider {
-    border-left: 2px solid rgb(144, 140, 140);
-    height: 20px;
+  border-left: 2px solid rgb(144, 140, 140);
+  height: 20px;
 }
 
 .rollnoText {
-    color: black !important;
-    text-align: center;
+  color: black !important;
+  text-align: center;
 }
 
-.menuIconDiv{
-    display: none;
+.menuIconDiv {
+  display: none;
 }
 
-.mitsLogo{
-    width: 60px;
+.mitsLogo {
+  width: 60px;
 }
 
 .navItems {
-    font-size: 16px;
-    width: 160px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  font-size: 16px;
+  width: auto;
+  padding: 0px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .navItems_active,
 .navItems:hover {
-    color: #fff;
-    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
-    height: 32px;
-    display: flex;
+  color: #fff;
+  background-image: linear-gradient(
+    to bottom right,
+    #15154a,
+    #2f2f89,
+    #6c38b9,
+    #9724c9
+  );
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px;
+  width: auto;
+  border-radius: 20px;
+  padding: 0px 15px;
+}
+
+@media only screen and (max-width: 800px) {
+  .navBarBody {
+    height: 100px !important;
+    padding: 10px 5px ;
+  }
+  .navBarBody.active {
+    height: 200px !important;
+  }
+
+  .navBarLogoDiv {
+    display: grid !important;
+    justify-items: center;
     align-items: center;
+    place-items: center;
+  }
+
+  .navItems{
+    width: 150px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .menuItemsList.active {
+    display: grid;
+    text-align: center !important;
     justify-content: center;
-    text-align: center;
-    font-size: 16px;
-    width: 160px;
-    border-radius: 20px;
+    align-items: center;
+    position: absolute;
+    top: 95px;
+    width: 100%;
+    left: -20px;
+  }
+
+  .menuItemsList {
+    display: none;
+  }
+
+  .menuIconDiv {
+    display: block;
+  }
+  .css-r6ewbb-MuiToolbar-root {
+    display: flex !important;
+  }
+  .navlogoText {
+    font-size: 120%;
+  }
+  .rollnoText {
+    display: none;
+  }
+   .navLoginBtn {
+    width: 70px !important;
+    padding: 5px 10px;
+  }
+  .navLoginBtn_active {
+    width: 70px !important;
+  }
 }
 
-@media screen and (max-width: 700px) and (min-width: 550px){
-    .navBarLogoDiv {
-        left: 40% !important;
-    }
-    .menuItemsList {
-        left: 40.5% !important;
-    }
+.navLoginBtn {
+  border-radius: 30px !important;
+  background-image: linear-gradient(to bottom right, #15154a, #2f2f89);
+  background-clip: text;
+  color: transparent;
+  width: 120px;
+  height: 30px;
+  margin-top: 30px !important;
+  text-align: center !important;
+  padding-top: 5px;
+  margin-top: 7px !important;
+  font-weight: bold;
+  border: 2px solid #6c38b9;
 }
 
-@media only screen and (max-width: 700px) {
-    .navBarBody {
-        height: 100px !important;
-    }
-    .navBarBody.active {
-        height: 210px !important;
-    }
-    .navBarLogoDiv {
-        display: grid !important;
-        justify-items: center;
-        align-items: center;
-        place-items: center;
-        position: absolute;
-        left: 30%;
-        top: 0%;
-    }
-
-    .NavProfileDiv{
-        position: absolute;
-        right: 0%;
-        top: 15%;
-        column-gap: 10px;
-       
-    }
-    
-    .navLoginBtnDiv{
-        position: absolute;
-        right: 0%;
-        top: 20%;
-    }
-
-    .divider{
-        display: none;
-    }
-
-    .menuItemsList.active{
-        display: grid;
-        text-align: center !important;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        left: 33%;
-        top: 85px;
-    }
-
-    .menuItemsList {
-        display: none;
-    }
-    .menuIconDiv {
-        display: block;
-    }
-    .css-r6ewbb-MuiToolbar-root {
-        display: flex !important;
-    }
-    .menuIcon {
-        cursor: pointer;
-        display: flex;
-        position: absolute;
-        left: 0%;
-        top: 40%;
-        color: #000;
-    }
-    .navlogoText {
-        font-size: 120%;
-    }
-
-    .rollnoText{
-        display: none;
-    }
-}
-
-
-
-@media screen and (max-width: 1145px) and (min-width: 800px) {
-    .css-r6ewbb-MuiToolbar-root {
-        grid-template-columns: 26% 50% auto !important;
-        column-gap: 10px;
-    }
-
-    .NavProfileDiv {
-        column-gap: 10px;
-    }
-    .navlogoText {
-        font-size: 160%;
-    }
-}
-
-@media screen and (max-width: 800px) and (min-width: 700px) {
-    .css-r6ewbb-MuiToolbar-root {
-        grid-template-columns: 27.7% 43% auto !important;
-        column-gap: 5px;
-    }
-
-    .NavProfileDiv {
-        column-gap: 7px;
-    }
-
-    .mitsLogo{
-        width: 55px;
-    }
-    .menuItemsList {
-        column-gap: 5px;
-    }
-    .navlogoText {
-        font-size: 135%;
-    }
-
-    .navItems{
-        width: 100px;
-    }
-
-    .css-r6ewbb-MuiToolbar-root{
-        column-gap: 5px;
-    }
-}
-
-
-.navLoginBtn{
-    /* background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9); */
-    border-radius: 30px !important;
-    background-image: linear-gradient(to bottom right, #15154a, #2f2f89);
-    background-clip: text;
-    color: transparent;
-    width: 120px;
-    height: 30px;
-    margin-top: 30px !important;
-    text-align: center !important;
-    padding-top: 5px;
-    margin-top: 7px !important;
-    font-weight: bold;
-    border:2px solid #6c38b9;
-}
-.navLoginBtn_active{
-    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9);
-    border-radius: 30px !important;
-    color: #fff !important;
-    width: 120px;
-    height: 30px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 30px !important;
-    text-align: center !important;
-    padding-top: 5px;
-    margin-top: 7px !important;
-}
-
-@media screen and (max-width:500px) {
-    .navLoginBtn{
-        width: 75px;
-    }
+.navLoginBtn_active {
+  background-image: linear-gradient(
+    to bottom right,
+    #15154a,
+    #2f2f89,
+    #6c38b9,
+    #9724c9
+  );
+  border-radius: 30px !important;
+  color: #fff !important;
+  width: 120px;
+  height: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 30px !important;
+  text-align: center !important;
+  padding-top: 5px;
+  margin-top: 7px !important;
 }

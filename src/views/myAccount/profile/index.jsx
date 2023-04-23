@@ -9,6 +9,7 @@ import { api } from "../../../axios/api.config";
 import { useParams } from "react-router";
 import { ToastErrorMessage } from "../../../uitils/toastMessage";
 import AccountHeader from "../../../components/accountHeader";
+import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
 
 const Profile = () => {
   const [userDetails, setUserDeatils] = useState({});
@@ -31,7 +32,7 @@ const Profile = () => {
     }
   };
   return (
-    <div className="profileBody">
+    <div className="profileBody my_AccountBody">
       <Card className="profileCard  header-blog bg-animation container">
         <AccountHeader label="Profile" />
         <CardContent className="profileCardContent" style={{ paddingTop: 15 }}>
@@ -54,7 +55,8 @@ const Profile = () => {
             <div className="profileInputs white">
               <label>Name</label>
               <span className="inputdout white">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -65,7 +67,8 @@ const Profile = () => {
             <div className="profileInputs white">
               <label>Roll No</label>
               <span className="inputdout white">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -76,7 +79,8 @@ const Profile = () => {
             <div className="profileInputs white">
               <label>Email</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -87,7 +91,8 @@ const Profile = () => {
             <div className="profileInputs white">
               <label>Year</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -98,7 +103,8 @@ const Profile = () => {
             <div className="profileInputs white">
               <label>Branch</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -109,7 +115,8 @@ const Profile = () => {
             <div className="profileInputs white">
               <label>Section</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Section CSE-A/CAI-A"
                 id="outlined-size-small"
                 defaultValue="Small"
@@ -122,7 +129,8 @@ const Profile = () => {
             <div className="profileInputs white">
               <label>Phone No</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -133,7 +141,8 @@ const Profile = () => {
             <div className="profileInputs white">
               <label>Alt Email</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Alternative email "
                 id="outlined-size-small"
                 defaultValue="Small"

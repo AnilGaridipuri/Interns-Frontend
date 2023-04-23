@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { api } from "../axios/api.config";
 import { ToastErrorMessage, ToastSuccessMessage } from "../uitils/toastMessage";
-import { Avatar, FormControl, FormControlLabel, MenuItem, Radio, RadioGroup, Select, TextField } from "@mui/material";
+import { Avatar, FormControl, FormControlLabel, MenuItem, Radio, RadioGroup, Select, OutlinedInput } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router";
 import { ApplicationConstant } from "../constant/applicationConstant";
@@ -132,10 +132,10 @@ export default function ViewWorkDetails(props) {
                   Internship Details
                 </p>
                 <div className="addInternInputsDiv">
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Company Name :</label>
-                    <TextField
-                      className="workValue"
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="Company Name"
                       id="outlined-size-small"
                       size="small"
@@ -144,11 +144,11 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
-                    <FormControl className="radioBtnDiv">
+                  <div className="addInternInputs black">
+                    <FormControl className="myAccountInputs">
                       <label className="radioLabel">Type :</label>
                       <FormControlLabel
-                        className="workValue"
+                        className="myAccountInputs"
                         value="props.singleWorkDetails.type"
                         control={<Radio />}
                         label="Internship"
@@ -156,10 +156,10 @@ export default function ViewWorkDetails(props) {
                       />
                     </FormControl>
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Project Name :</label>
-                    <TextField
-                      className="workValue"
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="Project Name"
                       id="outlined-size-small"
                       size="small"
@@ -168,10 +168,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Domain :</label>
-                    <TextField
-                      className="workValue"
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="Web/ML/AI/"
                       id="outlined-size-small"
                       size="small"
@@ -180,10 +180,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Role :</label>
-                    <TextField
-                      className="workValue"
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="Role"
                       id="outlined-size-small"
                       size="small"
@@ -192,10 +192,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Stipend :</label>
-                    <TextField
-                      className="workValue"
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="No or Yes"
                       id="outlined-size-small"
                       size="small"
@@ -204,10 +204,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Status :</label>
-                    <TextField
-                      className="workValue"
+                    <OutlinedInput
+                      className="myAccountInputs"
                       id="outlined-size-small"
                       size="small"
                       value={props.singleWorkDetails.status}
@@ -216,10 +216,10 @@ export default function ViewWorkDetails(props) {
                     />
                   </div>
                   <div>
-                    <div className="addInternInputs">
+                    <div className="addInternInputs black">
                       <label>Start Date :</label>
-                      <TextField
-                        className="workValue"
+                      <OutlinedInput
+                        className="myAccountInputs"
                         value={props.singleWorkDetails.start_date || ""}
                         name="start_date"
                         type="date"
@@ -232,10 +232,10 @@ export default function ViewWorkDetails(props) {
                     </div>
                   </div>
                   <div>
-                    <div className="addInternInputs">
+                    <div className="addInternInputs black">
                       <label>End Date :</label>
-                      <TextField
-                        className="workValue"
+                      <OutlinedInput
+                        className="myAccountInputs"
                         value={props.singleWorkDetails.end_date || ""}
                         name="end_date"
                         type="date"
@@ -302,9 +302,10 @@ export default function ViewWorkDetails(props) {
             ) : (
               <div>
                 <div className="addInternInputsDiv">
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Organization Name :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       placeholder="Organization Name"
                       id="outlined-size-small"
                       size="small"
@@ -312,9 +313,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Domain :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       placeholder="Web/ML/AI/"
                       id="outlined-size-small"
                       size="small"
@@ -324,9 +326,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Status :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       id="outlined-size-small"
                       size="small"
                       value={props.singlecertificationsDetails.status}
@@ -334,9 +337,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Start Date :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       value={props.singlecertificationsDetails.start_date || ""}
                       type="date"
                       required
@@ -346,9 +350,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>End Date :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       value={props.singlecertificationsDetails.end_date || ""}
                       type="date"
                       required

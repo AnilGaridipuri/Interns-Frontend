@@ -35,6 +35,7 @@ const ForgotPasswordPage = () => {
     otp:"",
     mailId:""
   })
+
   const [emailerror, setEmailerror] = useState(false);
   const [otpVerifyed, setOtpVerifyed] = useState(false);
   const [emailValidate_status, setEmailValidate_status] = useState(false);
@@ -43,7 +44,6 @@ const ForgotPasswordPage = () => {
   const [confirmResetPasswordValidate_status, setConfirmResetPasswordValidate_status] = useState(false);
   const [sendOtpBtn, setSendOtpBtn] = useState(false);
   var errormessage;
-  console.log(params)
 
   useEffect(() => {
     if(params.passwordfunction === "changepassword"){
@@ -64,6 +64,7 @@ const ForgotPasswordPage = () => {
 
   function handleEmail(e) {
     let email = e.target.value;
+    // console.log(email,"Hellowedf")
     var validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var message = document.getElementById("EmailError");
 
@@ -80,7 +81,7 @@ const ForgotPasswordPage = () => {
       setEmailValidate_status(true);
       setEmailerror(false);
     }
-    message.textContent = errormessage;
+    console.log(email,"Mail IDadad")
     setForgotPasswordParams((pre)=>({
       ...pre,
       mailId:email
@@ -89,7 +90,9 @@ const ForgotPasswordPage = () => {
       ...pre,
       mailId: email,
     }));
+    message.textContent = errormessage;
     setSendOtpBtn(false);
+    console.log(otpDetails.mailId,"OTP");
   }
 
   async function getOtp(params) {
