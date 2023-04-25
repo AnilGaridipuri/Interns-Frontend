@@ -6,11 +6,13 @@ import bgvideo1 from '../../assets/v1.mp4'
 import impInternsip from "../../assets/impsOfInternship.jpg";
 import impInternsip1 from "../../assets/impsIntern1.webp";
 import InternshipJob from "../../assets/Internship-Job.png";
+import python from "../../assets/python.jpg";
+import dataStructures from "../../assets/data_structure.jpeg";
+import OS from "../../assets/os.jpg";
 import QuoteCarousel from "./quoteCarousel";
 import EastIcon from "@mui/icons-material/East";
-// import { Outlet } from "react-router-dom"; 
 import StdAlterBox from "./stdAlterBox";
-import { Button } from "@mui/material";
+import { Button, Link } from "@mui/material";
 
 const HomePage = () => {
   const id = localStorage.getItem("id");
@@ -139,6 +141,7 @@ const HomePage = () => {
                   <Button>HTML</Button>
                   <Button>CSS</Button>
                   <Button>Java Script</Button>
+                  <Button>React Js</Button>
                   <NavLink
                     className="majorDomainsListItemLink"
                     to={ApplicationConstant.HOME_PAGE_WEB_DEVELOPMENT_PATH}
@@ -152,7 +155,7 @@ const HomePage = () => {
                 <div className="LanguageDiv">
                   <Button>Python</Button>
                   <Button>ML</Button>
-                  <Button>Java</Button>
+                  <Button>Mathematics </Button>
                   <NavLink
                     className="majorDomainsListItemLink"
                     to={ApplicationConstant.HOME_PAGE_MACHINE_LEARNING_PATH}
@@ -221,13 +224,104 @@ const HomePage = () => {
           </div>
         </div>
         <div>
-          <p>Most required certification Coures</p>
+          <p className="majorCerificationsCardTitle">
+            Most required certification Coures
+          </p>
+          <div className="cerificationCoursesDiv">
+            {certificationDeatils.map((item) => (
+              <div className="cerificationCoursesCard">
+                <img
+                  src={item.img}
+                  alt="pythonLogo"
+                  className="certificationImg"
+                ></img>
+                <div className="certificationInfoDiv">
+                  <p className="certificationName">{item.title}</p>
+                  <div className="certificationInfo">
+                    <label style={{ fontWeight: "bold", width: "25%" }}>
+                      Program
+                    </label>
+                    <p style={{ fontWeight: "bold", width: "10%" }}>:</p>
+                    <p style={{ width: "50%" }}>{item.program}</p>
+                  </div>
+                  <div className="certificationInfo">
+                    <label style={{ fontWeight: "bold", width: "25%" }}>
+                      Duration
+                    </label>
+                    <p style={{ fontWeight: "bold", width: "10%" }}>:</p>
+                    <p style={{ width: "50%" }}>{item.duration}</p>
+                  </div>
+                  <div className="certificationInfo">
+                    <label style={{ fontWeight: "bold", width: "25%" }}>
+                      Sections
+                    </label>
+                    <p style={{ fontWeight: "bold", width: "10%" }}>:</p>
+                    <p style={{ width: "50%" }}>{item.sections}</p>
+                  </div>
+                  <div className="certificationInfo">
+                    <label style={{ fontWeight: "bold", width: "25%" }}>
+                      Price
+                    </label>
+                    <p style={{ fontWeight: "bold", width: "10%" }}>:</p>
+                    <p style={{ width: "50%" }}>{item.price} /-</p>
+                  </div>
+                  <div className="certificationInfo">
+                    <label style={{ fontWeight: "bold", width: "25%" }}>
+                      Platform
+                    </label>
+                    <p style={{ fontWeight: "bold", width: "10%" }}>:</p>
+                    <p style={{ width: "50%" }}>{item.platform}</p>
+                  </div>
+                </div>
+                <div className="certificationLink">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                  >
+                    Gets Started
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <h2>Wanna be Internship Ready !!</h2>
       </div>
-      {/* <Outlet /> */}
     </div>
   );
 };
 
 export default HomePage;
+
+
+const certificationDeatils = [
+  {
+    img: python,
+    title: "Complete Python Developer in 2023: Zero to Mastery",
+    program: "Python",
+    duration: "30h 52m total length",
+    sections: 25,
+    price: 549,
+    platform: "Udmey.com",
+    link: "https://www.udemy.com/course/complete-python-developer-zero-to-mastery/",
+  },
+  {
+    img: dataStructures,
+    title: "The Complete Data Structures and Algorithms",
+    program: "Python",
+    duration: "42h 24m total length",
+    sections: 48,
+    price: 549,
+    platform: "Udmey.com",
+    link: "https://www.udemy.com/course/data-structures-and-algorithms-bootcamp-in-python/",
+  },
+  {
+    img: OS,
+    title: "Operating System",
+    program: "C",
+    duration: "7h 45m total length",
+    sections: 5,
+    price: 549,
+    platform: "Udmey.com",
+    link: "https://www.udemy.com/course/operating-system-j/",
+  },
+];
