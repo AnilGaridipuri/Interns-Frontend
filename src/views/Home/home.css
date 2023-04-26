@@ -302,6 +302,7 @@
   color: #462255;
   font-family: "Calibri";
   font-weight:  bold;
+  min-height: 50px;
 }
 
 .certificationInfo{
