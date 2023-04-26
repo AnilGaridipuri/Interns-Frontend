@@ -549,3 +549,11 @@ input:-webkit-autofill {
 }
 
 
+.loadingBtn{
+  border: 2px solid #a1a1a1 !important;
+  border-radius: 5px !important;
+  width: 200px !important;
+  height: 40px;
+  color:#a1a1a1 !important;
+  background-color: #91ffa7;
+}

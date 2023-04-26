@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AccountHeader from "../../../components/accountHeader";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import {
-Button,
+  Button,
   CardActions,
   FormControl,
   FormControlLabel,
@@ -13,11 +13,15 @@ Button,
   RadioGroup,
   Select,
   OutlinedInput,
+  CircularProgress,
 } from "@mui/material";
-import {useNavigate, useParams} from 'react-router-dom'
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ApplicationConstant } from "../../../constant/applicationConstant";
-import { ToastErrorMessage, ToastSuccessMessage } from "../../../uitils/toastMessage";
+import {
+  ToastErrorMessage,
+  ToastSuccessMessage,
+} from "../../../uitils/toastMessage";
 import { api } from "../../../axios/api.config";
 import { margin } from "@mui/system";
 import LoadingCircle from "../../../components/loading";
@@ -29,39 +33,40 @@ const selectStatus = [
 ];
 
 const AddNewInternship = () => {
-  
   const authState = useSelector((state) => state.authReducer);
-  
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
   const params = useParams();
 
-  const [isProfileUpdated, setisProfileUpdated] = useState(false)
+  const [isProfileUpdated, setisProfileUpdated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [uploadLoading, setUploadLoading] = useState(false);
   // console.log(loading, "loading");
 
-  const [offerLetterPreview, setOfferLetterPreview] = useState(null)
-  const [completionCertificatPreview, setCompletionCertificatePreview] = useState(null)
+  const [offerLetterPreview, setOfferLetterPreview] = useState(null);
+  const [completionCertificatPreview, setCompletionCertificatePreview] =
+    useState(null);
 
- useEffect(() => {
-   if (authState._id != params.id) {
-     navigate(`${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${params.id}`);
-   }
-   if (
-     authState.studentName !== "" &&
-     authState.rollno !== "" &&
-     authState.year !== "" &&
-     authState.branch !== "" &&
-     authState.section != ""
-   ) {
-     setisProfileUpdated(true);
-     setLoading(false);
-   }
-   setLoading(false);
- }, [params, authState]);
-  
+  useEffect(() => {
+    if (authState._id != params.id) {
+      navigate(`${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${params.id}`);
+    }
+    if (
+      authState.studentName !== "" &&
+      authState.rollno !== "" &&
+      authState.year !== "" &&
+      authState.branch !== "" &&
+      authState.section != ""
+    ) {
+      setisProfileUpdated(true);
+      setLoading(false);
+    }
+    setLoading(false);
+  }, [params, authState]);
+
   const [addNewIntern, setAddNewIntern] = useState({
-    studentId:authState._id,
-    projectName:"",
+    studentId: authState._id,
+    projectName: "",
     companyName: "",
     domain: "",
     role: "",
@@ -71,7 +76,7 @@ const AddNewInternship = () => {
     end_date: "",
     offerLetterpath: "",
     completionCertificatepath: "",
-    stipend:""
+    stipend: "",
   });
 
   // console.log(addNewIntern,)
@@ -87,64 +92,62 @@ const AddNewInternship = () => {
   };
 
   const handleImageUpload = async (e) => {
-      const filelist = e.target.files[0];
-      const filename = e.target.name;
-      // console.log("size====", e.target.name)
-      if(filelist.size>153600){
-        ToastErrorMessage("File size must be less than 150KB.")
-        document.getElementById(filename).value='';
-        return
-      }
-      if(!filelist.type.includes('image/')){
-        ToastErrorMessage("File type must be a jpeg/png/jpg.")
-        document.getElementById(filename).value='';
-        return
-      }
-      // console.log(filelist)
-      const base64 = await convertBase64(filelist);
-      if(filename==='offerLetterpath'){
-        // setOfferLetterPreview(base64)
-        var apiPath = `/offerLetterToS3`;
-      }else if(filename==='completionCertificatepath'){
-        // setCompletionCertificatePreview(base64)
-        var apiPath = `/completionCertificateToS3`
-      }
-      
-      let formData = new FormData();
-      formData.append(filename,filelist)
-      // formData.append('studentId', authState._id)
+    const filelist = e.target.files[0];
+    const filename = e.target.name;
+    // console.log("size====", e.target.name)
+    if (filelist.size > 153600) {
+      ToastErrorMessage("File size must be less than 150KB.");
+      document.getElementById(filename).value = "";
+      return;
+    }
+    if (!filelist.type.includes("image/")) {
+      ToastErrorMessage("File type must be a jpeg/png/jpg.");
+      document.getElementById(filename).value = "";
+      return;
+    }
+    // console.log(filelist)
+    const base64 = await convertBase64(filelist);
+    if (filename === "offerLetterpath") {
+      // setOfferLetterPreview(base64)
+      var apiPath = `/offerLetterToS3`;
+    } else if (filename === "completionCertificatepath") {
+      // setCompletionCertificatePreview(base64)
+      var apiPath = `/completionCertificateToS3`;
+    }
 
-      // const data = new URLSearchParams(formData).toString();
-      // console.log("data===============",data)
-      // console.log("profileFile _-------------------------- ", formData.entries())
-      // for (var key of formData.entries()) {
-      //   profilelink = key[1]
-      // } 
-      // console.log(profilelink)
-      // var location;
+    let formData = new FormData();
+    formData.append(filename, filelist);
+    // formData.append('studentId', authState._id)
 
+    // const data = new URLSearchParams(formData).toString();
+    // console.log("data===============",data)
+    // console.log("profileFile _-------------------------- ", formData.entries())
+    // for (var key of formData.entries()) {
+    //   profilelink = key[1]
+    // }
+    // console.log(profilelink)
+    // var location;
 
-      try {
-        const response = await api.post(
-          apiPath, 
-          formData, 
-          // {
-          //   headers :{
-          //     'Content-Type': 'application/x-www-form-urlencoded'
-          //   }
-          // }
-        );
-        // console.log(response.data)
-        setAddNewIntern((pre) => ({
-          ...pre,
-          [filename] : response.data,
-        }));
-        // setProfilePicEdited(true);
-      } catch (error) {
-        ToastErrorMessage(error.response.data);
-      }
-    };
-
+    try {
+      const response = await api.post(
+        apiPath,
+        formData
+        // {
+        //   headers :{
+        //     'Content-Type': 'application/x-www-form-urlencoded'
+        //   }
+        // }
+      );
+      // console.log(response.data)
+      setAddNewIntern((pre) => ({
+        ...pre,
+        [filename]: response.data,
+      }));
+      // setProfilePicEdited(true);
+    } catch (error) {
+      ToastErrorMessage(error.response.data);
+    }
+  };
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -160,7 +163,7 @@ const AddNewInternship = () => {
     });
   };
 
-  const cancelDeatils = () =>{
+  const cancelDeatils = () => {
     setAddNewIntern({
       studentId: authState._id,
       companyName: "",
@@ -175,21 +178,23 @@ const AddNewInternship = () => {
       stipend: "",
       projectName: "",
     });
-    document.getElementById('offerLetterpath').value='';
-    document.getElementById('completionCertificatepath').value='';
-  }
-  const uploadDeatils = async () =>{
+    document.getElementById("offerLetterpath").value = "";
+    document.getElementById("completionCertificatepath").value = "";
+  };
+  const uploadDeatils = async () => {
+    setUploadLoading(true);
     if (authState._id === params.id) {
       try {
         const responce = await api.post(`addNewWork`, addNewIntern);
-        ToastSuccessMessage('Successfully Uploaded !!')
-        cancelDeatils()
+        ToastSuccessMessage("Successfully Uploaded !!");
+        cancelDeatils();
+        setUploadLoading(false);
       } catch (error) {
         ToastErrorMessage(error.response.data || error.message);
+        setUploadLoading(false);
       }
     }
-  }
-  
+  };
 
   return (
     <div>
@@ -444,10 +449,12 @@ const AddNewInternship = () => {
                     Cancel
                   </Button>
                   <Button
-                    className="editUserBtn btnUpdate"
+                    className={
+                      uploadLoading ? "loadingBtn" : "editUserBtn btnUpdate"
+                    }
                     onClick={uploadDeatils}
                   >
-                    Upload
+                    {uploadLoading ? <CircularProgress /> : "Upload"}
                   </Button>
                 </div>
               </div>

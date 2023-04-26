@@ -4,9 +4,15 @@ import AccountHeader from "../../../components/accountHeader";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import { Button, FormControl, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  MenuItem,
+  Select,
+  CircularProgress,
+} from "@mui/material";
 import "../myAccount.css";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { setAuthentication } from "../../../store/slices/auth";
 import { capitalizeFirstLetter } from "./../../../uitils/jsFunctions";
@@ -17,7 +23,7 @@ import {
   ToastErrorMessage,
   ToastSuccessMessage,
 } from "../../../uitils/toastMessage";
-import FormData from 'form-data'
+import FormData from "form-data";
 
 const selectYear = [
   { displayName: "I", value: "I" },
@@ -48,7 +54,6 @@ const selectSection = [
   { displayName: "F", value: "F" },
 ];
 
-
 const EditProfile = () => {
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.authReducer);
@@ -68,15 +73,15 @@ const EditProfile = () => {
     phoneNumber: "",
     studentName: "",
     rollno: "",
-    year:"",
+    year: "",
     profile: "",
-    section:"",
-    altmail:""
+    section: "",
+    altmail: "",
   });
-  const [isProfilePicEdited, setIsProfilePicEdited] = useState(false)
-  const [editedProfilePic, setEditedProfilePic] = useState(null)
+  const [isProfilePicEdited, setIsProfilePicEdited] = useState(false);
+  const [editedProfilePic, setEditedProfilePic] = useState(null);
   const [userDetails, setUserDeatils] = useState({});
-
+  const [uploadLoading, setUploadLoading] = useState(false);
 
   useEffect(() => {
     if (!getuserDetails) {
@@ -91,7 +96,7 @@ const EditProfile = () => {
         const response = await api.post(`auth/user`, {
           id: params.id,
         });
-        setUserDeatils(response.data)
+        setUserDeatils(response.data);
         setstudentDeatils({
           branch: response.data.branch,
           mailId: response.data.mailId,
@@ -110,7 +115,6 @@ const EditProfile = () => {
   };
 
   const onChangeInputs = (e) => {
-    // console.log(e.target.files[0])
     const name = e.target.name;
     var value = e.target.value;
 
@@ -118,79 +122,64 @@ const EditProfile = () => {
       ...pre,
       [name]: value,
     }));
-    
-
   };
 
-    const handleImageUpload = async (e) => {
-      const filelist = e.target.files[0];
-      // console.log("size====", filelist.size)
-      if(filelist.size>204800){
-        ToastErrorMessage("Profile Picture size must be less than 200KB.")
-        document.getElementById('file-input').value='';
-        return
-      }
-      // console.log(filelist)
-      const base64 = await convertBase64(filelist);
-      setEditedProfilePic(base64);
-      let formData = new FormData();
-      formData.append('profilePic',filelist)
-      // formData.append('studentId', authState._id)
+  const handleImageUpload = async (e) => {
+    const filelist = e.target.files[0];
+    if (filelist.size > 204800) {
+      ToastErrorMessage("Profile Picture size must be less than 200KB.");
+      document.getElementById("file-input").value = "";
+      return;
+    }
+    const base64 = await convertBase64(filelist);
+    setEditedProfilePic(base64);
+    let formData = new FormData();
+    formData.append("profilePic", filelist);
+    // formData.append('studentId', authState._id)
 
-      // const data = new URLSearchParams(formData).toString();
-      // console.log("data===============",data)
-      // console.log("profileFile _-------------------------- ", formData.entries())
-      // for (var key of formData.entries()) {
-      //   profilelink = key[1]
-      // } 
-      // console.log(profilelink)
-      // var location;
+    // const data = new URLSearchParams(formData).toString();
+    // console.log("data===============",data)
+    // console.log("profileFile _-------------------------- ", formData.entries())
+    // for (var key of formData.entries()) {
+    //   profilelink = key[1]
+    // }
+    // console.log(profilelink)
+    // var location;
 
+    try {
+      const response = await api.post(
+        `/profilePicToS3/${params.id}`,
+        formData,
+      );
+      // console.log(response.data)
+      setstudentDeatils((pre) => ({
+        ...pre,
+        profile: response.data,
+      }));
+      setIsProfilePicEdited(true);
+    } catch (error) {
+      ToastErrorMessage(error.response.data);
+    }
+  };
 
-      try {
-        const response = await api.post(
-          `/profilePicToS3`, 
-          formData, 
-          // {
-          //   headers :{
-          //     'Content-Type': 'application/x-www-form-urlencoded'
-          //   }
-          // }
-        );
-        // console.log(response.data)
-        setstudentDeatils((pre) => ({
-          ...pre,
-          profile : response.data,
-        }));
-        setIsProfilePicEdited(true);
-      } catch (error) {
-        ToastErrorMessage(error.response.data);
-      }
-    };
-    // console.log("profileFile _+++++++++++++++++++++++++++++++= ",profileFile)
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
 
-
-    const convertBase64 = (file) => {
-      return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-
-        fileReader.onload = () => {
-          resolve(fileReader.result);
-        };
-        fileReader.onerror = (error) => {
-          reject(error);
-        };
-      });
-    };
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const updateUserDeatils = async () => {
+    setUploadLoading(true);
     try {
-
-      const response = await api.put(
-        `/update-user`, 
-        studentDetails
-      );
+      const response = await api.put(`/update-user`, studentDetails);
       setUserDeatils(response.data);
       dispatch(
         setAuthentication({
@@ -207,10 +196,12 @@ const EditProfile = () => {
           altmail: response.data.altmail,
         })
       );
-      setIsProfilePicEdited(false)
+      setIsProfilePicEdited(false);
+      setUploadLoading(false);
       ToastSuccessMessage("Successfull Updated");
     } catch (error) {
       ToastErrorMessage(error.response.data);
+      setUploadLoading(false);
     }
   };
 
@@ -225,7 +216,7 @@ const EditProfile = () => {
     setIsProfilePicEdited(false);
     setstudentDeatils({
       branch: userDetails.branch || "",
-      mailId: userDetails.mailId ,
+      mailId: userDetails.mailId,
       phoneNumber: userDetails.phoneNumber || "",
       studentName: userDetails.studentName || "",
       rollno: userDetails.rollno || "",
@@ -431,8 +422,11 @@ const EditProfile = () => {
           <Button className="editUserBtn btnCancle" onClick={cancleUserDeatils}>
             Cancle
           </Button>
-          <Button className="editUserBtn btnUpdate" onClick={updateUserDeatils}>
-            Update
+          <Button
+            className={uploadLoading ? "loadingBtn" : "editUserBtn btnUpdate"}
+            onClick={updateUserDeatils}
+          >
+            {uploadLoading ? <CircularProgress /> : "Update"}
           </Button>
           <Button className="editUserBtn btnChange" onClick={changePassword}>
             Change Password

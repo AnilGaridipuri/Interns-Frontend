@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
 import FilledInput from "@mui/material/FilledInput";
@@ -35,6 +35,7 @@ const LoginInputs = (props) => {
   const [email, setEmail] = useState(false);
   const [passwordValidate_status, setPasswordValidate_status] = useState(false);
   const [loginBtn, setLoginBtn] = useState(false);
+  const [uploadLoading, setUploadLoading] = useState(false);
   const passwordfunction = "forgotpassword";
   var errormessage;
 
@@ -90,6 +91,7 @@ const LoginInputs = (props) => {
     } else if (!passwordValidate_status) {
       toast.error("Password is required");
     } else {
+      setUploadLoading(true)
       try {
         const responce = await api.post(`/auth`, userLogin);
         toast.success("Successfully Login");
@@ -110,11 +112,12 @@ const LoginInputs = (props) => {
             section: responce.data.section || "",
             altmail: responce.data.altmail || "",
           })
-        );
+          );
+        setUploadLoading(false);
         navigate(ApplicationConstant.HOME_PAGE_PATH);
       } catch (error) {
         toast.error(error.response.data);
-        console.log(error.response.data);
+        setUploadLoading(false);
       }
     }
   }
@@ -175,13 +178,27 @@ const LoginInputs = (props) => {
               </Link>
             </div>
           </FormControl>
-          <Button
+          {/* <Button
             className="submitLoginBtn"
             type="submit"
             onClick={submitLogin}
             disabled={loginBtn}
           >
             Login
+          </Button> */}
+          <Button
+            className="submitLoginBtn"
+            onClick={submitLogin}
+          >
+            {uploadLoading ? (
+              <CircularProgress
+                size={27}
+                style={{ color: "#fff" }}
+                thickness={5}
+              />
+            ) : (
+              "Login"
+            )}
           </Button>
         </div>
       </ValidatorForm>
