@@ -97,6 +97,7 @@
 .filterInputs {
   width: 30ch;
   border-radius: 20px !important;
+  /* color: #15154a; */
 }
 
 .allWorksList .allWorksResetBtn {
