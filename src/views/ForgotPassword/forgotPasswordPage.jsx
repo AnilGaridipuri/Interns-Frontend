@@ -95,7 +95,8 @@ const ForgotPasswordPage = () => {
     console.log(otpDetails.mailId,"OTP");
   }
 
-  async function getOtp(params) {
+  async function getOtp() {
+    console.log("first")
     if (!emailValidate_status) {
       toast.error("Email is required");
     } else {
@@ -104,6 +105,8 @@ const ForgotPasswordPage = () => {
         toast.success(`OTP is send to ${response.data.data.email}`);
         setSendOtpBtn(true);
         setStep(step + 1);
+    console.log("sec")
+
         // console.log(response)
       } catch (error) {
         // console.log(error.response.data);
@@ -242,7 +245,7 @@ const ForgotPasswordPage = () => {
                         errormessage={errormessage}
                         sendOtpBtn={sendOtpBtn}
                         emailerror={emailerror}
-                        email={forgotPasswordParams.email}
+                        mailId={forgotPasswordParams.mailId}
                       />
                     </div>
                   );
@@ -253,6 +256,7 @@ const ForgotPasswordPage = () => {
                         handleOtp={handleOtp}
                         verifyOtp={verifyOtp}
                         handlechangeEmail={handlechangeEmail}
+                        setStep={setStep}
                       />
                     </div>
                   );

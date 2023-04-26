@@ -63,7 +63,7 @@ const NavBar = () => {
   }
 
   return (
-    <div position="static" className="navBarBody" id="navBarBody">
+    <div className="navBarBody" id="navBarBody">
       <div className="navBarDiv">
         <Typography onClick={handleMenuItems} className="menuIconDiv">
           {menuItemsListOpen == false ? (
@@ -73,10 +73,14 @@ const NavBar = () => {
           )}
         </Typography>
         <div>
+        <NavLink
+          to={ApplicationConstant.HOME_PAGE_PATH}
+        >
           <div className="navBarLogoDiv">
             <img src={logo} className="mitsLogo"></img>
             <p className="navlogoText">MITS Interns</p>
           </div>
+        </NavLink>
         </div>
         <div className="navBarLinkDiv">
           <div className="menuItemsList" id="menuItemsList">
@@ -87,6 +91,7 @@ const NavBar = () => {
                   ? "navItems_active"
                   : "navItems"
               }
+              onClick={handleMenuItems}
             >
               Home
             </NavLink>
@@ -98,6 +103,7 @@ const NavBar = () => {
                   ? "navItems_active"
                   : "navItems"
               }
+              onClick={handleMenuItems}
             >
               All Internships
             </NavLink>
@@ -108,6 +114,7 @@ const NavBar = () => {
                   ? "navItems_active"
                   : "navItems"
               }
+              onClick={handleMenuItems}
             >
               All Certifications
             </NavLink>

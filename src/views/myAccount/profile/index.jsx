@@ -10,10 +10,14 @@ import { useParams } from "react-router";
 import { ToastErrorMessage } from "../../../uitils/toastMessage";
 import AccountHeader from "../../../components/accountHeader";
 import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
+import LoadingCircle from "../../../components/loading";
+
 
 const Profile = () => {
   const [userDetails, setUserDeatils] = useState({});
   const params = useParams();
+
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
       getUserDeatils();
@@ -26,12 +30,17 @@ const Profile = () => {
           id: params.id,
         });
         setUserDeatils(responce.data);
+        setLoading(false)
       } catch (error) {
         ToastErrorMessage(error.message);
       }
     }
   };
   return (
+    <>
+    {loading == true ? (
+      <LoadingCircle />
+    ) : (
     <div className="profileBody my_AccountBody">
       <Card className="profileCard  header-blog bg-animation container">
         <AccountHeader label="Profile" />
@@ -156,6 +165,8 @@ const Profile = () => {
         </CardContent>
       </Card>
     </div>
+    )}
+    </>
   );
 };
 

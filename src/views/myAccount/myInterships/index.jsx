@@ -123,7 +123,7 @@ const MyInterships = () => {
                       <div className="intershipTitleHeader">
                         <p className="intershipTitle">{work.role}</p>
                         <Button
-                          className={work.status}
+                          className={work.status == "Not Started" ? "NotStarted" : work.status }
                           style={{
                             textDecoration: "none",
                             width: "10rem",

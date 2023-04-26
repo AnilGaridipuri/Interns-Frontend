@@ -13,6 +13,7 @@
 }
 
 .profileCard {
+  height: 85vh;
   z-index: 0;
   display: grid;
   padding: 0px 20px;
@@ -48,7 +49,7 @@
   display: grid;
   padding: 0px 20px;
   margin: 10px;
-  min-height: 550px;
+  min-height: 650px;
   border-radius: 5px !important;
   transition: all 1s;
   box-shadow: 7px 2px 20px 0px #7c7c7c !important;
@@ -96,6 +97,7 @@
   gap: 30px;
   justify-content: space-evenly;
   margin-bottom: 50px;
+  max-height: 1250px;
 }
 
 .addInternInputsDiv {
@@ -383,6 +385,11 @@ input::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-width: 600px) {
+  .myAccountBody.masked{
+    /* background-color: black; */
+    opacity: 0.8;
+    z-index: 1;
+  }
   .myAccountInputs {
     min-width: 32ch !important;
     border-radius: 20px !important;
@@ -459,10 +466,6 @@ input::-webkit-calendar-picker-indicator {
   color: #e8e8e8;
 }
 
-.header-blog .container {
-  position: relative;
-  height: 100%;
-}
 
 .header-blog,
 .stats,
@@ -537,7 +540,7 @@ input:-webkit-autofill {
 
 .myAccountBody {
   overflow-y: scroll;
-  max-height: 95vh;
+  max-height: 88vh;
 }
 
 .my_AccountBody fieldset {

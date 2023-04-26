@@ -2,7 +2,7 @@
     display: flex; 
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     background: linear-gradient(315deg, rgb(195, 54, 186) 3%, rgba(60, 132, 206, 1) 38%, rgba(48, 238, 226, 1) 68%, rgb(233, 55, 102) 98%);
     animation: gradient 7s ease infinite;
     background-size: 400% 400%;
@@ -187,6 +187,9 @@
 }
 
 @media screen and (max-width: 780px) {
+    .loginBody{
+        height: 85vh;
+    }
     .loginBackgroundImg{
         display: none;
     }

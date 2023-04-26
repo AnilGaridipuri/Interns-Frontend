@@ -8,20 +8,21 @@ import { useSelector } from "react-redux";
 
 const MyAccount = () => {
   const params = useParams();
-  console.log(params,"params")
   const userDetails = useSelector((state) => state.authReducer);
     const handleMenuIcon = () => {
+      console.log("myacnttt")
       var sidebar = document.querySelector(".sidebarBody");
       sidebar?.classList.toggle("open");
       var sidebar = document.querySelector(".container");
       sidebar?.classList.toggle("change");
+      document.getElementById('myAccountBody').classList.toggle('masked')
     };
   return (
     <div className="myAccountDiv">
       <div>
         <SideBar id={params.id} />
       </div>
-      <div className="myAccountBody">
+      <div className="myAccountBody" id='myAccountBody'>
         <div className="sideMenuIconDiv" onClick={handleMenuIcon}>
           <div className="container" id="container">
             <div className="bar1"></div>

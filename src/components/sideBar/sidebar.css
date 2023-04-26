@@ -44,9 +44,9 @@
 
 .sidebarBody {
     width: 230px;
-    min-height: 87.5vh;
+    min-height: 95vh;
     max-height: auto;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     overflow: hidden !important;
     background-image: linear-gradient(to bottom right, #25114d, #331665, #543286, #660f95);
     color: #fff !important;
@@ -182,13 +182,19 @@
         display: none;
         transition: all 0.5s;
         z-index: 2;
+        padding-top: 30px;
+        width: 75%;
+    }
+    .collapes_button{
+        display: none;
     }
 
     .sideMenuIconDiv {
         display: block;
         position: absolute;
         right: 20px;
-        margin-top: 10px;
+        margin-top: 15px;
+        margin-right: 10px;
     }
 
     .sidebarBody.open {
@@ -197,6 +203,9 @@
         top: 100px;
         left: 0px;
         transition: all 0.5s;
+    }
+    .siderbarHeader, .sidebarItems, .sidebarItems_active{
+        padding-left: 25px;
     }
 }
 

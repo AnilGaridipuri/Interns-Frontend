@@ -252,8 +252,8 @@ export default function ViewWorkDetails(props) {
                   <div className="previewImage">
                     <div>
                       {props.singleWorkDetails.offerLetterpath == "" ? (
-                        <p style={{ color: "red", width: "300px" }}>
-                          Offer Letter Not Upload
+                        <p style={{ color: "red", width: "300px",textAlign:'center' }}>
+                          Offer Letter not yet uploaded.
                         </p>
                       ) : (
                         <div>
@@ -291,8 +291,8 @@ export default function ViewWorkDetails(props) {
                           />
                         </div>
                       ) : (
-                        <p style={{ color: "red", width: "300px" }}>
-                          Completion Certificate Not Upload
+                        <p style={{ color: "red", width: "300px",textAlign:'center' }}>
+                          Completion Certificate not yet uploaded.
                         </p>
                       )}
                     </div>
@@ -389,9 +389,10 @@ export default function ViewWorkDetails(props) {
                             color: "red",
                             width: "330px",
                             marginTop: "20px",
+                            textAlign:'center'
                           }}
                         >
-                          Completion Certificate Not Upload
+                          Completion Certificate not yet uploaded.
                         </p>
                       )}
                     </div>

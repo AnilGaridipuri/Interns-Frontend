@@ -5,6 +5,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import { Button } from "@mui/material";
 import MailLockIcon from "@mui/icons-material/MailLock";
+import Timer from "./timer";
 
 const VerifyOtp = (props) => {
   return (
@@ -25,12 +26,17 @@ const VerifyOtp = (props) => {
             label="OTP"
           />
         </FormControl>
+        <div className="timer">
+            <Timer 
+              setStep={props.setStep}
+            />
+        </div>
         <div className="forgotPassBtns">
           <Button className="forgotpassBtn1" onClick={props.handlechangeEmail}>
             Change Email
           </Button>
           <Button className="forgotpassBtn2" onClick={props.verifyOtp}>
-            verify Otp
+            Verify Otp
           </Button>
         </div>
       </div>

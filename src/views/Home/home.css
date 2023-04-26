@@ -58,8 +58,9 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  column-gap: 50px;
-  justify-content: space-evenly;
+  column-gap: 0px;
+  justify-content: center;
+  /* padding: 0 100px ; */
 }
 
 .impInternCardImgDiv p {
@@ -70,25 +71,25 @@
 }
 
 .impInternCardImg {
-  width: 40%;
-  height: 35vh;
-  border: 3px solid #ac0af1;
-  border-radius: 50% 10% / 10% 50%;
+  width: 400px;
+  /* height: 35vh; */
+  /* border: 3px solid #ac0af1; */
+  /* border-radius: 50% 10% / 10% 50%; */
   object-fit: fill;
-  transform: rotate(-4deg);
-  margin: 15px 5px;
+  /* transform: rotate(-4deg); */
+  display: block;
+  margin: 15px 30px;
 }
 .impInternCardImg1 {
-  width: 40%;
-  height: 35vh;
-  border: 3px solid #ac0af1;
-  border-radius: 50% 10% / 10% 50%;
+  width: 350px;
+  /* height: ; */
   object-fit: fill;
-  transform: rotate(-4deg);
-  margin: 5px;
+  /* transform: rotate(-4deg); */
+  display: block;
+  margin: 15px 30px;
 }
 
-.StdAlterBox {
+.StdAlertBox {
   width:100%;
     background-image: linear-gradient(to bottom right, rgb(60, 43, 81), #502760);
   min-height: 220px;
@@ -96,7 +97,7 @@
   /* overflow: hidden; */
 }
 
-.StdAlterBoxTitle {
+.StdAlertBoxTitle {
   font-size: 30px;
   text-align: center;
   font-weight: 550;
@@ -105,33 +106,47 @@
   font-style: oblique;
 }
 
-.StdAlterBoxCardDiv {
+.StdAlertBoxCardDiv {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 40px;
-  column-gap: 10px;
-  justify-content: space-around;
+  column-gap: 30px;
+  justify-content: center;
+  align-items: center;
 }
 
-.StdAlterBoxCardTextDiv {
+.StdAlertBoxCardTextDiv {
   display: flex;
   width: 118%;
   gap: 10px;
   margin: 5px 0px;
 }
 
-.StdAlterBoxCard {
+.StdAlertBoxCard {
   color: #ffffff;
   line-height: 25px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
-.StdAlterBoxCardTitle {
-  font-size: 20px;
+.datesBox{
+  width:700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 50px;
+}
+
+.StdAlertBoxCardTitle {
+  font-size: 30px;
+  line-height: 45px;
   text-align: center;
   font-weight: 550;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   color: #ffc073;
-  margin-bottom: 10px;
+  width : 400px;
+  /* margin-bottom: 10px; */
 }
 
 .internshipTitle {
@@ -319,24 +334,38 @@
 
 }
 
+@media screen and (max-width:1150px){
+  .StdAlertBoxCard{
+    flex-direction: row;
+    column-gap:50px;
+  }
+}
+
 
 @media screen and (max-width:1000px) and (min-width:730px) {
-    .majorDomainsCardImageDiv img {
+  .majorDomainsCardImageDiv img {
     width: 220%;
     height: 420px;
     position: relative;
     left: -160px;
     top: 50px;
+  }
+  .StdAlertBoxCardTitle{
+    width: 400px;
+    font-size : 25px;
+  }
 }
-}
-@media screen and (max-width:730px) and (min-width:600px) {
+@media screen and (max-width:730px) {
     .majorDomainsCardImageDiv img {
     width: 260%;
     height: 420px;
     position: relative;
     left: -180px;
     top: 80px;
-}
+  }
+  .StdAlertBoxCard, .datesBox{
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -381,23 +410,25 @@
     margin-top: -150px;
   }
 
+  .impInternCardImgDiv {
+    width: 90%;
+  }
+
   .impInternCard {
     max-width: 95%;
   }
 
   .impInternCardImg {
-    width: 70%;
-    height: 22vh;
+    width: 300px;
+    /* height: 22vh; */
+    margin:20px auto;
   }
   .impInternCardImg1 {
-    width: 70%;
-    height: 22vh;
-    margin-left: 100px;
+    width: 250px;
+    /* height: 22vh; */
+    margin:20px auto;
   }
 
-  .impInternCardImgDiv {
-    justify-content: start;
-  }
 
   .impInternCardText {
     width: 97%;

@@ -2,16 +2,17 @@ import React from "react";
 import { ApplicationConstant } from "../../constant/applicationConstant";
 import { NavLink } from "react-router-dom";
 import "./home.css";
-import bgvideo1 from '../../assets/v1.mp4'
-import impInternsip from "../../assets/impsOfInternship.jpg";
-import impInternsip1 from "../../assets/impsIntern1.webp";
+import bgvideo1 from "../../assets/v1.mp4";
+import impInternsip from "../../assets/home-internship.png";
+import impProject from "../../assets/home-project.png";
 import InternshipJob from "../../assets/Internship-Job.png";
 import python from "../../assets/python.jpg";
 import dataStructures from "../../assets/data_structure.jpeg";
 import OS from "../../assets/os.jpg";
 import QuoteCarousel from "./quoteCarousel";
 import EastIcon from "@mui/icons-material/East";
-import StdAlterBox from "./stdAlterBox";
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import StdAlertBox from "./stdAlertBox";
 import { Button, Link } from "@mui/material";
 
 const HomePage = () => {
@@ -30,105 +31,104 @@ const HomePage = () => {
 
       <div className="homeContent">
         <div className="impInternCard">
-          <p className="impInternCardTitle">
-            Importance of an Internship and Project{" "}
-          </p>
+          <p className="impInternCardTitle">Internships are Important!! </p>
           <div className="impInternCardText">
-            Although it is a known fact that an internship is the best way to
-            make your career, students sometimes feel it isn't worth the effort
-            or just not important enough. These thoughts may come across as
-            common with students and they may not realize the importance of
-            internships instantly. But in today's competitive world, there is
-            nothing more important than an internship or a practicum. Once they
-            get hands-on experience as part of their curriculum, they feel
-            enriched and ready to enter the real-work scenario with practical
-            skills.
-          </div>
-          <div className="impInternCardText">
-            An internship is a period of work experience offered by an
-            organization for a limited period of time. It is aimed at providing
-            practical experience to the candidates when they implement their
-            classroom learning in real-time work situations. It helps them learn
-            the ways to understand and perform the desired duties and
-            responsibilities in a particular role effectively. An internship is
-            an amalgamation of theory and practice. Student interns equip
-            themselves with practical skills in office settings. Internships
-            also offer the benefit of creating professional recommendations,
-            practical experience for your resume, and building networking
-            opportunities.
+            An internship is an official program offered by organisations to
+            help train and provide work experience to students and recent
+            graduates.Getting work experience is an essential aspect of starting
+            your career as a young graduate. The earlier you start gaining
+            experience for your CV, the better.
           </div>
           <div className="impInternCardImgDiv">
             <img className="impInternCardImg" src={impInternsip}></img>
-            <div style={{ minWidth: "50%" }}>
+            <div style={{ minWidth: "" }}>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p> Apply Theoretical Knowledge in the Real World</p>
+                <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                <p> Internships provide exposure to the real world</p>
               </div>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Expand on Your Transferrable Skills</p>
+                <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                <p>Internships allow you to gain a competitive edge</p>
               </div>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Develop Professional Connections</p>
+                <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                <p>Internships allow you to learn more about yourself</p>
               </div>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Make New Friends</p>
+                <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                <p>
+                  Internships equip you with more than just technical skills
+                </p>
               </div>
+              
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Boost Your Resume</p>
+                <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                <p>
+                  Internships give you a platform to establish critical
+                  networking connections
+                </p>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="impInternCard">
+          <p className="impInternCardTitle">Projects are more Important!! </p>
+          <div className="impInternCardText">
+          Do you know why final year engineering projects are important? These projects can be inspired by your seniors or copied from other sources. Yet, your faculties give paramount importance to these projects as it is essential for future endeavors and career opportunities.
+          An innovative and worthwhile final year project helps to provide practical exposure that helps to enhance your problem-solving skills, management skills, research, and analysis. 
           </div>
           <div className="impInternCardImgDiv">
             <div style={{ minWidth: "50%" }}>
               <div
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
-              >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Direct Job Offers Are More Likely</p>
-              </div>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
-              >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Better Job Stability</p>
-              </div>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
-              >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Higher Salary Potential</p>
-              </div>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
-              >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Refine Career Goals</p>
-              </div>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
-              >
-                <EastIcon sx={{ color: "#b302ff" }} />
-                <p>Internships allow you to learn more about yourself</p>
-              </div>
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                  <p>
+                  Doing Projects develops Innovative Spirit
+                  </p>
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                  <p>Doing more projects builds the problem solving skills</p>
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                  <p>Projects enhances your Problem Solving and Team Building Abilities</p>
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                  <p> Projects helps you to identify a real-time problem and provide a solution</p>
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <ArrowRightIcon sx={{ color: "#b302ff" }} />
+                  <p>
+                  The bridge between the theoretical aspects and real world is project based learning
+                  </p>
+                </div>
             </div>
-            <img className="impInternCardImg1" src={impInternsip1}></img>
+            <img className="impInternCardImg1" src={impProject}></img>
           </div>
         </div>
-        <StdAlterBox />
+        <StdAlertBox />
         <div className="majorDomainsCard">
           <div className="majorDomainsListDiv">
             <p className="majorDomainsCardTitle">
@@ -274,10 +274,7 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="certificationLink">
-                  <a
-                    href={item.link}
-                    target="_blank"
-                  >
+                  <a href={item.link} target="_blank">
                     Gets Started
                   </a>
                 </div>
@@ -291,7 +288,6 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
 
 const certificationDeatils = [
   {

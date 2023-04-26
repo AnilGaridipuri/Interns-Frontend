@@ -24,6 +24,20 @@ const Sidebar = (props) => {
 
   const authState = useSelector((state) => state.authReducer);
 
+  useEffect(()=>{
+    document.addEventListener('click',handleclickOutside, true)
+  },[])
+
+  const handleclickOutside = (e)=>{
+    var sidebar = document.querySelector(".sidebarBody");
+    var sidebarToggleIcon = document.querySelector(".container");
+    if(sidebar.classList.contains('open')){
+      if(!sidebar.contains(e.target) && !sidebarToggleIcon.contains(e.target)){
+        handleMenuIcon()
+      }
+    }
+  }
+
   function collapse() {
     var collapseBtn = document.querySelector(".collapes_button");
     var sidebar = document.querySelector(".sidebarBody");
@@ -36,10 +50,12 @@ const Sidebar = (props) => {
   }
 
   const handleMenuIcon = () => {
+    console.log("sidebarrr evnelistenr")
     var sidebar = document.querySelector(".sidebarBody");
     sidebar?.classList.toggle("open");
     var sidebar = document.querySelector(".container");
     sidebar?.classList.toggle("change");
+    document.getElementById('myAccountBody').classList.toggle('masked')
   };
 
   const getProfilePic = async () => {

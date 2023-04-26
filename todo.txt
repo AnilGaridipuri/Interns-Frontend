@@ -1,7 +1,6 @@
 
 2. add rollno, email, passowrd to db
 
-4. direct entering changepassword in url is working which hsould not
 
 9. divide controolers
 

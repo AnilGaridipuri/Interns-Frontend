@@ -5,7 +5,7 @@
   position: sticky;
   top: 0px;
   z-index: 4;
-  position: relative;
+  position: sticky;
 }
 
 .css-19r6kue-MuiContainer-root {
@@ -48,6 +48,7 @@
   );
   background-clip: text;
   color: transparent;
+  /* margin-left: 20px; */
 }
 
 .NavProfileDiv {
@@ -150,10 +151,12 @@
 
   .menuItemsList {
     display: none;
+    margin-left: 15px;
   }
 
   .menuIconDiv {
     display: block;
+    width: 60px;
   }
   .css-r6ewbb-MuiToolbar-root {
     display: flex !important;
