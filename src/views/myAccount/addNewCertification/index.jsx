@@ -13,6 +13,7 @@ import {
   RadioGroup,
   Select,
   OutlinedInput,
+CircularProgress,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -38,6 +39,7 @@ const AddNewCertification = () => {
     false
   );
   const [loading, setLoading] = useState(true);
+  const [uploadLoading, setUploadLoading] = useState(false);
 
 
   useEffect(() => {
@@ -158,15 +160,18 @@ const AddNewCertification = () => {
   };
 
   const uploadDeatils = async () => {
+    setUploadLoading(true)
     if (authState._id == params.id) {
       try {
         const responce = await api.post(
           `addNewCertification`,
           addNewCertification
         );
+        setUploadLoading(false);
         ToastSuccessMessage("Successfully Uploaded !!");
         cancleDeatils();
       } catch (error) {
+        setUploadLoading(false);
         ToastErrorMessage(error.response.data || error.message);
       }
     }
@@ -334,8 +339,11 @@ const AddNewCertification = () => {
                   <Button className=" btnCancle" onClick={cancleDeatils}>
                     Cancle
                   </Button>
-                  <Button className=" btnUpdate" onClick={uploadDeatils}>
-                    Upload
+                  <Button
+                    className={uploadLoading ? "loadingBtn" : "btnUpdate"}
+                    onClick={uploadDeatils}
+                  >
+                    {uploadLoading ? <CircularProgress /> : "Upload"}
                   </Button>
                 </div>
               </div>
