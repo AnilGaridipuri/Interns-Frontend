@@ -1,3 +1,450 @@
-.homeBody{
+.bgvideo {
+  width: 100vw;
+  height: 50vh;
+  object-fit: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.quotes {
+  width: 650px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: relative;
+  top: -300px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.quote {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.homeContent {
+  margin-top: -200px;
+}
+
+.impInternCard {
+  max-width: 90%;
+  margin: 20px auto;
+  /* box-shadow: 1px 2px 6px 1px #9f9f9f; */
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #fcf5ff;
+}
+
+.impInternCardTitle {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 550;
+  color: #462255;
+}
+
+.impInternCardText {
+  width: 80%;
+  margin: 0 auto;
+  text-justify: distribute-all-lines;
+  padding: 10px 0px;
+  color: #3b0e4e;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.impInternCardImgDiv {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0px;
+  justify-content: center;
+  /* padding: 0 100px ; */
+}
+
+.impInternCardImgDiv p {
+  margin: 10px 0px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #3b0e4e;
+}
+
+.impInternCardImg {
+  width: 400px;
+  /* height: 35vh; */
+  /* border: 3px solid #ac0af1; */
+  /* border-radius: 50% 10% / 10% 50%; */
+  object-fit: fill;
+  /* transform: rotate(-4deg); */
+  display: block;
+  margin: 15px 30px;
+}
+.impInternCardImg1 {
+  width: 350px;
+  /* height: ; */
+  object-fit: fill;
+  /* transform: rotate(-4deg); */
+  display: block;
+  margin: 15px 30px;
+}
+
+.StdAlertBox {
+  width:100%;
+    background-image: linear-gradient(to bottom right, rgb(60, 43, 81), #502760);
+  min-height: 220px;
+  padding: 10px 10px 20px;
+  /* overflow: hidden; */
+}
+
+.StdAlertBoxTitle {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 550;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-style: oblique;
+}
+
+.StdAlertBoxCardDiv {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.StdAlertBoxCardTextDiv {
+  display: flex;
+  width: 118%;
+  gap: 10px;
+  margin: 5px 0px;
+}
+
+.StdAlertBoxCard {
+  color: #ffffff;
+  line-height: 25px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.datesBox{
+  width:750px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-display: row;
+  column-gap: 50px;
+}
+
+.StdAlertBoxCardTitle {
+  font-size: 30px;
+  line-height: 45px;
+  text-align: center;
+  font-weight: 550;
+  /* text-decoration: underline; */
+  color: #ffc073;
+  width : 400px;
+  /* margin-bottom: 10px; */
+}
+
+.internshipTitle {
+  font-size: 19px;
+  font-weight: 600;
+  margin: 15px 0px 5px 0px;
+  text-align: center;
+  color: #ffffff;
+}
+.internshipTitle1 {
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
+
+.majorDomainsCard {
+  width: 100%;
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 1px 2px 6px 1px #9f9f9f;
+  background-image: linear-gradient(to right, #ffc073, #fea15a, #fcce70);
+}
+
+.majorDomainsListDiv {
+    background-image: linear-gradient(to bottom right, rgb(60, 43, 81), #502760);
+    width: 85%;
+    clip-path: polygon(0% 0%, 85% 0%, 100% 100%, 0% 100%);
+    color: #ffffff;
+    padding: 10px 13% 10px 10px;
+}
+
+.majorDomainsCardImageDiv {
+    width: 15%;
+}
+
+.majorDomainsCardImageDiv img {
+    width: 180%;
+    height: 420px;
+    position: relative;
+    left: -180px;
+    top: 10px;
+}
+.majorDomainsCardTitle {
+    font-family: "Comic Sans MS";
+    font-size: 220%;
+    text-align: center;
+    text-shadow: #fcce70;
+}
+
+.majorDomainsList{
+    padding: 10px;
+    display: grid;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.majorDomainsListItem{
     display: flex;
+    align-items: center;
+    column-gap: 15px;
+    row-gap: 5px;
+    flex-wrap: wrap;
+    margin: 10px 0px;
+}
+
+.majorDomainsListItem button{
+    background-color: #fff !important;
+    color: #3b0e4e ;
+    font-weight: bold;
+    border-radius: 20px;
+    height: 27px;
+  }
+  .majorDomainsListItemLink{
+    background-image: linear-gradient(to right, #fea15a, #fcce70);
+    color: #3b0e4e ;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    padding:3px;
+    border-radius: 20px;
+    height: 27px;
+    width: 120px;
+    transition: all 1s;
+  }
+
+.LanguageDiv{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.majorDomainsListItemLink:hover{
+    background-image: linear-gradient(to right, #ffffff, #fff) !important;
+}
+
+.homeBody {
+  width: 100%;
+  overflow: hidden;
+}
+
+.majorCerificationsCardTitle {
+  font-size: 180%;
+  font-weight: 600;
+  margin: 15px 0px 5px 0px;
+  text-align: center;
+  color: #462255;
+  font-family: "Comic Sans MS";
+}
+
+.cerificationCoursesDiv{
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 50px;
+  row-gap: 30px;
+  margin: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.cerificationCoursesCard{
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 400px;
+  box-shadow: 1px -2px 30px 0px #bfbfbf;
+  border-radius: 10px;
+  transition:all .3s;
+}
+
+.cerificationCoursesCard:hover{
+  box-shadow: 5px -2px 30px 0px #a6a6a6;
+  cursor: pointer;
+}
+
+.certificationImg{
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 100%;
+  height: 190px;
+}
+
+.certificationInfoDiv{
+  display: grid;
+  row-gap: 10px;
+  margin: 0px 5px 10px;
+}
+
+.certificationName{
+  font-size: 23px;
+  text-align: center;
+  color: #462255;
+  font-family: "Calibri";
+  font-weight:  bold;
+  min-height: 50px;
+}
+
+.certificationInfo{
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.certificationLink{
+  display: flex;
+  justify-content: center;
+  margin: 30px 10px 10px;
+}
+
+.certificationLink a{
+  text-decoration: none !important;
+  text-align: center;
+  width: 180px;
+  background-image: linear-gradient(to right, #fea15a, #fcce70);
+  color: #3b0e4e ;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.certificationLink a:hover{
+  background-image: linear-gradient(to right, #3b0e4e, #661688);
+  color: #fea15a ;
+
+}
+
+@media screen and (max-width:1200px){
+  .StdAlertBoxCard{
+    flex-direction: row;
+    column-gap:50px;
+  }
+}
+
+
+@media screen and (max-width:1000px) and (min-width:730px) {
+  .majorDomainsCardImageDiv img {
+    width: 220%;
+    height: 420px;
+    position: relative;
+    left: -160px;
+    top: 50px;
+  }
+  .StdAlertBoxCardTitle{
+    width: 400px;
+    font-size : 25px;
+  }
+}
+@media screen and (max-width:730px) {
+    .majorDomainsCardImageDiv img {
+    width: 260%;
+    height: 420px;
+    position: relative;
+    left: -180px;
+    top: 80px;
+  }
+  .StdAlertBoxCard, .datesBox{
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .cerificationCoursesCard{
+    min-width: 98%;
+    margin: 10px auto;
+  }
+
+  .majorDomainsCardImageDiv img {
+    width: 185%;
+    height: 75%;
+    position: relative;
+  }
+
+  .majorDomainsCardTitle{
+    font-size: 180%;
+  }
+
+  .majorDomainsCardImageDiv{
+    display: grid;
+    place-items: center;
+    width: 80%;
+  }
+  .homeBody {
+    width: 100%;
+    overflow: hidden;
+  }
+  .bgvideo {
+    height: 30vh;
+  }
+  .quotes {
+    width: 320px !important;
+  }
+
+  .quotes {
+    top: -180px;
+    height: 150px;
+  }
+
+  .homeContent {
+    margin-top: -150px;
+  }
+
+  .impInternCardImgDiv {
+    width: 90%;
+  }
+
+  .impInternCard {
+    max-width: 95%;
+  }
+
+  .impInternCardImg {
+    width: 300px;
+    /* height: 22vh; */
+    margin:20px auto;
+  }
+  .impInternCardImg1 {
+    width: 250px;
+    /* height: 22vh; */
+    margin:20px auto;
+  }
+
+
+  .impInternCardText {
+    width: 97%;
+  }
+
+  .majorDomainsCardImageDiv img {
+    position: relative;
+    width: 320px;
+    height: 250px;
+    left: 20px;
+    top: 5px;
+}
+    .majorDomainsListDiv{
+        width: 100%;
+       clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
+    }
 }

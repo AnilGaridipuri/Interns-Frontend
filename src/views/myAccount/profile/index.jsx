@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
@@ -9,59 +9,63 @@ import { api } from "../../../axios/api.config";
 import { useParams } from "react-router";
 import { ToastErrorMessage } from "../../../uitils/toastMessage";
 import AccountHeader from "../../../components/accountHeader";
+import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
+import LoadingCircle from "../../../components/loading";
+
 
 const Profile = () => {
-
-  const [getuserDetails, setGetuserDetails] = useState(false);
   const [userDetails, setUserDeatils] = useState({});
   const params = useParams();
 
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
-    if (!getuserDetails) {
       getUserDeatils();
-    }
-  }, [userDetails]);
+  }, [params.id]);
 
   const getUserDeatils = async () => {
     if (params.id) {
-      setGetuserDetails(true);
       try {
         const responce = await api.post(`auth/user`, {
           id: params.id,
         });
         setUserDeatils(responce.data);
+        setLoading(false)
       } catch (error) {
         ToastErrorMessage(error.message);
       }
     }
-  }
+  };
   return (
-    <div className="profileBody">
-      <AccountHeader label="Profile"/>
-      <Card className="profileCard">
-        <CardContent className="profileCardContent">
+    <>
+    {loading == true ? (
+      <LoadingCircle />
+    ) : (
+    <div className="profileBody my_AccountBody">
+      <Card className="profileCard  header-blog bg-animation container">
+        <AccountHeader label="Profile" />
+        <CardContent className="profileCardContent" style={{ paddingTop: 15 }}>
           <div className="userImgDiv">
-            <div>
-              <Avatar
-                alt={capitalizeFirstLetter(
-                  userDetails.studentName?.charAt(0) || ""
-                )}
-                srcSet={userDetails.profile}
-                sx={{
-                  width: "100px",
-                  height: "100px",
-                  marginRight: 2,
-                  fontSize: "60px",
-                }}
-              />
-            </div>
-            <p className="rollno">{userDetails.studentName}</p>
+            <Avatar
+              alt={capitalizeFirstLetter(
+                userDetails.studentName?.charAt(0) || ""
+              )}
+              srcSet={userDetails.profile}
+              sx={{
+                width: "130px",
+                height: "130px",
+              }}
+            />
+            <p className="white" style={{ margin: "0px 0 0 15px" }}>
+              {userDetails.studentName}
+            </p>
           </div>
           <div className="userDeatilsDiv">
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Name</label>
-              <span className="inputdout">:</span>
-              <TextField
+              <span className="inputdout white">:</span>
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -69,10 +73,11 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Roll No</label>
-              <span className="inputdout">:</span>
-              <TextField
+              <span className="inputdout white">:</span>
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -80,10 +85,11 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Email</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -91,10 +97,11 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Year</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -102,10 +109,11 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Branch</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -113,10 +121,25 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
+              <label>Section</label>
+              <span className="inputdout">:</span>
+              <OutlinedInput
+                className="myAccountInputs"
+                placeholder="Section CSE-A/CAI-A"
+                id="outlined-size-small"
+                defaultValue="Small"
+                size="small"
+                value={userDetails.section || "Not Avaliable"}
+                name="section"
+                disabled={true}
+              />
+            </div>
+            <div className="profileInputs white">
               <label>Phone No</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
@@ -124,10 +147,26 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
+            <div className="profileInputs white">
+              <label>Alt Email</label>
+              <span className="inputdout">:</span>
+              <OutlinedInput
+                className="myAccountInputs"
+                placeholder="Alternative email "
+                id="outlined-size-small"
+                defaultValue="Small"
+                size="small"
+                value={userDetails.altmail || "Not Avaliable"}
+                name="altmail"
+                disabled={true}
+              />
+            </div>
           </div>
         </CardContent>
       </Card>
     </div>
+    )}
+    </>
   );
 };
 

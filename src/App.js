@@ -18,14 +18,13 @@ function App() {
   });
 
   const id = localStorage.getItem("MITSinternsid");
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
-    console.log("main useEffdsf")
     if (!getuserDetails) {
       getUserDeatils();
     }
-  }, [userDetails]);
+  }, [userDetails, id]);
 
   const getUserDeatils = async () => {
     if (id) {
@@ -45,6 +44,8 @@ function App() {
             branch: responce.data.branch || "",
             phoneNumber: responce.data.phoneNumber || "",
             profile: responce.data.profile || "",
+            section: responce.data.section || "",
+            altmail: responce.data.altmail || "",
           })
         );
       } catch (error) {

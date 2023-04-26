@@ -10,6 +10,8 @@ const initialState = {
   phoneNumber: "",
   mailId: "",
   profile: "",
+  section:"",
+  altmail:""
 };
 
 export const authSlice = createSlice({
@@ -20,12 +22,14 @@ export const authSlice = createSlice({
       state.rollno = action.payload.rollno;
       state._id = action.payload._id;
       state.isAuthenticated = action.payload.isAuthenticated;
-      state.studentName = action.payload.studentName;
-      state.year = action.payload.year;
-      state.phoneNumber = action.payload.phoneNumber;
+      state.studentName = action.payload.studentName || "";
+      state.year = action.payload.year || "";
+      state.phoneNumber = action.payload.phoneNumber || "";
       state.mailId = action.payload.mailId;
-      state.profile = action.payload.profile;
-      state.branch = action.payload.branch;
+      state.profile = action.payload.profile || "";
+      state.branch = action.payload.branch || "";
+      state.section= action.payload.section || "";
+      state.altmail= action.payload.altmail || "";
     },
   },
 });

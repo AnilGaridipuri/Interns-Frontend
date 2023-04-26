@@ -2,7 +2,7 @@
     display: flex; 
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     background: linear-gradient(315deg, rgb(195, 54, 186) 3%, rgba(60, 132, 206, 1) 38%, rgba(48, 238, 226, 1) 68%, rgb(233, 55, 102) 98%);
     animation: gradient 7s ease infinite;
     background-size: 400% 400%;
@@ -100,7 +100,7 @@
 }
 
 .submitLoginBtn {
-    background: green !important;
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9) !important;
     border-radius: 30px !important;
     color: #fff !important;
     width: 200px;
@@ -110,7 +110,7 @@
 }
 
 .forgotpassBtn2 {
-    background: green !important;
+    background-image: linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9) !important;
     border-radius: 30px !important;
     color: #fff !important;
     width: 140px;
@@ -123,10 +123,10 @@
 }
 
 .forgotpassBtn1{
-    background: rgb(181, 231, 181) !important;
+    background: #cfbef7 !important;
     border-radius: 30px !important;
-    color: green !important;
-    border: 2px solid green !important;
+    color: #15154a !important;
+    border: 2px solid #2f2f89 !important;
     width: 140px;
     height: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -187,6 +187,9 @@
 }
 
 @media screen and (max-width: 780px) {
+    .loginBody{
+        height: 85vh;
+    }
     .loginBackgroundImg{
         display: none;
     }
@@ -209,4 +212,12 @@
         display: none;
     }
 
+}
+
+
+
+
+/* Deploy  Css */
+.loginBody .css-1qw96cp{
+    padding: 0px;
 }

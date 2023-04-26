@@ -1,6 +1,4 @@
-import React,{useState} from 'react'
-import MenuIcon from "@mui/icons-material/Menu";
-import CancelIcon from "@mui/icons-material/Cancel";
+import React from 'react'
 
 const AccountHeader = (props) => {
   return (

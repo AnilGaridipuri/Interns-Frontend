@@ -1,0 +1,6 @@
+
+2. add rollno, email, passowrd to db
+
+
+9. divide controolers
+

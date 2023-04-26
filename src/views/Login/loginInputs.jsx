@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
 import FilledInput from "@mui/material/FilledInput";
@@ -35,12 +35,14 @@ const LoginInputs = (props) => {
   const [email, setEmail] = useState(false);
   const [passwordValidate_status, setPasswordValidate_status] = useState(false);
   const [loginBtn, setLoginBtn] = useState(false);
+  const [uploadLoading, setUploadLoading] = useState(false);
+  const passwordfunction = "forgotpassword";
   var errormessage;
 
   function handleEmail(e) {
     let email = e.target.value;
     var validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var message = document.getElementById("EmaliError");
+    var message = document.getElementById("EmailError");
 
     if (!email) {
       errormessage = "";
@@ -89,6 +91,7 @@ const LoginInputs = (props) => {
     } else if (!passwordValidate_status) {
       toast.error("Password is required");
     } else {
+      setUploadLoading(true)
       try {
         const responce = await api.post(`/auth`, userLogin);
         toast.success("Successfully Login");
@@ -106,12 +109,15 @@ const LoginInputs = (props) => {
             branch: responce.data.branch || "",
             phoneNumber: responce.data.phoneNumber || "",
             profile: responce.data.profile || "",
+            section: responce.data.section || "",
+            altmail: responce.data.altmail || "",
           })
-        );
+          );
+        setUploadLoading(false);
         navigate(ApplicationConstant.HOME_PAGE_PATH);
       } catch (error) {
         toast.error(error.response.data);
-        console.log(error.response.data);
+        setUploadLoading(false);
       }
     }
   }
@@ -122,7 +128,7 @@ const LoginInputs = (props) => {
         <div className="loginInputsDiv">
           <ToastContainer />
           <FormControl variant="outlined" size="small">
-            <InputLabel htmlFor="outlined-adornment-emali">Emali</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
             <OutlinedInput
               className="loginInputs"
               error={email}
@@ -136,7 +142,7 @@ const LoginInputs = (props) => {
               }
               label="Email"
             />
-            <p id="EmaliError" className="errorMessage">
+            <p id="EmailError" className="errorMessage">
               {errormessage}
             </p>
           </FormControl>
@@ -165,20 +171,34 @@ const LoginInputs = (props) => {
             />
             <div>
               <Link
-                to={ApplicationConstant.FORGOTPASSWORD_URL_PATH}
+                to={`${ApplicationConstant.FORGOTPASSWORD_URL_PATH}/${passwordfunction}`}
                 className="forgitPaswText"
               >
                 Forgot Password?
               </Link>
             </div>
           </FormControl>
-          <Button
+          {/* <Button
             className="submitLoginBtn"
             type="submit"
             onClick={submitLogin}
             disabled={loginBtn}
           >
             Login
+          </Button> */}
+          <Button
+            className="submitLoginBtn"
+            onClick={submitLogin}
+          >
+            {uploadLoading ? (
+              <CircularProgress
+                size={27}
+                style={{ color: "#fff" }}
+                thickness={5}
+              />
+            ) : (
+              "Login"
+            )}
           </Button>
         </div>
       </ValidatorForm>

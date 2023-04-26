@@ -3,10 +3,16 @@ import Card from "@mui/material/Card";
 import AccountHeader from "../../../components/accountHeader";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
-import TextField from "@mui/material/TextField";
-import { Button, FormControl, MenuItem, Select } from "@mui/material";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import {
+  Button,
+  FormControl,
+  MenuItem,
+  Select,
+  CircularProgress,
+} from "@mui/material";
 import "../myAccount.css";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { setAuthentication } from "../../../store/slices/auth";
 import { capitalizeFirstLetter } from "./../../../uitils/jsFunctions";
@@ -17,18 +23,35 @@ import {
   ToastErrorMessage,
   ToastSuccessMessage,
 } from "../../../uitils/toastMessage";
+import FormData from "form-data";
 
 const selectYear = [
-  { displayName: "1st Year", value: "1st Year" },
-  { displayName: "2nd Year", value: "2nd Year" },
-  { displayName: "3rd Year", value: "3rd Year" },
-  { displayName: "4th Year", value: "4th Year" },
+  { displayName: "I", value: "I" },
+  { displayName: "II", value: "II" },
+  { displayName: "III", value: "III" },
+  { displayName: "IV", value: "IV" },
 ];
 const selectBranch = [
-  { displayName: "CAI", value: "CAI" },
+  { displayName: "AI", value: "AI" },
+  { displayName: "CS", value: "CS" },
+  { displayName: "DS", value: "DS" },
+  { displayName: "IoT", value: "IoT" },
   { displayName: "CSE", value: "CSE" },
+  { displayName: "CST", value: "CST" },
   { displayName: "ECE", value: "ECE" },
   { displayName: "EEE", value: "EEE" },
+  { displayName: "CIVIL", value: "CIVIL" },
+  { displayName: "MECH", value: "MECH" },
+];
+
+const selectSection = [
+  { displayName: "Single Section", value: " " },
+  { displayName: "A", value: "A" },
+  { displayName: "B", value: "B" },
+  { displayName: "C", value: "C" },
+  { displayName: "D", value: "D" },
+  { displayName: "E", value: "E" },
+  { displayName: "F", value: "F" },
 ];
 
 const EditProfile = () => {
@@ -44,17 +67,21 @@ const EditProfile = () => {
 
   const [getuserDetails, setGetuserDetails] = useState(false);
 
-  const [studentDeatils, setstudentDeatils] = useState({
+  const [studentDetails, setstudentDeatils] = useState({
     branch: "",
     mailId: "",
     phoneNumber: "",
     studentName: "",
     rollno: "",
-    year:"",
+    year: "",
     profile: "",
+    section: "",
+    altmail: "",
   });
+  const [isProfilePicEdited, setIsProfilePicEdited] = useState(false);
+  const [editedProfilePic, setEditedProfilePic] = useState(null);
   const [userDetails, setUserDeatils] = useState({});
-
+  const [uploadLoading, setUploadLoading] = useState(false);
 
   useEffect(() => {
     if (!getuserDetails) {
@@ -66,18 +93,20 @@ const EditProfile = () => {
     if (params.id) {
       setGetuserDetails(true);
       try {
-        const responce = await api.post(`auth/user`, {
+        const response = await api.post(`auth/user`, {
           id: params.id,
         });
-        setUserDeatils(responce.data)
+        setUserDeatils(response.data);
         setstudentDeatils({
-          branch: responce.data.branch,
-          mailId: responce.data.mailId,
-          phoneNumber: responce.data.phoneNumber,
-          studentName: responce.data.studentName,
-          rollno: responce.data.rollno,
-          year: responce.data.year,
-          profile: responce.data.profile,
+          branch: response.data.branch,
+          mailId: response.data.mailId,
+          phoneNumber: response.data.phoneNumber,
+          studentName: response.data.studentName,
+          rollno: response.data.rollno,
+          year: response.data.year,
+          profile: response.data.profile,
+          section: response.data.section,
+          altmail: response.data.altmail,
         });
       } catch (error) {
         ToastErrorMessage(error.message);
@@ -85,70 +114,109 @@ const EditProfile = () => {
     }
   };
 
-  const onChnageInputs = (e) => {
-    var name = e.target.name;
+  const onChangeInputs = (e) => {
+    const name = e.target.name;
     var value = e.target.value;
-    console.log(e);
+
     setstudentDeatils((pre) => ({
       ...pre,
       [name]: value,
     }));
   };
 
-    const handleImageUpload = async (e) => {
-      const filelist = e.target.files[0];
-      const base64 = await convertBase64(filelist);
-      setstudentDeatils((prevState) => ({
-        ...prevState,
-        profile: base64,
-      }));
-    };
+  const handleImageUpload = async (e) => {
+    const filelist = e.target.files[0];
+    if (filelist.size > 204800) {
+      ToastErrorMessage("Profile Picture size must be less than 200KB.");
+      document.getElementById("file-input").value = "";
+      return;
+    }
+    const base64 = await convertBase64(filelist);
+    setEditedProfilePic(base64);
+    let formData = new FormData();
+    formData.append("profilePic", filelist);
+    // formData.append('studentId', authState._id)
 
-    const convertBase64 = (file) => {
-      return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
+    // const data = new URLSearchParams(formData).toString();
+    // console.log("data===============",data)
+    // console.log("profileFile _-------------------------- ", formData.entries())
+    // for (var key of formData.entries()) {
+    //   profilelink = key[1]
+    // }
+    // console.log(profilelink)
+    // var location;
 
-        fileReader.onload = () => {
-          resolve(fileReader.result);
-        };
-        fileReader.onerror = (error) => {
-          reject(error);
-        };
-      });
-    };
-
-  const updateUserDeatils = async () => {
     try {
-      const responce = await api.put(`/update-user`, studentDeatils);
-      setUserDeatils(responce.data);
-      dispatch(
-        setAuthentication({
-          isAuthenticated: true,
-          rollno: responce.data.rollno,
-          _id: responce.data._id,
-          mailId: responce.data.mailId,
-          studentName: responce.data.studentName,
-          year: responce.data.year,
-          branch: responce.data.branch,
-          phoneNumber: responce.data.phoneNumber,
-          profile: responce.data.profile,
-        })
+      const response = await api.post(
+        `/profilePicToS3/${params.id}`,
+        formData,
       );
-      ToastSuccessMessage("Successfull Updated");
+      // console.log(response.data)
+      setstudentDeatils((pre) => ({
+        ...pre,
+        profile: response.data,
+      }));
+      setIsProfilePicEdited(true);
     } catch (error) {
       ToastErrorMessage(error.response.data);
     }
   };
 
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const updateUserDeatils = async () => {
+    setUploadLoading(true);
+    try {
+      const response = await api.put(`/update-user`, studentDetails);
+      setUserDeatils(response.data);
+      dispatch(
+        setAuthentication({
+          isAuthenticated: true,
+          rollno: response.data.rollno,
+          _id: response.data._id,
+          mailId: response.data.mailId,
+          studentName: response.data.studentName,
+          year: response.data.year,
+          branch: response.data.branch,
+          phoneNumber: response.data.phoneNumber,
+          profile: response.data.profile,
+          section: response.data.section,
+          altmail: response.data.altmail,
+        })
+      );
+      setIsProfilePicEdited(false);
+      setUploadLoading(false);
+      ToastSuccessMessage("Successfull Updated");
+    } catch (error) {
+      ToastErrorMessage(error.response.data);
+      setUploadLoading(false);
+    }
+  };
+
   const changePassword = () => {
-    navigate(`${ApplicationConstant.FORGOTPASSWORD_URL_PATH}`);
+    const passwordfunction = "changepassword";
+    navigate(
+      `${ApplicationConstant.FORGOTPASSWORD_URL_PATH}/${passwordfunction}`
+    );
   };
 
   const cancleUserDeatils = () => {
+    setIsProfilePicEdited(false);
     setstudentDeatils({
       branch: userDetails.branch || "",
-      mailId: userDetails.mailId ,
+      mailId: userDetails.mailId,
       phoneNumber: userDetails.phoneNumber || "",
       studentName: userDetails.studentName || "",
       rollno: userDetails.rollno || "",
@@ -158,86 +226,94 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="profileBody">
-      <AccountHeader label="Edit Profile"/>
-      <Card className="profileCard bgColor1">
-        <CardContent className="profileCardContent">
+    <div className="profileBody my_AccountBody">
+      <Card className="profileCard header-blog bg-animation container">
+        <AccountHeader label="Edit Profile" />
+        <CardContent className="profileCardContent" style={{ paddingTop: 15 }}>
           <div className="userImgDiv">
             <div>
               <input
-                onChange={handleImageUpload}
+                onChange={(e) => {
+                  // setprofileFile(e.target.files[0])
+                  handleImageUpload(e);
+                }}
                 className="image_input"
                 id="file-input"
                 type="file"
-                name="profilePic"
+                name="profile"
                 accept="image/*"
               />
               <Avatar
                 alt={capitalizeFirstLetter(
-                  studentDeatils.studentName?.charAt(0) || ""
+                  studentDetails.studentName?.charAt(0) || ""
                 )}
-                srcSet={studentDeatils.profile}
+                srcSet={
+                  !isProfilePicEdited ? userDetails.profile : editedProfilePic
+                }
                 sx={{
                   width: "130px",
                   height: "130px",
-                  fontSize: "80px",
                 }}
               />
               <label htmlFor="file-input" className="uploadImg">
-                <AddAPhotoIcon fontSize="large" />
+                <AddAPhotoIcon fontSize="large" style={{ color: "#df7f02" }} />
               </label>
             </div>
-            <p className="Editrollno">{studentDeatils.studentName}</p>
+            <p className="Editrollno white">{studentDetails.studentName}</p>
           </div>
           <div className="userDeatilsDiv">
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Name</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Name"
                 id="outlined-size-small"
                 size="small"
-                value={studentDeatils.studentName}
+                value={studentDetails.studentName}
                 name="studentName"
-                onChange={onChnageInputs}
+                onChange={onChangeInputs}
+                // autoComplete={false}
               />
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Roll No</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Roll No"
                 id="outlined-size-small"
                 size="small"
-                value={studentDeatils.rollno}
+                value={studentDetails.rollno}
                 name="rollno"
-                onChange={onChnageInputs}
+                onChange={onChangeInputs}
               />
             </div>
             <div>
-              <div className="profileInputs">
+              <div className="profileInputs white">
                 <label>Email</label>
                 <span className="inputdout">:</span>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs disableInput"
                   placeholder="Email"
-                  className="disableInput"
                   id="outlined-size-small"
                   size="small"
-                  value={studentDeatils.mailId}
+                  value={studentDetails.mailId}
                   disabled={true}
                 />
               </div>
-              <p className="hitMessage">can not change your email</p>
+              <p className="hitMessage">Can not change your email</p>
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Year</label>
               <span className="inputdout">:</span>
               <FormControl size="small">
                 <Select
+                  className="myAccountInputs"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  defaultValue={studentDeatils.year}
-                  value={studentDeatils.year}
+                  defaultValue={studentDetails.year}
+                  value={studentDetails.year}
                   name="graduationPosition"
                   onChange={(e) => {
                     setstudentDeatils((prevState) => ({
@@ -254,15 +330,16 @@ const EditProfile = () => {
                 </Select>
               </FormControl>
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
               <label>Branch</label>
               <span className="inputdout">:</span>
               <FormControl size="small">
                 <Select
+                  className="myAccountInputs"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={studentDeatils.branch}
-                  defaultValue={studentDeatils.branch}
+                  value={studentDetails.branch}
+                  defaultValue={studentDetails.branch}
                   name="graduationPosition"
                   onChange={(e) => {
                     setstudentDeatils((prevState) => ({
@@ -282,17 +359,61 @@ const EditProfile = () => {
                 </Select>
               </FormControl>
             </div>
-            <div className="profileInputs">
+            <div className="profileInputs white">
+              <label>Section</label>
+              <span className="inputdout">:</span>
+              <FormControl size="small">
+                <Select
+                  className="myAccountInputs"
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  defaultValue={studentDetails.section}
+                  value={studentDetails.section}
+                  name="graduationPosition"
+                  onChange={(e) => {
+                    setstudentDeatils((prevState) => ({
+                      ...prevState,
+                      section: e.target.value,
+                    }));
+                  }}
+                >
+                  {selectSection.map((option, index) => (
+                    <MenuItem
+                      key={`selectStatus=${index}`}
+                      value={option.value}
+                    >
+                      {option.displayName}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="profileInputs white">
               <label>Phone No</label>
               <span className="inputdout">:</span>
-              <TextField
+              <OutlinedInput
+                className="myAccountInputs"
                 placeholder="Phone No"
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
-                value={studentDeatils.phoneNumber}
+                value={studentDetails.phoneNumber}
                 name="phoneNumber"
-                onChange={onChnageInputs}
+                onChange={onChangeInputs}
+              />
+            </div>
+            <div className="profileInputs white">
+              <label>Alt Email</label>
+              <span className="inputdout">:</span>
+              <OutlinedInput
+                className="myAccountInputs"
+                placeholder="Alternative email "
+                id="outlined-size-small"
+                defaultValue="Small"
+                size="small"
+                value={studentDetails.altmail}
+                name="altmail"
+                onChange={onChangeInputs}
               />
             </div>
           </div>
@@ -301,8 +422,11 @@ const EditProfile = () => {
           <Button className="editUserBtn btnCancle" onClick={cancleUserDeatils}>
             Cancle
           </Button>
-          <Button className="editUserBtn btnUpdate" onClick={updateUserDeatils}>
-            Update
+          <Button
+            className={uploadLoading ? "loadingBtn" : "editUserBtn btnUpdate"}
+            onClick={updateUserDeatils}
+          >
+            {uploadLoading ? <CircularProgress /> : "Update"}
           </Button>
           <Button className="editUserBtn btnChange" onClick={changePassword}>
             Change Password

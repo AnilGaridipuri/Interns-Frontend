@@ -1,9 +1,14 @@
 export const ApplicationConstant = {
-  HOME_PAGE_PATH: "/home",
+  HOME_PAGE_PATH: "/",
+  HOME_PAGE_WEB_DEVELOPMENT_PATH: "/web-development",
+  HOME_PAGE_MACHINE_LEARNING_PATH: "/machine-learning",
   ALLINTERNSHIP_PAGE_PATH: "/all-internship-list",
   LOGIN_URL_PATH: "/login",
-  ALL_INTERNS: "/all-interns",
-  FORGOTPASSWORD_URL_PATH: "/forgotpassword",
+  ALL_CERTIFICATIONS: "/all-certifications-list",
+  FORGOTPASSWORD_URL_PATH: "",
+
+  FORGOTPASSWORD_DYNAMIC_URL_PATH: "/:passwordfunction",
+  
   MYACCOUNT_URL: "/account",
   MYACCOUNT_PROFILE_URL: "/account/profile",
   MYACCOUNT_PROFILE_DYNAMIC_URL: "/account/profile/:id",
@@ -14,7 +19,8 @@ export const ApplicationConstant = {
   MYACCOUNT_ADD_NEW_INTERNSHIP_URL: "/account/add-new-internship",
   MYACCOUNT_ADD_NEW_INTERNSHIP_DYNAMIC_URL: "/account/add-new-internship/:id",
   MYACCOUNT_ADD_NEW_CERTIFICATIONS_URL: "/account/add-new-certifications",
-  MYACCOUNT_ADD_NEW_CERTIFICATIONS_DYNAMIC_URL: "/account/add-new-certifications/:id",
+  MYACCOUNT_ADD_NEW_CERTIFICATIONS_DYNAMIC_URL:
+    "/account/add-new-certifications/:id",
   MYACCOUNT_EDIT_URL: "/account/edit-profile",
   MYACCOUNT_EDIT_DYNAMIC_URL: "/account/edit-profile/:id",
 };

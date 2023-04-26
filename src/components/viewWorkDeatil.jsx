@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { api } from "../axios/api.config";
 import { ToastErrorMessage, ToastSuccessMessage } from "../uitils/toastMessage";
-import { Avatar, FormControl, FormControlLabel, MenuItem, Radio, RadioGroup, Select, TextField } from "@mui/material";
+import { Avatar, FormControl, FormControlLabel, MenuItem, Radio, RadioGroup, Select, OutlinedInput } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router";
 import { ApplicationConstant } from "../constant/applicationConstant";
@@ -18,7 +18,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function ViewWorkDetails(props) {
-  console.log(props.label);
+  // console.log(props.label);
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -43,15 +43,13 @@ export default function ViewWorkDetails(props) {
         aria-describedby="alert-dialog-slide-description"
       >
         <div
-          onClick={handleClose}
           style={{
-            cursor: "pointer",
             display: "flex",
             justifyContent: "flex-end",
             margin: "20px 20px 0px 0px",
           }}
         >
-          <CloseIcon />
+          <CloseIcon onClick={handleClose} style={{ cursor: "pointer" }} />
         </div>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
@@ -70,72 +68,74 @@ export default function ViewWorkDetails(props) {
                 justifyItems: "center",
               }}
             >
-              <div style={{ cursor: "pointer" }} onClick={viewProfile}>
+              <div>
                 <Avatar
                   src={props.studentDetails.profile}
+                  style={{ cursor: "pointer" }}
+                  onClick={viewProfile}
                   sx={{
-                    width: "120px",
-                    height: "120px",
-                    marginRight: 2,
-                    fontSize: "60px",
+                    margin: "0 auto",
+                    width: "100px",
+                    height: "100px",
                   }}
                 />
                 <p
+                  onClick={viewProfile}
                   style={{
-                    textAlign: "cneter",
-                    marginLeft: "25px",
+                    cursor: "pointer",
+                    textAlign: "center",
                     color: "#f1950a",
                   }}
                 >
                   View Profile
                 </p>
               </div>
-              <div style={{ display: "grid", gap: "8px" }}>
-                <div style={{ display: "flex", gap: "10px" }}>
+              <div className="studentDetailsView">
+                <div style={{ display: "flex", gap: "10px", width: "320px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Student Name
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.studentName}</p>
                 </div>
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", width: "320px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Mail Id
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.mailId}</p>
                 </div>
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", width: "320px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
                     Roll No
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>{props.studentDetails.rollno}</p>
                 </div>
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", width: "320px" }}>
                   <label style={{ fontWeight: "bold", width: "130px" }}>
-                    Branch/Year
+                    Year / Branch
                   </label>
                   <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                   <p>
-                    {props.studentDetails.branch}
-                    {props.studentDetails.year}
+                    {props.studentDetails.year} / {props.studentDetails.branch}
                   </p>
                 </div>
               </div>
             </div>
-            {props.label == "Internship" ? (
+            {props.label === "Internship" ? (
               <div>
                 <p
                   className="intershipTitle"
                   style={{ textAlign: "center", margin: "30px 0px" }}
                 >
-                  Intrnship Details
+                  Internship Details
                 </p>
                 <div className="addInternInputsDiv">
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Company Name :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="Company Name"
                       id="outlined-size-small"
                       size="small"
@@ -144,41 +144,34 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
-                    <FormControl className="radioBtnDiv">
+                  <div className="addInternInputs black">
+                    <FormControl className="myAccountInputs">
                       <label className="radioLabel">Type :</label>
-                      <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="type"
-                        disabled={true}
-                      >
-                        <FormControlLabel
-                          value="Internship"
-                          control={<Radio />}
-                          label="Internship"
-                          checked={props.singleWorkDetails.type == "Internship"}
-                        />
-                        <FormControlLabel
-                          value="Job"
-                          control={<Radio />}
-                          label="Job"
-                          checked={props.singleWorkDetails.type == "Job"}
-                        />
-                        <FormControlLabel
-                          value="Certification"
-                          control={<Radio />}
-                          label="Certification"
-                          checked={
-                            props.singleWorkDetails.type == "Certification"
-                          }
-                        />
-                      </RadioGroup>
+                      <FormControlLabel
+                        className="myAccountInputs"
+                        value="props.singleWorkDetails.type"
+                        control={<Radio />}
+                        label="Internship"
+                        checked="true"
+                      />
                     </FormControl>
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
+                    <label>Project Name :</label>
+                    <OutlinedInput
+                      className="myAccountInputs"
+                      placeholder="Project Name"
+                      id="outlined-size-small"
+                      size="small"
+                      value={props.singleWorkDetails.projectName}
+                      name="Project Name"
+                      disabled={true}
+                    />
+                  </div>
+                  <div className="addInternInputs black">
                     <label>Domain :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="Web/ML/AI/"
                       id="outlined-size-small"
                       size="small"
@@ -187,9 +180,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Role :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="Role"
                       id="outlined-size-small"
                       size="small"
@@ -198,9 +192,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Stipend :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       placeholder="No or Yes"
                       id="outlined-size-small"
                       size="small"
@@ -209,9 +204,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Status :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       id="outlined-size-small"
                       size="small"
                       value={props.singleWorkDetails.status}
@@ -220,9 +216,10 @@ export default function ViewWorkDetails(props) {
                     />
                   </div>
                   <div>
-                    <div className="addInternInputs">
+                    <div className="addInternInputs black">
                       <label>Start Date :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         value={props.singleWorkDetails.start_date || ""}
                         name="start_date"
                         type="date"
@@ -235,9 +232,10 @@ export default function ViewWorkDetails(props) {
                     </div>
                   </div>
                   <div>
-                    <div className="addInternInputs">
+                    <div className="addInternInputs black">
                       <label>End Date :</label>
-                      <TextField
+                      <OutlinedInput
+                        className="myAccountInputs"
                         value={props.singleWorkDetails.end_date || ""}
                         name="end_date"
                         type="date"
@@ -254,8 +252,8 @@ export default function ViewWorkDetails(props) {
                   <div className="previewImage">
                     <div>
                       {props.singleWorkDetails.offerLetterpath == "" ? (
-                        <p style={{ color: "red", width: "300px" }}>
-                          Offer Letter Not Upload
+                        <p style={{ color: "red", width: "300px",textAlign:'center' }}>
+                          Offer Letter not yet uploaded.
                         </p>
                       ) : (
                         <div>
@@ -293,8 +291,8 @@ export default function ViewWorkDetails(props) {
                           />
                         </div>
                       ) : (
-                        <p style={{ color: "red", width: "300px" }}>
-                          Completion Certificate Not Upload
+                        <p style={{ color: "red", width: "300px",textAlign:'center' }}>
+                          Completion Certificate not yet uploaded.
                         </p>
                       )}
                     </div>
@@ -304,9 +302,10 @@ export default function ViewWorkDetails(props) {
             ) : (
               <div>
                 <div className="addInternInputsDiv">
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Organization Name :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       placeholder="Organization Name"
                       id="outlined-size-small"
                       size="small"
@@ -314,19 +313,23 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Domain :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       placeholder="Web/ML/AI/"
                       id="outlined-size-small"
                       size="small"
-                      value={props.singlecertificationsDetails.domain}
+                      value={
+                        props.singlecertificationsDetails.certificationName
+                      }
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Status :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       id="outlined-size-small"
                       size="small"
                       value={props.singlecertificationsDetails.status}
@@ -334,12 +337,11 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>Start Date :</label>
-                    <TextField
-                      value={
-                        props.singlecertificationsDetails.start_date || ""
-                      }
+                    <OutlinedInput
+                    className="myAccountInputs"
+                      value={props.singlecertificationsDetails.start_date || ""}
                       type="date"
                       required
                       size="small"
@@ -348,9 +350,10 @@ export default function ViewWorkDetails(props) {
                       disabled={true}
                     />
                   </div>
-                  <div className="addInternInputs">
+                  <div className="addInternInputs black">
                     <label>End Date :</label>
-                    <TextField
+                    <OutlinedInput
+                    className="myAccountInputs"
                       value={props.singlecertificationsDetails.end_date || ""}
                       type="date"
                       required
@@ -362,13 +365,14 @@ export default function ViewWorkDetails(props) {
                   </div>
                   <div className="previewImage">
                     <div>
-                      {props.singlecertificationsDetails.completionCertificatepath !=
-                      "" ? (
+                      {props.singlecertificationsDetails
+                        .completionCertificatepath != "" ? (
                         <div>
                           <p>Completion Certificate</p>
                           <img
                             src={
-                              props.singlecertificationsDetails.completionCertificatepath
+                              props.singlecertificationsDetails
+                                .completionCertificatepath
                             }
                             style={{
                               width: "300px",
@@ -380,8 +384,15 @@ export default function ViewWorkDetails(props) {
                           />
                         </div>
                       ) : (
-                        <p style={{ color: "red", width: "330px" ,marginTop:'20px'}}>
-                          Completion Certificate Not Upload
+                        <p
+                          style={{
+                            color: "red",
+                            width: "330px",
+                            marginTop: "20px",
+                            textAlign:'center'
+                          }}
+                        >
+                          Completion Certificate not yet uploaded.
                         </p>
                       )}
                     </div>

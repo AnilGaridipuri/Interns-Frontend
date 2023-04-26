@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ApplicationConstant } from "../../constant/applicationConstant";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
@@ -12,21 +12,31 @@ import logo from "../../assets/mitsLogo.jpeg";
 import "./sidebar.css";
 import { useSelector } from "react-redux";
 import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
+import { Avatar } from "@mui/material";
+import { api } from "../../axios/api.config";
 
 const Sidebar = (props) => {
   const pathname = useLocation();
-  const authState = useSelector((state) => state.authReducer);
 
   var [sidebarOpen, setSidebarOpen] = useState(false);
-  
-    var [classSubmenu, setClassSubmenu] = useState("SubMenu_group");
 
-    function className() {
-        setClassSubmenu("SubMenu_group");
+  const [userAccount, setUserAccount] = useState({});
+
+  const authState = useSelector((state) => state.authReducer);
+
+  useEffect(()=>{
+    document.addEventListener('click',handleclickOutside, true)
+  },[])
+
+  const handleclickOutside = (e)=>{
+    var sidebar = document.querySelector(".sidebarBody");
+    var sidebarToggleIcon = document.querySelector(".container");
+    if(sidebar.classList.contains('open')){
+      if(!sidebar.contains(e.target) && !sidebarToggleIcon.contains(e.target)){
+        handleMenuIcon()
+      }
     }
-    function className_active() {
-        setClassSubmenu("tooltip_submenu");
-    }
+  }
 
   function collapse() {
     var collapseBtn = document.querySelector(".collapes_button");
@@ -39,13 +49,24 @@ const Sidebar = (props) => {
     sidebarLinksDiv?.classList.toggle("active");
   }
 
-   const handleMenuIcon = () => {
-     var sidebar = document.querySelector(".sidebarBody");
-     sidebar?.classList.toggle("open");
-     var sidebar = document.querySelector(".sideMenuIconDiv");
-     sidebar?.classList.toggle("open");
-   };
+  const handleMenuIcon = () => {
+    var sidebar = document.querySelector(".sidebarBody");
+    sidebar?.classList.toggle("open");
+    var sidebar = document.querySelector(".container");
+    sidebar?.classList.toggle("change");
+    document.getElementById('myAccountBody').classList.toggle('masked')
+  };
 
+  const getProfilePic = async () => {
+      const res = await api.post("auth/user", {
+        id: props.id,
+      });
+      setUserAccount(res.data);
+  };
+
+  useEffect(() => {
+    getProfilePic();
+  }, [props.id,authState]);
 
   return (
     <div className="sidebarBody" id="sidebarBody">
@@ -53,20 +74,31 @@ const Sidebar = (props) => {
         <div>
           <i className="icon" onClick={collapse}>
             {sidebarOpen === false ? (
-              <KeyboardDoubleArrowLeftIcon onClick={className_active} />
+              <KeyboardDoubleArrowLeftIcon />
             ) : (
-              <KeyboardDoubleArrowRightIcon onClick={className} />
+              <KeyboardDoubleArrowRightIcon />
             )}
           </i>
         </div>
       </div>
       <div className="siderbarHeader">
-        <img alt="Remy Sharp" src={logo} className="sideBarImg" />
-        <p>MITS Interns</p>
+        <Avatar
+          className="sideBarAvatar"
+          srcSet={userAccount.profile}
+          sx={{
+            width: "40px",
+            height: "40px",
+          }}
+        />
+        {authState._id === props.id ? (
+          <h3>My Account</h3>
+        ) : (
+          <h3>{userAccount.studentName}</h3>
+        )}
       </div>
       <div className="sidebarLinksDiv">
         <NavLink
-          onClick={handleMenuIcon}
+          onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
           to={`${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${props.id}`}
         >
           <div
@@ -83,7 +115,7 @@ const Sidebar = (props) => {
           </div>
         </NavLink>
         <NavLink
-          onClick={handleMenuIcon}
+          onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
           to={`${ApplicationConstant.MYACCOUNT_MYINTERSHIPS_URL}/${props.id}`}
         >
           <div
@@ -96,15 +128,15 @@ const Sidebar = (props) => {
           >
             <DescriptionIcon fontSize="large" />
             <p className="linkName">
-              {authState._id == props.id ? "My Internships" : "Internships"}
+              {authState._id === props.id ? "My Internships" : "Internships"}
             </p>
             <span className="tooltip_sidemenu">
-              {authState._id == props.id ? "My Internships" : "Internships"}
+              {authState._id === props.id ? "My Internships" : "Internships"}
             </span>
           </div>
         </NavLink>
         <NavLink
-          onClick={handleMenuIcon}
+          onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
           to={`${ApplicationConstant.MYACCOUNT_MYCERTIFICATES_URL}/${props.id}`}
         >
           <div
@@ -117,17 +149,21 @@ const Sidebar = (props) => {
           >
             <ReceiptLongIcon fontSize="large" />
             <p className="linkName">
-              {authState._id == props.id ? "My certificates" : "Certificates"}
+              {authState._id === props.id
+                ? "My Certifications"
+                : "Certifications"}
             </p>
             <span className="tooltip_sidemenu">
-              {authState._id == props.id ? "My certificates" : "Certificates"}
+              {authState._id === props.id
+                ? "My Certifications"
+                : "Certifications"}
             </span>
           </div>
         </NavLink>
-        {authState._id == props.id ? (
+        {authState._id === props.id ? (
           <div>
             <NavLink
-              onClick={handleMenuIcon}
+              onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
               to={`${ApplicationConstant.MYACCOUNT_ADD_NEW_INTERNSHIP_URL}/${props.id}`}
             >
               <div
@@ -144,7 +180,7 @@ const Sidebar = (props) => {
               </div>
             </NavLink>
             <NavLink
-              onClick={handleMenuIcon}
+              onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
               to={`${ApplicationConstant.MYACCOUNT_ADD_NEW_CERTIFICATIONS_URL}/${props.id}`}
             >
               <div
@@ -161,7 +197,7 @@ const Sidebar = (props) => {
               </div>
             </NavLink>
             <NavLink
-              onClick={handleMenuIcon}
+              onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
               to={`${ApplicationConstant.MYACCOUNT_EDIT_URL}/${props.id}`}
             >
               <div
@@ -173,8 +209,8 @@ const Sidebar = (props) => {
                 }
               >
                 <SettingsIcon fontSize="large" />
-                <p className="linkName">Edit</p>
-                <span className="tooltip_sidemenu">Edit</span>
+                <p className="linkName">Edit Profile</p>
+                <span className="tooltip_sidemenu">Edit Profile</span>
               </div>
             </NavLink>
           </div>

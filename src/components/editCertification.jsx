@@ -4,16 +4,12 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
-import CreateIcon from "@mui/icons-material/Create";
 import {
-DialogTitle,
+  DialogTitle,
   FormControl,
-  FormControlLabel,
   MenuItem,
-  Radio,
-  RadioGroup,
   Select,
-  TextField,
+  OutlinedInput,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { api } from "../axios/api.config";
@@ -35,7 +31,7 @@ const selectStatus = [
 export default function EditCertification(props) {
   const authState = useSelector((state) => state.authReducer);
   const params = useParams();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(props.open);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,35 +41,37 @@ export default function EditCertification(props) {
     setOpen(false);
   };
 
-  console.log(props.certificationsDetails, "propsd");
- 
-    const [addNewCertification, setAddNewCertification] = useState({
-      studentId: authState._id,
-      organizationName: props.certificationsDetails.organizationName,
-      domain: props.certificationsDetails.domain,
-      status: props.certificationsDetails.status,
-      start_date: props.certificationsDetails.start_date,
-      end_date: props.certificationsDetails.end_date,
-      completionCertificatepath:
-        props.certificationsDetails.completionCertificatepath,
-      certificationId: props.certificationsDetails._id
-    });
+  console.log(props.certificationDetails, "propsd");
 
-   const onChnageInputs = (e) => {
-     var name = e.target.name;
-     var value = e.target.value;
-     console.log(e);
-     setAddNewCertification((pre) => ({
-       ...pre,
-       [name]: value,
-     }));
-   };
+  const [addNewCertification, setAddNewCertification] = useState({
+    studentId: authState._id,
+    organizationName: props.certificationDetails.organizationName,
+    certificationName: props.certificationDetails.certificationName,
+    status: props.certificationDetails.status,
+    start_date: props.certificationDetails.start_date,
+    end_date: props.certificationDetails.end_date,
+    completionCertificatepath:
+      props.certificationDetails.completionCertificatepath,
+    certificationId: props.certificationDetails._id,
+  });
+
+  console.log(addNewCertification,"editCerifvd");
+
+  const onChnageInputs = (e) => {
+    var name = e.target.name;
+    var value = e.target.value;
+    console.log(e);
+    setAddNewCertification((pre) => ({
+      ...pre,
+      [name]: value,
+    }));
+  };
 
   const handleOnImageChange = async (e) => {
     const { name } = e.currentTarget;
     const filelist = e.target.files[0];
     const base64 = await convertBase64(filelist);
-    addNewCertification((prevState) => ({
+    setAddNewCertification((prevState) => ({
       ...prevState,
       [name]: base64,
     }));
@@ -95,26 +93,33 @@ export default function EditCertification(props) {
 
   const cancleDeatils = () => {
     setAddNewCertification({
+      studentId: authState._id,
       organizationName: props.certificationDetails.organizationName,
-      domain: props.certificationDetails.domain,
+      certificationName: props.certificationDetails.certificationName,
       status: props.certificationDetails.status,
       start_date: props.certificationDetails.start_date,
       end_date: props.certificationDetails.end_date,
       completionCertificatepath:
         props.certificationDetails.completionCertificatepath,
+      certificationId: props.certificationDetails._id,
     });
   };
   const uploadDeatils = async () => {
     if (authState._id == params.id) {
       try {
-         const responce = await api.put(
-           `update-CertificationDetails`,
-           addNewCertification
-         );
+        const responce = await api.put(
+          `update-CertificationDetails`,
+          addNewCertification
+        );
+        console.log(responce,"Certification")
+        const ongoing = responce.data.filter( (certification) => certification.status==='Ongoing')
+        const completed = responce.data.filter( (certification) => certification.status==='Completed')
         props.setCertificationsDeatils(responce.data);
-        ToastSuccessMessage("Successfully Uploaded !!");
+        ToastSuccessMessage("Successfully Updated !!");
       } catch (error) {
-        ToastErrorMessage(error.response.data || error.message);
+        ToastErrorMessage(
+          error.response.data || error.message || "Something Went Wrong !!"
+        );
       }
     }
   };
@@ -122,14 +127,15 @@ export default function EditCertification(props) {
   return (
     <div>
       <div onClick={handleClickOpen}>
-        <CreateIcon />
+        <Button className="btnUpdate1">Update</Button>
       </div>
       <Dialog
         open={open}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        maxWidth="lg"
+        // maxWidth="lg"
+        className="dialogBox"
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle
@@ -137,10 +143,10 @@ export default function EditCertification(props) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap:'20px'
+            gap: "20px",
           }}
         >
-          <AccountHeader label="Edit Internship" />
+          <AccountHeader label="Edit Certification" />
           <div
             onClick={handleClose}
             style={{
@@ -158,7 +164,8 @@ export default function EditCertification(props) {
             <div className="addInternInputsDiv">
               <div className="addInternInputs">
                 <label>Organization Name :</label>
-                <TextField
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="Organization Name"
                   id="outlined-size-small"
                   size="small"
@@ -168,20 +175,22 @@ export default function EditCertification(props) {
                 />
               </div>
               <div className="addInternInputs">
-                <label>Domain :</label>
-                <TextField
+                <label>Certification Name :</label>
+                <OutlinedInput
+                  className="myAccountInputs"
                   placeholder="Web/ML/AI/"
                   id="outlined-size-small"
                   size="small"
-                  value={addNewCertification.domain}
-                  name="domain"
+                  value={addNewCertification.certificationName}
+                  name="certificationName"
                   onChange={onChnageInputs}
                 />
               </div>
               <div>
                 <div className="addInternInputs">
                   <label>Start Date :</label>
-                  <TextField
+                  <OutlinedInput
+                    className="myAccountInputs"
                     value={addNewCertification.start_date || ""}
                     onChange={onChnageInputs}
                     name="start_date"
@@ -194,18 +203,21 @@ export default function EditCertification(props) {
                 </div>
               </div>
               <div>
-                <div className="addInternInputs">
-                  <label>End Date :</label>
-                  <TextField
-                    value={addNewCertification.end_date || ""}
-                    onChange={onChnageInputs}
-                    name="end_date"
-                    type="date"
-                    required
-                    size="small"
-                    id="outlined-basic"
-                    variant="outlined"
-                  />
+                <div>
+                  <div className="addInternInputs">
+                    <label>End Date :</label>
+                    <OutlinedInput
+                      className="myAccountInputs"
+                      value={addNewCertification.end_date || ""}
+                      onChange={onChnageInputs}
+                      name="end_date"
+                      type="date"
+                      required
+                      size="small"
+                      id="outlined-basic"
+                      variant="outlined"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -213,6 +225,7 @@ export default function EditCertification(props) {
                   <label>Status :</label>
                   <FormControl size="small">
                     <Select
+                      className="myAccountInputs selectColor"
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       defaultValue={addNewCertification.status}
@@ -242,11 +255,11 @@ export default function EditCertification(props) {
                 <div>
                   <div className="addInternInputs">
                     <label>Completion Certificate :</label>
-                    <TextField
+                    <OutlinedInput
+                      className="myAccountInputs"
                       onChange={handleOnImageChange}
                       name="completionCertificatepath"
                       type="file"
-                      multiple
                       size="small"
                       id="outlined-basic"
                     />

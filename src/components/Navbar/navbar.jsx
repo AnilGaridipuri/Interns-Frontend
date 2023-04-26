@@ -1,5 +1,4 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -12,17 +11,13 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/mitsLogo.jpeg";
-import profile from "../../assets/profile.JPG";
 import "./navbar.css";
 import { ApplicationConstant } from "../../constant/applicationConstant";
 import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAuthentication } from "../../store/slices/auth";
-import { capitalizeFirstLetter } from "../../uitils/jsFunctions";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LogoutIcon from "@mui/icons-material/Logout";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const NavBar = () => {
@@ -45,7 +40,14 @@ const NavBar = () => {
         isAuthenticated: false,
         rollno: "",
         _id: "",
+        studentName: "",
+        year: "",
+        branch: "",
+        phoneNumber: "",
         mailId: "",
+        profile: "",
+        section: "",
+        altmail: "",
       })
     );
   };
@@ -61,23 +63,27 @@ const NavBar = () => {
   }
 
   return (
-    <div position="static" className="navBarBody" id="navBarBody">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <div className="navBarBody" id="navBarBody">
+      <div className="navBarDiv">
+        <Typography onClick={handleMenuItems} className="menuIconDiv">
+          {menuItemsListOpen == false ? (
+            <MenuIcon className="menuIcon" />
+          ) : (
+            <CancelIcon className="menuIcon" />
+          )}
+        </Typography>
+        <div>
+        <NavLink
+          to={ApplicationConstant.HOME_PAGE_PATH}
+        >
           <div className="navBarLogoDiv">
             <img src={logo} className="mitsLogo"></img>
             <p className="navlogoText">MITS Interns</p>
           </div>
-
-          {/* only display in modile screen  */}
-          <Typography onClick={handleMenuItems} className="menuIconDiv">
-            {menuItemsListOpen == false ? (
-              <MenuIcon className="menuIcon" />
-            ) : (
-              <CancelIcon className="menuIcon" />
-            )}
-          </Typography>
-          <Typography className="menuItemsList" id="menuItemsList">
+        </NavLink>
+        </div>
+        <div className="navBarLinkDiv">
+          <div className="menuItemsList" id="menuItemsList">
             <NavLink
               to={ApplicationConstant.HOME_PAGE_PATH}
               className={
@@ -85,6 +91,7 @@ const NavBar = () => {
                   ? "navItems_active"
                   : "navItems"
               }
+              onClick={()=>{setTimeout(handleMenuItems, 1000)}}
             >
               Home
             </NavLink>
@@ -96,16 +103,32 @@ const NavBar = () => {
                   ? "navItems_active"
                   : "navItems"
               }
+              onClick={()=>{setTimeout(handleMenuItems, 1000)}}
             >
-              All Interns
+              All Internships
             </NavLink>
-          </Typography>
+            <NavLink
+              to={ApplicationConstant.ALL_CERTIFICATIONS}
+              className={
+                pathname.pathname === ApplicationConstant.ALL_CERTIFICATIONS
+                  ? "navItems_active"
+                  : "navItems"
+              }
+              onClick={()=>{setTimeout(handleMenuItems, 1000)}}
+            >
+              All Certifications
+            </NavLink>
+          </div>
           <div>
             {!MITSinternsid ? (
               <div className="navLoginBtnDiv NavProfileDiv">
                 <div className="divider"></div>
                 <NavLink
-                  className="navLoginBtn"
+                  className={
+                    pathname.pathname === ApplicationConstant.LOGIN_URL_PATH
+                      ? "navLoginBtn_active"
+                      : "navLoginBtn"
+                  }
                   to={ApplicationConstant.LOGIN_URL_PATH}
                 >
                   Login
@@ -126,14 +149,10 @@ const NavBar = () => {
                         className="navProfile"
                       >
                         <Avatar
-                          // alt={capitalizeFirstLetter(
-                          //   authState?.studentName.charAt(0) || "A"
-                          // )}
                           srcSet={authState.profile}
                           sx={{
                             width: "60px",
                             height: "60px",
-                            fontSize: "40px",
                           }}
                         />
                       </IconButton>
@@ -189,8 +208,8 @@ const NavBar = () => {
               </Box>
             )}
           </div>
-        </Toolbar>
-      </Container>
+        </div>
+      </div>
     </div>
   );
 };

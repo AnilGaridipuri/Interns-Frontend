@@ -7,23 +7,33 @@ import TableRow from "@mui/material/TableRow";
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#000",
     color: theme.palette.common.white,
+    backgroundImage:
+      "linear-gradient(to bottom right, rgb(60, 43, 81), #502760)",
+    fontSize: 17,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 16,
   },
 }));
 
+
 export const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
-    backgroundColor: "#d3feed",
+    backgroundColor: "#fff",
   },
   "&:nth-of-type(even)": {
-    backgroundColor: "#ecfff7",
+    backgroundColor: "#f4eafd",
   },
   // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
+  },
+}));
+
+export const StyledTableHeader = styled(TableRow)(({ theme }) => ({
+  "& .MuiTableRow-root": {
+    backgroundImage:
+      "linear-gradient(to bottom right, #15154a, #2f2f89, #6c38b9, #9724c9)",
   },
 }));
