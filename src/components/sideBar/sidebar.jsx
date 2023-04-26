@@ -50,7 +50,6 @@ const Sidebar = (props) => {
   }
 
   const handleMenuIcon = () => {
-    console.log("sidebarrr evnelistenr")
     var sidebar = document.querySelector(".sidebarBody");
     sidebar?.classList.toggle("open");
     var sidebar = document.querySelector(".container");
@@ -99,7 +98,7 @@ const Sidebar = (props) => {
       </div>
       <div className="sidebarLinksDiv">
         <NavLink
-          onClick={handleMenuIcon}
+          onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
           to={`${ApplicationConstant.MYACCOUNT_PROFILE_URL}/${props.id}`}
         >
           <div
@@ -116,7 +115,7 @@ const Sidebar = (props) => {
           </div>
         </NavLink>
         <NavLink
-          onClick={handleMenuIcon}
+          onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
           to={`${ApplicationConstant.MYACCOUNT_MYINTERSHIPS_URL}/${props.id}`}
         >
           <div
@@ -137,7 +136,7 @@ const Sidebar = (props) => {
           </div>
         </NavLink>
         <NavLink
-          onClick={handleMenuIcon}
+          onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
           to={`${ApplicationConstant.MYACCOUNT_MYCERTIFICATES_URL}/${props.id}`}
         >
           <div
@@ -164,7 +163,7 @@ const Sidebar = (props) => {
         {authState._id === props.id ? (
           <div>
             <NavLink
-              onClick={handleMenuIcon}
+              onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
               to={`${ApplicationConstant.MYACCOUNT_ADD_NEW_INTERNSHIP_URL}/${props.id}`}
             >
               <div
@@ -181,7 +180,7 @@ const Sidebar = (props) => {
               </div>
             </NavLink>
             <NavLink
-              onClick={handleMenuIcon}
+              onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
               to={`${ApplicationConstant.MYACCOUNT_ADD_NEW_CERTIFICATIONS_URL}/${props.id}`}
             >
               <div
@@ -198,7 +197,7 @@ const Sidebar = (props) => {
               </div>
             </NavLink>
             <NavLink
-              onClick={handleMenuIcon}
+              onClick={()=>{setTimeout(handleMenuIcon, 1000)}}
               to={`${ApplicationConstant.MYACCOUNT_EDIT_URL}/${props.id}`}
             >
               <div

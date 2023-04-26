@@ -91,7 +91,7 @@ const NavBar = () => {
                   ? "navItems_active"
                   : "navItems"
               }
-              onClick={handleMenuItems}
+              onClick={()=>{setTimeout(handleMenuItems, 1000)}}
             >
               Home
             </NavLink>
@@ -103,7 +103,7 @@ const NavBar = () => {
                   ? "navItems_active"
                   : "navItems"
               }
-              onClick={handleMenuItems}
+              onClick={()=>{setTimeout(handleMenuItems, 1000)}}
             >
               All Internships
             </NavLink>
@@ -114,7 +114,7 @@ const NavBar = () => {
                   ? "navItems_active"
                   : "navItems"
               }
-              onClick={handleMenuItems}
+              onClick={()=>{setTimeout(handleMenuItems, 1000)}}
             >
               All Certifications
             </NavLink>
