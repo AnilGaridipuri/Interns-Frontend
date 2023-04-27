@@ -20,5 +20,3 @@ const HomeWebDevelopment = () => {
     </div>
   );
 }
-
-export default HomeWebDevelopment;
