@@ -143,49 +143,49 @@ const MyInterships = () => {
                       </div>
                       <div className="internshipContent">
                         <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
+                          <label style={{ fontWeight: "bold", width: "140px" }}>
                             Company Name
                           </label>
                           <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                           <p>{work.companyName}</p>
                         </div>
                         <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
+                          <label style={{ fontWeight: "bold", width: "140px" }}>
                             Type
                           </label>
                           <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                           <p>{work.type}</p>
                         </div>
                         <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
+                          <label style={{ fontWeight: "bold", width: "140px" }}>
                             Project Name
                           </label>
                           <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                           <p>{work.projectName}</p>
                         </div>
                         <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
+                          <label style={{ fontWeight: "bold", width: "140px" }}>
                             Domain
                           </label>
                           <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                           <p>{work.domain}</p>
                         </div>
                         <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
+                          <label style={{ fontWeight: "bold", width: "140px" }}>
                             Role
                           </label>
                           <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                           <p>{work.role}</p>
                         </div>
                         <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
+                          <label style={{ fontWeight: "bold", width: "140px" }}>
                             Start Date
                           </label>
                           <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                           <p>{work.start_date}</p>
                         </div>
                         <div style={{ display: "flex", gap: "10px" }}>
-                          <label style={{ fontWeight: "bold", width: "130px" }}>
+                          <label style={{ fontWeight: "bold", width: "140px" }}>
                             End Date
                           </label>
                           <p style={{ fontWeight: "bold", width: "5px" }}>:</p>

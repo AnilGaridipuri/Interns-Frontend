@@ -13,9 +13,6 @@
     height: 500px
 }
 
-@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,800,800,900");
-
-
 .content {
   position: relative;
 }
@@ -66,4 +63,67 @@
       0% 100%
     );
   }
+}
+
+.webLearnDiv{
+  /* padding:  50px 100px 30px; */
+  width:75%;
+  margin:20px auto;
+  font-size: 1.1rem;
+  text-align: justify;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.webLearnDiv h2{
+  font-size: 1.5em;
+  margin: 40px 0 10px;
+}
+
+.webLearnDiv h4{
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.webLearnDiv>p{
+  line-height: 1.5;
+  margin: 20px 0 ;
+}
+
+.resourceVideo{
+  width:95%;
+  max-width:530px;
+  height:315px;
+  display: block;
+  margin : 20px auto;
+}
+
+.urlBox{
+  width:95%;
+  max-width:900px;
+  padding: 20px 30px;
+  border-radius: 5px;
+  background-color:#513062; 
+  margin : 20px auto;
+  line-height: 1.2;
+}
+
+.redText{
+  color: red;
+}
+
+.urlBox h4{
+  font-weight:lighter;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.urlBox p{
+  font-weight:lighter;
+  color: rgb(174, 174, 174);
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.urlBox:hover{
+  background-color: rgb(84, 84, 84);
 }

@@ -1,6 +1,8 @@
 import React from 'react'
-import './domine.css'
-import fullStack from './../../assets/fullstack1.png'
+import './../domain.css'
+import fullStack from './../../../assets/fullstack1.png'
+import WebLearn from './webLearn'
+import WebInternships from './webInternships'
 
 const HomeWebDevelopment = () => {
   return (
@@ -9,11 +11,12 @@ const HomeWebDevelopment = () => {
         <div>
           <div class="content">
             <h2>Full Stack Development</h2>
-            <h2>Full Stack Development</h2>
           </div>
         </div>
         <img className='domainHeaderImg' src={fullStack}></img>
       </div>
+      <WebLearn />
+      <WebInternships />
     </div>
   );
 }

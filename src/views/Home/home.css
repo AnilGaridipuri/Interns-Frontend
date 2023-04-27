@@ -26,6 +26,8 @@
 
 .homeContent {
   margin-top: -200px;
+  text-align: justify;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .impInternCard {
@@ -66,7 +68,7 @@
 .impInternCardImgDiv p {
   margin: 10px 0px;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: bold;
   color: #3b0e4e;
 }
 
