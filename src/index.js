@@ -14,8 +14,8 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Provider store={store}>
-        <ToastContainer autoClose={2000} />
-        <App />
+        <ToastContainer autoClose={1500} />
+          <App />
       </Provider>
     </HashRouter>
   </React.StrictMode>

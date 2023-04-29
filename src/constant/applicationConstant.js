@@ -1,7 +1,12 @@
 export const ApplicationConstant = {
   HOME_PAGE_PATH: "/",
+
   HOME_PAGE_WEB_DEVELOPMENT_PATH: "/web-development",
+  WEB_LEARNING : "/web-development/learn",
+  WEB_VIEW_INTERNSHIPS:'/web-development/internships',
+
   HOME_PAGE_MACHINE_LEARNING_PATH: "/machine-learning",
+  
   ALLINTERNSHIP_PAGE_PATH: "/all-internship-list",
   LOGIN_URL_PATH: "/login",
   ALL_CERTIFICATIONS: "/all-certifications-list",

@@ -25,11 +25,21 @@ export default function App() {
       children: [
         {
           path: ApplicationConstant.HOME_PAGE_PATH,
-          element: <HomePage />,
+          element: <HomePage />
         },
         {
           path: ApplicationConstant.HOME_PAGE_WEB_DEVELOPMENT_PATH,
           element: <HomeWebDevelopment />,
+          children:[
+            {
+              path:ApplicationConstant.WEB_LEARNING,
+              element: <WebLearn />
+            },
+            {
+              path:ApplicationConstant.WEB_VIEW_INTERNSHIPS,
+              element: <WebInternships />
+            }
+          ]
         },
         {
           path: ApplicationConstant.HOME_PAGE_MACHINE_LEARNING_PATH,
