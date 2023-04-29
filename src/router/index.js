@@ -13,7 +13,9 @@ import EditProfile from "../views/myAccount/EditProfile";
 import AllInternShips from "../views/AllInternShips/AllInternShips";
 import AddNewCertification from "../views/myAccount/addNewCertification";
 import AllCertifications from "../views/AllInternShips/AllCertifications"
-import HomeWebDevelopment from "../views/Home/webDevelopment";
+import HomeWebDevelopment from "../views/Home/webDevelopment/webDevelopment";
+import WebLearn from "../views/Home/webDevelopment/webLearn";
+import WebInternships from "../views/Home/webDevelopment/webInternships";
 import HomeMachineLearning from "../views/Home/machineLearning";
 
 export default function App() {
@@ -23,11 +25,21 @@ export default function App() {
       children: [
         {
           path: ApplicationConstant.HOME_PAGE_PATH,
-          element: <HomePage />,
+          element: <HomePage />
         },
         {
           path: ApplicationConstant.HOME_PAGE_WEB_DEVELOPMENT_PATH,
           element: <HomeWebDevelopment />,
+          children:[
+            {
+              path:ApplicationConstant.WEB_LEARNING,
+              element: <WebLearn />
+            },
+            {
+              path:ApplicationConstant.WEB_VIEW_INTERNSHIPS,
+              element: <WebInternships />
+            }
+          ]
         },
         {
           path: ApplicationConstant.HOME_PAGE_MACHINE_LEARNING_PATH,

@@ -99,10 +99,10 @@ const MyCertificates = () => {
                           alignItems: "center",
                         }}
                       >
-                        <label style={{ fontWeight: "bold", width: "40px" }}>
+                        {/* <label style={{ fontWeight: "bold", width: "40px" }}>
                           Status
                         </label>
-                        <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
+                        <p style={{ fontWeight: "bold", width: "5px" }}>:</p> */}
                         <Button
                           className={certification.status}
                           style={{

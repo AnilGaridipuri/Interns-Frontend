@@ -30,7 +30,7 @@ li {
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 5px;
   height: 0px;
 }
 
@@ -41,6 +41,8 @@ li {
 ::-webkit-scrollbar-thumb {
   background: gray;
   border-radius: 10px;
+  background-color: #4F275F;
+
 }
 
 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {

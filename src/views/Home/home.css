@@ -13,7 +13,7 @@
   height: 200px;
   background-color: rgba(255, 255, 255, 0.2);
   position: relative;
-  top: -300px;
+  top: -40vh;
   margin: 0 auto;
   padding: 0 10px;
 }
@@ -26,6 +26,8 @@
 
 .homeContent {
   margin-top: -200px;
+  text-align: justify;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .impInternCard {
@@ -66,25 +68,19 @@
 .impInternCardImgDiv p {
   margin: 10px 0px;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: bold;
   color: #3b0e4e;
 }
 
 .impInternCardImg {
   width: 400px;
-  /* height: 35vh; */
-  /* border: 3px solid #ac0af1; */
-  /* border-radius: 50% 10% / 10% 50%; */
   object-fit: fill;
-  /* transform: rotate(-4deg); */
   display: block;
   margin: 15px 30px;
 }
 .impInternCardImg1 {
   width: 350px;
-  /* height: ; */
   object-fit: fill;
-  /* transform: rotate(-4deg); */
   display: block;
   margin: 15px 30px;
 }
@@ -94,7 +90,6 @@
     background-image: linear-gradient(to bottom right, rgb(60, 43, 81), #502760);
   min-height: 220px;
   padding: 10px 10px 20px;
-  /* overflow: hidden; */
 }
 
 .StdAlertBoxTitle {
@@ -336,10 +331,22 @@
 
 }
 
+@media screen and (max-height: 650px){
+  .quotes{
+    top:-45vh;
+  }
+}
+
 @media screen and (max-width:1200px){
   .StdAlertBoxCard{
     flex-direction: row;
     column-gap:50px;
+  }
+  .impInternCardImg {
+    width: 300px;
+  }
+  .impInternCardImg1 {
+    width: 285px;
   }
 }
 
