@@ -9,6 +9,8 @@ import { api } from "./axios/api.config";
 import { ToastErrorMessage, ToastSuccessMessage } from "./uitils/toastMessage";
 import { useDispatch } from "react-redux";
 import { setAuthentication } from "./store/slices/auth";
+import { useLocation } from 'react-router-dom'
+
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +21,12 @@ function App() {
 
   const id = localStorage.getItem("MITSinternsid");
   // console.log(id);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname]);
 
   useEffect(() => {
     if (!getuserDetails) {

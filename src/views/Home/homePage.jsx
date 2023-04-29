@@ -1,6 +1,6 @@
 import React from "react";
 import { ApplicationConstant } from "../../constant/applicationConstant";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import "./home.css";
 import bgvideo1 from "../../assets/v1.mp4";
 import impInternsip from "../../assets/home-internship.png";
@@ -20,10 +20,12 @@ const HomePage = () => {
 
   return (
     <div className="homeBody">
-      <div className="homePageVideo"></div>
-      <video className="bgvideo" loop muted autoPlay>
-        <source type="video/mp4" src={bgvideo1} />
-      </video>
+      <div className="homePageVideo">
+        <video className="bgvideo" loop muted autoPlay>
+          <source type="video/mp4" src={bgvideo1} />
+        </video>
+      </div>
+      
 
       <div className="quotes">
         <QuoteCarousel />
@@ -41,7 +43,7 @@ const HomePage = () => {
           </div>
           <div className="impInternCardImgDiv">
             <img className="impInternCardImg" src={impInternsip}></img>
-            <div style={{ minWidth: "" }}>
+            <div style={{ }}>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
@@ -144,7 +146,7 @@ const HomePage = () => {
                   <Button>React Js</Button>
                   <NavLink
                     className="majorDomainsListItemLink"
-                    to={ApplicationConstant.HOME_PAGE_WEB_DEVELOPMENT_PATH}
+                    to={ApplicationConstant.WEB_LEARNING}
                   >
                     Learn
                   </NavLink>

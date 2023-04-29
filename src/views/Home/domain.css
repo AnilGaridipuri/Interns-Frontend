@@ -1,129 +1,222 @@
-.domainHeaderBody{
-    background-image: linear-gradient(to  right, rgb(61, 42, 84), #502760);
-    color: rgb(255, 255, 255);
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap
+.domainHeaderBody {
+  background-image: linear-gradient(to right, rgb(61, 42, 84), #502760);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
-.domainHeaderImg{
-    width: 40%;
-    height: 500px
+.domainHeaderImg {
+  width: 28%;
+  height: 280px;
+  object-fit: fill;
 }
 
-.content {
-  position: relative;
+.typerText {
+  font-size: 35px;
+  color: #f39f29;
+  font-weight: bold;
 }
 
-.content h2 {
-  width: 100%;
+.domainHeaderText {
+  padding: 10px;
+  padding-top: 40px;
+  display: grid;
+  /* background: rgba(0,0,0,0.8); */
+  /* backdrop-filter:  blur(10px); */
+}
+
+.domainShortLinks {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+  margin-top: 30px;
+}
+
+.domainShortLinks a {
+  text-decoration: none !important;
+  text-align: center;
+  width: 180px;
+  background-image: linear-gradient(to right, #fea15a, #fcce70);
+  color: #3b0e4e;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.domainShortLinks a:hover {
+  background-image: linear-gradient(to right, #ffffff, #ffffff);
+}
+
+
+.drop-main {
+  display: flex;
+  font-size: 7rem;
+  margin: 1.5rem;
+  justify-content: center;
+  font-family: "Russo One", sans-serif;
+  font-size: 4em;
+  font-weight: 700;
   color: #fff;
-  font-size: 2em;
-  position: absolute;
+  margin: 0px;
 }
 
-.content h2:nth-child(1) {
-  color: transparent;
-  -webkit-text-stroke: 1px #f4b803;
+.d {
+  opacity: 0;
+  animation: drop 0.4s linear forwards;
 }
 
-.content h2:nth-child(2) {
-  color: #ffa600;
-  animation: animate 4s ease-in-out infinite;
+.r {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.2s;
 }
 
-@keyframes animate {
-  0%,
-  100% {
-    clip-path: polygon(
-      0% 45%,
-      16% 44%,
-      33% 50%,
-      54% 60%,
-      70% 61%,
-      84% 59%,
-      100% 52%,
-      100% 100%,
-      0% 100%
-    );
+.o {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.4s;
+}
+
+.p {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.6s;
+  color: #ffffff;
+}
+
+.s {
+  opacity: 0;
+  animation: drop 0.4s linear forwards 0.8s;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
   }
 
   50% {
-    clip-path: polygon(
-      0% 60%,
-      15% 65%,
-      34% 66%,
-      51% 62%,
-      67% 50%,
-      84% 45%,
-      100% 46%,
-      100% 100%,
-      0% 100%
-    );
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  65% {
+    transform: translateY(-17px);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translateY(-22px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
   }
 }
 
-.webLearnDiv{
-  /* padding:  50px 100px 30px; */
-  width:75%;
-  margin:20px auto;
+
+
+.webLearnDiv {
+  width: 75%;
+  margin: 20px auto;
   font-size: 1.1rem;
   text-align: justify;
   font-family: 'Work Sans', sans-serif;
 }
 
-.webLearnDiv h2{
+.webLearnDiv h2 {
   font-size: 1.5em;
   margin: 40px 0 10px;
 }
 
-.webLearnDiv h4{
+.webLearnDiv h4 {
   line-height: 1.5;
   font-weight: 600;
 }
 
-.webLearnDiv>p{
+.webLearnDiv>p {
   line-height: 1.5;
-  margin: 20px 0 ;
+  margin: 20px 0;
 }
 
-.resourceVideo{
-  width:95%;
-  max-width:530px;
-  height:315px;
+.resourceVideo {
+  width: 98%;
+  max-width: 530px;
+  height: 300px;
   display: block;
-  margin : 20px auto;
+  margin: 20px auto;
 }
 
 .urlBox{
-  width:95%;
-  max-width:900px;
+  width: 95%;
+  max-width: 900px;
   padding: 20px 30px;
   border-radius: 5px;
-  background-color:#513062; 
-  margin : 20px auto;
+  background-color: #513062;
+  margin: 20px auto;
   line-height: 1.2;
+  word-wrap: break-word;
 }
 
-.redText{
+.urlBox:hover {
+  background-color: rgb(84, 84, 84);
+}
+.redText {
   color: red;
 }
 
-.urlBox h4{
-  font-weight:lighter;
+.urlBox h4 {
+  font-weight: lighter;
   color: white;
   margin-bottom: 10px;
 }
 
-.urlBox p{
-  font-weight:lighter;
+.urlBox p {
+  font-weight: lighter;
   color: rgb(174, 174, 174);
   font-size: 15px;
   margin-top: 5px;
 }
 
-.urlBox:hover{
-  background-color: rgb(84, 84, 84);
+
+
+@media screen and (max-width:700px) {
+  .domainHeaderImg {
+    position: absolute;
+    width: 70%;
+    height: 220px;
+    opacity: 0.5;
+  }
+
+  .domainHeaderText {
+    z-index: 3;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  .drop-main {
+    font-size: 45px;
+  }
+
+  .domainShortLinks a {
+    width: 165px
+  }
+
+  .webLearnDiv{
+    width:90%;
+  }
+  .webLearnDiv h2 {
+    font-size: 1.3em;
+  }
+  .resourceVideo {
+    height: 200px;
+  }
+  .urlBox {
+    padding: 10px 15px;
+  }
+
 }
