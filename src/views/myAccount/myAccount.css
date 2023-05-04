@@ -13,11 +13,11 @@
 }
 
 .profileCard {
-  height: 85vh;
+  min-height: 86vh;
   z-index: 0;
   display: grid;
   padding: 0px 20px;
-  margin: 10px;
+  margin: 2px;
   border-radius: 5px !important;
   transition: all 1s;
   box-shadow: 4px 4px 14px 0px rgba(116, 116, 116, 0.25),
@@ -48,12 +48,13 @@
   cursor: context-menu;
   display: grid;
   padding: 0px 20px;
-  margin: 10px;
-  min-height: 650px;
+  margin: 3px;
+  min-height: 86vh;
+  /* max-width: 1350px; */
   border-radius: 5px !important;
   transition: all 1s;
   box-shadow: 7px 2px 20px 0px #7c7c7c !important;
-  border-radius: 80px 0px 80px 0px !important;
+  border-radius: 60px 2px 60px 2px !important;
   background-color: #d5fcdd !important;
 }
 
@@ -96,8 +97,9 @@
   flex-wrap: wrap;
   gap: 30px;
   justify-content: space-evenly;
+  margin:0 auto;
   margin-bottom: 50px;
-  max-height: 1250px;
+  max-width: 1250px;
 }
 
 .addInternInputsDiv {
@@ -108,6 +110,8 @@
   justify-content: space-evenly;
   margin: 35px 0px 20px;
   align-items: flex-start;
+}
+.addInternInputs.white{
   caret-color: white;
 }
 
@@ -244,7 +248,7 @@ input::-webkit-calendar-picker-indicator {
   row-gap: 10px;
 }
 
-.btnCancle {
+.btnCancel {
   display: inline !important;
   width: 200px !important;
   color: #fff !important;
@@ -299,7 +303,7 @@ input::-webkit-calendar-picker-indicator {
   border-radius: 60px 0px 60px 0px !important;
 }
 
-.intershipsDiv {
+.internshipsDiv {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -314,6 +318,10 @@ input::-webkit-calendar-picker-indicator {
   margin: 20px 0px;
   font-size: 20px;
   color: #016be4;
+}
+
+.radioInputs{
+  width:338px;
 }
 
 .intershipTitleHeader {
@@ -341,7 +349,7 @@ input::-webkit-calendar-picker-indicator {
   background-color: #38c6f9 !important;
 }
 
-.intershipsbody {
+.internshipsbody {
   border-radius: 8px;
 }
 
@@ -369,6 +377,8 @@ input::-webkit-calendar-picker-indicator {
   padding-bottom: 20px !important;
 }
 
+
+
 .radioDiv {
   min-width: 40ch !important;
 }
@@ -382,6 +392,12 @@ input::-webkit-calendar-picker-indicator {
   justify-content: space-evenly;
   margin: 35px 0px 20px;
   align-items: flex-start;
+}
+
+@media screen and (min-height: 800px){
+  .editUserDetailsBtn{
+    height : 36.5px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -437,12 +453,25 @@ input::-webkit-calendar-picker-indicator {
     min-width: 320px !important;
     padding-bottom: 20px !important;
   }
+
+  .certificateProperty p:last-child {
+    word-wrap:break-word;
+    width:130px;
+  }
+
   .intershipCertificationBackGround {
-    margin: 0px !important;
+    margin: 3px !important;
   }
 
   .certificatesCard {
     margin: 10px !important;
+  }
+  .fileInputs {
+    /* margin-left: 30px; */
+    width:285px;
+  }
+  .profileInputs{
+    width:285px;
   }
 }
 
@@ -531,7 +560,7 @@ header {
     #8645e7
   );
   min-height: 90vh;
-  margin: 10px;
+  margin: 2px;
 }
 
 input:-webkit-autofill {
@@ -539,7 +568,7 @@ input:-webkit-autofill {
 }
 
 .myAccountBody {
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 88vh;
 }
 
@@ -548,7 +577,8 @@ input:-webkit-autofill {
 }
 
 .fileInputs {
-  margin-left: 30px;
+  /* margin-left: 30px; */
+  /* width:285px; */
 }
 
 
@@ -559,4 +589,10 @@ input:-webkit-autofill {
   height: 40px;
   color:#a1a1a1 !important;
   background-color: #91ffa7;
+}
+
+@media screen and (min-width:950px){
+  .editUserDetailsBtn{
+    height:39px;
+  }
 }

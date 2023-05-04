@@ -69,12 +69,12 @@ const AddNewCertification = () => {
     completionCertificatepath: "",
   });
 
-  console.log(addNewCertification);
+  // console.log(addNewCertification);
 
   const onChnageInputs = (e) => {
     var name = e.target.name;
     var value = e.target.value;
-    console.log(e);
+    // console.log(e);
     setAddNewCertification((pre) => ({
       ...pre,
       [name]: value,
@@ -84,7 +84,6 @@ const AddNewCertification = () => {
   const handleOnImageChange = async (e) => {
     const filelist = e.target.files[0];
       const filename = e.target.name;
-      // console.log("size====", e.target.name)
       if(filelist.size>153600){
         ToastErrorMessage("Profile Picture size must be less than 150KB.")
         document.getElementById(filename).value='';
@@ -95,40 +94,20 @@ const AddNewCertification = () => {
         document.getElementById(filename).value='';
         return
       }
-      // console.log(filelist)
       const base64 = await convertBase64(filelist);
-      
       
       let formData = new FormData();
       formData.append('certificationPic',filelist)
-      // formData.append('studentId', authState._id)
-
-      // const data = new URLSearchParams(formData).toString();
-      // console.log("data===============",data)
-      // console.log("profileFile _-------------------------- ", formData.entries())
-      // for (var key of formData.entries()) {
-      //   profilelink = key[1]
-      // } 
-      // console.log(profilelink)
-      // var location;
-
-
+      
       try {
         const response = await api.post(
-          '/certificationToS3', 
+          `/certificationToS3`, 
           formData, 
-          // {
-          //   headers :{
-          //     'Content-Type': 'application/x-www-form-urlencoded'
-          //   }
-          // }
         );
-        // console.log(response.data)
         setAddNewCertification((pre) => ({
           ...pre,
           [filename] : response.data,
         }));
-        // setProfilePicEdited(true);
       } catch (error) {
         ToastErrorMessage(error.response.data);
       }
@@ -148,7 +127,7 @@ const AddNewCertification = () => {
     });
   };
 
-  const cancleDeatils = () => {
+  const cancelDeatils = () => {
     setAddNewCertification({
       organizationName: "",
       certificationName: "",
@@ -169,7 +148,7 @@ const AddNewCertification = () => {
         );
         setUploadLoading(false);
         ToastSuccessMessage("Successfully Uploaded !!");
-        cancleDeatils();
+        cancelDeatils();
       } catch (error) {
         setUploadLoading(false);
         ToastErrorMessage(error.response.data || error.message);
@@ -336,8 +315,8 @@ const AddNewCertification = () => {
             {isProfileUpdated ? (
               <div>
                 <div className="editUserDetailsBtn">
-                  <Button className=" btnCancle" onClick={cancleDeatils}>
-                    Cancle
+                  <Button className=" btnCancel" onClick={cancelDeatils}>
+                    Cancel
                   </Button>
                   <Button
                     className={uploadLoading ? "loadingBtn" : "btnUpdate"}

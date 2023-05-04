@@ -45,6 +45,7 @@ const ForgotPasswordInputs = (props) => {
           <Button
             className="forgotpassBtn2"
             onClick={props.getOtp}
+            type="submit"
             // disabled={props.sendOtpBtn}
           >
             {props.uploadLoading ? (

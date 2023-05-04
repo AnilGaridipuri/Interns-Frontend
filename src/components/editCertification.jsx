@@ -41,7 +41,7 @@ export default function EditCertification(props) {
     setOpen(false);
   };
 
-  console.log(props.certificationDetails, "propsd");
+  // console.log(props.certificationDetails, "propsd");
 
   const [addNewCertification, setAddNewCertification] = useState({
     studentId: authState._id,
@@ -55,12 +55,12 @@ export default function EditCertification(props) {
     certificationId: props.certificationDetails._id,
   });
 
-  console.log(addNewCertification,"editCerifvd");
+ // console.log(addNewCertification,"editCerifvd");
 
   const onChnageInputs = (e) => {
     var name = e.target.name;
     var value = e.target.value;
-    console.log(e);
+    //console.log(e);
     setAddNewCertification((pre) => ({
       ...pre,
       [name]: value,
@@ -68,13 +68,34 @@ export default function EditCertification(props) {
   };
 
   const handleOnImageChange = async (e) => {
-    const { name } = e.currentTarget;
     const filelist = e.target.files[0];
-    const base64 = await convertBase64(filelist);
-    setAddNewCertification((prevState) => ({
-      ...prevState,
-      [name]: base64,
-    }));
+      const filename = e.target.name;
+      if(filelist.size>153600){
+        ToastErrorMessage("Profile Picture size must be less than 150KB.")
+        document.getElementById(filename).value='';
+        return
+      }
+      if(!filelist.type.includes('image/')){
+        ToastErrorMessage("File type must be a jpeg/png/jpg.")
+        document.getElementById(filename).value='';
+        return
+      }
+      
+      let formData = new FormData();
+      formData.append('certificationPic',filelist)
+      
+      try {
+        const response = await api.post(
+          `/certificationToS3`, 
+          formData, 
+        );
+        setAddNewCertification((pre) => ({
+          ...pre,
+          [filename] : response.data,
+        }));
+      } catch (error) {
+        ToastErrorMessage(error.response.data);
+      }
   };
 
   const convertBase64 = (file) => {
@@ -91,7 +112,8 @@ export default function EditCertification(props) {
     });
   };
 
-  const cancleDeatils = () => {
+  const cancelDetails = () => {
+    document.
     setAddNewCertification({
       studentId: authState._id,
       organizationName: props.certificationDetails.organizationName,
@@ -104,17 +126,17 @@ export default function EditCertification(props) {
       certificationId: props.certificationDetails._id,
     });
   };
-  const uploadDeatils = async () => {
+  const uploadDetails = async () => {
     if (authState._id == params.id) {
       try {
         const responce = await api.put(
           `update-CertificationDetails`,
           addNewCertification
         );
-        console.log(responce,"Certification")
+        //console.log(responce,"Certification")
         const ongoing = responce.data.filter( (certification) => certification.status==='Ongoing')
         const completed = responce.data.filter( (certification) => certification.status==='Completed')
-        props.setCertificationsDeatils(responce.data);
+        props.setCertificationsDetails(responce.data);
         ToastSuccessMessage("Successfully Updated !!");
       } catch (error) {
         ToastErrorMessage(
@@ -134,7 +156,7 @@ export default function EditCertification(props) {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        // maxWidth="lg"
+        maxWidth="lg"
         className="dialogBox"
         aria-describedby="alert-dialog-slide-description"
       >
@@ -290,10 +312,10 @@ export default function EditCertification(props) {
           </DialogContentText>
         </DialogContent>
         <div className="editUserDetailsBtn" style={{ padding: "20px 0px" }}>
-          <Button className="editUserBtn btnCancle" onClick={cancleDeatils}>
-            Cancle
+          <Button className="editUserBtn btnCancel" onClick={cancelDetails}>
+            Cancel
           </Button>
-          <Button className="editUserBtn btnUpdate" onClick={uploadDeatils}>
+          <Button className="editUserBtn btnUpdate" onClick={uploadDetails}>
             Update
           </Button>
         </div>

@@ -35,7 +35,7 @@ const VerifyOtp = (props) => {
           <Button className="forgotpassBtn1" onClick={props.handlechangeEmail}>
             Change Email
           </Button>
-          <Button className="forgotpassBtn2" onClick={props.verifyOtp}>
+          <Button className="forgotpassBtn2" onClick={props.verifyOtp} type="submit">
             Verify Otp
           </Button>
         </div>

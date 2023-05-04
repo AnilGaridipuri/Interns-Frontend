@@ -76,7 +76,6 @@ const EditProfile = () => {
     year: "",
     profile: "",
     section: "",
-    altmail: "",
   });
   const [isProfilePicEdited, setIsProfilePicEdited] = useState(false);
   const [editedProfilePic, setEditedProfilePic] = useState(null);
@@ -106,7 +105,6 @@ const EditProfile = () => {
           year: response.data.year,
           profile: response.data.profile,
           section: response.data.section,
-          altmail: response.data.altmail,
         });
       } catch (error) {
         ToastErrorMessage(error.message);
@@ -135,20 +133,11 @@ const EditProfile = () => {
     setEditedProfilePic(base64);
     let formData = new FormData();
     formData.append("profilePic", filelist);
-    // formData.append('studentId', authState._id)
-
-    // const data = new URLSearchParams(formData).toString();
-    // console.log("data===============",data)
-    // console.log("profileFile _-------------------------- ", formData.entries())
-    // for (var key of formData.entries()) {
-    //   profilelink = key[1]
-    // }
-    // console.log(profilelink)
-    // var location;
 
     try {
+      console.log("in client uppload")
       const response = await api.post(
-        `/profilePicToS3/${params.id}`,
+        `/profilePicToS3`,
         formData,
       );
       // console.log(response.data)
@@ -193,7 +182,6 @@ const EditProfile = () => {
           phoneNumber: response.data.phoneNumber,
           profile: response.data.profile,
           section: response.data.section,
-          altmail: response.data.altmail,
         })
       );
       setIsProfilePicEdited(false);
@@ -212,8 +200,22 @@ const EditProfile = () => {
     );
   };
 
-  const cancleUserDeatils = () => {
+  const cancelUserDeatils = async () => {
     setIsProfilePicEdited(false);
+    // const key = studentDetails.profile.split('/')[3];
+    // try {
+    //   const response = await api.post(
+    //     `/profilePicToS3/delete/${key}`,
+    //   );
+    //   // console.log(response.data)
+    //   setstudentDeatils((pre) => ({
+    //     ...pre,
+    //     profile: response.data,
+    //   }));
+    //   setIsProfilePicEdited(true);
+    // } catch (error) {
+    //   ToastErrorMessage(error.response.data);
+    // }
     setstudentDeatils({
       branch: userDetails.branch || "",
       mailId: userDetails.mailId,
@@ -289,7 +291,7 @@ const EditProfile = () => {
                 onChange={onChangeInputs}
               />
             </div>
-            <div>
+            {/* <div>
               <div className="profileInputs white">
                 <label>Email</label>
                 <span className="inputdout">:</span>
@@ -303,7 +305,7 @@ const EditProfile = () => {
                 />
               </div>
               <p className="hitMessage">Can not change your email</p>
-            </div>
+            </div> */}
             <div className="profileInputs white">
               <label>Year</label>
               <span className="inputdout">:</span>
@@ -402,7 +404,7 @@ const EditProfile = () => {
                 onChange={onChangeInputs}
               />
             </div>
-            <div className="profileInputs white">
+            {/* <div className="profileInputs white">
               <label>Alt Email</label>
               <span className="inputdout">:</span>
               <OutlinedInput
@@ -415,12 +417,12 @@ const EditProfile = () => {
                 name="altmail"
                 onChange={onChangeInputs}
               />
-            </div>
+            </div> */}
           </div>
         </CardContent>
         <div className="editUserDetailsBtn">
-          <Button className="editUserBtn btnCancle" onClick={cancleUserDeatils}>
-            Cancle
+          <Button className="editUserBtn btnCancel" onClick={cancelUserDeatils}>
+            Cancel
           </Button>
           <Button
             className={uploadLoading ? "loadingBtn" : "editUserBtn btnUpdate"}

@@ -11,7 +11,6 @@ const initialState = {
   mailId: "",
   profile: "",
   section:"",
-  altmail:""
 };
 
 export const authSlice = createSlice({
@@ -29,7 +28,6 @@ export const authSlice = createSlice({
       state.profile = action.payload.profile || "";
       state.branch = action.payload.branch || "";
       state.section= action.payload.section || "";
-      state.altmail= action.payload.altmail || "";
     },
   },
 });

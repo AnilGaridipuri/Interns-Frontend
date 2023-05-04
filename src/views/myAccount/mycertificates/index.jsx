@@ -27,7 +27,7 @@ const MyCertificates = () => {
 
   const [completionCertificatepath, setCompletionCertificatepath] = useState("")
 
-  console.log(isUser, "is user");
+  // console.log(isUser, "is user");
 
   useEffect(() => {
     if (!getworkDetails) {
@@ -75,7 +75,7 @@ const MyCertificates = () => {
       {loading === true ? (
         <LoadingCircle />
       ) : (
-        <div className="intershipsbody intershipCertificationBackGround">
+        <div className="internshipsbody intershipCertificationBackGround">
           <AccountHeader label="Certifications" />
           {certificationsDetails.length != 0 ? (
             <div className="certificatesDiv">
@@ -90,7 +90,7 @@ const MyCertificates = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      <p className="intershipTitle certificationTitle">{certification.certificationName}</p>
+                      <p className="intershipTitle certificationTitle">{certification.organizationName}</p>
 
                       <div
                         style={{
@@ -124,28 +124,28 @@ const MyCertificates = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <div style={{ display: "flex", gap: "10px" }}>
+                      <div className="certificateProperty" style={{ display: "flex", gap: "10px" }}>
                         <label style={{ fontWeight: "bold", width: "150px" }}>
                           Organization Name
                         </label>
                         <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                         <p>{certification.organizationName}</p>
                       </div>
-                      <div style={{ display: "flex", gap: "10px" }}>
+                      <div className="certificateProperty"  style={{ display: "flex", gap: "10px" }}>
                         <label style={{ fontWeight: "bold", width: "150px" }}>
                           Certification Name
                         </label>
-                        <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
+                        <p style={{ fontWeight: "bold", width: "5px", }}>:</p>
                         <p>{certification.certificationName}</p>
                       </div>
-                      <div style={{ display: "flex", gap: "10px" }}>
+                      <div className="certificateProperty"  style={{ display: "flex", gap: "10px" }}>
                         <label style={{ fontWeight: "bold", width: "150px" }}>
                           Start Date
                         </label>
                         <p style={{ fontWeight: "bold", width: "5px" }}>:</p>
                         <p>{certification.start_date}</p>
                       </div>
-                      <div style={{ display: "flex", gap: "10px" }}>
+                      <div className="certificateProperty"  style={{ display: "flex", gap: "10px" }}>
                         <label style={{ fontWeight: "bold", width: "150px" }}>
                           End Date
                         </label>
