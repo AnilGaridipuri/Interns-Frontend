@@ -47,7 +47,6 @@ const NavBar = () => {
         mailId: "",
         profile: "",
         section: "",
-        altmail: "",
       })
     );
   };

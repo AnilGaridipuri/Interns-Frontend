@@ -176,7 +176,7 @@ const Sidebar = (props) => {
               >
                 <WorkHistoryIcon fontSize="large" />
                 <p className="linkName">Add New Internship</p>
-                <span className="tooltip_sidemenu">Add New Internship</span>
+                <span style={{width:'180px'}}  className="tooltip_sidemenu">Add New Internship</span>
               </div>
             </NavLink>
             <NavLink
@@ -193,7 +193,7 @@ const Sidebar = (props) => {
               >
                 <NoteAddIcon fontSize="large" />
                 <p className="linkName">Add New Certifications</p>
-                <span className="tooltip_sidemenu">Add New Certifications</span>
+                <span style={{width:'180px'}} className="tooltip_sidemenu">Add New Certification</span>
               </div>
             </NavLink>
             <NavLink

@@ -3,7 +3,7 @@ import AccountHeader from "../../../components/accountHeader";
 import { api } from "../../../axios/api.config";
 import { ToastErrorMessage } from "../../../uitils/toastMessage";
 import { useParams } from "react-router";
-import { capitalizeFirstLetter } from "./../../../uitils/jsFunctions";
+import { capitalizeFirstLetter } from "../../../uitils/jsFunctions";
 import { Avatar, Button, Card, CardActions, CardContent } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import CreateIcon from "@mui/icons-material/Create";
@@ -14,7 +14,7 @@ import EditInternship from "../../../components/editInterShip";
 import ViewWorkDetails from "../../../components/viewWorkDeatil";
 import EditCertification from "../../../components/editCertification";
 
-const MyInterships = () => {
+const MyInternships = () => {
   const {_id} = useSelector((state) => state.authReducer);
   const [getworkDetails, setGetworkDetails] = useState(false);
   const [workDetails, setWorkDeatils] = useState([]);
@@ -34,7 +34,7 @@ const MyInterships = () => {
     _id: "",
     profile: "",
   });
-  console.log(isUser,'is user')
+  // console.log(isUser,'is user')
   
   useEffect(() => {
     if (!getworkDetails) {
@@ -111,12 +111,12 @@ const MyInterships = () => {
       {loading == true ? (
         <LoadingCircle />
       ) : (
-        <div className="intershipsbody intershipCertificationBackGround">
-          <AccountHeader label={isUser ? "My Interships" : "Interships"} />
+        <div className="internshipsbody intershipCertificationBackGround">
+          <AccountHeader label={isUser ? "My Internships" : "Internships"} />
 
           {workDetails.length != 0 ? (
             <div>
-              <div className="intershipsDiv">
+              <div className="internshipsDiv">
                 {workDetails?.map((work, index) => (
                   <Card className="intershipCard" key={index}>
                     <CardContent>
@@ -138,6 +138,7 @@ const MyInterships = () => {
                           <EditInternship
                             workDetails={work}
                             setWorkDeatils={setWorkDeatils}
+                            workSNo={work.SNo}
                           />
                         ) : null}
                       </div>
@@ -227,7 +228,7 @@ const MyInterships = () => {
                 fontSize: "20px",
               }}
             >
-              No InternShips Added
+              No Internships Added
             </p>
           )}
         </div>
@@ -243,4 +244,4 @@ const MyInterships = () => {
   );
 };
 
-export default MyInterships;
+export default MyInternships;

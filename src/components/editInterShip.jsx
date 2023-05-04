@@ -6,7 +6,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
 import CreateIcon from "@mui/icons-material/Create";
 import {
-DialogTitle,
+  DialogTitle,
   FormControl,
   FormControlLabel,
   MenuItem,
@@ -21,6 +21,7 @@ import { ToastErrorMessage, ToastSuccessMessage } from "../uitils/toastMessage";
 import { useParams } from "react-router";
 import CloseIcon from "@mui/icons-material/Close";
 import AccountHeader from "./accountHeader";
+import { render } from "react-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -45,6 +46,10 @@ export default function EditInternship(props) {
     setOpen(false);
   };
 
+  // useEffect(() => {
+  //   // render();
+  // }, [addNewIntern])
+
   const [addNewIntern, setAddNewIntern] = useState({
     studentId: authState._id,
     workId: props.workDetails._id,
@@ -60,26 +65,58 @@ export default function EditInternship(props) {
     stipend: props.workDetails.stipend,
     projectName: props.workDetails.projectName,
   });
-  console.log(addNewIntern, "updated list");
+  // console.log(addNewIntern, "updated list");
 
   const onChnageInputs = (e) => {
     var name = e.target.name;
     var value = e.target.value;
-    console.log(e);
+    // console.log(e);
     setAddNewIntern((pre) => ({
       ...pre,
       [name]: value,
     }));
   };
 
+  const [changedOfferLetter, setChangedOfferLetter] = useState(null);
+  const [changedCompletionCertificate, setChangedCompletionCertificate] = useState(null);
+  const [isOfferLetterChanged, setIsOfferLetterChanged] = useState(false);
+  const [isCompletionCertificateChanged, setIsCompletionCertificateChanged] = useState(false);
+
+
   const handleOnImageChange = async (e) => {
-    const { name } = e.currentTarget;
     const filelist = e.target.files[0];
-    const base64 = await convertBase64(filelist);
-    setAddNewIntern((prevState) => ({
-      ...prevState,
-      [name]: base64,
-    }));
+    const filename = e.target.name;
+    if (filelist.size > 153600) {
+      ToastErrorMessage("File size must be less than 150KB.");
+      document.getElementById(filename).value = "";
+      return;
+    }
+    if (!filelist.type.includes("image/")) {
+      ToastErrorMessage("File type must be a jpeg/png/jpg.");
+      document.getElementById(filename).value = "";
+      return;
+    }
+    let formData = new FormData();
+    formData.append(filename, filelist);
+
+
+    if (filename === "offerLetterpath") {
+      var apiPath = `/offerLetterToS3`;
+    } else if (filename === "completionCertificatepath") {
+      var apiPath = `/completionCertificateToS3`;
+    }
+    try {
+      const response = await api.post(
+        `${apiPath}`,
+        formData
+      );
+      setAddNewIntern((pre) => ({
+        ...pre,
+        [filename]: response.data,
+      }));
+    } catch (error) {
+      ToastErrorMessage(error.response.data);
+    }
   };
 
   const convertBase64 = (file) => {
@@ -96,7 +133,7 @@ export default function EditInternship(props) {
     });
   };
 
-  const cancleDeatils = () => {
+  const cancelDeatils = () => {
     setAddNewIntern({
       workId: props.workDetails._id,
       companyName: props.workDetails.companyName,
@@ -111,9 +148,12 @@ export default function EditInternship(props) {
       stipend: props.workDetails.stipend,
       projectName: props.workDetails.projectName,
     });
+    document.getElementById("offerLetterpath").value = "";
+    document.getElementById("completionCertificatepath").value = "";
   };
+
   const uploadDeatils = async () => {
-    if (authState._id == params.id) {
+    if (authState._id === params.id) {
       try {
         const responce = await api.put(`/update-workDetails`, addNewIntern);
         props.setWorkDeatils(responce.data);
@@ -173,7 +213,7 @@ export default function EditInternship(props) {
                   onChange={onChnageInputs}
                 />
               </div>
-              <div className="addInternInputs">
+              <div className="addInternInputs radioInputs">
                 <FormControl className="myAccountInputs selectColor">
                   <label className="radioLabel">Type :</label>
                   <RadioGroup
@@ -309,12 +349,13 @@ export default function EditInternship(props) {
                 <div className="addInternInputs fileInputs">
                   <label>Offer Letter :</label>
                   <OutlinedInput
-                    className="myAccountInputs "
+                    className="myAccountInputs"
                     onChange={handleOnImageChange}
                     name="offerLetterpath"
                     type="file"
                     size="small"
-                    id="outlined-basic"
+                    id="offerLetterpath"
+                    accept="image/*"
                   />
                 </div>
                 <div className="previewImage">
@@ -331,7 +372,7 @@ export default function EditInternship(props) {
                           alt="preview image"
                         />
                       ) : (
-                        <p style={{ color: "red" }}>Offer Letter Not Upload</p>
+                        <p style={{ color: "red" }}>Offer Letter is Changed.</p>
                       )}
                     </div>
                   </div>
@@ -348,7 +389,8 @@ export default function EditInternship(props) {
                       type="file"
                       multiple
                       size="small"
-                      id="outlined-basic"
+                      id="completionCertificatepath"
+                      accept="image/*"
                     />
                   </div>
                   <div className="previewImage">
@@ -366,7 +408,7 @@ export default function EditInternship(props) {
                         />
                       ) : (
                         <p style={{ color: "red" }}>
-                          Completion Certificate Not Upload
+                          Completion Certificate is changed.
                         </p>
                       )}
                     </div>
@@ -377,8 +419,8 @@ export default function EditInternship(props) {
           </DialogContentText>
         </DialogContent>
         <div className="editUserDetailsBtn" style={{ padding: "20px 0px" }}>
-          <Button className="editUserBtn btnCancle" onClick={cancleDeatils}>
-            Cancle
+          <Button className="editUserBtn btnCancel" onClick={cancelDeatils}>
+            Cancel
           </Button>
           <Button className="editUserBtn btnUpdate" onClick={uploadDeatils}>
             Update

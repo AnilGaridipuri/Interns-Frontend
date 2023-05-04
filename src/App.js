@@ -53,7 +53,6 @@ function App() {
             phoneNumber: responce.data.phoneNumber || "",
             profile: responce.data.profile || "",
             section: responce.data.section || "",
-            altmail: responce.data.altmail || "",
           })
         );
       } catch (error) {

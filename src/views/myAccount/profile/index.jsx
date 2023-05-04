@@ -130,7 +130,7 @@ const Profile = () => {
                 id="outlined-size-small"
                 defaultValue="Small"
                 size="small"
-                value={userDetails.section || "Not Avaliable"}
+                value={ (userDetails.section===' ') ? 'Single Section' : userDetails.section || "Not Avaliable"}
                 name="section"
                 disabled={true}
               />
@@ -147,7 +147,7 @@ const Profile = () => {
                 disabled={true}
               />
             </div>
-            <div className="profileInputs white">
+            {/* <div className="profileInputs white">
               <label>Alt Email</label>
               <span className="inputdout">:</span>
               <OutlinedInput
@@ -160,7 +160,7 @@ const Profile = () => {
                 name="altmail"
                 disabled={true}
               />
-            </div>
+            </div> */}
           </div>
         </CardContent>
       </Card>

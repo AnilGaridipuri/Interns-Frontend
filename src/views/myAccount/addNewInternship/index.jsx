@@ -94,7 +94,6 @@ const AddNewInternship = () => {
   const handleImageUpload = async (e) => {
     const filelist = e.target.files[0];
     const filename = e.target.name;
-    // console.log("size====", e.target.name)
     if (filelist.size > 153600) {
       ToastErrorMessage("File size must be less than 150KB.");
       document.getElementById(filename).value = "";
@@ -105,45 +104,24 @@ const AddNewInternship = () => {
       document.getElementById(filename).value = "";
       return;
     }
-    // console.log(filelist)
     const base64 = await convertBase64(filelist);
     if (filename === "offerLetterpath") {
-      // setOfferLetterPreview(base64)
       var apiPath = `/offerLetterToS3`;
     } else if (filename === "completionCertificatepath") {
-      // setCompletionCertificatePreview(base64)
       var apiPath = `/completionCertificateToS3`;
     }
 
     let formData = new FormData();
     formData.append(filename, filelist);
-    // formData.append('studentId', authState._id)
-
-    // const data = new URLSearchParams(formData).toString();
-    // console.log("data===============",data)
-    // console.log("profileFile _-------------------------- ", formData.entries())
-    // for (var key of formData.entries()) {
-    //   profilelink = key[1]
-    // }
-    // console.log(profilelink)
-    // var location;
-
-    try {
+        try {
       const response = await api.post(
-        apiPath,
+        `${apiPath}`,
         formData
-        // {
-        //   headers :{
-        //     'Content-Type': 'application/x-www-form-urlencoded'
-        //   }
-        // }
       );
-      // console.log(response.data)
       setAddNewIntern((pre) => ({
         ...pre,
         [filename]: response.data,
       }));
-      // setProfilePicEdited(true);
     } catch (error) {
       ToastErrorMessage(error.response.data);
     }
@@ -181,6 +159,7 @@ const AddNewInternship = () => {
     document.getElementById("offerLetterpath").value = "";
     document.getElementById("completionCertificatepath").value = "";
   };
+
   const uploadDeatils = async () => {
     setUploadLoading(true);
     if (authState._id === params.id) {
@@ -443,7 +422,7 @@ const AddNewInternship = () => {
               <div>
                 <div className="editUserDetailsBtn">
                   <Button
-                    className="editUserBtn btnCancle"
+                    className="editUserBtn btnCancel"
                     onClick={cancelDeatils}
                   >
                     Cancel

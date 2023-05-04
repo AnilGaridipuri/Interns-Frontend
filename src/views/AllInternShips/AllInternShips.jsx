@@ -57,7 +57,7 @@ const selectStatus = [
   { displayName: "Not Started", value: "Not Started" },
 ];
 
-const AllInternShips = () => {
+const AllInternships = () => {
   const [worklistparameters, setWorklistparameters] = useState({
     page: 1,
     size: 5,
@@ -472,4 +472,4 @@ const AllInternShips = () => {
   );
 };
 
-export default AllInternShips;
+export default AllInternships;

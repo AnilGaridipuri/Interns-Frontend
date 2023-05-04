@@ -7,12 +7,12 @@ import ForgotPasswordPage from "../views/ForgotPassword/forgotPasswordPage";
 import MyAccount from "../views/myAccount";
 import Profile from "../views/myAccount/profile";
 import MyCertificates from "../views/myAccount/mycertificates";
-import MyInterships from "../views/myAccount/myInterships";
+import MyInternships from "../views/myAccount/myInternships";
 import AddNewInternship from "../views/myAccount/addNewInternship";
 import EditProfile from "../views/myAccount/EditProfile";
-import AllInternShips from "../views/AllInternShips/AllInternShips";
+import AllInternships from "../views/AllInternships/AllInternships";
 import AddNewCertification from "../views/myAccount/addNewCertification";
-import AllCertifications from "../views/AllInternShips/AllCertifications"
+import AllCertifications from "../views/AllInternships/AllCertifications"
 import HomeWebDevelopment from "../views/Home/webDevelopment/webDevelopment";
 import WebLearn from "../views/Home/webDevelopment/webLearn";
 import WebInternships from "../views/Home/webDevelopment/webInternships";
@@ -49,7 +49,7 @@ export default function App() {
     },
     {
       path: ApplicationConstant.ALLINTERNSHIP_PAGE_PATH,
-      element: <AllInternShips />,
+      element: <AllInternships />,
     },
     {
       path: ApplicationConstant.ALL_CERTIFICATIONS,
@@ -73,7 +73,7 @@ export default function App() {
         },
         {
           path: ApplicationConstant.MYACCOUNT_MYINTERSHIPS_DYNAMIC_URL,
-          element: <MyInterships />,
+          element: <MyInternships />,
         },
         {
           path: ApplicationConstant.MYACCOUNT_MYCERTIFICATES_DYNAMIC_URL,

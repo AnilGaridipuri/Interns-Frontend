@@ -1,6 +1,20 @@
+add rollno, email, passowrd to db
+divide controolers
+click enter to click buttons : login , send otp, etc.. *
+home page quotes came down in mobile *
+hvoer on edit(internships) * 
+Edit internship card elements alignmetn *
+add filename to aws s3 buckets from params
 
-2. add rollno, email, passowrd to db
+height >800 :
+my acount card width and hegiht fix *
+my acnt/profile card not scrolling in less height *
+edit profile buttons height *
 
-
-9. divide controolers
-
+hightlight buttons capital to small letters
+single section show null or none * 
+home page skill tags directs to official docs
+dept filters in mobile screen should be in drop down
+remove all console logs *
+change clear filters button
+remove scrollbar *

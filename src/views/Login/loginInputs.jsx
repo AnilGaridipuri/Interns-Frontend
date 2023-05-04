@@ -96,7 +96,7 @@ const LoginInputs = (props) => {
         const responce = await api.post(`/auth`, userLogin);
         toast.success("Successfully Login");
         localStorage.setItem("MITSinternsid", responce.data._id);
-        console.log(responce.data);
+        // console.log(responce.data);
         setLoginBtn(true);
         dispatch(
           setAuthentication({
@@ -110,7 +110,6 @@ const LoginInputs = (props) => {
             phoneNumber: responce.data.phoneNumber || "",
             profile: responce.data.profile || "",
             section: responce.data.section || "",
-            altmail: responce.data.altmail || "",
           })
           );
         setUploadLoading(false);
@@ -128,7 +127,7 @@ const LoginInputs = (props) => {
         <div className="loginInputsDiv">
           <ToastContainer />
           <FormControl variant="outlined" size="small">
-            <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-email">College Email</InputLabel>
             <OutlinedInput
               className="loginInputs"
               error={email}
@@ -140,7 +139,7 @@ const LoginInputs = (props) => {
                   <EmailIcon />
                 </InputAdornment>
               }
-              label="Email"
+              label="College Email"
             />
             <p id="EmailError" className="errorMessage">
               {errormessage}
@@ -189,6 +188,7 @@ const LoginInputs = (props) => {
           <Button
             className="submitLoginBtn"
             onClick={submitLogin}
+            type="submit"
           >
             {uploadLoading ? (
               <CircularProgress

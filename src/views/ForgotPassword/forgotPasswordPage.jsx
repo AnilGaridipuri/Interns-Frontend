@@ -86,7 +86,7 @@ const ForgotPasswordPage = () => {
       setEmailValidate_status(true);
       setEmailerror(false);
     }
-    console.log(email, "Mail IDadad");
+    // console.log(email, "Mail IDadad");
     setForgotPasswordParams((pre) => ({
       ...pre,
       mailId: email,
@@ -95,14 +95,14 @@ const ForgotPasswordPage = () => {
       ...pre,
       mailId: email,
     }));
-    message.textContent = errormessage;
+    // message.textContent = errormessage;
     setSendOtpBtn(false);
-    console.log(otpDetails.mailId, "OTP");
+    // console.log(otpDetails.mailId, "OTP");
   }
 
   async function getOtp() {
-    console.log("first")
     if (!emailValidate_status) {
+      // console.log("first")
       toast.error("Email is required");
     } else {
       setUploadLoading(true);

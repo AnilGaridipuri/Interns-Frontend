@@ -10,7 +10,7 @@ const MyAccount = () => {
   const params = useParams();
   const userDetails = useSelector((state) => state.authReducer);
     const handleMenuIcon = () => {
-      console.log("myacnttt")
+      // console.log("myacnttt")
       var sidebar = document.querySelector(".sidebarBody");
       sidebar?.classList.toggle("open");
       var sidebar = document.querySelector(".container");
